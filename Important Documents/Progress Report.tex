@@ -1,0 +1,202 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry} 
+\usepackage{setspace} 
+\usepackage{titlesec} 
+\usepackage{amsmath}
+\usepackage[numbers,super]{natbib}
+
+% Title formatting
+\titleformat{\section}[block]{\large\bfseries}{\thesection}{1em}{}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge\textbf{Progress Report} \\
+    \vspace{2cm}
+    \large{Understanding the Quantum Behaviour of a Two Level System Coupled to a Quantum Harmonic Oscillator} \\
+    \vspace{1cm}
+    Submitted by: Rowan Adeya \\
+    Date: \today \\
+    \vspace{1cm}
+    \small{\textit{{Supervisor: Dr Alexandra Olaya-Castro}} \\
+    \small{\textit{Co-Supervisor: Chawntell Kulkarni}} \\
+    
+
+    \vfill
+    \normalsize
+    University College London
+\end{titlepage}
+
+% Main content
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+A Quantum Harmonic Oscillator (QHO) coupled to a Two-Level System (TLS), often labelled the Spin-Boson Model, is a widely used model for many systems such as atoms in an optical cavity \cite{Bhattacharya2LSHO_Damping}, low temperature tunnelling dynamics in a double potential well and quantum dots in a photonic crystal. The model is now being used in the fields of biological and chemical physics in regard to electron transfer, spin relaxation, molecular vibrational relaxation \cite{...} and so on.
+
+Thus, the aim of this project is to understand the Spin-Boson model and study it from both closed and open quantum dynamical approaches. Specifically, we will be considering different interactions of the system, and focus on entanglement and coherence properties. This approach will give me a broad understanding of the model and its plethora of uses in different fields of sciences.\\
+\\
+This progress report summarises the work done so far on both the Research Essay and the Final Project, and outlines future aims and goals. We begin by looking at the work done so far on the research project. We then look at the progress made on the literature review. Finally, we discuss the future aims and goals.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\section{Preliminary Investigations}}
+The majority of the work done so far, as detailed in the Project Outline, is preliminary investigations and basic closed quantum dynamics of the model. 
+\\
+\subsection{\normalsize{Diagonalizing the Hamiltonian of the Spin-Boson Model}}
+
+I started my investigations by firstly defining a relevant Hamiltonian\cite{Hagelstein2LSHO_Desc} $\hat{H}$ to use later when analysing the time evolution of the system. 
+
+\begin{equation}
+    \hat{H} = \frac{\hbar\omega_1}{2}\hat{\sigma}_z + \hbar\omega_2(a^\dagger a + \frac{1}{2}) + \hbar G(a\hat{\sigma}_{eg} + a^\dagger\hat{\sigma}_{ge})
+\end{equation}
+\\
+where $\omega_1$ is the energy difference between the two levels of the TLS, $\omega_2$ is the frequency of the harmonic oscillator, $\sigma_z$ is the Pauli spin operator, $\sigma_{eg}$ and $\sigma_{ge}$ are the excitation and de-excitation operators respectively, $a^\dagger$ and $a$ are the creation and annihilation operators respectively, and $G$ is the coupling strength constant.
+\\
+Once I determined the Hamiltonian, I looked at the joint state of the TLS coupled to the HO. 
+
+\begin{equation}
+    |\Psi\rangle = \alpha|g,n+1\rangle + \beta|e,n\rangle
+\end{equation}
+\\
+where $g$ and $e$ represent the ground and excited states respectively, and n denotes the number of excitations of the Harmonic Oscillator, $n=0,1,2,3,...$ . Once the total state vector was determined, I was able to diagonalize the Hamiltonian, and obtained a diagonalised Hamiltonian Matrix $D$:
+
+\begin{equation}
+D = \begin{bmatrix}
+\hbar\omega_2(n+1) + k & 0 \\
+0 & \hbar\omega_2(n+1) - k
+\end{bmatrix}
+\end{equation}
+\vspace{2cm}
+where 
+\begin{equation*}
+    k = \hbar\sqrt{\frac{\omega_1^2 + \omega_2^2}{4}-\frac{\omega_1\omega_2}{2}+G^2(n+1)}
+\end{equation*}
+\\
+\subsection{\normalsize{Time Evolved State Vector}}
+
+Now that I had a diagonalized Hamiltonian, I could then proceed to calculate the time-evolved state $|\Psi(t)\rangle$ for a given initial state of $|\Psi(t=0)\rangle = |e,0\rangle$. For this initial state, the number of excitations of the Harmonic Oscillator $n=0$, and so our constant $k$ now becomes $k'$:
+
+\begin{equation*}
+    k' = \hbar\sqrt{\frac{\omega_1^2 + \omega_2^2}{4}-\frac{\omega_1\omega_2}{2}+G^2}
+\end{equation*}
+\\
+Since our diagonalised hamiltonian was in the eigenbasis, it was necessary to also convert $|\Psi(t=0)\rangle$ into the eigenbasis. Then, I used the evolution operator $\hat{U(t)} = e^{-\frac{iDt}{\hbar}}$to calculate $|\Psi(t)\rangle$ - this process was made far simpler due to the diagonalised hamiltonian, since raising a matrix to a power is trivialised if the matrix is diagonal. Using $|\Psi(t)\rangle = \hat{U(t)}|\Psi(t=0)\rangle$, I obtained the final time-evolved state:
+
+\begin{equation}
+    |\Psi(t)\rangle = \begin{bmatrix}
+        e^{-i(\omega_2 + \frac{k'}{\hbar})t}(1+(\frac{a+k'}{c})^2)^{-\frac{1}{2}}(\frac{a+k'}{c}) \\
+        e^{-i(\omega_2 - \frac{k'}{\hbar})t}(1+(\frac{a-k'}{c})^2)^{-\frac{1}{2}}(\frac{a-k'}{c})
+    \end{bmatrix}
+\end{equation}
+\\
+where $a = \hbar(\frac{\omega_1 - \omega_2}{2})$, $c = \hbar G\sqrt{n+1} = \hbar G$ since $n=0$ from our initial state, and the time-evolved state is written in terms of its eigenstates.
+\\
+\subsection{\normalsize{Time-Evolved Density Matrix}}
+
+In order to calculate entanglement, the easiest way often is to first determine the density matrix for a pure state. In order to find the time-evolved density matrix, I had to firstly convert $|\Psi(t)\rangle$ back into the original basis (see equation (2)). For the general density matrix, $\rho$, we have:
+
+\begin{equation}
+    \rho = \begin{bmatrix}
+        \alpha\alpha^* & \alpha\beta^* \\
+        \alpha^*\beta & \beta\beta^*
+    \end{bmatrix}
+\end{equation}
+
+where the first row and first column represents $|g,n+1\rangle$ and $\langle g,n+1|$ respectively, and  and the second row and column represent $|e,n\rangle$ and $\langle e,n|$ respectively. I then proceeded to determine the coefficients $\alpha(t)$ and $\beta(t)$ for the time-evolved density matrix. Finally, I performed a partial trace over each respective subsystem (TLS or HO) to obtain the subsystem density matrices.
+
+\begin{align}
+    \rho(t)_{HO} = \alpha(t)\alpha^*(t)|1\rangle\langle1| + \beta(t)\beta^*(t)|0\rangle\langle0|
+    \\
+    \rho(t)_{TLS} = \alpha(t)\alpha^*(t)|g\rangle\langle g| + \beta(t)\beta^*(t)|e\rangle\langle e|
+\end{align}
+
+where 
+
+\begin{align*}
+    \alpha(t)\alpha^*(t) &=\eta_+^2 + \eta_-^2 + 2\eta_+\eta_-\cos{\frac{k'}{\hbar}t} \\
+    \beta(t)\beta^*(t) &= \eta_+^2(\frac{a+k'}{c})^2 + \eta_-^2(\frac{a-k'}{c})^2 + 2\eta_+\eta_-(\frac{a+k'}{c})(\frac{a-k'}{c})\cos{\frac{k'}{\hbar}t} \\
+\end{align*}
+
+and 
+
+\begin{equation*}
+    \eta_{\pm}= (1+(\frac{a\pm k'}{c})^2)^{-1}(\frac{a\pm k'}{c})
+\end{equation*}
+\\
+\subsection{\normalsize{Entanglement Quantification}}
+
+From here, I began to look at entanglement quantification, and looked at four different measurements of entanglement: the Von Neumann Entropy of Entanglement\cite{DerivationVNEntropy}; the Relative Entropy of Entanglement (REE)\cite{OverviewREE},\cite{GeneratingREE}; the Entanglement Renyi $\alpha$ Entropy (ER$\alpha$E)\cite{DefinitionERaE}; Wooters' Concurrence and Entanglement of Formation \cite{}. 
+
+The Von Neumann entropy of Entanglement\cite{DerivationVNEntropy} measures the degree of entanglement for a pure bipartite system such as the Spin-Boson model, and depends on either of the subsystem density matrices' eigenvalues. 
+
+\begin{equation}
+    S = -\text{Tr}(\rho_{TLS}\ln({\rho_{TLS}})) = -\text{Tr}(\rho_{HO}\ln({\rho_{HO}}))
+\end{equation}
+
+Furthermore, if the matrix is diagonalised, the Von Neumann entropy reduces to:
+
+\begin{equation}
+    S = \sum_i -\lambda_i\ln({\lambda_i})
+\end{equation}
+
+Since there is no mixing for either of the two subsystems, their density matrices are diagonal, and the non-zero values are thus the eigenvalues. Here, I also make the following approximation\cite{Bhattacharya2LSHO_Damping}: I assume that the TLS and HO are in resonance, i.e. $\omega_1=\omega_2=\omega$. Using the HO subsystem, I found that the Von Neumann entropy of entanglement oscillates between $0$ and $\ln{2}$.
+
+The REE measures the minimum "distance" between a given quantum state $\rho$ and all its other disentangled density matrices $\sigma$\cite{GeneratingREE}. In order to calculate REE, it is best done via numerical methods. However, there is a trivial answer for our system\cite{OverviewREE}: for pure states, REE reduces to the Von Neumann entropy of entanglement.
+
+\begin{equation}
+    S(\rho) = \min_{\sigma \in \chi}  D(\rho||\sigma) =-\text{Tr}(\rho_{TLS}\ln({\rho_{TLS}})) = -\text{Tr}(\rho_{HO}\ln({\rho_{HO}}))
+\end{equation}
+
+where $\chi$ is the set of all the disentangled states.
+\\
+Wooters states\cite{...} that the Entanglement of Formation (EoF) measures the resources needed to create a given entangled state. He quantifies it in terms of "concurrence", $C$, which ranges from 0 to 1 (0 being no entanglement present, 1 being a maximally entangled state). 
+
+\begin{equation}
+    E(C) = h(\frac{1+\sqrt{1-C^2}}{2})
+\end{equation}
+
+where 
+
+\begin{align*}
+    h(x) = -x\log_2{x} - (1-x)\log_2{1-x} \\
+    C(\rho) = \text{max}\{0,\lambda_1-\lambda_2-\lambda_3-\lambda_4\}
+\end{align*}
+
+for the eigenvalues of the matrix $\rho \tilde{\rho}$, where $\tilde{\rho}$ is the spin-flipped density matrix. Since $E$ ranges from 0 to 1 and concurrence does as well, concurrence is effectively a measure of entanglement. A very important point, however, is that Wooters defines concurrence for a pure density matrix of a two-qubit system; the Spin-Boson model only contains one qubit (the TLS), and so concurrence does not apply to our system, and further investigation has to be done on a more generalised formulation of concurrence. 
+\\
+Finally, ER$\alpha$E is a measure of entanglement which provides more information about the entanglement, since it gives a continuous spectrum parametrised by $\alpha$. For a pure density matrix, it is defined by either one of the subsystems.
+
+\begin{equation}
+    R_{\alpha}(\Psi) \equiv \frac{1}{1-\alpha}\log_2{\text{Tr}(\rho_B^\alpha)}
+\end{equation}
+
+In the $\alpha \to 1$ limit, the ER$\alpha$E reduces to the Von Neumann entropy, which further motivates the generality of the ER$\alpha$E. It would be interesting to look at different choices of $\alpha$ around $1$ and see how the entanglement changes. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Literature Review}
+Currently, I have around 15 references which may be used for the literature review. Some give context to the Spin-Boson model, some assist with my preliminary investigations, and the remaining references refer to the different types of entanglement I have been studying. As I progress through the research project, I will undoubtedly gather more references, including ones on coherence and numerical methods. I will aim to have at least 50 references that will be used for the Research Essay.
+
+etc...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Future Aims and Goals}
+
+
+
+\newpage
+
+\bibliographystyle{unsrt} 
+\bibliography{references.bib} 
+
+
+\end{document}
