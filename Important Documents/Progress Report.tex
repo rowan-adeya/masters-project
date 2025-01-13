@@ -39,11 +39,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-A Two-Level System (TLS) coupled to a Quantum Harmonic Oscillator (QHO) is a widely used model applicable to various systems in different fields of science. It can describe atoms in an optical cavity \cite{JCHamiltonianDef} and superconducting qubit strongly coupled to an electromagnetic environment\cite{Superconducting...}. In the fields of biological and chemical physics in regard to electron transfer, spin relaxation, molecular vibrational relaxation \cite{...} and so on.
-
-Thus, the aim of this project is to understand the the TLS-QHO system and study it from both closed and open quantum dynamical approaches. Specifically, we will be considering different interactions of the system, and focus on entanglement and coherence properties. This approach will give me a broad understanding of the model and its plethora of uses in different fields of sciences.\\
+The aim of this project is to understand the quantum behaviour of a Two-Level System (TLS) coupled to a Quantum Harmonic Oscillator (QHO). In 1963, Edwin Jaynes and Fred Cummings set out to model a single atom interacting with the quantized electromagnetic field within an optical cavity\cite{...} using the TLS-HO model. As such, they formulated the Jaynes-Cummings Model (JCM), which uses the Rotating-Wave Approximation to simplify the analysis of their system. Later, Herbert Walther experimentally verifies\cite{...} the JCM, proving its importance within the field of Quantum Optics. Presently, the JCM has been extended to various scientific fields and is thus ubiquitous. It can describe atoms in an optical cavity \cite{H_JC}, superconducting qubits strongly coupled to an electromagnetic environment\cite{Superconducting...} and, in the field of biological physics, molecular vibrational relaxation \cite{...}, amongst many other systems.\\
 \\
-This progress report summarises the work done so far on both the Research Essay and the Final Project, and outlines future aims and goals. We begin by looking at the work done so far on the research project. We then look at the progress made on the literature review. Finally, we discuss the future aims and goals.
+To understand the quantum behaviour of a TLS-HO system, we begin with the JCM Hamiltonian. We shall look at different forms of interaction between the system, using both closed and open quantum approaches. Furthermore, we shall study its entanglement and coherence properties to gain further insight into the system's behaviours. Entanglement is a measure of the mixedness of a quantum system, indicating how much the system's state deviates from being a separable (product) state\cite{E_WC_Definition} and how much quantum correlation exists between subsystems. Quantifying the entanglement of our system gives us non-classical insight into our system, necessitating the study of this phenomenon. Coherence, another quantum phenomenon related\cite{...} to entanglement, describes the ability of a system to maintain its quantum mechanics states; a loss of coherence (decoherence) represents a system's transition to classical regime. Studying coherence gives valuable insight into our system's quantum behaviour and optimisation, as it reveals how well the system preserves its states, which are essential for maximizing the efficiency of the system in question.\\
+\\
+This progress report summarises the work done so far on both the Research Essay and the Final Project, and outlines future aims and goals. We begin by looking at preliminary investigations. We then look at the progress made on the literature review. Finally, we discuss the future aims and goals.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,7 +118,7 @@ where $a = \hbar(\frac{\omega_1 - \omega_2}{2})$, $c = \hbar G\sqrt{n+1} = \hbar
 \\
 \subsection{\normalsize{Time-Evolved Density Matrix}}
 
-In order to calculate entanglement, the easiest way often is to first determine the density matrix for a pure state. In order to find the time-evolved density matrix, I had to firstly convert $|\Psi(t)\rangle$ back into the original basis (see equation (2)). For the general density matrix, $\rho$, we have:
+In order to calculate entanglement, the easiest way often is to first determine the density matrix for a pure state. In order to find the time-evolved density matrix, we firstly convert $|\Psi(t)\rangle$ back into the original basis (see equation (2)). For the general density matrix, $\rho$, we have:
 
 \begin{equation}
     \rho = \begin{bmatrix}
