@@ -25,7 +25,7 @@
     Submitted by: Rowan Adeya \\
     Date: \today \\
     \vspace{1cm}
-    \small{\textit{{Supervisor: Dr Alexandra Olaya-Castro}} \\
+    \small{\textit{Supervisor: Dr Alexandra Olaya-Castro}} \\
     \small{\textit{Co-Supervisor: Chawntell Kulkarni}} \\
     
 
@@ -52,7 +52,7 @@ The majority of the work done so far, as detailed in the Project Outline, is pre
 \\
 \subsection{\normalsize{Diagonalizing the Hamiltonian of the TLS-QHO System}}
 
-We first define the Jaynes-Cummings\cite{JCHamiltonianDef} Hamiltonian\cite{Hagelstein2LSHO_Desc} $\hat{H}$, which describes a TLS interacting with a QHO; it will later be of use when analysing the time evolution of the system. 
+We first define the Jaynes-Cummings\cite{H_JC} Hamiltonian\cite{C_spin-boson} $\hat{H}$, which describes a TLS interacting with a QHO; it will later be of use when analysing the time evolution of the system. 
 
 \begin{equation}
     \hat{H} = \frac{\hbar\omega_1}{2}\hat{\sigma}_z + \hbar\omega_2(a^\dagger a + \frac{1}{2}) + \hbar G(a\hat{\sigma}_{eg} + a^\dagger\hat{\sigma}_{ge}),
@@ -150,9 +150,9 @@ and
 \\
 \subsection{\normalsize{Entanglement Quantification}}
 
-From here, we may begin to look at entanglement quantification. Let us consider four different measurements of entanglement: the Von Neumann Entropy of Entanglement\cite{DerivationVNEntropy}; the Relative Entropy of Entanglement (REE)\cite{OverviewREE},\cite{GeneratingREE}; the Entanglement Renyi $\alpha$ Entropy (ER$\alpha$E)\cite{DefinitionERaE}; Wooters' Concurrence and Entanglement of Formation \cite{}. 
+From here, we may begin to look at entanglement quantification. Let us consider four different measurements of entanglement: the Von Neumann Entropy of Entanglement\cite{E_VNE_Definition}; the Relative Entropy of Entanglement (REE)\cite{E_Overview_REE},\cite{E_REE_generation}; the Entanglement Renyi $\alpha$ Entropy (ER$\alpha$E)\cite{E_ERaE_Definition}; Wooters' Concurrence and Entanglement of Formation \cite{E_WC_Definition}. 
 
-The Von Neumann entropy of Entanglement\cite{DerivationVNEntropy} measures the degree of entanglement for a pure bipartite system such as the TLS-QHO system, and depends on either of the subsystem density matrices' eigenvalues. 
+The Von Neumann entropy of Entanglement\cite{E_VNE_Definition} measures the degree of entanglement for a pure bipartite system such as the TLS-QHO system, and depends on either of the subsystem density matrices' eigenvalues. 
 
 \begin{equation}
     S = -\text{Tr}(\rho_{TLS}\ln({\rho_{TLS}})) = -\text{Tr}(\rho_{QHO}\ln({\rho_{QHO}}))
@@ -164,9 +164,9 @@ Furthermore, if the matrix is diagonalised, the Von Neumann entropy reduces to:
     S = \sum_i -\lambda_i\ln({\lambda_i})
 \end{equation}
 
-Since there is no mixing for either of the two subsystems, their density matrices are diagonal, and the non-zero values are thus the eigenvalues. Here, we make the following approximation\cite{Bhattacharya2LSHO_Damping}: we assume that the TLS and QHO are in resonance, i.e. $\omega_1=\omega_2=\omega$. Using the QHO subsystem, we find that the Von Neumann entropy of entanglement oscillates between $0$ and $\ln{2}$.
+Since there is no mixing for either of the two subsystems, their density matrices are diagonal, and the non-zero values are thus the eigenvalues. Here, we make the following approximation\cite{H_JC}: we assume that the TLS and QHO are in resonance, i.e. $\omega_1=\omega_2=\omega$. Using the QHO subsystem, we find that the Von Neumann entropy of entanglement oscillates between $0$ and $\ln{2}$.
 
-The REE measures the minimum "distance" between a given quantum state $\rho$ and all its other disentangled density matrices $\sigma$\cite{GeneratingREE}. In order to calculate REE, it is best done via numerical methods. However, there is a trivial answer for our system\cite{OverviewREE}: for pure states, REE reduces to the Von Neumann entropy of entanglement.
+The REE measures the minimum "distance" between a given quantum state $\rho$ and all its other disentangled density matrices $\sigma$\cite{E_REE_generation}. In order to calculate REE, it is best done via numerical methods. However, there is a trivial answer for our system\cite{E_Overview_REE}: for pure states, REE reduces to the Von Neumann entropy of entanglement.
 
 \begin{equation}
     S(\rho) = \min_{\sigma \in \chi}  D(\rho||\sigma) =-\text{Tr}(\rho_{TLS}\ln({\rho_{TLS}})) = -\text{Tr}(\rho_{QHO}\ln({\rho_{QHO}})),
@@ -174,7 +174,7 @@ The REE measures the minimum "distance" between a given quantum state $\rho$ and
 
 where $\chi$ is the set of all the disentangled states.
 \\
-Wooters states\cite{...} that the Entanglement of Formation (EoF) measures the resources needed to create a given entangled state. He quantifies it in terms of "concurrence", $C$, which ranges from 0 to 1 (0 being no entanglement present, 1 being a maximally entangled state). 
+Wooters states\cite{E_WC_Definition} that the Entanglement of Formation (EoF) measures the resources needed to create a given entangled state. He quantifies it in terms of "concurrence", $C$, which ranges from 0 to 1 (0 being no entanglement present, 1 being a maximally entangled state). 
 
 \begin{equation}
     E(C) = h(\frac{1+\sqrt{1-C^2}}{2}),
@@ -213,7 +213,7 @@ etc...
 \newpage
 
 \bibliographystyle{unsrt} 
-\bibliography{references.bib} 
+\bibliography{References/references.bib} 
 
 
 \end{document}

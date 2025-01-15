@@ -1,4 +1,4 @@
-@misc{H_spin-boson,
+@misc{C_spin-boson,
     author       = {Peter L. Hagelstein and Ifran Chaudhary},
     title        = {Two-level systems coupled to oscillators},
     annotation  = {This article reviews the Dicke model, an extension and generalisation of the spin-boson model. The authors perform a unitary transformation on the Hamiltonian of the Dicke model, thus splitting it into unperturbed and perturbed parts. This action simplifies the dynamics of the problem and allows the authors to inspect the basis states, where they find that the oscillator contribution to the joint state increases the two-level system's transition energy. Then, perturbation theory is used to determine the system dynamics. The article's latter sections cover developing simpler models to reduce computational loads (including a closely related classical model), and why only one Dicke factor shows up in each perturbation matrix element. This article would be particularly useful in finding ways of simplifying the spin-boson model's Hamiltonian through use of a unitary transformation. Furthermore, it gives an overview of how to describe the dynamics of a system similar to the spin-boson model. Finally, it may provide methods of optimising the computational elements of this project further down the line.}}
@@ -21,7 +21,7 @@
 }
 
 
-@article{E_Overview_REE,
+@article{E_REE_VN_applied,
     author = {V. Vedral, M. Plenio, M. Rippin and P. Knight},
     title = {Quantifying Entanglement},
     journal = {Physical Review Journals},
@@ -53,3 +53,10 @@
     year = {2001},
     annotation = {Wooters begins by giving a good overview of entanglement. He states that for pure bipartite states there is only one accepted measurement of entanglement; for mixed states, there are 3. He then proceeds to talk about different entanglement measures. The Von Neumann entropy is a good measurement for pure states, whereas not for mixed states since mixed states' subsystems can have individually non-zero entropy even if there is no entanglement. He then talks about the entanglement of formation, EoF, (which is designed to pick out the entanglement from the mixed state); the EoF is zero for product states. Furthermore, he discusses distillable entanglement, which measures the pure entanglement one can extract from mixed states. If an entangled state has no distillable entanglement (i.e. no pure entanglement), then it is labelled as bound entanglement; they can have EoF but not pure entanglement. He then proceeds to talk about concurrence, which however at the time of his writing, has a definition only for a pair of qubits. This paper can be quite useful to remind oneself of entanglement generally, and for finding the EoF and concurrence for qubits. However, it is old (2001), and might be outdated. More research will need to be carried out on modern concurrence.}
 }
+
+@article{E_EoF_and_WC_Derivation,
+    author = {W. Wooters},
+    title = {Entanglement of Formation of an Arbitrary State of Two Qubits},
+    journal = {Phys.Rev.Lett.80:2245-2248},
+    year = {1998},
+    annotation = {Wooters opens with an overview of the state of entanglement at the time. He then notes that, for pure states, the entanglement is defined for the whole system as the entropy, S, of either of the two subsystems. A mixed state's entanglement, on the other hand, can be defined by the Entanglement of Formation. As in the 2001 paper written by Wooters, he derives the Entanglement of Formation, using a quantity called concurrence. This paper is of particular use because it is the very first time we see Wooters' concurrence turn up in scientific papers, and is thus a ground source.}}
