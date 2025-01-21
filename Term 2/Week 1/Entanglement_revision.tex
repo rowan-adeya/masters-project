@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage[numbers,super]{natbib}
+
+% Document metadata
+\title{Entanglement Measures: Revision and Summary}
+\author{Rowan Adeya}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Wooters' Concurrence and the Entanglement of Formation (EoF)}
+
+\subsection{Pure States}
+For a pure two-qubit system, Wooters defines\cite{E_EoF_and_WC_Derivation} the EoF as:
+\begin{equation}
+    E(C) = h(\frac{1+\sqrt{1-C^2}}{2}),
+\end{equation}
+
+where $C$ is the Concurrence, and ranges between 0 (disentangled) and 1 (maximally entangled). He further states that the EoF reduces to the Von Neumann entropy of entanglement, which we have previously derived to oscillate between $0$ and $\ln(2)$. If we look at a Concurrence value of $1$, we find that $E(C)=\ln(2)$, which matches what we found for the Von Neumann entanglement. \\
+\\
+This suggests that our system actually behaves like a two-qubit system. This can be explained by the constraint on the QHO to go up to $n=1$ (i.e. the 1-phonon subspace). The QHO then will either be in $|n= 0 \rangle$ or $|n= 1 \rangle$, effectively behaving like a qubit. This is good, especially later on, as many entanglement quantification analyses look at two-qubit systems. 
+
+\subsection{Spin-Flip Operation}
+Wooters states that he uses the Spin-flip operation for two purposes:
+\begin{enumerate}
+    \item To deal with mixed states, and
+    \item For expressing the entanglement of a pure state of two qubits.
+\end{enumerate}
+
+\subsection{Mixed States}
+In his derivation\cite{E_EoF_and_WC_Derivation}, Wooters also considers the mixed states of two-qubit system and defines their entanglement as in "Term 1 Break" pdf. 
+\newpage
+\section{Relative Entropy of Entanglement (REE)}
+The main difficulty with finding the REE lies in its definition for mixed states - that is, the procedure for finding REE is a convex optimisation problem where one has to find the Closest Separable State (CSS)\cite{unread_pdf} to the system by effectively calculating the quasidistance to each state and finding that shortest "distance".
+
+Vedral and Plenio calculate the REE\cite{E_REE_VN_applied} for an open quantum system; we must, however, calculate REE for a mixed state TLS-QHO system using a closed quantum approach (as per our aims of this project). Currently, two papers (see unread references) go over how to find the CSS or/and how to do it numerically. Further investigation is needed.
+
+
+\newpage
+\bibliographystyle{unsrt} 
+\bibliography{References/references.bib} 
+
+
+\end{document}
