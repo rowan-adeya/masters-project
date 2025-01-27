@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage[numbers,super]{natbib}
+
+% Document metadata
+\title{Quantifying Coherence}
+\author{Rowan Adeya}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{"Coherence marks the departure of today’s theories of the
+physical world from the principles of classical physics."}\\ \small{Streltsov, Adesso, and Plenio\cite{...}}\\ 
+\end{center}
+
+Coherence is a quantum resource similar to entanglement, and is in essence a measure of a system's ability to maintain its current state. It is still in heavy development, with significant progress being made only in the last 20 years or so, and has found uses in many fields, including Quantum biology and transport phenomena, Quantum Thermodynamics, Quantum Computing, and so on\cite{...}. Here, we will give a descriptive overview of coherence and apply it to our Spin-Oscillator model. We will base the majority of this work on \cite{...}.
+
+\section{Incoherent States and Basis Choice}
+Coherence is basis-dependent; the density matrices that are \textit{diagonal} in the specified basis are termed incoherent. For any composite system, the preferred basis for studying coherence is the the tensor product of the corresponding local reference basis states for each subsystem. In the case of the Spin-Oscillator model, we shall study coherence in the $|\delta_{e,g}\rangle \otimes |n\rangle$ joint basis, where e,g are the excited and ground states of the TLS respectively, and $|n\rangle$ are the Fock states of the QHO, which we constrain to the 1-phonon subspace $(n=0,1)$.
+
+\section{Postulates of Quantum Coherence}
+Any quantifier of coherence, C, should fulfill the following postulates:
+
+\begin{align}
+&\text{(C1) Non-negativity: } C(\rho) \geq 0; \\
+&\text{(C2) Monotonicity: } \text{You cannot generate $C$ from incoherent operations}; \\
+&\text{(C3) Strong-Monotonicity: } \text{\parbox[t]{8cm}{\raggedright $C$ doesn't increase on average under certain incoherent operations;}} \\
+&\text{(C4) Convexity: } \text{$C$ is a convex function of the state;}\\
+&\text{(C5) Pure state uniqueness: } C(|\Psi\rangle\langle\Psi|) = S(\Delta[\Psi\rangle\langle\Psi]); \\
+&\text{(C6) Additivity: } C(\rho\otimes\sigma = C(\rho) + C(\sigma).
+\end{align}
+
+Coherence monotones satisfy C1 and either (or both) C2 or C3. Coherence measures satisfy C1-C6.
+
+\section{Quantifying Coherence}
+
+We shall outline the various ways of quantifying coherence, C. All the quantifiers below are generally coherence measures.
+
+\subsection{Distillable Coherence}
+
+Distillable coherence refers to the maximum amount of pure state coherence that can be extracted from a given quantum state using incoherent operations. For an arbitrary mixed state $\rho$, it is given by:
+
+\begin{equation}
+    C_d(\rho) = S(\Delta[\rho]) - S(\rho).
+\end{equation}
+
+\subsection{Coherence Cost}
+
+ Coherence cost, $C_c$ measures the minimum amount of coherence required to prepare a given quantum state, considering only incoherent operations. See \cite{...} for a formal definition.
+
+ Note that the distillable coherence cannot be larger than the coherence cost for a mixed state, and the two quantifiers are equal for pure states. 
+
+\subsection{Relative Entropy of Coherence}
+
+A general distance-based coherence measure is defined as:
+
+\begin{equation}
+    C_D(\rho) = \inf_{\sigma \in I} D(\rho,\sigma)
+\end{equation}
+
+where D is a distance and we take the infimum over the set of incoherent states, and $\sigma$ is a reference state. If, similarly to entanglement, we take the distance measure to be the quantum relative entropy, we obtain the relative entropy of coherence, $C_r$. Moreover, it is equal to the distillable coherence. Thus, we obtain:
+
+\begin{equation}
+C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho)
+\end{equation}
+
+where $S$ is the Von Neumann entropy, and $\rho_{diag}$ is the state obtained by removing all off-diagonal elements. 
+
+\subsection{Matrix Norms}
+
+The norm of coherence, $C_l$ is defined as:
+
+\begin{equation}
+    C_l(\rho) = \sum_{i,j}|\rho_{i,j}|.
+\end{equation}
+
+\section{Application to our System}
+
+Let us analyse the Relative Entropy of Coherence, $C_r$, for our system. A density matrix in the local basis is written as:
+
+\begin{equation}
+    \rho(t) = \begin{bmatrix}
+        \alpha(t)\alpha^*(t) & \alpha(t)\beta^*(t) \\
+        \alpha^*(t)\beta(t) & \beta(t)\beta^*(t)
+    \end{bmatrix},
+\end{equation}
+
+For the subsystems, we find that $C_r = 0$ for either of the two subsystems, since $\rho_{sub}(t) = \rho_{sub,diag}(t)$, and so according to $(9)$, $C_r = 0$.
+
+For the total system, we find that $C_r(t)$ oscillates between $0$ and $\ln(2)$ (see calculation pdf for details). It is important to note that the Von Neumann entropy of a matrix, $S(\rho)$ is \textbf{independent} of the basis. However, $S(\rho_{diag})$ is not, since $\rho_{diag}$ simply removes the off-diagonal elements, and these elements themselves are basis-dependent; hence, our calculation of coherence is indeed basis-dependent, and holds the aforementioned values for the local basis only. 
+
+\section{Coherence and it's Relation to Entanglement}
+
+Coherence is very closely related to entanglement in a number of ways, according to \cite{...}. Streltsolv et al.\cite{...} presented this first in 2015, where it was shown that any state with non-zero coherence can generate entanglement via bipartite incoherent operations. This paper\cite{...} also discusses certain quantifiers of coherence, such as coherence cost, coincide with their equivalent entanglement quantifiers.\\
+\\
+It is also interesting that for our system, the Relative Entropy of Coherence equals the Relative Entropy of Entanglement for maximally and minimally entangled states, further motivating the idea that these Quantum resources are closely related.
+
+\newpage
+\bibliographystyle{unsrt} 
+\bibliography{References/references.bib} 
+
+
+\end{document}
