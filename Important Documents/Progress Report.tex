@@ -39,16 +39,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The aim of this project is to understand the quantum behaviour of a Two-Level System (TLS) coupled to a Quantum Harmonic Oscillator (QHO). In 1963, Edwin Jaynes and Fred Cummings set out to model a single atom interacting with the quantized electromagnetic field within an optical cavity\cite{C_JC_1963} using the TLS-HO model. As such, they formulated the Jaynes-Cummings Model (JCM), which uses the Rotating-Wave Approximation to simplify the analysis of their system. Later, Herbert Walther experimentally verifies\cite{C_JC_verification} the JCM, proving its importance within the field of Quantum Optics. Presently, the JCM has been extended to various scientific fields and is thus ubiquitous. It can describe atoms in an optical cavity \cite{H_JC_friction}, superconducting qubits strongly coupled to an electromagnetic environment\cite{C_superconducting_qubit} and, in the field of chemical physics, electron and proton transfer in solvent environments \cite{C_superconducting_qubit}, amongst many other systems.\\
+The aim of this project is to understand the quantum behaviour of a Two-Level System (TLS) coupled to a Quantum Harmonic Oscillator (QHO). In 1963, Edwin Jaynes and Fred Cummings set out to model a single atom interacting with the quantized electromagnetic field within an optical cavity\cite{C_JC_1963} using the TLS-HO model. As such, they formulated the Jaynes-Cummings Model (JCM), which uses the Rotating-Wave Approximation to simplify the analysis of their system. Later, Herbert Walther experimentally verified\cite{C_JC_verification} the JCM, proving its importance within the field of Quantum Optics. Presently, the JCM has been extended to various scientific fields and is thus ubiquitous. It can describe atoms in an optical cavity \cite{H_JC_friction}, superconducting qubits strongly coupled to an electromagnetic environment\cite{C_superconducting_qubit} and, in the field of chemical physics, electron and proton transfer in solvent environments \cite{C_superconducting_qubit}, amongst many other systems.\\
 \\
-To understand the quantum behaviour of a TLS-HO system, we begin with the JCM Hamiltonian. We shall look at different forms of interaction between the system, using both closed and open quantum approaches. Furthermore, we shall study its entanglement and coherence properties to gain further insight into the system's behaviours. Entanglement is a measure of the mixedness of a quantum system, indicating how much the system's state deviates from being a separable (product) state\cite{E_WC_Definition} and how much quantum correlation exists between subsystems. Quantifying the entanglement of our system gives us non-classical insight into our system, necessitating the study of this phenomenon. Coherence, another quantum phenomenon related\cite{...} to entanglement, describes the ability of a system to maintain its quantum mechanics states; a loss of coherence (decoherence) represents a system's transition to classical regime. Studying coherence gives valuable insight into our system's quantum behaviour and optimisation, as it reveals how well the system preserves its states, which are essential for maximizing the efficiency of the system in question.\\
+To understand the quantum behaviour of a TLS-HO system, we begin with the JCM Hamiltonian. We shall look at different forms of interaction between the system, using both closed and open quantum approaches. Furthermore, we shall study its entanglement and coherence properties to gain further insight into the system's behaviours. Entanglement is a measure of the mixedness of a quantum system, indicating how much the system's state deviates from being a separable (product) state\cite{E_WC_Definition} and how much quantum correlation exists between subsystems. Quantifying the entanglement of our system gives us non-classical insight into our system, necessitating the study of this phenomenon. Coherence\cite{C_colloquium}, another quantum phenomenon related to entanglement, tells us about the phase relationship between different states of the total system; a loss of coherence (decoherence) represents a system's transition to classical regime. Studying coherence gives valuable insight into our system's quantum behaviour and optimisation, as it reveals how well the system preserves its states.\\
 \\
 This progress report summarises the work done so far on both the Research Essay and the Final Project, and outlines future aims and goals. We begin by looking at preliminary investigations. We then look at the progress made on the literature review. Finally, we discuss the future aims and goals.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\section{Preliminary Investigations}}
-The majority of the work done so far, as detailed in the Project Outline, is preliminary investigations and basic closed quantum dynamics of the model. 
+The majority of the work done so far, as detailed in the Project Outline, is preliminary investigations and basic closed quantum dynamics of the model. We firstly present the Hamiltonian describing the TLS-HO system. We then diagonalise the Hamiltonian, which will be useful when we calculate the time-evolved state using the unitary evolution operator. From here, we calculate pure density matrix and its subsystems. Finally, we use these subsystems to quantify entanglement measures. 
 \\
 \subsection{\normalsize{Diagonalizing the Hamiltonian of the TLS-QHO System}}
 
@@ -66,12 +66,12 @@ where $\omega_1$ is the energy difference between the two levels of the TLS, $\o
 where 
 \begin{align}
     \hat{H}_{TLS}\equiv \frac{\hbar\omega_1}{2}\hat{\sigma}_z\label{H_TLS}\\
-    \hbar\omega_2(a^\dagger a + \frac{1}{2})\label{H_QHO}\\
-    \hbar G(a\hat{\sigma}_{eg} + a^\dagger\hat{\sigma}_{ge})\label{H_INT}
+    \hat{H}_{QHO}\equiv \hbar\omega_2(a^\dagger a + \frac{1}{2})\label{H_QHO}\\
+    \hat{H}_{int} \equiv\hbar G(a\hat{\sigma}_{eg} + a^\dagger\hat{\sigma}_{ge})\label{H_INT}
 \end{align}
 \\
 It is important to note that later on in the project, we will be studying different forms of the interaction Hamiltonian $\hat{H}_{int}$.
-We may now look at the joint state of the TLS-QHO system, which is given by:
+We may now look at a general joint state of the TLS-QHO system, which is given by:
 
 \begin{equation}
     |\Psi\rangle = \alpha|g,n+1\rangle + \beta|e,n\rangle \label{joint_state},
@@ -166,7 +166,7 @@ Furthermore, if the matrix is diagonalised, the Von Neumann entropy reduces to:
 
 Since there is no mixing for either of the two subsystems, their density matrices are diagonal, and the non-zero values are thus the eigenvalues. Here, we make the following approximation\cite{H_JC_friction}: we assume that the TLS and QHO are in resonance, i.e. $\omega_1=\omega_2=\omega$. Using the QHO subsystem, we find that the Von Neumann entropy of entanglement oscillates between $0$ and $\ln{2}$.
 
-The REE measures the minimum "distance" between a given quantum state $\rho$ and all its other disentangled density matrices $\sigma$\cite{E_REE_generation}. In order to calculate REE, it is best done via numerical methods. However, there is a trivial answer for our system\cite{E_Overview_REE}: for pure states, REE reduces to the Von Neumann entropy of entanglement.
+The REE measures the minimum "distance" between a given quantum state $\rho$ and all its other disentangled density matrices $\sigma$\cite{E_REE_VN_applied}. In order to calculate REE, it is best done via numerical methods. However, there is a trivial answer for our system\cite{E_REE_generation}: for pure states, REE reduces to the Von Neumann entropy of entanglement.
 
 \begin{equation}
     S(\rho) = \min_{\sigma \in \chi}  D(\rho||\sigma) =-\text{Tr}(\rho_{TLS}\ln({\rho_{TLS}})) = -\text{Tr}(\rho_{QHO}\ln({\rho_{QHO}})),
