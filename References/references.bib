@@ -1,82 +1,11 @@
-@misc{C_spin-boson,
+
+###################### CONTEXT PAPERS ########################
+@misc{Context_-Spin-boson,
     author       = {Peter L. Hagelstein and Ifran Chaudhary},
     title        = {Two-level systems coupled to oscillators},
     annotation  = {This article reviews the Dicke model, an extension and generalisation of the spin-boson model. The authors perform a unitary transformation on the Hamiltonian of the Dicke model, thus splitting it into unperturbed and perturbed parts. This action simplifies the dynamics of the problem and allows the authors to inspect the basis states, where they find that the oscillator contribution to the joint state increases the two-level system's transition energy. Then, perturbation theory is used to determine the system dynamics. The article's latter sections cover developing simpler models to reduce computational loads (including a closely related classical model), and why only one Dicke factor shows up in each perturbation matrix element. This article would be particularly useful in finding ways of simplifying the spin-boson model's Hamiltonian through use of a unitary transformation. Furthermore, it gives an overview of how to describe the dynamics of a system similar to the spin-boson model. Finally, it may provide methods of optimising the computational elements of this project further down the line.}}
 
-@article{H_JC_friction,
-    author = {M. Bhattacharya; M. J. A. Stoutimore; K. D. Osborn; Ari Mizel} ,
-    title = {Understanding the damping of a quantum harmonic oscillator coupled to a two-level system using analogies to classical friction},
-    journal = {American Journal of Physics},
-    year = {2012},
-    annotation = {This article reviews the damping effect of a 2LS on a Quantum Harmonic Oscillator. It compares the presence of few quanta in the 2LS to fluid friction in classical mechanics, and the presence of many quanta to dry friction, to give context to the reader. The writer then presents the Jaynes-Cummings model of this 2LS coupled to a HO, noting that they equated the frequency of the oscillator to that of the 2LS for simplicity. The paper goes on to consider the open quantum systems, master equations and computational solutions to the problem. This article has been particularly useful in defining a Hamiltonian for the 2LS coupled to a HO. Later on, it could be particularly useful in providing simplifications and methodologies to open quantum systems and master equations.}
-}
-
-
-@article{E_REE_generation,
-    author = {E. Hernández-Concepción, D. Alonso, and S. Brouard},
-    title = {Entanglement in a continuously measured two-level system coupled to a harmonic oscillator},
-    journal = {Physical Review Journals},
-    year = {2009},
-    annotation = {This article looks at non-zero entanglement generation in a TLS coupled to HO system in a zero T Markovian reservoir and probe resonator (measuring device) environment. It looks at the dynamics of the "relative entropy of entanglement" (REE) and finds it is non-zero at a stationary point in the system, if the system is in the environment above. The REE is defined as the minimum distance between the reduced density matrix and the set of all the disentangled density matrices of the system, and it's quantitative definition is given in the paper. The paper concludes that although the interaction terms generate entanglement in an isolated system, entanglement is also generated when the system is in the environemnt. This paper will be particularly useful when I look at open quantum systems and the effect of the environment on the system, and in particular gives me a way to quantify entanglement through its definition as the REE.}
-}
-
-
-@article{E_REE_VN_applied,
-    author = {V. Vedral, M. Plenio, M. Rippin and P. Knight},
-    title = {Quantifying Entanglement},
-    journal = {Physical Review Journals},
-    year = {1997},
-    annotation = {This paper provides a completely general expression for entanglement. It goes over purification methods (not well defined) and suggests that there is no unique measure of entanglement. The paper then proposes 3 conditions: (i) Entanglement is 0 if product state; (ii) Unitary operations do not change entanglement; (iii) Entanglement cannot increase under measurement. It then proceeds to prove these conditions. The paper then moves on, saying that for pure, maximally entangled states, REE reduces to the Von Neumann entropy. The authors also prove convexity - entanglement isn't increased by mixing two separate entangled states. Overall, this paper gives a solid overview of the field of entanglement, and the conditions for entanglement.}
-}
-
-
-@book{E_VNE_Definition,
-    author = {D. Petz},
-    title = {Entropy, von Neumann and the von Neumann entropy},
-    publisher = {Springer},
-    year = {2001},
-    annotation = {This chapter of the book summarises entropy, derives the Von Neumann entropy and goes over developements of the Von Neumann entropy. It begins first by outling the history of entropy, and going over the second law of Thermodynamics (including Boltzmann's contribution). The author then provides a complete derivation of the Von Neumann entropy using Von Neumann's 'gedanken' (thought experiment); they also provide conditions and assumptions Von Neumann made for the derivation. Finally, the author goes over the influence of the Von Neumann entropy and its use by Shannon in communication theory. This book chapter will be particularly useful as a reference to the simplified calculations of Von Neumann entropy for reduced states, amongst others. It can be used to remind oneself of how exactly this form of entanglement calculation works.}
-}
-
-@article{E_ERaE_Definition,
-    author = {V. Vedral, L. Mu, Y. Wang and H. Fan},
-    title = {Entanglement Renyi α entropy},
-    journal = {Physical Review Journals},
-    year = {2016},
-    annotation = {This journal entry provides an overview of the Entanglement Renyi α Entropy (ERαE). In the introduction, it importantly states that Entanglement measures are not, in general, the same for a given state (e.g.Entropy of Formation, Relative Entropy of Entanglement), amongst other things. The authors then proceed to state that the ERαE reduces to the Von Neumann entropy for α tending to 1. Afterwards, and most importantly, it defines ERαE, and states that the entanglement of a pure density matrix can be found by calculating ERαE for either of the subsystems. The paper then goes over Wooters conccurence, ERαE for two qubit systems, Werner states and isotropic state ERαE calculations. Whilst Wooters concurrence has relevance, Werner states are not relevant since our system has non-identical Hilbert spaces. Isotropic states can be relevant if we set the Harmonic oscillator to only go up to n=2 (since then the Hilbert spaces will have the same dimensions). The main relevance of this paper is the ERαE for pure states, and the recurrence of the idea of minimisation for mixed states (as seen with the relative entropy of entanglement sources). Wooters' Concurrence should be studied, and once done will unlock more of this paper. Isotropic states can potentially be considered if it helps our understanding of the dynamics of the system.}
-}
-
-@article{E_WC_Definition,
-    author = {W. Wooters},
-    title = {Entanglement of Formation and Concurrence},
-    journal = {Quantum Information and Computation, Vol. 1, No. 1 27-44},
-    year = {2001},
-    annotation = {Wooters begins by giving a good overview of entanglement. He states that for pure bipartite states there is only one accepted measurement of entanglement; for mixed states, there are 3. He then proceeds to talk about different entanglement measures. The Von Neumann entropy is a good measurement for pure states, whereas not for mixed states since mixed states' subsystems can have individually non-zero entropy even if there is no entanglement. He then talks about the entanglement of formation, EoF, (which is designed to pick out the entanglement from the mixed state); the EoF is zero for product states. Furthermore, he discusses distillable entanglement, which measures the pure entanglement one can extract from mixed states. If an entangled state has no distillable entanglement (i.e. no pure entanglement), then it is labelled as bound entanglement; they can have EoF but not pure entanglement. He then proceeds to talk about concurrence, which however at the time of his writing, has a definition only for a pair of qubits. This paper can be quite useful to remind oneself of entanglement generally, and for finding the EoF and concurrence for qubits. However, it is old (2001), and might be outdated. More research will need to be carried out on modern concurrence.}
-}
-
-@article{E_EoF_and_WC_Derivation,
-    author = {W. Wooters},
-    title = {Entanglement of Formation of an Arbitrary State of Two Qubits},
-    journal = {Phys.Rev.Lett.80:2245-2248},
-    year = {1998},
-    annotation = {Wooters opens with an overview of the state of entanglement at the time. He then notes that, for pure states, the entanglement is defined for the whole system as the entropy, S, of either of the two subsystems. A mixed state's entanglement, on the other hand, can be defined by the Entanglement of Formation. As in the 2001 paper written by Wooters, he derives the Entanglement of Formation, using a quantity called concurrence. This paper is of particular use because it is the very first time we see Wooters' concurrence turn up in scientific papers, and is thus a ground source.}}
-
-@article{C_superconducting_qubit,
-    author = {L. Magazzù, P. Forn-Díaz, R. Belyansky, J.-L. Orgiazzi, M. A. Yurtalan, M. R. Otto, A. Lupascu, C. M. Wilson, M. Grifoni},
-    title = {Probing the strongly driven spin-boson model in a superconducting quantum circuit},
-    journal = {Nat. Commun. 9, 1403},
-    year = {2018},
-    annotation = {This paper focusses on investigating experimentally and theoretically a super-conducting qubit strongly coupled to an electromagnetic environment and subjected to a coherent drive. It is a good example of the use of a TLS - HO system (as a simplified spin-boson model. Furthermore, it provides more examples of the use of such a system.)}}
-
-@article{M_work_exchange_TLS-HO,
-    author = {Heiko Schröder and Günter Mahler},
-    title = {Work exchange between quantum systems: The spin-oscillator model},
-    journal = {Phys. Rev. E 81, 021118},
-    year = {2010},
-    annotation = {Schröder and Mahler look at the emergence of work flux from quantum mechanics. They state that Von Neumann began this work on quantum thermodynamics, and that around 2010 work in this field has received more attention. They begin their analysis by first looking at Time-Dependent driving, and importantly stating two things: (1) If a system is a pure density matrix, its subsystems, generally, will be entangled since there will be interaction between the subsystems; (2) If the purity of the subsystems are close to 1, the dynamics of the total system are well-approximated by that of either of the two subsystems. The paper then moves through different (and irrelevant, in our case) analyses, before looking at the analyses' relevance to the Spin-Oscillator model. It looks at two different types of interaction Hamiltonians, and finds that the dynamics of the system (when applying the RWA) matches that of the Jaynes-Cummings model for one interaction type in the interaction picture. For the second type of interaction, they find that the oscillator acts as an ideal work source within defined limits. This paper provides a thorough worked example for closed quantum dynamics of similar Hamiltonians. It will be a useful reference whilst conducting my own analysis of the Spin-Oscillator model's dynamics, as it outlines a relevant and detailed methodology.}}
-
-
-@article{C_JC_1963,
+@article{Context1963-JC_Original,
     author={Jaynes, E.T. and Cummings, F.W.},
     journal={Proceedings of the IEEE}, 
     title={Comparison of quantum and semiclassical radiation theories with application to the beam maser}, 
@@ -87,14 +16,140 @@
     doi={10.1109/PROC.1963.1664},
     annotation = {This article clarifies the relationship between the quantum theory of radiation and the semiclassical theory, with an application to the molecular beam maser. It includes the first formulation of the Jaynes-Cummings model Hamiltonian, which is seen throughout the first half of my project. It will be key for contextual referencing.}}
 
-@article{C_JC_verification,
-    author = {H. Walther},
-    title = {The Jaynes–Cummings Model and the One-Atom-Maser},
-    journal = {Cambridge University Press},
-    year = {1993},
-    annotation = {This paper performs one-atom maser experiments and verifies that the JC model is in good accordance with experimental outcomes. It serves as a good context paper to validate the Jaynes-Cummings model.}}
+@inbook{Context1993-JC_Verification,
+place={Cambridge}, 
+title={The Jaynes–Cummings Model and the One-Atom-Maser},
+booktitle={Physics and Probability: Essays in Honor of Edwin T. Jaynes},
+publisher={Cambridge University Press}, author={Walther, H.},
+editor={Grandy, Jr, W. T. and Milonni, P. W.Editors},
+year={1993},
+pages={33–48},
+annotation = {This paper performs one-atom maser experiments and verifies that the JC model is in good accordance with experimental outcomes. It serves as a good context paper to validate the Jaynes-Cummings model.}
+}
 
-@article{C_colloquium,
+@article{Context2018-Supercond_qubit,
+    author = {L. Magazzù, P. Forn-Díaz, R. Belyansky, J.-L. Orgiazzi, M. A. Yurtalan, M. R. Otto, A. Lupascu, C. M. Wilson, M. Grifoni},
+    title = {Probing the strongly driven spin-boson model in a superconducting quantum circuit},
+    journal = {Nat. Commun. 9, 1403},
+    year = {2018},
+    annotation = {This paper focusses on investigating experimentally and theoretically a super-conducting qubit strongly coupled to an electromagnetic environment and subjected to a coherent drive. It is a good example of the use of a TLS - HO system (as a simplified spin-boson model. Furthermore, it provides more examples of the use of such a system.)}}
+
+
+###################### HAMILTONIAN REFS ########################
+
+@article{Hamiltonian2012-JC_Friction,
+  title={Understanding the damping of a quantum harmonic oscillator coupled to a two-level system using analogies to classical friction},
+  author={M. Bhattacharya and M. J. A. Stoutimore and Kevin D. Osborn and Ari Mizel},
+  journal={American Journal of Physics},
+  year={2012},
+  volume={80},
+  pages={810-815},
+  url={https://api.semanticscholar.org/CorpusID:16991168},
+  annotation = {This article reviews the damping effect of a 2LS on a Quantum Harmonic Oscillator. It compares the presence of few quanta in the 2LS to fluid friction in classical mechanics, and the presence of many quanta to dry friction, to give context to the reader. The writer then presents the Jaynes-Cummings model of this 2LS coupled to a HO, noting that they equated the frequency of the oscillator to that of the 2LS for simplicity. The paper goes on to consider the open quantum systems, master equations and computational solutions to the problem. This article has been particularly useful in defining a Hamiltonian for the 2LS coupled to a HO. Later on, it could be particularly useful in providing simplifications and methodologies to open quantum systems and master equations.}
+}
+
+
+
+##################### ENTANGLEMENT PAPERS #######################
+
+
+@ARTICLE{Entanglement2001-VNE_Definition,
+    author = {{Petz}, D.},
+    title = "{Entropy, von Neumann and the von Neumann entropy}",
+    journal = {arXiv e-prints},
+    year = {2001},
+    month = {Feb},
+    pages = {math-ph/0102013},
+    doi = {10.48550/arXiv.math-ph/0102013},
+    annotation = {This chapter of the book summarises entropy, derives the Von Neumann entropy and goes over developements of the Von Neumann entropy. It begins first by outling the history of entropy, and going over the second law of Thermodynamics (including Boltzmann's contribution). The author then provides a complete derivation of the Von Neumann entropy using Von Neumann's 'gedanken' (thought experiment); they also provide conditions and assumptions Von Neumann made for the derivation. Finally, the author goes over the influence of the Von Neumann entropy and its use by Shannon in communication theory. This book chapter will be particularly useful as a reference to the simplified calculations of Von Neumann entropy for reduced states, amongst others. It can be used to remind oneself of how exactly this form of entanglement calculation works.}
+}
+
+@article{Entanglement1999-Overview_&REE,
+  title = {Quantifying Entanglement},
+  author = {Vedral, V. and Plenio, M. B. and Rippin, M. A. and Knight, P. L.},
+  journal = {Phys. Rev. Lett.},
+  volume = {78},
+  issue = {12},
+  pages = {2275--2279},
+  numpages = {0},
+  year = {1997},
+  month = {Mar},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.78.2275},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.78.2275},
+  annotation = {This paper provides a completely general expression for entanglement. It goes over purification methods (not well defined) and suggests that there is no unique measure of entanglement. The paper then proposes 3 conditions: (i) Entanglement is 0 if product state; (ii) Unitary operations do not change entanglement; (iii) Entanglement cannot increase under measurement. It then proceeds to prove these conditions. The paper then moves on, saying that for pure, maximally entangled states, REE reduces to the Von Neumann entropy. The authors also prove convexity - entanglement isn't increased by mixing two separate entangled states. Overall, this paper gives a solid overview of the field of entanglement, and the conditions for entanglement.}
+}
+
+@article{Entanglement2009-REE_VNapplied,
+  title = {Entanglement in a continuously measured two-level system coupled to a harmonic oscillator},
+  author = {Hern\'andez-Concepci\'on, E. and Alonso, D. and Brouard, S.},
+  journal = {Phys. Rev. A},
+  volume = {79},
+  issue = {5},
+  pages = {052318},
+  numpages = {8},
+  year = {2009},
+  month = {May},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevA.79.052318},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.79.052318},
+  annotation = {This article looks at non-zero entanglement generation in a TLS coupled to HO system in a zero T Markovian reservoir and probe resonator (measuring device) environment. It looks at the dynamics of the "relative entropy of entanglement" (REE) and finds it is non-zero at a stationary point in the system, if the system is in the environment above. The REE is defined as the minimum distance between the reduced density matrix and the set of all the disentangled density matrices of the system, and it's quantitative definition is given in the paper. The paper concludes that although the interaction terms generate entanglement in an isolated system, entanglement is also generated when the system is in the environemnt. This paper will be particularly useful when I look at open quantum systems and the effect of the environment on the system, and in particular gives me a way to quantify entanglement through its definition as the REE.}
+}
+
+@article{Entanglement2016-ERaE_Definition,
+  title = {Entanglement R\'enyi $\ensuremath{\alpha}$ entropy},
+  author = {Wang, Yu-Xin and Mu, Liang-Zhu and Vedral, Vlatko and Fan, Heng},
+  journal = {Phys. Rev. A},
+  volume = {93},
+  issue = {2},
+  pages = {022324},
+  numpages = {10},
+  year = {2016},
+  month = {Feb},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevA.93.022324},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.93.022324},
+  annotation = {This journal entry provides an overview of the Entanglement Renyi α Entropy (ERαE). In the introduction, it importantly states that Entanglement measures are not, in general, the same for a given state (e.g.Entropy of Formation, Relative Entropy of Entanglement), amongst other things. The authors then proceed to state that the ERαE reduces to the Von Neumann entropy for α tending to 1. Afterwards, and most importantly, it defines ERαE, and states that the entanglement of a pure density matrix can be found by calculating ERαE for either of the subsystems. The paper then goes over Wooters conccurence, ERαE for two qubit systems, Werner states and isotropic state ERαE calculations. Whilst Wooters concurrence has relevance, Werner states are not relevant since our system has non-identical Hilbert spaces. Isotropic states can be relevant if we set the Harmonic oscillator to only go up to n=2 (since then the Hilbert spaces will have the same dimensions). The main relevance of this paper is the ERαE for pure states, and the recurrence of the idea of minimisation for mixed states (as seen with the relative entropy of entanglement sources). Wooters' Concurrence should be studied, and once done will unlock more of this paper. Isotropic states can potentially be considered if it helps our understanding of the dynamics of the system.}
+}
+
+@article{Entanglement2001-WC_qubits,
+    author = {Wootters, William K.},
+    title = {Entanglement of formation and concurrence},
+    year = {2001},
+    month = {Jan},
+    issue_date = {January 2001},
+    publisher = {Rinton Press, Incorporated},
+    address = {Paramus, NJ},
+    volume = {1},
+    number = {1},
+    issn = {1533-7146},
+    pages = {27–44},
+    numpages = {18},
+    annotation = {Wooters begins by giving a good overview of entanglement. He states that for pure bipartite states there is only one accepted measurement of entanglement; for mixed states, there are 3. He then proceeds to talk about different entanglement measures. The Von Neumann entropy is a good measurement for pure states, whereas not for mixed states since mixed states' subsystems can have individually non-zero entropy even if there is no entanglement. He then talks about the entanglement of formation, EoF, (which is designed to pick out the entanglement from the mixed state); the EoF is zero for product states. Furthermore, he discusses distillable entanglement, which measures the pure entanglement one can extract from mixed states. If an entangled state has no distillable entanglement (i.e. no pure entanglement), then it is labelled as bound entanglement; they can have EoF but not pure entanglement. He then proceeds to talk about concurrence, which however at the time of his writing, has a definition only for a pair of qubits. This paper can be quite useful to remind oneself of entanglement generally, and for finding the EoF and concurrence for qubits. However, it is old (2001), and might be outdated. More research will need to be carried out on modern concurrence.}
+}
+
+@article{Entanglement1998-WC_&EoF_Original,
+  title = {Entanglement of Formation of an Arbitrary State of Two Qubits},
+  author = {Wootters, William K.},
+  journal = {Phys. Rev. Lett.},
+  volume = {80},
+  issue = {10},
+  pages = {2245--2248},
+  numpages = {0},
+  year = {1998},
+  month = {Mar},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.80.2245},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.80.2245},
+  annotation = {Wooters opens with an overview of the state of entanglement at the time. He then notes that, for pure states, the entanglement is defined for the whole system as the entropy, S, of either of the two subsystems. A mixed state's entanglement, on the other hand, can be defined by the Entanglement of Formation. As in the 2001 paper written by Wooters, he derives the Entanglement of Formation, using a quantity called concurrence. This paper is of particular use because it is the very first time we see Wooters' concurrence turn up in scientific papers, and is thus a ground source.}
+}
+
+
+
+##################### COHERENCE PAPERS #######################
+
+
+@article{Coherence2017-Colloquium,
   title = {Colloquium: Quantum coherence as a resource},
   author = {Streltsov, Alexander and Adesso, Gerardo and Plenio, Martin B.},
   journal = {Rev. Mod. Phys.},
@@ -106,6 +161,19 @@
   month = {Oct},
   publisher = {American Physical Society},
   doi = {10.1103/RevModPhys.89.041003},
-  url = {https://link.aps.org/doi/10.1103/RevModPhys.89.041003}
+  url = {https://link.aps.org/doi/10.1103/RevModPhys.89.041003},
+  annotation = {}
 }
 
+
+
+
+
+##################### METHODOLOGIES #######################
+
+@article{Method2010-TLS-HO_closed,
+    author = {Heiko Schröder and Günter Mahler},
+    title = {Work exchange between quantum systems: The spin-oscillator model},
+    journal = {Phys. Rev. E 81, 021118},
+    year = {2010},
+    annotation = {Schröder and Mahler look at the emergence of work flux from quantum mechanics. They state that Von Neumann began this work on quantum thermodynamics, and that around 2010 work in this field has received more attention. They begin their analysis by first looking at Time-Dependent driving, and importantly stating two things: (1) If a system is a pure density matrix, its subsystems, generally, will be entangled since there will be interaction between the subsystems; (2) If the purity of the subsystems are close to 1, the dynamics of the total system are well-approximated by that of either of the two subsystems. The paper then moves through different (and irrelevant, in our case) analyses, before looking at the analyses' relevance to the Spin-Oscillator model. It looks at two different types of interaction Hamiltonians, and finds that the dynamics of the system (when applying the RWA) matches that of the Jaynes-Cummings model for one interaction type in the interaction picture. For the second type of interaction, they find that the oscillator acts as an ideal work source within defined limits. This paper provides a thorough worked example for closed quantum dynamics of similar Hamiltonians. It will be a useful reference whilst conducting my own analysis of the Spin-Oscillator model's dynamics, as it outlines a relevant and detailed methodology.}}
