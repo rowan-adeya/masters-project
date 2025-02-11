@@ -10,10 +10,8 @@ The "Additional Resources" folder will contain miscallaneous items which will he
 
 The "Important Document" folder will contain current working versions and final versions of "important documents"; these include literature review, outlines, guidlines and the final paper. 
 
-The "References" folder will contain a a full annotated bibliography, with a .bib file which will contain all the references themselves. The subfolder "reference_files_pdfs" will contain most of the papers that I will be reading. 
+The "References" folder will contain a a full annotated bibliography, with a .bib file which will contain all the references themselves.
 
 The "Learning Resources" folder will contain items such as textbooks, articles and links which will directly aid in my continued learning. 
 
-The "References" folder will contain a a full annotated bibliography, with a .bib file which will contain all the references themselves. The subfolder "reference_files_pdfs" will contain most of the papers that I will be reading. 
-
-Weekly directories will be created, whereby the main objectives, working out and analysis, notes and summaries of work will be present. 
+The "Research Project" folder will contain all the analysis and research that I have done towards the project so far. 
