@@ -44,7 +44,6 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
   year={2012},
   volume={80},
   pages={810-815},
-  url={https://api.semanticscholar.org/CorpusID:16991168},
   annotation = {This article reviews the damping effect of a 2LS on a Quantum Harmonic Oscillator. It compares the presence of few quanta in the 2LS to fluid friction in classical mechanics, and the presence of many quanta to dry friction, to give context to the reader. The writer then presents the Jaynes-Cummings model of this 2LS coupled to a HO, noting that they equated the frequency of the oscillator to that of the 2LS for simplicity. The paper goes on to consider the open quantum systems, master equations and computational solutions to the problem. This article has been particularly useful in defining a Hamiltonian for the 2LS coupled to a HO. Later on, it could be particularly useful in providing simplifications and methodologies to open quantum systems and master equations.}
 }
 
@@ -144,6 +143,72 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
   annotation = {Wooters opens with an overview of the state of entanglement at the time. He then notes that, for pure states, the entanglement is defined for the whole system as the entropy, S, of either of the two subsystems. A mixed state's entanglement, on the other hand, can be defined by the Entanglement of Formation. As in the 2001 paper written by Wooters, he derives the Entanglement of Formation, using a quantity called concurrence. This paper is of particular use because it is the very first time we see Wooters' concurrence turn up in scientific papers, and is thus a ground source.}
 }
 
+@article{Entanglement2001-WC_arbdim,
+  title = {Universal state inversion and concurrence in arbitrary dimensions},
+  author = {Rungta, Pranaw and Bu\ifmmode \check{z}\else \v{z}\fi{}ek, V. and Caves, Carlton M. and Hillery, M. and Milburn, G. J.},
+  journal = {Phys. Rev. A},
+  volume = {64},
+  issue = {4},
+  pages = {042315},
+  numpages = {13},
+  year = {2001},
+  month = {Sep},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevA.64.042315},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.64.042315},
+  annotation = {This paper finds a formulation of Wooters' Concurrence for an arbitrary-dimensional composite system. In particular, it generalises the spin-flip superoperator to arbitrary dimensions, and explains the importance of the spin-flip, which is important for a deeper understanding of how Concurrence was formulated by Wooters. It turns out that, because we consider the 1-phonon subspace of the Harmonic Oscillator, it can effectively be treated as a qubit, and so we do not need anymore an arbitrary dimensional formulation. However, the formulation they provide (equation 4) allows us to calculate Wooters' concurrence very easily.}
+}
+
+@article{Entanglement2019_VNE_example,
+  title = {Quantum operator entropies under unitary evolution},
+  author = {Lent, Craig S.},
+  journal = {Phys. Rev. E},
+  volume = {100},
+  issue = {1},
+  pages = {012101},
+  numpages = {9},
+  year = {2019},
+  month = {Jul},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevE.100.012101},
+  url = {https://link.aps.org/doi/10.1103/PhysRevE.100.012101},
+  annotation = {This paper goes into further detail on the Von Neumann entropy, specifically for closed dynamics on pure density matrices which undergo unitary time evolution. It importantly notes that it is 0 for a pure state, and constant under unitary time evolution; furthermore, it is a special case of quantum operator entropy where the operator is a quantum density matrix. It is a good, recent example of the application of the Von Neumann entropy being applied to a system, and shows that this is a ubiquitous method for quantifying entanglement.}
+}
+
+@article{Entanglement1999-Robustness,
+  title = {Robustness of entanglement},
+  author = {Vidal, Guifr\'e and Tarrach, Rolf},
+  journal = {Phys. Rev. A},
+  volume = {59},
+  issue = {1},
+  pages = {141--155},
+  numpages = {0},
+  year = {1999},
+  month = {Jan},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevA.59.141},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.59.141},
+  annotation = {Another measure of entanglement is proposed in this paper, named the "robustnes of entanglement". It quantifies how likely a composite system is likely to remain entangled when local mixing is applied, and more specifically the minimum amount of entanglement needed to wipe all entanglement. Whilst not relevant to our current analyses, it is a very good contextual paper which shows a measure which is no longer really used in modern Quantum Mechanics.}
+}
+
+@article{PhysRevLett.122.210402,
+  title = {Entanglement2019-VNE_Unitarity},
+  author = {Boes, Paul and Eisert, Jens and Gallego, Rodrigo and M\"uller, Markus P. and Wilming, Henrik},
+  journal = {Phys. Rev. Lett.},
+  volume = {122},
+  issue = {21},
+  pages = {210402},
+  numpages = {6},
+  year = {2019},
+  month = {May},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.122.210402},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.122.210402},
+  annotation = {This paper goes over how the Von Neumann entropy possibly determines single-shot (see paper) transitions, as well as VNE's importance within the asymptotic regime. It further notes that the Renyi entropy is relevant in the single shot regime. This paper is a good recent reference for showing that both the Von Neumann and Renyi entropies are still relevant as entanglement measures.}
+}
+
+
+
 
 
 ##################### COHERENCE PAPERS #######################
@@ -162,14 +227,46 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
   publisher = {American Physical Society},
   doi = {10.1103/RevModPhys.89.041003},
   url = {https://link.aps.org/doi/10.1103/RevModPhys.89.041003},
-  annotation = {}
+  annotation = {This colloquium provides a concise overview of Coherence as a whole, going over the postulates, measures, monotones, and ways of quantifying coherence. In general, this paper will act as a source reference, from which other references can be found. It should be noted that newer references will need to be sought after, to keep up with the current state of Coherence.}
+}
+
+@article{Coherence2014-seed,
+  title = {Quantifying Coherence},
+  author = {Baumgratz, T. and Cramer, M. and Plenio, M. B.},
+  journal = {Phys. Rev. Lett.},
+  volume = {113},
+  issue = {14},
+  pages = {140401},
+  numpages = {5},
+  year = {2014},
+  month = {Sep},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.113.140401},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.113.140401},
+  annotation = {This paper was given to me as a seed to begin my journey of understanding coherence. It is effectively a subpaper of the colloquium above, although it goes into more detail than the colloquium itself on two specific measures of coherence: the norm, and the relative entropy of coherence.}
+}
+
+########## COHERENCE AND ENTANGLEMENT CROSSOVER ############
+
+@article{CohEnt2015-Entanglement_via_incoherence,
+  title = {Measuring Quantum Coherence with Entanglement},
+  author = {Streltsov, Alexander and Singh, Uttam and Dhar, Himadri Shekhar and Bera, Manabendra Nath and Adesso, Gerardo},
+  journal = {Phys. Rev. Lett.},
+  volume = {115},
+  issue = {2},
+  pages = {020403},
+  numpages = {6},
+  year = {2015},
+  month = {Jul},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.115.020403},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.115.020403},
+  annotation = {This letter quantitatively analysing entanglement generation via incoherent operations. It will be useful if we are to look at the crossover between coherence and entanglement, and their similarities as quantum resources. Furthermore, it includes the use of the Von Neumann entropy, motivating the VNE's importance in Quantum Resource Theory. Moreover, they provide contextual references for the applications of coherence monotones and measures.}
 }
 
 
 
-
-
-##################### METHODOLOGIES #######################
+##################### METHODOLOGIES ########################
 
 @article{Method2010-TLS-HO_closed,
     author = {Heiko Schröder and Günter Mahler},
