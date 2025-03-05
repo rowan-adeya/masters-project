@@ -34,6 +34,54 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
     year = {2018},
     annotation = {This paper focusses on investigating experimentally and theoretically a super-conducting qubit strongly coupled to an electromagnetic environment and subjected to a coherent drive. It is a good example of the use of a TLS - HO system (as a simplified spin-boson model. Furthermore, it provides more examples of the use of such a system.)}}
 
+@article{Context2012-Tunneling_photons,
+  title = {Probing the ladder of dressed states and nonclassical light generation in quantum-dot--cavity QED},
+  author = {Majumdar, Arka and Bajcsy, Michal and Vu\ifmmode \check{c}\else \v{c}\fi{}kovi\ifmmode \acute{c}\else \'{c}\fi{}, Jelena},
+  journal = {Phys. Rev. A},
+  volume = {85},
+  issue = {4},
+  pages = {041801},
+  numpages = {4},
+  year = {2012},
+  month = {Apr},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevA.85.041801},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.85.041801},
+  annotation = {This paper directly uses the JC Hamiltonian to model "photon-induced tunneling phenomena in a photonic crystal cavity containing a strongly coupled quantum dot". It is a good recent example of the JCM's use.}
+}
+
+@article{Context2004-JC_CQED,
+  title = {Cavity quantum electrodynamics for superconducting electrical circuits: An architecture for quantum computation},
+  author = {Blais, Alexandre and Huang, Ren-Shou and Wallraff, Andreas and Girvin, S. M. and Schoelkopf, R. J.},
+  journal = {Phys. Rev. A},
+  volume = {69},
+  issue = {6},
+  pages = {062320},
+  numpages = {14},
+  year = {2004},
+  month = {Jun},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevA.69.062320},
+  url = {https://link.aps.org/doi/10.1103/PhysRevA.69.062320},
+  annotation = {This paper is seminal (3000+ citations) and goes over effectively the mathematical model of circuit QED. It explicitly uses the JCM to model the interaction of the TLS (superconducting atom) -QHO (the cavity). This shows that the JCM is KEY in strong coupling regime within the field of circuit QED and CQED. }
+}
+
+@article{Context1992-Trapped_ions,
+doi = {10.1209/0295-5075/17/6/006},
+url = {https://dx.doi.org/10.1209/0295-5075/17/6/006},
+year = {1992},
+month = {feb},
+publisher = {},
+volume = {17},
+number = {6},
+pages = {509},
+author = {C. A. Blockley and D. F. Walls and H. Risken},
+title = {Quantum Collapses and Revivals in a Quantized Trap},
+journal = {Europhysics Letters},
+annotation = {This article goes over the use of JCM in trapped ion physics. Whilst not using the JC Hamiltonian directly, it does use one based on the JCM which is very similar and analogous.}
+}
+
+
 
 ###################### HAMILTONIAN REFS ########################
 
@@ -47,12 +95,27 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
   annotation = {This article reviews the damping effect of a 2LS on a Quantum Harmonic Oscillator. It compares the presence of few quanta in the 2LS to fluid friction in classical mechanics, and the presence of many quanta to dry friction, to give context to the reader. The writer then presents the Jaynes-Cummings model of this 2LS coupled to a HO, noting that they equated the frequency of the oscillator to that of the 2LS for simplicity. The paper goes on to consider the open quantum systems, master equations and computational solutions to the problem. This article has been particularly useful in defining a Hamiltonian for the 2LS coupled to a HO. Later on, it could be particularly useful in providing simplifications and methodologies to open quantum systems and master equations.}
 }
 
-
-
 ##################### ENTANGLEMENT PAPERS #######################
 
+@article{Entanglement2009-Definition,
+  title = {Quantum entanglement},
+  author = {Horodecki, Ryszard and Horodecki, Pawe\l{} and Horodecki, Micha\l{} and Horodecki, Karol},
+  journal = {Rev. Mod. Phys.},
+  volume = {81},
+  issue = {2},
+  pages = {865--942},
+  numpages = {0},
+  year = {2009},
+  month = {Jun},
+  publisher = {American Physical Society},
+  doi = {10.1103/RevModPhys.81.865},
+  url = {https://link.aps.org/doi/10.1103/RevModPhys.81.865},
+  annotation = {This article's purpose is to simply describe entanglement theory.}
+}
 
-@ARTICLE{Entanglement2001-VNE_Definition,
+
+
+@article{Entanglement2001-VNE_Definition,
     author = {{Petz}, D.},
     title = "{Entropy, von Neumann and the von Neumann entropy}",
     journal = {arXiv e-prints},
@@ -191,8 +254,8 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
   annotation = {Another measure of entanglement is proposed in this paper, named the "robustnes of entanglement". It quantifies how likely a composite system is likely to remain entangled when local mixing is applied, and more specifically the minimum amount of entanglement needed to wipe all entanglement. Whilst not relevant to our current analyses, it is a very good contextual paper which shows a measure which is no longer really used in modern Quantum Mechanics.}
 }
 
-@article{PhysRevLett.122.210402,
-  title = {Entanglement2019-VNE_Unitarity},
+@article{Entanglement2019-VNE_Unitarity,
+  title = {Von Neumann Entropy from Unitarity},
   author = {Boes, Paul and Eisert, Jens and Gallego, Rodrigo and M\"uller, Markus P. and Wilming, Henrik},
   journal = {Phys. Rev. Lett.},
   volume = {122},
@@ -274,3 +337,48 @@ annotation = {This paper performs one-atom maser experiments and verifies that t
     journal = {Phys. Rev. E 81, 021118},
     year = {2010},
     annotation = {Schröder and Mahler look at the emergence of work flux from quantum mechanics. They state that Von Neumann began this work on quantum thermodynamics, and that around 2010 work in this field has received more attention. They begin their analysis by first looking at Time-Dependent driving, and importantly stating two things: (1) If a system is a pure density matrix, its subsystems, generally, will be entangled since there will be interaction between the subsystems; (2) If the purity of the subsystems are close to 1, the dynamics of the total system are well-approximated by that of either of the two subsystems. The paper then moves through different (and irrelevant, in our case) analyses, before looking at the analyses' relevance to the Spin-Oscillator model. It looks at two different types of interaction Hamiltonians, and finds that the dynamics of the system (when applying the RWA) matches that of the Jaynes-Cummings model for one interaction type in the interaction picture. For the second type of interaction, they find that the oscillator acts as an ideal work source within defined limits. This paper provides a thorough worked example for closed quantum dynamics of similar Hamiltonians. It will be a useful reference whilst conducting my own analysis of the Spin-Oscillator model's dynamics, as it outlines a relevant and detailed methodology.}}
+
+
+
+###################### GENERAL #############################
+
+@book{General2024-JC_overview,
+author = {Larson, Jonas and Mavrogordatos, Themistoklis},
+title = {The Jaynes–Cummings Model and its Descendants (Second Edition)},
+publisher = {IOP Publishing},
+year = {2024},
+series = {2053-2563},
+isbn = {978-0-7503-6452-2},
+url = {https://dx.doi.org/10.1088/978-0-7503-6452-2},
+doi = {10.1088/978-0-7503-6452-2},
+annotation = {This paper is a key reference, both for the research essay and for the project. It covers the Jaynes-Cummings model in great detail, ranging from its theoretical background to applications. Particular sections to focus on are: theory (project), entanglement, approximations, and each of the sections of its applications. This will be key in sourcing the final few references for the literature review.}
+}
+
+@article{General2024-JCM_relevance,
+author = {Daniele De Bernardis and Alberto Mercurio and Simone De Liberato},
+journal = {J. Opt. Soc. Am. B},
+number = {8},
+pages = {C206--C221},
+publisher = {Optica Publishing Group},
+title = {Tutorial on nonperturbative cavity quantum electrodynamics: is the Jaynes-Cummings model still relevant?},
+volume = {41},
+month = {Aug},
+year = {2024},
+url = {https://opg.optica.org/josab/abstract.cfm?URI=josab-41-8-C206},
+doi = {10.1364/JOSAB.522786},
+annotation = {This paper looks at the relevance of the JCM in 2024. It is a key reference, as it provides not only an overview of the JCM, but also criticises the model. The paper is also shorter than Jonas Larson's, making it easier to read and filter information. It is useful for: (i) cQED applications; (ii) shortcomings; (iii) future trajectory.},
+
+
+##################### OPEN PROBLEMS ##########################
+
+@article{OP-JC2019_RWA,
+author = {{Frisk Kockum}, Anton and {Miranowicz}, Adam and {De Liberato}, Simone and {Savasta}, Salvatore and {Nori}, Franco},
+title = "{Ultrastrong coupling between light and matter}",
+journal = {Nature Reviews Physics},
+year = {2019},
+volume = {1},
+number = {1},
+pages = {19-40},
+doi = {10.1038/s42254-018-0006-2},
+annotation = {This paper clearly is of high importance (1500 citations), and looks at the ULTRA-strong coupling regime of TLS-QHO systems. It clearly states that the Rabi and JC models are good for strong and weak coupling regimes, but that the models fail when it comes to ultra-strong coupling regime. It goes over the details of applications of the USC, which however is not very relevant to what we are doing. As mentioned, the key take-away is the comparison of the three models.}
+}

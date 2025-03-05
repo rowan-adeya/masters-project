@@ -1,0 +1,61 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[margin=0.75in]{geometry} 
+\usepackage{setspace} 
+\usepackage{titlesec}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=red,urlcolor=red]{hyperref}
+\usepackage{amsmath}
+\usepackage[numbers,link]{natbib}
+
+
+% Title formatting
+\titleformat{\section}[block]{\large\bfseries}{\thesection}{1em}{}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge\textbf{Quantum Resources in Two-Level Systems Coupled to Quantum Harmonic Oscillators} \\
+    \vspace{1cm}
+    \small{Submitted by: Rowan Adeya \\
+    Date: \today} \\
+    \vspace{1cm}
+    \small{\textit{Supervisor: Dr Alexandra Olaya-Castro}} \\
+    \small{\textit{Co-Supervisor: Chawntell Kulkarni}} \\
+    
+
+    \vfill
+    \normalsize
+    University College London
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction} \label{intro}
+
+The quantum description of light-matter interaction can be modelled by a Two-Level System (TLS) interacting with a Quantum Harmonic Oscillator (QHO). In 1963, Edwin Jaynes and Fred Cummings set out to model a single atom interacting with one mode of a quantized electromagnetic field within an optical cavity, cavity Quantum Electrodynamics (CQED), using the TLS-QHO model under the Rotating Wave Approximation (RWA) \cite{Context1963-JC_Original}. As such, they formulated the Jaynes-Cummings Model (JCM), which remains one of the simplest and most important models of light-matter interaction. Later in 1993, Herbert Walther experimentally verified the JCM, proving its importance within the field of CQED \cite{Context1993-JC_Verification}. 
+
+Presently the JCM, and thus the TLS-QHO model, has been extended to other various areas of research in Physics, including circuit QED \cite{Context2018-Supercond_qubit}, tunnelling phenomena in photonic crystals \cite{Context2012-Tunneling_photons} and trapped ion physics \cite{Context1992-Trapped_ions}. On the other hand, the simplicity of the model is also limiting. The model fails in certain scenarios, such as in the ultra-strong coupling regime in CQED, in systems with more than one TLS or multiple modes of the QHO, and when the RWA is no longer valid \cite{General2024-JC_overview}. The Quantum Rabi Model provides a solution to the RWA problem by including the terms originally ignored by RWA \cite{}. The Dicke Model generalises both the JCM and Rabi Model by allowing for more than one TLS or/and QHO, and by not employing the RWA \cite{}. As we shall see, however, these models are far more complex and usually require computational solutions, whereas the JCM is solvable analytically. 
+
+Once we have a solvable model describing light-matter interaction, it is crucial to explore how we can experimentally create, manipulate and maintain Quantum states. This leads to the study of two key quantum resources: Entanglement and Coherence. Entanglement is a basis-independent measure of how much quantum correlation exists between subsystems of a composite system, indicating how much the system's state deviates from being a separable (product) state \cite{Entanglement2009-Definition}. In a similar vein, coherence is a basis-\textit{dependent} measure, describing the ability of a system to maintain its quantum superposition, and quantifying how well quantum states preserve phase relationships between different basis states \cite{Coherence2017-Colloquium}. While entanglement captures non-separability between subsystems, coherence measures the quantum superposition within a single system or subsystem. Both measures play essential roles in quantum communication and quantum computation, amongst other fields.
+\\
+\\
+This review investigates the toy-model of the TLS-QHO system through the lens of the JCM, the two Quantum resources of Entanglement and Coherence, and how we may use these in our TLS-QHO system. \textbf{MOTIVATION HERE}. We begin by discussing the theoretical aspects of the TLS-QHO model in section \ref{TLS-QHO} 
+
+\section{TLS-QHO Model} \label{TLS-QHO}
+
+
+\newpage
+
+\bibliographystyle{unsrt} 
+\bibliography{References/references.bib} 
+
+
+\end{document}
