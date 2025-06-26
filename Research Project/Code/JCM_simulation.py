@@ -9,10 +9,9 @@ N = 2
 gamma = np.sqrt(0.1)
 
 # Bases
-basis_atom_g = q.basis(2, 1)
 basis_atom_e = q.basis(2, 0)
 basis_qho_0 = q.basis(N, 0)
-basis_qho_1 = q.basis(N, 1)
+
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
@@ -61,5 +60,5 @@ sim_open.plot(
     "Expectation Values of Atom and QHO for Open Dynamics in the JCM",
     "Expectation Values",
     "JCM_OQS_expect",
-    ["cavity photon number", "atom excitation probability"]
+    ["cavity photon number", "atom excitation probability"],
 )

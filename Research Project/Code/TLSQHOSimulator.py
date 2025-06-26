@@ -48,11 +48,23 @@ class TLSQHOSimulator:
             if not isinstance(L, list):
                 L = [L]
             for op in L:
-                if not (op.type == "oper" and isinstance(op, q.Qobj)):
+                if not isinstance(op, q.Qobj) or op.type != "oper":
                     raise TypeError(
                         "The jump operator must be a QuTip Qobj of type 'oper'."
                     )
             self.L = L
+
+        if e_ops is None:
+            self.e_ops = []
+        else:
+            if not isinstance(e_ops, list):
+                e_ops = [e_ops]
+            for op in e_ops:
+                if not isinstance(op, q.Qobj) or op.type != "oper":
+                    raise TypeError(
+                        "Each expectation operator must be a QuTip Qobj of type 'oper'."
+                    )
+            self.e_ops = e_ops
 
         if times is None:
             self.times = np.linspace(0.0, 20.0, 200)
@@ -61,21 +73,9 @@ class TLSQHOSimulator:
                 raise TypeError("The list of times must be a NumPy array.")
             self.times = times
 
-        if e_ops is None:
-            self.e_ops = []
-        else:
-            if not isinstance(e_ops, list):
-                e_ops = [e_ops]
-            for op in e_ops:
-                if not (op.type == "oper" and isinstance(op, q.Qobj)):
-                    raise TypeError(
-                        "Each expectation operator must be a QuTip Qobj of type 'oper'."
-                    )
-            self.e_ops = e_ops
-
     def evolve(self):
         """
-        Evolves the initial state via given Hamiltonian using the mesolve() function provided by QuTip.
+        Returns the result of the time evolution using the mesolve() function provided by QuTip.
         """
         results = q.mesolve(
             self.H,
@@ -102,7 +102,7 @@ class TLSQHOSimulator:
             )
         if results.states == []:
             raise ValueError("No states were found in the results object.")
-        
+
         return results.expect
 
     def vne(self, results: q.solver.result.Result):
@@ -114,7 +114,7 @@ class TLSQHOSimulator:
         """
         if results.states == []:
             raise ValueError("No states were found in the results object.")
-        
+
         atom_subsys = [state.ptrace(0) for state in results.states]
         return [q.entropy_vn(dm) for dm in atom_subsys]
 
@@ -128,7 +128,7 @@ class TLSQHOSimulator:
         """
         if results.states == []:
             raise ValueError("No states were found in the results object.")
-        
+
         coherence = []
 
         for ket in results.states:
