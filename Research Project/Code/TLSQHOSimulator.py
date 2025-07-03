@@ -85,8 +85,12 @@ class TLSQHOSimulator:
             self.e_ops,
             options=q.Options(store_states=True),
         )
-
-        return results
+        if not results.states:
+            raise ValueError(
+                "No states were found in the results object after evolution."
+            )
+        else:
+            return results
 
     def expect(self, results: q.solver.result.Result):
         """
@@ -107,7 +111,7 @@ class TLSQHOSimulator:
 
     def vne(self, results: q.solver.result.Result):
         """
-         Calculates Von Neumann Entropy for a subsystem of an evolved state.
+        Calculates Von Neumann Entropy for a subsystem of an evolved state.
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
@@ -151,7 +155,13 @@ class TLSQHOSimulator:
         return coherence
 
     def plot(
-        self, y_data: list, title: str, y_label: str, filename: str, legend: list = None
+        self,
+        y_data: list,
+        title: str,
+        y_label: str,
+        filename: str,
+        savepath: str = None,
+        legend: list = None,
     ):
         """
         Plots data and saves to specific location in repository.
@@ -162,12 +172,16 @@ class TLSQHOSimulator:
             title(str) : Name of graph.
             y_label(str) : Y-axis label.
             filename(str) : Name of file which will be saved.
+            Savepath(str) : Optional, path from "results" directory which the user wants to save their plots to.
             legend(list) : A list of strings which must be provided if at least one expectation operator is
             present and the user implements the expect() method.
 
 
         """
-        savepath = f"results/{filename}"
+        if savepath is None:
+            savepath = f"results/{filename}"
+        else:
+            savepath = f"results/{savepath}/{filename}"
 
         all_arrays = all(isinstance(item, np.ndarray) for item in y_data)
 

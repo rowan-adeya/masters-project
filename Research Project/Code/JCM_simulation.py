@@ -54,7 +54,9 @@ results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 
 L_tlsqho = [L_qho, L_tls]
-sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=np.linspace(0.0, 2000.0, 200))
+sim_open_tlsqho = TLSQHOSimulator(
+    H, psi0, L_tlsqho, e_ops, times=np.linspace(0.0, 2000.0, 200)
+)
 results_open_tlsqho = sim_open_tlsqho.evolve()
 expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
 
@@ -64,20 +66,23 @@ sim_closed.plot(
     vne_closed,
     "Closed System Evolution of the JCM: Entanglement Oscillations",
     "Entanglement",
-    "JCM_CQS_ent",
+    "CQS_ent",
+    "JCM",
 )
 sim_closed.plot(
     coherence_closed,
     "Closed System Evolution of the JCM: Coherence Oscillations",
     "Coherence",
-    "JCM_CQS_coh",
+    "CQS_coh",
+    "JCM",
 )
 
 sim_open_tls.plot(
     expect_open_tls,
     "Open System Evolution of the JCM: Dynamics of Spontaneous Atomic Emission",
     "Expectation Values",
-    "JCM_OQS_TLS_Decay",
+    "OQS_TLS_Decay",
+    "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
 
@@ -85,7 +90,8 @@ sim_open_qho.plot(
     expect_open_qho,
     "Open System Evolution of the JCM: Dynamics of QHO Photon Loss",
     "Expectation Values",
-    "JCM_OQS_QHO_loss",
+    "OQS_QHO_loss",
+    "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
 
@@ -93,6 +99,7 @@ sim_open_tlsqho.plot(
     expect_open_tlsqho,
     "Open System Evolution of the JCM: Dynamics of TLS, QHO Decay",
     "Expectation Values",
-    "JCM_OQS_QHOTLS",
+    "OQS_QHOTLS",
+    "JCM",
     ["cavity photon number", "atom excitation probability"],
 )

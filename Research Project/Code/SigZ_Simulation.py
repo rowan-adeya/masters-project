@@ -24,7 +24,11 @@ s_raise = s_lower.dag()
 psi0 = q.tensor(basis_atom_e, basis_qho_0)
 
 # Jaynes-Cummings Hamiltonian
-H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * q.tensor(-1 * q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
+H = (
+    0.5 * w * s_z
+    + w * (adag * a + 0.5)
+    + g * q.tensor(-1 * q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
+)
 
 # Closed Dynamics
 sim_closed = TLSQHOSimulator(H, psi0)
@@ -46,14 +50,14 @@ expect_open_tls = sim_open_tls.expect(results_open_tls)
 gamma_th = 0.1
 T = 300  # avg T in Kelvin
 n_omega = 1 / (np.exp(w / (k_B * T)) - 1)
-kappa = gamma_th * (1 + n_omega)
 
-L_qho = kappa * a
+
+L_qho = [gamma_th * (n_omega + 1) * a, gamma_th * N * adag]
 sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times_open)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 
-L_tlsqho = [L_qho, L_tls]
+L_tlsqho = [gamma_th * (n_omega + 1) * a, gamma_th * N * adag, L_tls]
 sim_open_tlsqho = TLSQHOSimulator(
     H, psi0, L_tlsqho, e_ops, times=np.linspace(0.0, 2000.0, 200)
 )
@@ -64,35 +68,42 @@ sim_closed.plot(
     vne_closed,
     "Closed System Evolution: sigma_z Interaction Entanglement Oscillations",
     "Entanglement",
-    "SZ_X_CQS_ent",
+    "CQS_ent",
+    "SigZ",
+    legend=None
 )
 sim_closed.plot(
     coherence_closed,
     "Closed System Evolution: sigma_z Interaction Coherence Oscillations",
     "Coherence",
-    "SZ_X_CQS_coh",
+    "CQS_coh",
+    "SigZ",
+    legend=None
 )
 
 sim_open_tls.plot(
     expect_open_tls,
     "Open System Evolution: sigma_z Interaction Dynamics of Spontaneous Atomic Emission",
     "Expectation Values",
-    "SZ_X_TLS_Decay",
-    ["cavity photon number", "atom excitation probability"],
+    "TLS_Decay",
+    "SigZ",
+    ["cavity photon number", "atom excitation probability"]
 )
 
 sim_open_qho.plot(
     expect_open_qho,
     "Open System Evolution: sigma_z Interaction Dynamics of QHO Photon Loss",
     "Expectation Values",
-    "SZ_X_OQS_QHO_loss",
-    ["cavity photon number", "atom excitation probability"],
+    "OQS_QHO_loss",
+    "SigZ",
+    ["cavity photon number", "atom excitation probability"]
 )
 
 sim_open_tlsqho.plot(
     expect_open_tlsqho,
     "Open System Evolution: sigma_z Interaction Dynamics of TLS, QHO Decay",
     "Expectation Values",
-    "SZ_X_OQS_QHOTLS",
-    ["cavity photon number", "atom excitation probability"],
+    "OQS_QHOTLS",
+    "SigZ",
+    ["cavity photon number", "atom excitation probability"]
 )
