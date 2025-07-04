@@ -39,7 +39,7 @@ coherence_closed = sim_closed.rel_coherence(results_closed)
 # Open Dynamics (Spontaneous Emission)
 gamma = np.sqrt(0.1)
 
-L_tls = gamma * s_lower
+L_tls = [gamma * s_lower]
 times_open = np.linspace(0.0, 500.0, 200)
 e_ops = [adag * a, s_raise * s_lower]
 sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times_open)
@@ -57,10 +57,8 @@ sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times_open)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 
-L_tlsqho = [gamma_th * (n_omega + 1) * a, gamma_th * N * adag, L_tls]
-sim_open_tlsqho = TLSQHOSimulator(
-    H, psi0, L_tlsqho, e_ops, times=np.linspace(0.0, 2000.0, 200)
-)
+L_tlsqho = L_tls + L_qho
+sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops)
 results_open_tlsqho = sim_open_tlsqho.evolve()
 expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
 
@@ -70,7 +68,7 @@ sim_closed.plot(
     "Entanglement",
     "CQS_ent",
     "SigZ",
-    legend=None
+    legend=None,
 )
 sim_closed.plot(
     coherence_closed,
@@ -78,7 +76,7 @@ sim_closed.plot(
     "Coherence",
     "CQS_coh",
     "SigZ",
-    legend=None
+    legend=None,
 )
 
 sim_open_tls.plot(
@@ -87,7 +85,7 @@ sim_open_tls.plot(
     "Expectation Values",
     "TLS_Decay",
     "SigZ",
-    ["cavity photon number", "atom excitation probability"]
+    ["cavity photon number", "atom excitation probability"],
 )
 
 sim_open_qho.plot(
@@ -96,7 +94,7 @@ sim_open_qho.plot(
     "Expectation Values",
     "OQS_QHO_loss",
     "SigZ",
-    ["cavity photon number", "atom excitation probability"]
+    ["cavity photon number", "atom excitation probability"],
 )
 
 sim_open_tlsqho.plot(
@@ -105,5 +103,5 @@ sim_open_tlsqho.plot(
     "Expectation Values",
     "OQS_QHOTLS",
     "SigZ",
-    ["cavity photon number", "atom excitation probability"]
+    ["cavity photon number", "atom excitation probability"],
 )
