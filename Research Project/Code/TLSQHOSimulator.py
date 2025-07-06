@@ -67,7 +67,9 @@ class TLSQHOSimulator:
             self.e_ops = e_ops
 
         if times is None:
-            self.times = np.linspace(0.0, 20.0, 200)
+            self.times = np.linspace(
+                0.0, 1000.0, 200
+            )  # if using natural units, its in units of 1/w which if w = 1GHz is 1ns
         else:
             if not isinstance(times, np.ndarray):
                 raise TypeError("The list of times must be a NumPy array.")

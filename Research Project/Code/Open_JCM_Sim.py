@@ -1,17 +1,20 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
-from scipy.constants import k as k_B
+from scipy.constants import k as K_B, h
+
+############################## SETUP ######################################
+
+tlist = np.linspace(0.0, 100.0, 200)
 
 # constants
-w = 1.0
-g = 1.0
+w = 1.0  # natural units, w = 1, hbar =1, kb = 1, GHz freq
+g = 0.1
 N = 2
 
 # Bases
 basis_atom_e = q.basis(2, 0)
 basis_qho_0 = q.basis(N, 0)
-
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
@@ -20,60 +23,52 @@ s_z = q.tensor(q.sigmaz(), q.qeye(N))
 s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
-
-psi0 = q.tensor(basis_atom_e, basis_qho_0)
-
-# Jaynes-Cummings Hamiltonian
+# Hamiltonian
 H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
-# Closed Dynamics
-sim_closed = TLSQHOSimulator(H, psi0)
-results_closed = sim_closed.evolve()
-vne_closed = sim_closed.vne(results_closed)
-coherence_closed = sim_closed.rel_coherence(results_closed)
+# Init cond
+psi0 = q.tensor(basis_atom_e, basis_qho_0)
 
-# Open Dynamics (Spontaneous Emission)
-gamma = np.sqrt(0.1)
+########################## OPEN SIM SETUP #################################
+
+# Constants
+gamma = 0.2
+gamma_th = 0.01
+T_K = 1  # T in Kelvin, gives clear picture of decay dynamics
+T = (K_B * T_K) / (
+    h * 1e9
+)  # T in natural units, using (K_b/ h * freq) as a conversion factor
+n_omega = 1 / (np.exp(w / T) - 1)
+
+# Operators
+e_ops = [adag * a, s_raise * s_lower]
 
 L_tls = [gamma * s_lower]
-times_open = np.linspace(0.0, 500.0, 200)
-e_ops = [adag * a, s_raise * s_lower]
-sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times_open)
+L_qho = [
+    gamma_th * (n_omega + 1) * a,  # photon loss
+    gamma_th * n_omega * adag,  # photon gain
+]
+
+############################ SIMULATION ###################################
+
+# TLS
+sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
 results_open_tls = sim_open_tls.evolve()
 expect_open_tls = sim_open_tls.expect(results_open_tls)
 
-# Open Dynamics (QHO Photon Loss)
-gamma_th = 0.1
-T = 300  # avg T in Kelvin
-n_omega = 1 / (np.exp(w / (k_B * T)) - 1)
-
-
-L_qho = [gamma_th * (1 + n_omega) * a, gamma_th * n_omega * adag]
-sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times_open)
+# QHO
+sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 
+# QHO + TLS
 L_tlsqho = L_qho + L_tls
-sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops)
+sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=tlist)
 results_open_tlsqho = sim_open_tlsqho.evolve()
 expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
 
 
-# Plots
-sim_closed.plot(
-    vne_closed,
-    "Closed System Evolution of the JCM: Entanglement Oscillations",
-    "Entanglement",
-    "CQS_ent",
-    "JCM",
-)
-sim_closed.plot(
-    coherence_closed,
-    "Closed System Evolution of the JCM: Coherence Oscillations",
-    "Coherence",
-    "CQS_coh",
-    "JCM",
-)
+############################### PLOTS #####################################
 
 sim_open_tls.plot(
     expect_open_tls,
