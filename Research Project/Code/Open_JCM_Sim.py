@@ -55,11 +55,13 @@ L_qho = [
 sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
 results_open_tls = sim_open_tls.evolve()
 expect_open_tls = sim_open_tls.expect(results_open_tls)
+neg_tls = sim_open_tls.negativity(results_open_tls)
 
 # QHO
 sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
+neg_qho = sim_open_qho.negativity(results_open_qho)
 
 # QHO + TLS
 L_tlsqho = L_qho + L_tls
@@ -79,14 +81,33 @@ sim_open_tls.plot(
     ["cavity photon number", "atom excitation probability"],
 )
 
+sim_open_tls.plot(
+    neg_tls,
+    "Open System Evolution of the JCM: Negativity with Spontaneous Atomic Emission",
+    "Negativity",
+    "OQS_TLS_Neg",
+    "JCM",
+    ["Negativity"],
+)
+
 sim_open_qho.plot(
     expect_open_qho,
     "Open System Evolution of the JCM: Dynamics of QHO Photon Loss",
     "Expectation Values",
-    "OQS_QHO_loss",
+    "OQS_QHO_Neg",
     "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
+
+sim_open_tls.plot(
+    neg_qho,
+    "Open System Evolution of the JCM: Negativity with QHO Photon Loss",
+    "Negativity",
+    "OQS_QHO_Neg",
+    "JCM",
+    ["Negativity"],
+)
+
 
 sim_open_tlsqho.plot(
     expect_open_tlsqho,

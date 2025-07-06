@@ -16,14 +16,13 @@ class TLSQHOSimulator:
         e_ops(list(q.Qobj)): Optional, list of projectors to calculate expectation values from.
         times(np.ndarray): Optional, numpy array of times for which to evolve the initial state from.
 
-
     Class methods:
-        evolve(self): Evolves the state given at minimum a Hamiltonian and initial state, using QuTip's mesolve().
-        expect(self, results): Calculates expectation values of results if at least one e_ops is provided.
-        vne(self, results): Calculates Von Neumann Entropy for a subsystem of an evolved state.
-        rel_coherence(self, results): Calculates Relative Entropy of Coherence for a subsystem of an evolved state.
-        plot(self, y_data, title, y_label, filename, legend): Plots data and saves to specific location in repository.
-
+        evolve(): Evolves the state given at minimum a Hamiltonian and initial state, using QuTip's mesolve().
+        expect(results): Calculates expectation values of results if at least one e_ops is provided.
+        vne(results, subsys): Calculates Von Neumann Entropy for a subsystem of an evolved state.
+        negativity(results, subsys): Calculates the Negativity for a subsystem of an evolved state.
+        rel_coherence(results): Calculates Relative Entropy of Coherence for a subsystem of an evolved state.
+        plot(y_data, title, y_label, filename, legend): Plots data and saves to specific location in repository.
     """
 
     def __init__(
@@ -77,7 +76,10 @@ class TLSQHOSimulator:
 
     def evolve(self):
         """
-        Returns the result of the time evolution using the mesolve() function provided by QuTip.
+        Calculates the result of the time evolution using the mesolve() function provided by QuTip.
+
+        Returns:
+            results(q.solver.result.Result): A solver type which can be acted upon to extract evolved states.
         """
         results = q.mesolve(
             self.H,
@@ -100,29 +102,71 @@ class TLSQHOSimulator:
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
-
+        Returns:
+            results.expect(list): List of expectation values for the given expectation operators.
         """
         if not self.e_ops:
             raise ValueError(
                 "Cannot provide expectation values if no projectors are specified."
             )
-        if results.states == []:
-            raise ValueError("No states were found in the results object.")
 
         return results.expect
 
-    def vne(self, results: q.solver.result.Result):
+    def vne(self, results: q.solver.result.Result, subsys: int = 0):
         """
-        Calculates Von Neumann Entropy for a subsystem of an evolved state.
+        Calculates Von Neumann Entropy for a subsystem of an evolved state. Not applicable to Open Quantum
+        Systems.
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
+            subsys(int): Default = 0, which subsystem to partial trace over.
+        Returns:
+            vne(list): The Von Neumann Entropy of each density matrix in the result.states object.
         """
-        if results.states == []:
-            raise ValueError("No states were found in the results object.")
+        if subsys not in (0, 1):
+            raise ValueError("subsys must be either 0 or 1.")
+        
+        atom_subsys = [state.ptrace(subsys) for state in results.states]
+        vne = [q.entropy_vn(dm) for dm in atom_subsys]
+        return vne
 
-        atom_subsys = [state.ptrace(0) for state in results.states]
-        return [q.entropy_vn(dm) for dm in atom_subsys]
+    def negativity(self, results: q.solver.result.Result, subsys: int = 0):
+        """
+        Calculates the Negativity for a subsystem of an evolved state. The negativity is the absolute
+        sum of the negative eigenvalues. The partial transpose function takes an argument, mask, is a
+        list of bools (0 or 1), where a 1 in the list tells the function to perform the partial
+        transpose.
+
+        Args:
+            results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
+            subsys(int): Default = 0, which subsystem to partial transpose over.
+
+        Returns:
+            neg_vals(list): The negativity of each density matrix in the result.states object.
+        """
+        if subsys not in (0, 1):
+            raise ValueError("subsys must be either 0 or 1.")
+
+        neg_vals = []
+
+        for state in results.states:
+            if state.isket:
+                rho = q.ket2dm(state)
+            else:
+                rho = state
+
+            if subsys == 0:
+                mask = [1, 0]  # mask tells which subsys to perform partial transpose on
+            else:
+                mask = [0, 1]
+
+            rho_pt = q.partial_transpose(rho, mask)
+
+            eigenvals = rho_pt.eigenenergies()
+            negativity = sum(abs(eig) for eig in eigenvals if eig < 0.0)
+            neg_vals.append(negativity)
+
+        return neg_vals
 
     def rel_coherence(self, results: q.solver.result.Result):
         """
@@ -130,7 +174,8 @@ class TLSQHOSimulator:
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
-
+        Returns:
+            coherence(list): The coherence of each density matrix in the result.states object.
         """
         if results.states == []:
             raise ValueError("No states were found in the results object.")

@@ -61,11 +61,13 @@ L_qho = [
 sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
 results_open_tls = sim_open_tls.evolve()
 expect_open_tls = sim_open_tls.expect(results_open_tls)
+neg_tls = sim_open_tls.negativity(results_open_tls)
 
 # QHO
 sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
+neg_qho = sim_open_qho.negativity(results_open_qho)
 
 # TLS + QHO
 L_tlsqho = L_tls + L_qho
@@ -83,6 +85,15 @@ sim_open_tls.plot(
     ["cavity photon number", "atom excitation probability"],
 )
 
+sim_open_tls.plot(
+    neg_tls,
+    "Open System Negativity: sigma_z Interaction Dynamics of Spontaneous Atomic Emission",
+    "Negativity",
+    "OQS_TLS_Neg",
+    "SigZ",
+    ["Negativity"],
+)
+
 sim_open_qho.plot(
     expect_open_qho,
     "Open System Evolution: sigma_z Interaction Dynamics of QHO Photon Loss",
@@ -92,6 +103,14 @@ sim_open_qho.plot(
     ["cavity photon number", "atom excitation probability"],
 )
 
+sim_open_tls.plot(
+    neg_qho,
+    "Open System Negativity: sigma_z Interaction Dynamics of QHO Photon Loss",
+    "Negativity",
+    "OQS_QHO_Neg",
+    "SigZ",
+    ["Negativity"],
+)
 sim_open_tlsqho.plot(
     expect_open_tlsqho,
     "Open System Evolution: sigma_z Interaction Dynamics of TLS, QHO Decay",
