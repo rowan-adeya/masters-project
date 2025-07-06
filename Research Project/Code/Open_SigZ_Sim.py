@@ -1,11 +1,16 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
-from scipy.constants import k as k_B
+from scipy.constants import k as K_B, h
+
+
+############################## SETUP ######################################
+
+tlist = np.linspace(0.0, 50.0, 2000)
 
 # constants
 w = 1.0
-g = 1.0
+g = 0.1  # Weak coupling
 N = 2
 
 # Bases
@@ -30,60 +35,50 @@ H = (
     + g * q.tensor(-1 * q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
 )
 
-# Closed Dynamics
-sim_closed = TLSQHOSimulator(H, psi0)
-results_closed = sim_closed.evolve()
-vne_closed = sim_closed.vne(results_closed)
-coherence_closed = sim_closed.rel_coherence(results_closed)
+########################## OPEN SIM SETUP #################################
 
-# Open Dynamics (Spontaneous Emission)
-gamma = np.sqrt(0.1)
+# Constants
+gamma = 0.01
+gamma_th = 0.01
+T_K = 1  # avg T in Kelvin
+T = (K_B * T_K) / (
+    h * 1e9
+)  # T in natural units, using (K_b/ h * freq) as a conversion factor
+n_omega = 1 / (np.exp(w / T) - 1)
+
+# Operators
+e_ops = [adag * a, s_raise * s_lower]
 
 L_tls = [gamma * s_lower]
-times_open = np.linspace(0.0, 500.0, 200)
-e_ops = [adag * a, s_raise * s_lower]
-sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times_open)
+L_qho = [
+    gamma_th * (n_omega + 1) * a,  # photon loss
+    gamma_th * n_omega * adag,  # photon gain
+]
+
+############################ SIMULATION ###################################
+
+# TLS
+sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
 results_open_tls = sim_open_tls.evolve()
 expect_open_tls = sim_open_tls.expect(results_open_tls)
 
-# Open Dynamics (QHO Photon Loss)
-gamma_th = 0.1
-T = 300  # avg T in Kelvin
-n_omega = 1 / (np.exp(w / (k_B * T)) - 1)
-
-
-L_qho = [gamma_th * (n_omega + 1) * a, gamma_th * N * adag]
-sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times_open)
+# QHO
+sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 
+# TLS + QHO
 L_tlsqho = L_tls + L_qho
-sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops)
+sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=tlist)
 results_open_tlsqho = sim_open_tlsqho.evolve()
 expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
 
-sim_closed.plot(
-    vne_closed,
-    "Closed System Evolution: sigma_z Interaction Entanglement Oscillations",
-    "Entanglement",
-    "CQS_ent",
-    "SigZ",
-    legend=None,
-)
-sim_closed.plot(
-    coherence_closed,
-    "Closed System Evolution: sigma_z Interaction Coherence Oscillations",
-    "Coherence",
-    "CQS_coh",
-    "SigZ",
-    legend=None,
-)
-
+############################### PLOTS #####################################
 sim_open_tls.plot(
     expect_open_tls,
     "Open System Evolution: sigma_z Interaction Dynamics of Spontaneous Atomic Emission",
     "Expectation Values",
-    "TLS_Decay",
+    "OQS_TLS_Decay",
     "SigZ",
     ["cavity photon number", "atom excitation probability"],
 )
