@@ -1,22 +1,19 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
-from scipy.constants import k as K_B, h
-
 
 ############################## SETUP ######################################
 
-tlist = np.linspace(0.0, 50.0, 2000)
+tlist = np.linspace(0.0, 1000.0, 200)
 
 # constants
-w = 1.0
-g = 0.1  # Weak coupling
-N = 2
+w = 1.0  # natural units, w = 1, hbar =1
+g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
+N = 30
 
 # Bases
 basis_atom_e = q.basis(2, 0)
 basis_qho_0 = q.basis(N, 0)
-
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
@@ -25,26 +22,21 @@ s_z = q.tensor(q.sigmaz(), q.qeye(N))
 s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
+# Hamiltonian
+H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
+# Init cond
 psi0 = q.tensor(basis_atom_e, basis_qho_0)
-
-# Jaynes-Cummings Hamiltonian
-H = (
-    0.5 * w * s_z
-    + w * (adag * a + 0.5)
-    + g * q.tensor(-1 * q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
-)
 
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.01
-gamma_th = 0.01
-T_K = 1  # avg T in Kelvin
-T = (K_B * T_K) / (
-    h * 1e9
-)  # T in natural units, using (K_b/ h * freq) as a conversion factor
-n_omega = 1 / (np.exp(w / T) - 1)
+gamma = 0.1
+gamma_th = 0.1
+kbT = 0.001  # meV
+n_omega = 1 / (
+    np.exp(w / kbT) - 1
+)  # low temp regime so n_omega -> 0, optical/IR regime
 
 # Operators
 e_ops = [adag * a, s_raise * s_lower]
@@ -69,53 +61,57 @@ results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 neg_qho = sim_open_qho.negativity(results_open_qho)
 
-# TLS + QHO
-L_tlsqho = L_tls + L_qho
+# QHO + TLS
+L_tlsqho = L_qho + L_tls
 sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=tlist)
 results_open_tlsqho = sim_open_tlsqho.evolve()
 expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
 
+
 ############################### PLOTS #####################################
+
 sim_open_tls.plot(
     expect_open_tls,
-    "Open System Evolution: sigma_z Interaction Dynamics of Spontaneous Atomic Emission",
+    "Open Evolution JCM: Spontaneous Atomic Emission (Weak Coupling)",
     "Expectation Values",
     "OQS_TLS_Decay",
-    "SigZ",
+    "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
 
 sim_open_tls.plot(
     neg_tls,
-    "Open System Negativity: sigma_z Interaction Dynamics of Spontaneous Atomic Emission",
+    "Open Evolution JCM: Negativity of Atomic Emission (Weak Coupling)",
     "Negativity",
     "OQS_TLS_Neg",
-    "SigZ",
+    "JCM",
     ["Negativity"],
 )
 
 sim_open_qho.plot(
     expect_open_qho,
-    "Open System Evolution: sigma_z Interaction Dynamics of QHO Photon Loss",
+    "Open Evolution JCM: QHO Photon Loss/Gain (Weak Coupling)",
     "Expectation Values",
     "OQS_QHO_loss",
-    "SigZ",
+    "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
 
-sim_open_tls.plot(
+sim_open_qho.plot(
     neg_qho,
-    "Open System Negativity: sigma_z Interaction Dynamics of QHO Photon Loss",
+    "Open Evolution JCM: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
     "Negativity",
     "OQS_QHO_Neg",
-    "SigZ",
+    "JCM",
     ["Negativity"],
 )
+
+
 sim_open_tlsqho.plot(
     expect_open_tlsqho,
-    "Open System Evolution: sigma_z Interaction Dynamics of TLS, QHO Decay",
+    "Open Evolution JCM: TLS and QHO Decay",
     "Expectation Values",
     "OQS_QHOTLS",
-    "SigZ",
+    "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
