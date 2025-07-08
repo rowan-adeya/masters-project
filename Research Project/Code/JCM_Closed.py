@@ -34,14 +34,24 @@ H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
 
 ############################ SIMULATION ###################################
+e_ops = [adag * a, s_raise * s_lower]
 
-sim_closed = TLSQHOSimulator(H, psi0, times=tlist)
+sim_closed = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
 results_closed = sim_closed.evolve()
+results_expt = sim_closed.expect(results_closed)
 vne_closed = sim_closed.vne(results_closed)
 coherence_closed = sim_closed.rel_coherence(results_closed)
 
 
 ############################### PLOTS #####################################
+sim_closed.plot(
+    results_expt,
+    "Closed Evolution JCM: Expectation Values",
+    "Expectation Values",
+    "CQS_expt",
+    "JCM",
+    ["cavity photon number", "atom excitation probability"],
+)
 
 sim_closed.plot(
     vne_closed,

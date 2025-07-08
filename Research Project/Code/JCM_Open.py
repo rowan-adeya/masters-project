@@ -55,12 +55,14 @@ sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
 results_open_tls = sim_open_tls.evolve()
 expect_open_tls = sim_open_tls.expect(results_open_tls)
 neg_tls = sim_open_tls.negativity(results_open_tls)
+coh_tls = sim_open_tls.rel_coherence(results_open_tls)
 
 # QHO
 sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
 results_open_qho = sim_open_qho.evolve()
 expect_open_qho = sim_open_qho.expect(results_open_qho)
 neg_qho = sim_open_qho.negativity(results_open_qho)
+coh_qho = sim_open_qho.rel_coherence(results_open_qho)
 
 # QHO + TLS
 L_tlsqho = L_qho + L_tls
@@ -89,6 +91,15 @@ sim_open_tls.plot(
     ["Negativity"],
 )
 
+sim_open_tls.plot(
+    coh_tls,
+    "Open Evolution JCM: Coherence of Atomic Emission (Weak Coupling)",
+    "Coherence",
+    "OQS_TLS_coh",
+    "JCM",
+    ["Coherence"],
+)
+
 sim_open_qho.plot(
     expect_open_qho,
     "Open Evolution JCM: QHO Photon Loss/Gain (Weak Coupling)",
@@ -99,12 +110,12 @@ sim_open_qho.plot(
 )
 
 sim_open_qho.plot(
-    neg_qho,
-    "Open Evolution JCM: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
-    "Negativity",
-    "OQS_QHO_Neg",
+    coh_qho,
+    "Open Evolution JCM: Coherence of QHO Photon Loss/Gain (Weak Coupling)",
+    "Coherence",
+    "OQS_QHO_coh",
     "JCM",
-    ["Negativity"],
+    ["Coherence"],
 )
 
 
