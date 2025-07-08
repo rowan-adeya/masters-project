@@ -9,12 +9,12 @@ tlist = np.linspace(0.0, 1000.0, 200)
 # constants
 w = 1.0  # natural units, w = 1, hbar =1
 g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
-N = 30 # num Fock states
-n = 2 # photon number 
+N = 30  # num Fock states
+n = 2  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
-basis_qho_0 = q.basis(N, n)
+basis_qho = q.basis(N, n)
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
@@ -27,7 +27,7 @@ s_raise = s_lower.dag()
 H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
 # Init cond
-psi0 = q.tensor(basis_atom_e, basis_qho_0)
+psi0 = q.tensor(basis_atom_e, basis_qho)
 
 ########################## OPEN SIM SETUP #################################
 

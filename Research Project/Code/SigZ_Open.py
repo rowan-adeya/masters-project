@@ -10,12 +10,12 @@ tlist = np.linspace(0.0, 50.0, 2000)
 # constants
 w = 1.0
 g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
-N = 30 # num Fock states
-n = 2 # photon number 
+N = 30  # num Fock states
+n = 2  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
-basis_qho_0 = q.basis(N, n)
+basis_qho = q.basis(N, n)
 
 
 # Operators
@@ -26,7 +26,7 @@ s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
 
-psi0 = q.tensor(basis_atom_e, basis_qho_0)
+psi0 = q.tensor(basis_atom_e, basis_qho)
 
 # Jaynes-Cummings Hamiltonian
 H = (

@@ -9,12 +9,12 @@ tlist = np.linspace(0.0, 100.0, 200)
 # constants
 w = 1.0
 g = 0.1  # Weak coupling
-N = 30 # num Fock states
-n = 2 # photon number 
+N = 30  # num Fock states
+n = 2  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
-basis_qho_0 = q.basis(N, n)
+basis_qho = q.basis(N, n)
 
 
 # Operators
@@ -33,7 +33,7 @@ H = (
 )
 
 # Init cond
-psi0 = q.tensor(basis_atom_e, basis_qho_0)
+psi0 = q.tensor(basis_atom_e, basis_qho)
 
 ############################ SIMULATION ###################################
 
