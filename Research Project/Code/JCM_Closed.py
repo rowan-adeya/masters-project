@@ -2,7 +2,9 @@ from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
 
-
+# https://opg.optica.org/josab/fulltext.cfm?uri=josab-41-8-C206&id=553027
+# https://ar5iv.labs.arxiv.org/html/2112.08917v1
+# links for weak/strong regimes
 ############################## SETUP ######################################
 
 tlist = np.linspace(0.0, 100.0, 200)
@@ -10,11 +12,11 @@ tlist = np.linspace(0.0, 100.0, 200)
 # constants
 w = 1.0  # natural units, w = 1, hbar =1, kb = 1, GHz freq
 g = 0.1
-N = 2
-
+N = 30 # num Fock states
+n = 2 # photon number 
 # Bases
 basis_atom_e = q.basis(2, 0)
-basis_qho_0 = q.basis(N, 0)
+basis_qho_0 = q.basis(N, n)
 
 
 # Operators

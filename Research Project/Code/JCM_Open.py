@@ -9,11 +9,12 @@ tlist = np.linspace(0.0, 1000.0, 200)
 # constants
 w = 1.0  # natural units, w = 1, hbar =1
 g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
-N = 30
+N = 30 # num Fock states
+n = 2 # photon number 
 
 # Bases
 basis_atom_e = q.basis(2, 0)
-basis_qho_0 = q.basis(N, 0)
+basis_qho_0 = q.basis(N, n)
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
