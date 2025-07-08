@@ -1,16 +1,15 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
-from scipy.constants import k as K_B, h
 
 ############################## SETUP ######################################
 
-tlist = np.linspace(0.0, 100.0, 200)
+tlist = np.linspace(0.0, 1000.0, 200)
 
 # constants
-w = 1.0  # natural units, w = 1, hbar =1, kb = 1, GHz freq
-g = 0.1
-N = 2
+w = 1.0  # natural units, w = 1, hbar =1
+g = 0.05 # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
+N = 30
 
 # Bases
 basis_atom_e = q.basis(2, 0)
@@ -32,13 +31,10 @@ psi0 = q.tensor(basis_atom_e, basis_qho_0)
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.2
-gamma_th = 0.01
-T_K = 1  # T in Kelvin, gives clear picture of decay dynamics
-T = (K_B * T_K) / (
-    h * 1e9
-)  # T in natural units, using (K_b/ h * freq) as a conversion factor
-n_omega = 1 / (np.exp(w / T) - 1)
+gamma = 0.1
+gamma_th = 0.1
+kbT = 0.001 # meV
+n_omega = 1 / (np.exp(w / kbT) - 1) # low temp regime so n_omega -> 0, optical/IR regime 
 
 # Operators
 e_ops = [adag * a, s_raise * s_lower]
@@ -94,12 +90,12 @@ sim_open_qho.plot(
     expect_open_qho,
     "Open System Evolution of the JCM: Dynamics of QHO Photon Loss",
     "Expectation Values",
-    "OQS_QHO_Neg",
+    "OQS_QHO_loss",
     "JCM",
     ["cavity photon number", "atom excitation probability"],
 )
 
-sim_open_tls.plot(
+sim_open_qho.plot(
     neg_qho,
     "Open System Evolution of the JCM: Negativity with QHO Photon Loss",
     "Negativity",
