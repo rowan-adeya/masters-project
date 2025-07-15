@@ -1,20 +1,26 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
+import math
 
 
 ############################## SETUP ######################################
 
 tlist = np.linspace(0.0, 500.0, 2000)
 
+tlist = np.linspace(0.0, 500.0, 2000)
+
 # constants
 w = 1.0
+epsilon = 1.0
+V = 0
 g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
 n = 2  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
+basis_atom_g = q.basis(2, 1)
 basis_qho = q.basis(N, n)
 
 
@@ -22,18 +28,18 @@ basis_qho = q.basis(N, n)
 a = q.tensor(q.qeye(2), q.destroy(N))
 adag = a.dag()
 s_z = q.tensor(q.sigmaz(), q.qeye(N))
+s_x = q.tensor(q.sigmax(), q.qeye(N))
 s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
+# Exciton-Vibration Hamiltonian
+H_ex = (0.5 * epsilon * s_z) + (V * s_x)
+H_vib = w * adag * a
+H_int = -(g / math.sqrt(2)) * q.tensor(q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
+H = H_ex + H_vib + H_int
 
-psi0 = q.tensor(basis_atom_e, basis_qho)
-
-# Jaynes-Cummings Hamiltonian
-H = (
-    0.5 * w * s_z
-    + w * (adag * a + 0.5)
-    + g * q.tensor(-1 * q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
-)
+# Initial Condition
+psi0 = q.tensor(basis_atom_e + basis_atom_g, basis_qho) / math.sqrt(2)
 
 ########################## OPEN SIM SETUP #################################
 
@@ -77,63 +83,63 @@ expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
 ############################### PLOTS #####################################
 sim_open_tls.plot(
     expect_open_tls,
-    "Open Evolution SigmaZ: Spontaneous Atomic Emission (Weak Coupling)",
+    "Open Evolution ExVib: Spontaneous Atomic Emission (Weak Coupling)",
     "Expectation Values",
-    "OQS_TLS_Decay",
-    "SigZ",
+    "OQS_TLS_Decay_eg",
+    "ExVib",
     ["cavity photon number", "atom excitation probability"],
 )
 
 sim_open_tls.plot(
     neg_tls,
-    "Open Evolution SigmaZ: Negativity of Atomic Emission (Weak Coupling)",
+    "Open Evolution ExVib: Negativity of Atomic Emission (Weak Coupling)",
     "Negativity",
-    "OQS_TLS_Neg",
-    "SigZ",
+    "OQS_TLS_Neg_eg",
+    "ExVib",
     ["Negativity"],
 )
 
 sim_open_tls.plot(
     coh_tls,
-    "Open Evolution SigmaZ: Coherence of Atomic Emission (Weak Coupling)",
+    "Open Evolution ExVib: Coherence of Atomic Emission (Weak Coupling)",
     "Coherence",
-    "OQS_TLS_coh",
-    "SigZ",
+    "OQS_TLS_coh_eg",
+    "ExVib",
     ["Coherence"],
 )
 
 sim_open_qho.plot(
     expect_open_qho,
-    "Open Evolution SigmaZ: QHO Photon Loss/Gain (Weak Coupling)",
+    "Open Evolution ExVib: QHO Photon Loss/Gain (Weak Coupling)",
     "Expectation Values",
-    "OQS_QHO_loss",
-    "SigZ",
+    "OQS_QHO_loss_eg",
+    "ExVib",
     ["cavity photon number", "atom excitation probability"],
 )
 
 sim_open_tls.plot(
     neg_qho,
-    "Open Evolution SigmaZ: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
+    "Open Evolution ExVib: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
     "Negativity",
-    "OQS_QHO_Neg",
-    "SigZ",
+    "OQS_QHO_Neg_eg",
+    "ExVib",
     ["Negativity"],
 )
 
 sim_open_qho.plot(
     coh_qho,
-    "Open Evolution JCM: Coherence of QHO Photon Loss/Gain (Weak Coupling)",
+    "Open Evolution ExVib: Coherence of QHO Photon Loss/Gain (Weak Coupling)",
     "Coherence",
-    "OQS_QHO_coh",
-    "SigZ",
+    "OQS_QHO_coh_eg",
+    "ExVib",
     ["Coherence"],
 )
 
 sim_open_tlsqho.plot(
     expect_open_tlsqho,
-    "Open Evolution SigmaZ: TLS and QHO Decay (Weak Coupling)",
+    "Open Evolution ExVib: TLS and QHO Decay (Weak Coupling)",
     "Expectation Values",
-    "OQS_QHOTLS",
-    "SigZ",
+    "OQS_QHOTLS_eg",
+    "ExVib",
     ["cavity photon number", "atom excitation probability"],
 )

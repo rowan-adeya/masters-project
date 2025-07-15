@@ -1,14 +1,17 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
+import math
 
 ############################## SETUP ######################################
 
-tlist = np.linspace(0.0, 100.0, 200)
+tlist = np.linspace(0.0, 100.0, 500)
 
 # constants
 w = 1.0
-g = 0.1  # Weak coupling
+epsilon = 1.0
+V = 0
+g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
 n = 2  # photon number
 
@@ -21,18 +24,17 @@ basis_qho = q.basis(N, n)
 a = q.tensor(q.qeye(2), q.destroy(N))
 adag = a.dag()
 s_z = q.tensor(q.sigmaz(), q.qeye(N))
+s_x = q.tensor(q.sigmax(), q.qeye(N))
 s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
+# Exciton-Vibration Hamiltonian
+H_ex = (0.5 * epsilon * s_z) + (V * s_x)
+H_vib = w * adag * a
+H_int = -(g / math.sqrt(2)) * q.tensor(q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
+H = H_ex + H_vib + H_int
 
-#  Hamiltonian with SigmaZ Interaction
-H = (
-    0.5 * w * s_z
-    + w * (adag * a + 0.5)
-    + g * q.tensor(-1 * q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
-)
-
-# Init cond
+# Initial Condition
 psi0 = q.tensor(basis_atom_e, basis_qho)
 
 ############################ SIMULATION ###################################
@@ -48,26 +50,26 @@ coherence_closed = sim_closed.rel_coherence(results_closed)
 ############################### PLOTS #####################################
 sim_closed.plot(
     results_expt,
-    "Closed Evolution JCM: Expectation Values",
+    "Closed Evolution ExVib: Expectation Values",
     "Expectation Values",
     "CQS_expt",
-    "SigZ",
+    "ExVib",
     ["cavity photon number", "atom excitation probability"],
 )
 
 sim_closed.plot(
     vne_closed,
-    "Closed Evolution SigmaZ: Interaction Entanglement",
+    "Closed Evolution ExVib: Interaction Entanglement",
     "Entanglement",
     "CQS_ent",
-    "SigZ",
+    "ExVib",
     legend=None,
 )
 sim_closed.plot(
     coherence_closed,
-    "Closed Evolution SigmaZ: Coherence",
+    "Closed Evolution ExVib: Coherence",
     "Coherence",
     "CQS_coh",
-    "SigZ",
+    "ExVib",
     legend=None,
 )
