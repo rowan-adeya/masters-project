@@ -4,17 +4,29 @@ import numpy as np
 import math
 
 
+from TLSQHOSimulator import TLSQHOSimulator
+import qutip as q
+import numpy as np
+import math
+
+
 ############################## SETUP ######################################
 
-tlist = np.linspace(0.0, 500.0, 2000)
+# NCOMMS4012: Consider pigments-protein environment of PE545 complex. Taking parameters stated,
+# d_epsilon = 1042, V = 92, d_E = 1058, w = 1111 all in cm^-1.
+# g = (0.0578)^0.5 = 267 cm^-1
+# Moreover, T ~ 300K room temp expt.
 
-tlist = np.linspace(0.0, 500.0, 2000)
+tlist = np.linspace(0.0, 500.0, 2000)  # units of 1/hbar omega
 
-# constants
+# constants, cm^-1
 w = 1.0
-epsilon = 1.0
-V = 0
-g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
+w_phys = 1111
+d_epsilon = 1042 / w_phys
+V = 92 / w_phys
+g = math.sqrt(
+    0.0578
+)  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
 n = 2  # photon number
 
@@ -33,7 +45,7 @@ s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
 # Exciton-Vibration Hamiltonian
-H_ex = (0.5 * epsilon * s_z) + (V * s_x)
+H_ex = (0.5 * d_epsilon * s_z) + (V * s_x)
 H_vib = w * adag * a
 H_int = -(g / math.sqrt(2)) * q.tensor(q.sigmaz(), q.destroy(N).dag() + q.destroy(N))
 H = H_ex + H_vib + H_int
@@ -44,9 +56,9 @@ psi0 = q.tensor(basis_atom_e + basis_atom_g, basis_qho) / math.sqrt(2)
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.1
-gamma_th = 0.1
-kbT = 0.001
+gamma = 0.1 
+gamma_th = 0.1 
+kbT = 0.001 * 300 
 n_omega = 1 / (np.exp(w / kbT) - 1)
 
 # Operators

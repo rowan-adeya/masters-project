@@ -125,7 +125,7 @@ class TLSQHOSimulator:
         """
         if subsys not in (0, 1):
             raise ValueError("subsys must be either 0 or 1.")
-        
+
         atom_subsys = [state.ptrace(subsys) for state in results.states]
         vne = [q.entropy_vn(dm) for dm in atom_subsys]
         return vne
