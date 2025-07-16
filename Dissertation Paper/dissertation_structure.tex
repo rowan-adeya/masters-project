@@ -1,0 +1,207 @@
+\documentclass{article}
+\usepackage[a4paper, margin = 2.4cm]{geometry}
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[numbers,link]{natbib}
+\usepackage[toc,page]{appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\textbf{Investigating Two-Level Systems Coupled to Quantum Harmonic Oscillators} \\ Dissertation Structure}
+\author{Rowan Adeya}
+\date{}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\vspace{\fill}
+\begin{abstract}
+    Abstract Here. Must be centred within the page. This abstract should define what the system is, motivate the reader, and present findings and conclusions.
+\end{abstract}
+\vspace{\fill}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+This section should do the following:
+\begin{enumerate}
+    \item Motivate the reader. Why is a TLS-QHO system important to study? Cite references, and contextualise the TLS-QHO system. 
+    \item Briefly (1 paragraph) discuss the history of the TLS, its iterations and in particular the ones you will be looking at. 
+    \item State what you will be doing in the research (1 - 2 sentence max).
+    \item Outline the structure of the paper. 
+\end{enumerate}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TLS-QHO SYS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{TLS-QHO Systems}
+\subsection{Two-Level Systems}
+\begin{enumerate}
+    \item Define what a TLS is (shorter section) theoretically.
+    \item Define the ways in which the TLS may physically manifest.
+    \item Mention it is effectively a qubit in this case. 
+\end{enumerate}
+\subsection{Quantum Harmonic Oscillators}
+\begin{enumerate}
+    \item Define what a QHO is (shorter section) theoretically.
+    \item Define terms such as Fock states, etc.
+    \item Define the ways in which the QHO may physically manifest.
+\end{enumerate}
+\subsection{The Joint System}
+\begin{enumerate}
+    \item Short section. Define what the joint system may look like. 
+    \item State vector, density matrix. 
+\end{enumerate}
+\subsection{Quantum Systems Evolution}
+\begin{enumerate}
+    \item Talk about the ways in which closed system evolution may occur. REFER TO APPENDIX A.
+    \item Talk about the ways in which open system evolution may occur. REFER TO APPENDIX B. 
+\end{enumerate}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Q RESOURCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quantum Resources}
+\begin{enumerate}
+    \item Why do we need to study quantum resources? how are they helpful?
+\end{enumerate}
+\subsection{Entanglement}
+\begin{enumerate}
+    \item Motivate the importance of studying entanglement. 
+    \item Key for Q. computation.
+\end{enumerate}
+\subsubsection{Von Neumann Entropy}
+\begin{enumerate}
+    \item Define.
+    \item Strengths and weaknesses.
+    \item Uses.
+\end{enumerate}
+\subsubsection{Negativity}
+\begin{enumerate}
+    \item Define.
+    \item Strengths and weaknesses.
+    \item Uses.
+\end{enumerate}
+\subsubsection{Other Entanglement Measures}
+\begin{enumerate}
+    \item Name other entanglement measures of interest.
+    \item Wooters' Concurrence
+    \item Relative Entropy of Entanglement 
+    \item Renyi 
+    \item Mention why they aren't being used in this research. 
+\end{enumerate}
+\subsection{Coherence}
+\begin{enumerate}
+    \item Motivate the importance of studying entanglement. 
+    \item Key for Q. computation.
+\end{enumerate}
+\subsubsection{Relative Entropy of Coherence}
+\begin{enumerate}
+    \item Define.
+    \item Strengths and weaknesses.
+    \item Uses.
+\end{enumerate}
+\subsubsection{Coherence Norm}
+\begin{enumerate}
+    \item Define.
+    \item Strengths and weaknesses.
+    \item Uses.
+\end{enumerate}
+\subsection{Decoherence}
+\begin{enumerate}
+    \item Mention that the focus wasn't on this. 
+    \item Define what it is, why it's bad. 
+\end{enumerate}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CASE STUDY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Case Study: Jaynes Cummings Model}
+\begin{enumerate}
+    \item I want to mention the Jaynes-Cummings Model since a lot of my initial analysis was done with this model. Not sure, however, where to put this. Should it be an appendix? Should it even be here? Could it be an appendix?
+\end{enumerate}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\subsection{QuTip and Code}
+\begin{enumerate}
+    \item Mention use of QuTip package. 
+    \item Custom function for calculating Rel. entropy of coherence and negativity.
+    \item Link to it? Documentation? SHOULD I BE INCLUDING CODE HERE?
+\end{enumerate}
+
+\subsection{Jaynes-Cummings Hamiltonian}
+\begin{enumerate}
+    \item Define Hamiltonian.
+\end{enumerate}
+\subsubsection{Closed Evolution}
+\begin{enumerate}
+    \item Define initial conditions and parameters used. 
+    \item Analyse all 6 closed evo graphs. 
+\end{enumerate}
+\subsubsection{Open Evolution}
+    \item Define initial conditions and parameters used. 
+    \item Analyse all 6 open evo graphs. 
+\subsection{Exciton-Vibration Hamiltonian}
+\begin{enumerate}
+    \item Define Hamiltonian.
+\end{enumerate}
+\subsubsection{Closed Evolution}
+\begin{enumerate}
+    \item Define initial conditions and parameters used. 
+    \item Analyse all 6 closed evo graphs. 
+\end{enumerate}
+\subsubsection{Open Evolution}
+    \item Define initial conditions and parameters used. 
+    \item Analyse all 6 open evo graphs. 
+\subsection{Discussion}
+\begin{enumerate}
+  \item Compare JCM and ExVib behaviours.
+  \item Coherence and entanglement implications.
+\end{enumerate}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion and Remarks}
+\begin{enumerate}
+    \item Conclude all findings. What have you garnered from the results. 
+    \item Is everything as expected. Were there any deviations?
+    \item If so, explain and suggest. 
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Outlook %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outlook}
+\begin{enumerate}
+    \item What are some open questions?
+    \item How can you expand on YOUR work?
+    \item What is the current status quo, and how can it be expanded?
+\end{enumerate}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
+    \section{Unitary Evolution Operator}
+    \begin{enumerate}
+        \item Go over the derivation of this. 
+        \item Mention interaction picture. 
+    \end{enumerate}
+    \section{Lindblad Master Equation}
+    \begin{enumerate}
+        \item Define the Lindblad.
+        \item Markovian approach. 
+        \item Its key assumptions (DERIVATION NEEDED??)
+    \end{enumerate}
+    \section{Vectorisation and the Liouvillian}
+    \begin{enumerate}
+        \item What is vectorisation?
+        \item Explain how Liouvillian is a vectorisation method on Lindblad. 
+        \item Explain how it is used in QuTip. 
+    \end{enumerate}
+\end{appendices}
+\newpage
+
+\bibliographystyle{unsrt} 
+\bibliography{References/references.bib} 
+
+\end{document}
