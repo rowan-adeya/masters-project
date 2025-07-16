@@ -3,7 +3,7 @@
 \usepackage{geometry}
 \usepackage{graphicx}
 \geometry{a4paper, margin=0.7in}
-\usepackage[numbers,super]{natbib}
+\usepackage[numbers]{natbib}
 
 % Document metadata
 \title{Physics of Open Quantum Systems: Explanation of Results}
@@ -99,5 +99,80 @@ In this simulation, the atom starts in an excited state, and due to cavity photo
 
 Figure \ref{JCM_OQS_QHO} again matches our expectations exactly. The cavity and atom both decay due to the respective channels and the $H_{int}$ coupling. The Rabi oscillations are even less pronounced than in Figure \ref{JCM_OQS_QHO}, likely because we have both decay rates acting on the individual subsystems, leading to the total effect of bringing the total system decay rate closer to the coupling strength. Furthermore, both the maximum expectation of the cavity and the minimum expectation value for the cavity at the first half-period peak of the Rabi oscillations are lower/higher than expected, likely due to the rapid rate at which the system is decaying due to both channels being open. The system decays in $\approx 500 \frac{\hbar}{\omega}$ seconds, compared to just the cavity decay channel which decays at around $\approx 1000 \frac{\hbar}{\omega}$ seconds. Again, this is due to both decay channels being open.
 
+\section{Exciton--Vibration Model}
 
+The Hamiltonian for the Exciton--Vibration Model is (noting $\hbar = 1$):
+
+\begin{equation}
+    \hat{H} = \hat{H}_{TLS} + \hat{H}_{QHO} + \hat{H}_{int}, 
+\end{equation} \label{EV_H}
+where 
+\begin{align*}
+    \begin{aligned}
+        \hat{H}_{TLS} &\equiv \frac{\Delta\epsilon}{2}\hat{\sigma}_z + V\sigma_x \\
+        \hat{H}_{QHO} &\equiv \omega_ca^\dagger a \\
+        \hat{H}_{int} &\equiv -\frac{g}{\sqrt{2}}\sigma_z \otimes(a^\dagger + a).
+    \end{aligned}
+\end{align*}
+
+$\Delta\epsilon$ refers to the energy difference between the TLS levels, and $V$ is the tunnelling amplitude. \\
+\\
+This Hamiltonian causes oscillations in both the TLS and QHO subsystems. If we look at the action of, say, the Hamiltonian on the state $|e\rangle$, the interaction Hamiltonian does not change the TLS state. In fact, the free TLS Hamiltonian does so, with the term $V\sigma_x$ being responsible for the TLS oscillations. 
+In order to see what may happen for the QHO subsystem, it is convenient to set $V=0$ such that the TLS is simply a constant factor. In this case, the Hamiltonian may look like:
+
+\begin{equation*}
+    \hat{H} = \omega a^\dagger a - \frac{g}{\sqrt{2}}(a + a^\dagger) \rightarrow \hat{H} = \omega(b^\dagger b - k)
+\end{equation*}
+
+where $b = a - \frac{g}{\sqrt{2}} $ is the annihilation operator with a displacement, and $k = \frac{g}{\sqrt{2}\omega}$. This new form is a displaced Harmonic Oscillator, which implies that the QHO does indeed oscillate. 
+
+In terms of physical parameters, we use data from \cite{ExVib2014-Hamiltonian}, which is measured in cm$^{-1}$ frequency. Moreover, we note that we are in a room temperature regime ($\approx300 K$), which is reflected in the QHO photon gain/loss parameter.  
+
+\vspace{5cm}
+\begin{center}
+    {\Large{*        *        *}}
+\end{center}
+\newpage
+
+
+\subsection{Spontaneous Atomic Emission}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/OQS_TLS_Decay.png}
+    \caption{Plot of EV evolution under spontaneous atomic decay.}
+    \label{ExVib_OQS_TLS}
+\end{figure}
+
+In this simulation, the atom starts in an excited state, and due to cavity photon loss dominating (due to low temperature regime), we expect the cavity to decay over time to 0, with a starting initial fock state of $n=2$.
+
+We see that both the TLS and QHO decay to their lowest states ($|g\rangle, |0\rangle$ respectively). 
+The TLS, due to the $V\sigma_x$ term, oscillates between the excited and ground states. The decay channel $L = \gamma|g\rangle\langle e|$ however, decays the TLS population into the ground state. If, for example, $V = 0$, then there would still be decay from $|e\rangle \rightarrow |g\rangle$. However, if the TLS subsystem starts in $|g\rangle$, the system will never populate $|e\rangle$ due to the $\sigma_x$ term not being present and thus not causing oscillations between the two levels. 
+The QHO is also indirectly influenced by the $V\sigma_x$ term
+
+
+\subsection{Cavity Photon Gain/Loss}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/OQS_QHO_loss.png}
+    \caption{Plot of EV evolution under cavity photon gain/loss.}
+    \label{ExVib_OQS_QHO}
+\end{figure}
+
+\subsection{Spontaneous Atomic Emission and Cavity Photon Loss/Gain}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/OQS_QHOTLS.png}
+    \caption{Plot of EV evolution under spontaneous atomic decay and cavity photon loss/gain channels.}
+    \label{EV_OQS_QHOTLS}
+\end{figure}
+
+
+
+\newpage
+
+\bibliographystyle{unsrt} 
+\bibliography{References/references.bib} 
 \end{document}
