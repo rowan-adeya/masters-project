@@ -1,14 +1,7 @@
 from TLSQHOSimulator import TLSQHOSimulator
 import qutip as q
 import numpy as np
-import math
-
-
-from TLSQHOSimulator import TLSQHOSimulator
-import qutip as q
-import numpy as np
-import math
-
+import math 
 
 ############################## SETUP ######################################
 
@@ -17,7 +10,8 @@ import math
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-tlist = np.linspace(0.0, 500.0, 2000)  # units of 1/hbar omega
+tlist = np.linspace(0.0, 5000.0, 500)  # units of 1/hbar omega
+
 
 # constants, cm^-1
 w = 1.0
