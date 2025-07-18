@@ -22,7 +22,7 @@ g = math.sqrt(
     0.0578
 )  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
-n = 2  # photon number
+n = 0  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
