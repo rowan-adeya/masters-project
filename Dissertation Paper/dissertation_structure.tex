@@ -31,35 +31,25 @@
 \section{Introduction}
 This section should do the following:
 \begin{enumerate}
-    \item Motivate the reader. Why is a TLS-QHO system important to study? Cite references, and contextualise the TLS-QHO system. 
-    \item Briefly (1 paragraph) discuss the history of the TLS, its iterations and in particular the ones you will be looking at. 
-    \item State what you will be doing in the research (1 - 2 sentence max).
-    \item Outline the structure of the paper. 
+    \item Start the introduction by talking about Entanglement and Coherence, as they are the main motivation for studying TLS-QHO models.
+    \item  Explain that, in computational systems, we have qubit or qubit-qubit coupled systems, i.e. coupled TLSs. In biological, physical, natural systems, we usually have TLSs coupled to something, and oftentimes this is a QHO.
+    \item  Our main question: How do entanglement and coherence manifest in these joint systems? Allows us to exploit resources for quantum information science, etc.
 \end{enumerate}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TLS-QHO SYS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{TLS-QHO Systems}
-\subsection{Two-Level Systems}
+\subsection{Jaynes-Cummings Model}
 \begin{enumerate}
-    \item Define what a TLS is (shorter section) theoretically.
-    \item Define the ways in which the TLS may physically manifest.
-    \item Mention it is effectively a qubit in this case. 
+    \item Go over theory of JCM. Technical theoretical section.
 \end{enumerate}
-\subsection{Quantum Harmonic Oscillators}
+\subsection{Exciton-Vibrational Model}
 \begin{enumerate}
-    \item Define what a QHO is (shorter section) theoretically.
-    \item Define terms such as Fock states, etc.
-    \item Define the ways in which the QHO may physically manifest.
+    \item Go over theory of EVM.
 \end{enumerate}
-\subsection{The Joint System}
+\subsection{Open Quantum Dynamics}
 \begin{enumerate}
-    \item Short section. Define what the joint system may look like. 
-    \item State vector, density matrix. 
-\end{enumerate}
-\subsection{Quantum Systems Evolution}
-\begin{enumerate}
-    \item Talk about the ways in which closed system evolution may occur. REFER TO APPENDIX A.
-    \item Talk about the ways in which open system evolution may occur. REFER TO APPENDIX B. 
+    \item Talk about the ways in which open system evolution may occur.
+    \item Go over Markovian, Lindblad etc.
 \end{enumerate}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Q RESOURCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,41 +99,27 @@ This section should do the following:
     \item Strengths and weaknesses.
     \item Uses.
 \end{enumerate}
-\subsection{Decoherence}
-\begin{enumerate}
-    \item Mention that the focus wasn't on this. 
-    \item Define what it is, why it's bad. 
-\end{enumerate}
-\newpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CASE STUDY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Case Study: Jaynes Cummings Model}
-\begin{enumerate}
-    \item I want to mention the Jaynes-Cummings Model since a lot of my initial analysis was done with this model. Not sure, however, where to put this. Should it be an appendix? Should it even be here? Could it be an appendix?
-\end{enumerate}
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \subsection{QuTip and Code}
 \begin{enumerate}
     \item Mention use of QuTip package. 
-    \item Custom function for calculating Rel. entropy of coherence and negativity.
-    \item Link to it? Documentation? SHOULD I BE INCLUDING CODE HERE?
+    \item Custom function for calculating Rel. entropy of coherence and negativity -> appendix
+    \item Link to github code.
 \end{enumerate}
 
-\subsection{Jaynes-Cummings Hamiltonian}
-\begin{enumerate}
-    \item Define Hamiltonian.
-\end{enumerate}
+\subsection{Population, Entanglement and Coherence of the Jaynes-Cummings Model}
 \subsubsection{Closed Evolution}
 \begin{enumerate}
+    \item Go over your pen-paper analysis of JCM here.
     \item Define initial conditions and parameters used. 
     \item Analyse all 6 closed evo graphs. 
 \end{enumerate}
 \subsubsection{Open Evolution}
     \item Define initial conditions and parameters used. 
     \item Analyse all 6 open evo graphs. 
-\subsection{Exciton-Vibration Hamiltonian}
+\subsection{Population, Entanglement and Coherence of the Exciton-Vibration Model}
 \begin{enumerate}
     \item Define Hamiltonian.
 \end{enumerate}
@@ -163,34 +139,20 @@ This section should do the following:
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion and Remarks}
+\section{Conclusion and Outlook}
 \begin{enumerate}
     \item Conclude all findings. What have you garnered from the results. 
     \item Is everything as expected. Were there any deviations?
     \item If so, explain and suggest. 
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Outlook %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Outlook}
-\begin{enumerate}
-    \item What are some open questions?
-    \item How can you expand on YOUR work?
-    \item What is the current status quo, and how can it be expanded?
-\end{enumerate}
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{appendices}
-    \section{Unitary Evolution Operator}
+    \section{Code Stuff}
     \begin{enumerate}
-        \item Go over the derivation of this. 
-        \item Mention interaction picture. 
-    \end{enumerate}
-    \section{Lindblad Master Equation}
-    \begin{enumerate}
-        \item Define the Lindblad.
-        \item Markovian approach. 
-        \item Its key assumptions (DERIVATION NEEDED??)
+        \item We agreed that only code-related stuff like vectorisation, custom functions, etc. should go here. 
+        \item Include: a) rel coherence; b) negativity.
     \end{enumerate}
     \section{Vectorisation and the Liouvillian}
     \begin{enumerate}
