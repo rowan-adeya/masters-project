@@ -44,10 +44,10 @@ n_omega = 1 / (
 # Operators
 e_ops = [adag * a, s_raise * s_lower]
 
-L_tls = [gamma * s_lower]
+L_tls = [np.sqrt(gamma) * s_lower]
 L_qho = [
-    gamma_th * (n_omega + 1) * a,  # photon loss
-    gamma_th * n_omega * adag,  # photon gain
+    np.sqrt(gamma_th) * (n_omega + 1) * a,  # photon loss
+    np.sqrt(gamma_th) * n_omega * adag,  # photon gain
 ]
 
 ############################ SIMULATION ###################################
