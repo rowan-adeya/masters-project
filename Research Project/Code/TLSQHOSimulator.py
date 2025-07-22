@@ -130,7 +130,7 @@ class TLSQHOSimulator:
         vne = [q.entropy_vn(dm) for dm in atom_subsys]
         return vne
 
-    def negativity(self, results: q.solver.result.Result, subsys: int = 0):
+    def negativity(self, results: q.solver.result.Result, subsys: str = "TLS"):
         """
         Calculates the Negativity for a subsystem of an evolved state. The negativity is the absolute
         sum of the negative eigenvalues. The partial transpose function takes an argument, mask, is a
@@ -139,13 +139,14 @@ class TLSQHOSimulator:
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
-            subsys(int): Default = 0, which subsystem to partial transpose over.
+            subsys(str): Default = TLS, which subsystem to calculate Negativity for.
 
         Returns:
             neg_vals(list): The negativity of each density matrix in the result.states object.
         """
-        if subsys not in (0, 1):
-            raise ValueError("subsys must be either 0 or 1.")
+        allowed_subsys_vals = ("TLS", "QHO")
+        if subsys not in allowed_subsys_vals:
+            raise ValueError(f"subsys must be either {allowed_subsys_vals}.")
 
         neg_vals = []
 
@@ -155,10 +156,10 @@ class TLSQHOSimulator:
             else:
                 rho = state
 
-            if subsys == 0:
-                mask = [1, 0]  # mask tells which subsys to perform partial transpose on
+            if subsys == "TLS":
+                mask = [0, 1]  # mask tells which subsys to perform partial transpose on
             else:
-                mask = [0, 1]
+                mask = [1, 0]
 
             rho_pt = q.partial_transpose(rho, mask)
 
@@ -168,36 +169,45 @@ class TLSQHOSimulator:
 
         return neg_vals
 
-    def rel_coherence(self, results: q.solver.result.Result):
+    def rel_coherence(self, results: q.solver.result.Result, subsys: str = None):
         """
         Calculates Relative Entropy of Coherence for a subsystem of an evolved state.
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
+            subsys(str): Default = None, if not passed, will apply rel_coherence to total system. Otherwise,
+            calculate coherence for the given subsystem.
         Returns:
             coherence(list): The coherence of each density matrix in the result.states object.
         """
         if results.states == []:
             raise ValueError("No states were found in the results object.")
 
+        allowed_subsys_vals = (None, "TLS", "QHO")
+
+        if subsys not in allowed_subsys_vals:
+            raise ValueError(f"subsys must be an item from {allowed_subsys_vals}.")
+
         coherence = []
 
-        for ket in results.states:
-            if ket.isket:
-                dm = q.ket2dm(ket)
+        for state in results.states:
+            if state.isket:
+                dm = q.ket2dm(state)
             else:
-                dm = ket
+                dm = state
 
-            # density matrix of diagonal elements
-            diag_element = dm.diag()
-            dm_diag = q.Qobj(np.diag(diag_element), dims=dm.dims)
+            if subsys == "TLS":
+                dm = q.partial_trace(dm, [1])
+
+            elif subsys == "QHO":
+                dm = q.partial_trace(dm, [0])
+
+            diag_elements = dm.diag()
+            dm_diag = q.Qobj(np.diag(diag_elements), dims=dm.dims)
 
             S_dm_diag = q.entropy_vn(dm_diag)
             S_dm = q.entropy_vn(dm)
-
-            # applying relative entropy of coherence equation
-            coherence_rel_ent = S_dm_diag - S_dm
-            coherence.append(coherence_rel_ent)
+            coherence.append(S_dm_diag - S_dm)
 
         return coherence
 
@@ -209,7 +219,7 @@ class TLSQHOSimulator:
         filename: str,
         savepath: str = None,
         legend: list = None,
-    ): # TODO: make sure can convert into cm
+    ):  # TODO: make sure can convert into cm
         """
         Plots data and saves to specific location in repository.
 
