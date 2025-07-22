@@ -4,11 +4,11 @@ import numpy as np
 
 ############################## SETUP ######################################
 
-tlist = np.linspace(0.0, 1000.0, 200)
+tlist = np.linspace(0.0, 200.0, 500) # TODO: Correct timecales to ps
 
 # constants
 w = 1.0  # natural units, w = 1, hbar =1
-g = 0.05  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
+g = 0.08  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
 n = 2  # photon number
 
@@ -32,8 +32,8 @@ psi0 = q.tensor(basis_atom_e, basis_qho)
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.1
-gamma_th = 0.1
+gamma = 0.09
+gamma_th = 0.09
 kbT = 0.001  # meV
 n_omega = 1 / (
     np.exp(w / kbT) - 1
@@ -69,6 +69,8 @@ L_tlsqho = L_qho + L_tls
 sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=tlist)
 results_open_tlsqho = sim_open_tlsqho.evolve()
 expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
+neg_tlsqho = sim_open_tlsqho.negativity(results_open_tlsqho)
+coh_tlsqho = sim_open_tlsqho.rel_coherence(results_open_tlsqho)
 
 
 ############################### PLOTS #####################################
@@ -118,12 +120,39 @@ sim_open_qho.plot(
     ["Coherence"],
 )
 
+sim_open_qho.plot(
+    neg_qho,
+    "Open Evolution JCM: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
+    "Negativity",
+    "OQS_QHO_Neg",
+    "JCM",
+    ["Negativity"],
+)
+
 
 sim_open_tlsqho.plot(
     expect_open_tlsqho,
     "Open Evolution JCM: TLS and QHO Decay",
     "Expectation Values",
-    "OQS_QHOTLS",
+    "OQS_TLSQHO",
     "JCM",
     ["cavity photon number", "atom excitation probability"],
+)
+
+sim_open_tlsqho.plot(
+    coh_tlsqho,
+    "Open Evolution JCM: Coherence of TLS and QHO Decay (Weak Coupling)",
+    "Coherence",
+    "OQS_TLSQHO_coh",
+    "JCM",
+    ["Coherence"],
+)
+
+sim_open_tlsqho.plot(
+    neg_tlsqho,
+    "Open Evolution JCM: Negativity of TLS and QHO Decay (Weak Coupling)",
+    "Negativity",
+    "OQS_TLSQHO_Neg",
+    "JCM",
+    ["Negativity"],
 )
