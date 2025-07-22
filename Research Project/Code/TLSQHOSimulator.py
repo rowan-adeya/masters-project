@@ -209,7 +209,7 @@ class TLSQHOSimulator:
         filename: str,
         savepath: str = None,
         legend: list = None,
-    ):
+    ): # TODO: make sure can convert into cm
         """
         Plots data and saves to specific location in repository.
 
