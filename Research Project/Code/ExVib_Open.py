@@ -27,6 +27,7 @@ n = 0  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
+basis_atom_g = q.basis(2, 1)
 basis_qho = q.basis(N, n)
 
 

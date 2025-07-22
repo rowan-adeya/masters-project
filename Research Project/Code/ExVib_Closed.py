@@ -11,18 +11,20 @@ import math
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-tlist = np.linspace(0.0, 5000.0, 2000)  # units of 1/hbar omega
+t_max = 10.0 # ps
+tlist = np.linspace(0.0, 2 *np.pi * 0.03 * t_max , 500)  
+# TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)  
+# t in cm conversion, noting original time is in ps
 
-# constants, cm^-1
-w = 1.0
-w_phys = 1111
-d_epsilon = 1042 / w_phys
-V = 92 / w_phys
-g = math.sqrt(
-    0.0578
-)  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
-N = 30  # num Fock states
+# params, cm^-1
+w = 1111
+d_epsilon = 1042
+V = 92
+g = w * math.sqrt(0.0578)
+# weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
+N = 10  # num Fock states
 n = 0  # photon number
+
 
 # Bases
 basis_atom_e = q.basis(2, 0)
