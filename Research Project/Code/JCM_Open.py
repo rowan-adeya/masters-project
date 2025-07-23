@@ -42,117 +42,200 @@ n_omega = 1 / (
 # Operators
 e_ops = [adag * a, s_raise * s_lower]
 
-L_tls = [np.sqrt(gamma) * s_lower]
-L_qho = [
+
+L_spont = [np.sqrt(gamma) * s_lower]
+L_therm = [
     np.sqrt(gamma_th) * (n_omega + 1) * a,  # photon loss
     np.sqrt(gamma_th) * n_omega * adag,  # photon gain
 ]
 
 ############################ SIMULATION ###################################
 
-# TLS
-sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
-results_open_tls = sim_open_tls.evolve()
-expect_open_tls = sim_open_tls.expect(results_open_tls)
-neg_tls = sim_open_tls.negativity(results_open_tls)
-coh_tls = sim_open_tls.rel_coherence(results_open_tls)
+# Spontaneous Atomic Emission
+sim_open_spont = TLSQHOSimulator(H, psi0, L_spont, e_ops, times=tlist)
+results_open_spont = sim_open_spont.evolve()
 
-# QHO
-sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
-results_open_qho = sim_open_qho.evolve()
-expect_open_qho = sim_open_qho.expect(results_open_qho)
-neg_qho = sim_open_qho.negativity(results_open_qho)
-coh_qho = sim_open_qho.rel_coherence(results_open_qho)
+expt_open_spont = sim_open_spont.expect(results_open_spont)
 
-# QHO + TLS
-L_tlsqho = L_qho + L_tls
-sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=tlist)
-results_open_tlsqho = sim_open_tlsqho.evolve()
-expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
-neg_tlsqho = sim_open_tlsqho.negativity(results_open_tlsqho)
-coh_tlsqho = sim_open_tlsqho.rel_coherence(results_open_tlsqho)
+neg_tls_spont = sim_open_spont.negativity(results_open_spont, subsys="TLS")
+neg_qho_spont = sim_open_spont.negativity(results_open_spont, subsys="QHO")
+
+coh_tls_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="TLS")
+coh_qho_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="QHO")
+
+# Thermal Dissipation
+sim_open_therm = TLSQHOSimulator(H, psi0, L_therm, e_ops, times=tlist)
+results_open_therm = sim_open_therm.evolve()
+
+expt_open_therm = sim_open_therm.expect(results_open_therm)
+
+neg_tls_therm = sim_open_therm.negativity(results_open_therm, subsys="TLS")
+neg_qho_therm = sim_open_therm.negativity(results_open_therm, subsys="QHO")
+
+coh_tls_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="TLS")
+coh_qho_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="QHO")
+
+# Spontaneous Emission + Thermal Dissipation
+L_both = L_spont + L_therm
+sim_open_both = TLSQHOSimulator(H, psi0, L_both, e_ops, times=tlist)
+results_open_both = sim_open_both.evolve()
+
+expt_open_both = sim_open_both.expect(results_open_both)
+
+neg_tls_both = sim_open_both.negativity(results_open_both, subsys="TLS")
+neg_qho_both = sim_open_both.negativity(results_open_both, subsys="QHO")
+
+coh_tls_both = sim_open_both.rel_coherence(results_open_both, subsys="TLS")
+coh_qho_both = sim_open_both.rel_coherence(results_open_both, subsys="QHO")
 
 
 ############################### PLOTS #####################################
+# Negativity
 
-sim_open_tls.plot(
-    expect_open_tls,
-    "Open Evolution JCM: Spontaneous Atomic Emission (Weak Coupling)",
-    "Expectation Values",
-    "OQS_TLS_Decay",
-    "JCM",
-    ["cavity photon number", "atom excitation probability"],
-)
-
-sim_open_tls.plot(
-    neg_tls,
-    "Open Evolution JCM: Negativity of Atomic Emission (Weak Coupling)",
+sim_open_spont.plot(
+    "OQS_Neg_Spont",
+    [
+        {
+            "y_data": neg_tls_spont,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+        },
+        {
+            "y_data": neg_qho_spont,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+            "linestyle": ":",
+        },
+    ],
     "Negativity",
-    "OQS_TLS_Neg",
-    "JCM",
-    ["Negativity"],
+    savepath="JCM",
 )
 
-sim_open_tls.plot(
-    coh_tls,
-    "Open Evolution JCM: Coherence of Atomic Emission (Weak Coupling)",
-    "Coherence",
-    "OQS_TLS_coh",
-    "JCM",
-    ["Coherence"],
-)
-
-sim_open_qho.plot(
-    expect_open_qho,
-    "Open Evolution JCM: QHO Photon Loss/Gain (Weak Coupling)",
-    "Expectation Values",
-    "OQS_QHO_loss",
-    "JCM",
-    ["cavity photon number", "atom excitation probability"],
-)
-
-sim_open_qho.plot(
-    coh_qho,
-    "Open Evolution JCM: Coherence of QHO Photon Loss/Gain (Weak Coupling)",
-    "Coherence",
-    "OQS_QHO_coh",
-    "JCM",
-    ["Coherence"],
-)
-
-sim_open_qho.plot(
-    neg_qho,
-    "Open Evolution JCM: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
+sim_open_therm.plot(
+    "OQS_Neg_Therm",
+    [
+        {
+            "y_data": neg_tls_therm,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+        },
+        {
+            "y_data": neg_qho_therm,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+            "linestyle": ":",
+        },
+    ],
     "Negativity",
-    "OQS_QHO_Neg",
-    "JCM",
-    ["Negativity"],
+    savepath="JCM",
 )
 
-
-sim_open_tlsqho.plot(
-    expect_open_tlsqho,
-    "Open Evolution JCM: TLS and QHO Decay",
-    "Expectation Values",
-    "OQS_TLSQHO",
-    "JCM",
-    ["cavity photon number", "atom excitation probability"],
-)
-
-sim_open_tlsqho.plot(
-    coh_tlsqho,
-    "Open Evolution JCM: Coherence of TLS and QHO Decay (Weak Coupling)",
-    "Coherence",
-    "OQS_TLSQHO_coh",
-    "JCM",
-    ["Coherence"],
-)
-
-sim_open_tlsqho.plot(
-    neg_tlsqho,
-    "Open Evolution JCM: Negativity of TLS and QHO Decay (Weak Coupling)",
+sim_open_both.plot(
+    "OQS_Neg_Both",
+    [
+        {
+            "y_data": neg_tls_both,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+        },
+        {
+            "y_data": neg_qho_both,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+            "linestyle": ":",
+        },
+    ],
     "Negativity",
-    "OQS_TLSQHO_Neg",
-    "JCM",
-    ["Negativity"],
+    savepath="JCM",
+)
+
+# Coherence
+
+sim_open_spont.plot(
+    "OQS_Coh_Spont",
+    [
+        {
+            "y_data": coh_tls_spont,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": coh_qho_spont,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+        },
+    ],
+    "Coherence",
+    savepath="JCM",
+)
+
+sim_open_therm.plot(
+    "OQS_Coh_Therm",
+    [
+        {
+            "y_data": coh_tls_therm,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": coh_qho_therm,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+        },
+    ],
+    "Coherence",
+    savepath="JCM",
+)
+
+sim_open_both.plot(
+    "OQS_Coh_Both",
+    [
+        {
+            "y_data": coh_tls_both,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": coh_qho_both,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+        },
+    ],
+    "Coherence",
+    savepath="JCM",
+)
+
+# Populations
+
+sim_open_spont.plot(
+    "OQS_Pop_Spont",
+    [
+        {"y_data": expt_open_spont[0], "label": "Atomic subsystem", "colour": "tab:red"},
+        {"y_data": expt_open_spont[1], "label": "Cavity subsystem", "colour": "tab:blue"},
+    ],
+    "Populations",
+    savepath="JCM",
+)
+
+sim_open_therm.plot(
+    "OQS_Pop_Therm",
+    [
+        {"y_data": expt_open_therm[0], "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": expt_open_therm[1], "label": "Cavity subsystem", "colour": "tab:blue"},
+    ],
+    "Populations",
+    savepath="JCM",
+)
+
+sim_open_both.plot(
+    "OQS_Pop_Both",
+    [
+        {"y_data": expt_open_both[0], "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": expt_open_both[1], "label": "Cavity subsystem", "colour": "tab:blue"},
+    ],
+    "Populations",
+    savepath="JCM",
 )

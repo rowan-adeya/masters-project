@@ -36,34 +36,46 @@ H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 ############################ SIMULATION ###################################
 e_ops = [adag * a, s_raise * s_lower]
 
-sim_closed = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
-results_closed = sim_closed.evolve()
-results_expt = sim_closed.expect(results_closed)
-vne_closed = sim_closed.vne(results_closed)
-coherence_closed = sim_closed.rel_coherence(results_closed)
+sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
+results = sim.evolve()
+results_expt = sim.expect(results)
+vne = sim.vne(results)
+coh_tls = sim.rel_coherence(results, subsys="TLS")
+coh_qho = sim.rel_coherence(results, subsys="QHO")
 
 
 ############################### PLOTS #####################################
-sim_closed.plot(
-    results_expt,
-    "Closed Evolution JCM: Expectation Values",
-    "Expectation Values",
+sim.plot(
     "CQS_expt",
-    "JCM",
-    ["cavity photon number", "atom excitation probability"],
+    [
+        {
+            "y_data": results_expt[0],
+            "label": "Atom excited populations",
+            "colour": "tab:blue",
+        },
+        {
+            "y_data": results_expt[1],
+            "label": "Cavity photon number",
+            "colour": "tab:red",
+        },
+    ],
+    y_label="Expectation Values",
+    savepath="JCM",
 )
 
-sim_closed.plot(
-    vne_closed,
-    "Closed Evolution JCM: Entanglement",
-    "Entanglement",
-    "CQS_ent",
-    "JCM",
+sim.plot(
+    "CQS_vne",
+    [{"y_data": vne}],
+    y_label="Von Neumann Entanglement Entropy",
+    savepath="JCM",
 )
-sim_closed.plot(
-    coherence_closed,
-    "Closed Evolution JCM: Coherence",
-    "Coherence",
+
+sim.plot(
     "CQS_coh",
-    "JCM",
+    [
+        {"y_data": coh_tls, "label": "Atomic subsystem", "colour": "tab:blue"},
+        {"y_data": coh_qho, "label": "Cavity subsystem", "colour": "tab:red"},
+    ],
+    y_label="Relative Entropy of Coherence",
+    savepath="JCM",
 )
