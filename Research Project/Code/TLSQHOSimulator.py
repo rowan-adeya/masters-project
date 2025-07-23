@@ -112,19 +112,24 @@ class TLSQHOSimulator:
 
         return results.expect
 
-    def vne(self, results: q.solver.result.Result, subsys: int = 0):
+    def vne(self, results: q.solver.result.Result, subsys: str = "TLS"):
         """
         Calculates Von Neumann Entropy for a subsystem of an evolved state. Not applicable to Open Quantum
         Systems.
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
-            subsys(int): Default = 0, which subsystem to partial trace over.
+            subsys(str): Default = "TLS", which subsystem to retain after partial trace. Either "TLS" or "QHO".
         Returns:
             vne(list): The Von Neumann Entropy of each density matrix in the result.states object.
         """
-        if subsys not in (0, 1):
-            raise ValueError("subsys must be either 0 or 1.")
+        if subsys not in ("TLS", "QHO"):
+            raise ValueError("subsys must be either 'TLS' or 'QHO'.")
+
+        if subsys == "TLS":
+            subsys = 0
+        else:
+            subsys = 1
 
         atom_subsys = [state.ptrace(subsys) for state in results.states]
         vne = [q.entropy_vn(dm) for dm in atom_subsys]
@@ -197,11 +202,10 @@ class TLSQHOSimulator:
                 dm = state
 
             if subsys == "TLS":
-                dm = dm.ptrace([0])
+                dm = dm.ptrace(0)
 
             elif subsys == "QHO":
-                dm = dm.ptrace([1])
-
+                dm = dm.ptrace(1)
             diag_elements = dm.diag()
             dm_diag = q.Qobj(np.diag(diag_elements), dims=dm.dims)
 
