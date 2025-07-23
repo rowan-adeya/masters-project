@@ -11,9 +11,9 @@ import math
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 30.0 # ps
-tlist = np.linspace(0.0, 2 *np.pi * 0.03 * t_max , 500)  
-# TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)  
+t_max = 20.0  # ps
+tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 200)
+# TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)
 # t in cm conversion, noting original time is in ps
 
 # params, cm^-1
@@ -52,36 +52,46 @@ psi0 = q.tensor(basis_atom_e, basis_qho)
 ############################ SIMULATION ###################################
 e_ops = [adag * a, s_raise * s_lower]
 
-sim_closed = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
-results_closed = sim_closed.evolve()
-results_expt = sim_closed.expect(results_closed)
-vne_closed = sim_closed.vne(results_closed)
-coherence_closed = sim_closed.rel_coherence(results_closed)
+sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
+results = sim.evolve()
+
+results_expt = sim.expect(results)
+
+vne = sim.vne(results)
+
+coh_tls = sim.rel_coherence(results, subsys="TLS")
+coh_qho = sim.rel_coherence(results, subsys="QHO")
 
 
 ############################### PLOTS #####################################
-sim_closed.plot(
-    results_expt,
-    "Closed Evolution ExVib: Expectation Values",
-    "Expectation Values",
+
+sim.plot(
     "CQS_expt",
-    "ExVib",
-    ["cavity photon number", "atom excitation probability"],
+    [
+        {"y_data": results_expt[0], "label": "Vibration photon number", "colour": "b"},
+        {
+            "y_data": results_expt[1],
+            "label": "Exciton excited populations",
+            "colour": "g",
+        },
+    ],
+    y_label="Expectation Values",
+    savepath="ExVib",
 )
 
-sim_closed.plot(
-    vne_closed,
-    "Closed Evolution ExVib: Interaction Entanglement",
-    "Entanglement",
-    "CQS_ent",
-    "ExVib",
-    legend=None,
+sim.plot(
+    "CQS_vne",
+    [{"y_data": vne}],
+    y_label="Von Neumann Entanglement Entropy",
+    savepath="ExVib",
 )
-sim_closed.plot(
-    coherence_closed,
-    "Closed Evolution ExVib: Coherence",
-    "Coherence",
+
+sim.plot(
     "CQS_coh",
-    "ExVib",
-    legend=None,
+    [
+        {"y_data": coh_tls, "label": "Exciton subsystem", "colour": "red"},
+        {"y_data": coh_qho, "label": "Vibration subsystem", "colour": "blue"},
+    ],
+    y_label="Relative Entropy of Coherence",
+    savepath="ExVib",
 )
