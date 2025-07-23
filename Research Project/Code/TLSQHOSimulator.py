@@ -213,10 +213,11 @@ class TLSQHOSimulator:
 
     def plot(
         self,
-        y_data: list,
-        title: str,
-        y_label: str,
         filename: str,
+        y_data: list,
+        y_label: str,
+        x_label: str = None,
+        title: str = None,
         savepath: str = None,
         legend: list = None,
     ):  # TODO: make sure can convert into cm
@@ -224,14 +225,15 @@ class TLSQHOSimulator:
         Plots data and saves to specific location in repository.
 
         Args:
+            filename(str) : Name of file which will be saved.
             y_data(list) : A list/array of data which the user plots against times. It should be the outputs
             of vne(), rel_coherence() and expect() methods of this class.
             title(str) : Name of graph.
             y_label(str) : Y-axis label.
-            filename(str) : Name of file which will be saved.
+            x_label(str) : Optional, Time axis explicit name. 
             Savepath(str) : Optional, path from "results" directory which the user wants to save their plots to.
-            legend(list) : A list of strings which must be provided if at least one expectation operator is
-            present and the user implements the expect() method.
+            legend(list) : Optional, a list of strings which is used for the legends. If provided, must match
+            number of expectation operators.
 
 
         """
@@ -240,20 +242,21 @@ class TLSQHOSimulator:
         else:
             savepath = f"results/{savepath}/{filename}"
 
-        all_arrays = all(isinstance(item, np.ndarray) for item in y_data)
+        y_is_multiple_lines = all(isinstance(item, np.ndarray) for item in y_data)
 
-        if all_arrays:
-            if legend is None:
-                raise ValueError("Legend must be provided if plotting multiple lines.")
-            if len(legend) != len(y_data):
-                raise ValueError(
-                    "Length of Legend list must match number of expectation projectors."
-                )
-
-            for item, label in zip(y_data, legend):
-                plt.plot(self.times, item, label=label)
-            plt.legend()
-        else:
+        if y_is_multiple_lines:
+            if legend is not None:
+                if len(legend) != len(y_data):
+                    raise ValueError(
+                        "Length of Legend list must match number of expectation operators."
+                    )
+                for item, label in zip(y_data, legend):
+                    plt.plot(self.times, item, label=label)
+                plt.legend()
+            else:
+                for item in y_data:
+                    plt.plot(self.times, item)
+        else:  # for single data plots
             plt.plot(self.times, y_data)
             if legend is not None:
                 if len(legend) != 1:
@@ -262,9 +265,13 @@ class TLSQHOSimulator:
                     )
                 plt.legend(legend)
 
-        plt.xlabel("Time")
+        if x_label is not None:
+            plt.xlabel(f"{x_label}")
+        else:
+            plt.xlabel("Time")
         plt.ylabel(y_label)
-        plt.title(title)
+        if title is not None:
+            plt.title(title)
         plt.grid(True)
         plt.savefig(savepath)
         plt.close()
