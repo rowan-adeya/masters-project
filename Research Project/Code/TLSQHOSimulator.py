@@ -22,7 +22,7 @@ class TLSQHOSimulator:
         vne(results, subsys): Calculates Von Neumann Entropy for a subsystem of an evolved state.
         negativity(results, subsys): Calculates the Negativity for a subsystem of an evolved state.
         rel_coherence(results): Calculates Relative Entropy of Coherence for a subsystem of an evolved state.
-        plot(y_data, title, y_label, filename, legend): Plots data and saves to specific location in repository.
+        plot(filename, plot_lines, y_label, x_label, title, savepath) : Plots data and saves to specific location in repository.
     """
 
     def __init__(
@@ -139,7 +139,7 @@ class TLSQHOSimulator:
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
-            subsys(str): Default = TLS, which subsystem to calculate Negativity for.
+            subsys(str): Default = TLS, which subsystem to calculate Negativity for. Either "TLS" or "QHO".
 
         Returns:
             neg_vals(list): The negativity of each density matrix in the result.states object.
@@ -176,7 +176,7 @@ class TLSQHOSimulator:
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
             subsys(str): Default = None, if not passed, will apply rel_coherence to total system. Otherwise,
-            calculate coherence for the given subsystem.
+            calculate coherence for the given subsystem. Either None or "TLS" or "QHO".
         Returns:
             coherence(list): The coherence of each density matrix in the result.states object.
         """
@@ -197,10 +197,10 @@ class TLSQHOSimulator:
                 dm = state
 
             if subsys == "TLS":
-                dm = q.partial_trace(dm, [1])
+                dm = dm.ptrace([0])
 
             elif subsys == "QHO":
-                dm = q.partial_trace(dm, [0])
+                dm = dm.ptrace([1])
 
             diag_elements = dm.diag()
             dm_diag = q.Qobj(np.diag(diag_elements), dims=dm.dims)
@@ -214,65 +214,60 @@ class TLSQHOSimulator:
     def plot(
         self,
         filename: str,
-        y_data: list,
+        plot_lines: list[dict],
         y_label: str,
         x_label: str = None,
         title: str = None,
         savepath: str = None,
-        legend: list = None,
-    ):  # TODO: make sure can convert into cm
+    ):
         """
         Plots data and saves to specific location in repository.
 
         Args:
             filename(str) : Name of file which will be saved.
-            y_data(list) : A list/array of data which the user plots against times. It should be the outputs
-            of vne(), rel_coherence() and expect() methods of this class.
-            title(str) : Name of graph.
+            plot_lines(list[dict]) : Contains all plotting information including: the data, label, colour and
+            linestyle of the plot. If multiple plots in one, then there are multiple entries to the list of dicts.
             y_label(str) : Y-axis label.
-            x_label(str) : Optional, Time axis explicit name. 
-            Savepath(str) : Optional, path from "results" directory which the user wants to save their plots to.
-            legend(list) : Optional, a list of strings which is used for the legends. If provided, must match
-            number of expectation operators.
+            x_label(str) : Optional, X-axis label.
+            title(str) : Optional, name of graph.
+            savepath(str) : Optional, path from "results" directory which the user wants to save their plots to.
 
-
+        Example:
+            sim.plot(
+            "filename",
+            [{"y_data": negativity, "label" : "Negativity", "colour" : "r", "linestyle": "-"}],
+            "Negativity",
+            x_label="Time (ps or cm)",
+            savepath="JCM/ExVib")
         """
         if savepath is None:
             savepath = f"results/{filename}"
         else:
             savepath = f"results/{savepath}/{filename}"
 
-        y_is_multiple_lines = all(isinstance(item, np.ndarray) for item in y_data)
+        for line in plot_lines:
+            y_data = line["y_data"]
+            label = line.get("label", None)
+            colour = line.get("colour", "r")
+            line_style = line.get("linestyle", "-")
+            plt.plot(
+                self.times, y_data, color=colour, linestyle=line_style, label=label
+            )
 
-        if y_is_multiple_lines:
-            if legend is not None:
-                if len(legend) != len(y_data):
-                    raise ValueError(
-                        "Length of Legend list must match number of expectation operators."
-                    )
-                for item, label in zip(y_data, legend):
-                    plt.plot(self.times, item, label=label)
-                plt.legend()
-            else:
-                for item in y_data:
-                    plt.plot(self.times, item)
-        else:  # for single data plots
-            plt.plot(self.times, y_data)
-            if legend is not None:
-                if len(legend) != 1:
-                    raise ValueError(
-                        "Must provide only one legend for single data line plot."
-                    )
-                plt.legend(legend)
+        if any(line.get("label") for line in plot_lines):
+            plt.legend()
 
-        if x_label is not None:
-            plt.xlabel(f"{x_label}")
-        else:
+        if x_label is None:
             plt.xlabel("Time")
+        else:
+            plt.xlabel(x_label)
+
         plt.ylabel(y_label)
+
         if title is not None:
             plt.title(title)
+
         plt.grid(True)
         plt.savefig(savepath)
         plt.close()
-        print(f"Plot successfully saved to {savepath}.")
+        print(f"Plot successfully saved to {savepath}")
