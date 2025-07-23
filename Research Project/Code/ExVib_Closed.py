@@ -68,11 +68,15 @@ coh_qho = sim.rel_coherence(results, subsys="QHO")
 sim.plot(
     "CQS_expt",
     [
-        {"y_data": results_expt[0], "label": "Vibration photon number", "colour": "b"},
+        {
+            "y_data": results_expt[0],
+            "label": "Exciton excited populations",
+            "colour": "tab:blue",
+        },
         {
             "y_data": results_expt[1],
-            "label": "Exciton excited populations",
-            "colour": "g",
+            "label": "Vibration photon number",
+            "colour": "tab:red",
         },
     ],
     y_label="Expectation Values",
@@ -89,8 +93,8 @@ sim.plot(
 sim.plot(
     "CQS_coh",
     [
-        {"y_data": coh_tls, "label": "Exciton subsystem", "colour": "red"},
-        {"y_data": coh_qho, "label": "Vibration subsystem", "colour": "blue"},
+        {"y_data": coh_tls, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {"y_data": coh_qho, "label": "Vibration subsystem", "colour": "tab:red"},
     ],
     y_label="Relative Entropy of Coherence",
     savepath="ExVib",

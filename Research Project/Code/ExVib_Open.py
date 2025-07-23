@@ -11,9 +11,9 @@ import math
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 500.0 # ps
-tlist = np.linspace(0.0, 2 *np.pi * 0.03 * t_max , 500)  
-# TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)  
+t_max = 5.0  # ps
+tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 300)
+# TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)
 # t in cm conversion, noting original time is in ps
 
 # params, cm^-1
@@ -51,8 +51,8 @@ psi0 = q.tensor(basis_atom_e, basis_qho)
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.1 
-gamma_th = 0.1 
+gamma = 0.1
+gamma_th = 0.1
 T = 300
 kbT = 1.0 / (0.695 * T)
 n_omega = 1 / (np.exp(w / kbT) - 1)
@@ -60,114 +60,199 @@ n_omega = 1 / (np.exp(w / kbT) - 1)
 # Operators
 e_ops = [adag * a, s_raise * s_lower]
 
-L_tls = [np.sqrt(gamma) * s_lower]
-L_qho = [
+L_spont = [np.sqrt(gamma) * s_lower]
+L_therm = [
     np.sqrt(gamma_th) * (n_omega + 1) * a,  # photon loss
     np.sqrt(gamma_th) * n_omega * adag,  # photon gain
 ]
 
 ############################ SIMULATION ###################################
 
-# TLS
-sim_open_tls = TLSQHOSimulator(H, psi0, L_tls, e_ops, times=tlist)
-results_open_tls = sim_open_tls.evolve()
-expect_open_tls = sim_open_tls.expect(results_open_tls)
-neg_tls = sim_open_tls.negativity(results_open_tls)
-coh_tls = sim_open_tls.rel_coherence(results_open_tls)
+# Spontaneous Atomic Emission
+sim_open_spont = TLSQHOSimulator(H, psi0, L_spont, e_ops, times=tlist)
+results_open_spont = sim_open_spont.evolve()
 
-# QHO
-sim_open_qho = TLSQHOSimulator(H, psi0, L_qho, e_ops, times=tlist)
-results_open_qho = sim_open_qho.evolve()
-expect_open_qho = sim_open_qho.expect(results_open_qho)
-neg_qho = sim_open_qho.negativity(results_open_qho)
-coh_qho = sim_open_qho.rel_coherence(results_open_qho)
+expt_open_spont = sim_open_spont.expect(results_open_spont)
 
-# TLS + QHO
-L_tlsqho = L_tls + L_qho
-sim_open_tlsqho = TLSQHOSimulator(H, psi0, L_tlsqho, e_ops, times=tlist)
-results_open_tlsqho = sim_open_tlsqho.evolve()
-expect_open_tlsqho = sim_open_tlsqho.expect(results_open_tlsqho)
-neg_tlsqho = sim_open_tlsqho.negativity(results_open_tlsqho)
-coh_tlsqho = sim_open_tlsqho.rel_coherence(results_open_tlsqho)
+neg_tls_spont = sim_open_spont.negativity(results_open_spont, subsys="TLS")
+neg_qho_spont = sim_open_spont.negativity(results_open_spont, subsys="QHO")
+
+coh_tls_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="TLS")
+coh_qho_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="QHO")
+
+# Thermal Dissipation
+sim_open_therm = TLSQHOSimulator(H, psi0, L_therm, e_ops, times=tlist)
+results_open_therm = sim_open_therm.evolve()
+
+expt_open_therm = sim_open_therm.expect(results_open_therm)
+
+neg_tls_therm = sim_open_therm.negativity(results_open_therm, subsys="TLS")
+neg_qho_therm = sim_open_therm.negativity(results_open_therm, subsys="QHO")
+
+coh_tls_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="TLS")
+coh_qho_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="QHO")
+
+# Spontaneous Emission + Thermal Dissipation
+L_both = L_spont + L_therm
+sim_open_both = TLSQHOSimulator(H, psi0, L_both, e_ops, times=tlist)
+results_open_both = sim_open_both.evolve()
+
+expt_open_both = sim_open_both.expect(results_open_both)
+
+neg_tls_both = sim_open_both.negativity(results_open_both, subsys="TLS")
+neg_qho_both = sim_open_both.negativity(results_open_both, subsys="QHO")
+
+coh_tls_both = sim_open_both.rel_coherence(results_open_both, subsys="TLS")
+coh_qho_both = sim_open_both.rel_coherence(results_open_both, subsys="QHO")
 
 ############################### PLOTS #####################################
-sim_open_tls.plot(
-    expect_open_tls,
-    "Open Evolution ExVib: Spontaneous Atomic Emission (Weak Coupling)",
-    "Expectation Values",
-    "OQS_TLS_Decay",
-    "ExVib",
-    ["cavity photon number", "atom excitation probability"],
-)
 
-sim_open_tls.plot(
-    neg_tls,
-    "Open Evolution ExVib: Negativity of Atomic Emission (Weak Coupling)",
+# Negativity
+
+sim_open_spont.plot(
+    "OQS_Neg_Spont",
+    [
+        {
+            "y_data": neg_tls_spont,
+            "label": "Exciton subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+        },
+        {
+            "y_data": neg_qho_spont,
+            "label": "Vibration subsystem",
+            "colour": "tab:blue",
+            "linestyle": ":",
+        },
+    ],
     "Negativity",
-    "OQS_TLS_Neg",
-    "ExVib",
-    ["Negativity"],
+    savepath="ExVib",
 )
 
-sim_open_tls.plot(
-    coh_tls,
-    "Open Evolution ExVib: Coherence of Atomic Emission (Weak Coupling)",
-    "Coherence",
-    "OQS_TLS_coh",
-    "ExVib",
-    ["Coherence"],
-)
-
-sim_open_qho.plot(
-    expect_open_qho,
-    "Open Evolution ExVib: QHO Photon Loss/Gain (Weak Coupling)",
-    "Expectation Values",
-    "OQS_QHO_loss",
-    "ExVib",
-    ["cavity photon number", "atom excitation probability"],
-)
-
-sim_open_tls.plot(
-    neg_qho,
-    "Open Evolution ExVib: Negativity of QHO Photon Loss/Gain (Weak Coupling)",
+sim_open_therm.plot(
+    "OQS_Neg_Therm",
+    [
+        {
+            "y_data": neg_tls_therm,
+            "label": "Exciton subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+        },
+        {
+            "y_data": neg_qho_therm,
+            "label": "Vibration subsystem",
+            "colour": "tab:blue",
+            "linestyle": ":",
+        },
+    ],
     "Negativity",
-    "OQS_QHO_Neg",
-    "ExVib",
-    ["Negativity"],
+    savepath="ExVib",
 )
 
-sim_open_qho.plot(
-    coh_qho,
-    "Open Evolution ExVib: Coherence of QHO Photon Loss/Gain (Weak Coupling)",
-    "Coherence",
-    "OQS_QHO_coh",
-    "ExVib",
-    ["Coherence"],
-)
-
-sim_open_tlsqho.plot(
-    expect_open_tlsqho,
-    "Open Evolution ExVib: TLS and QHO Decay (Weak Coupling)",
-    "Expectation Values",
-    "OQS_TLSQHO",
-    "ExVib",
-    ["cavity photon number", "atom excitation probability"],
-)
-
-sim_open_tls.plot(
-    neg_tlsqho,
-    "Open Evolution ExVib: Negativity of both Dissipators Acting",
+sim_open_both.plot(
+    "OQS_Neg_Both",
+    [
+        {
+            "y_data": neg_tls_both,
+            "label": "Exciton subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+        },
+        {
+            "y_data": neg_qho_both,
+            "label": "Vibration subsystem",
+            "colour": "tab:blue",
+            "linestyle": ":",
+        },
+    ],
     "Negativity",
-    "OQS_TLSQHO_Neg",
-    "ExVib",
-    ["Negativity"],
+    savepath="ExVib",
 )
 
-sim_open_tls.plot(
-    coh_tlsqho,
-    "Open Evolution ExVib: Coherence of both Dissipators Acting",
+# Coherence
+
+sim_open_spont.plot(
+    "OQS_Coh_Spont",
+    [
+        {
+            "y_data": coh_tls_spont,
+            "label": "Exciton subsystem",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": coh_qho_spont,
+            "label": "Vibration subsystem",
+            "colour": "tab:blue",
+        },
+    ],
     "Coherence",
-    "OQS_TLSQHO_coh",
-    "ExVib",
-    ["Coherence"],
+    savepath="ExVib",
+)
+
+sim_open_therm.plot(
+    "OQS_Coh_Therm",
+    [
+        {
+            "y_data": coh_tls_therm,
+            "label": "Exciton subsystem",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": coh_qho_therm,
+            "label": "Vibration subsystem",
+            "colour": "tab:blue",
+        },
+    ],
+    "Coherence",
+    savepath="ExVib",
+)
+
+sim_open_both.plot(
+    "OQS_Coh_Both",
+    [
+        {
+            "y_data": coh_tls_both,
+            "label": "Exciton subsystem",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": coh_qho_both,
+            "label": "Vibration subsystem",
+            "colour": "tab:blue",
+        },
+    ],
+    "Coherence",
+    savepath="ExVib",
+)
+
+# Populations
+
+sim_open_spont.plot(
+    "OQS_Pop_Spont",
+    [
+        {"y_data": expt_open_spont[0], "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": expt_open_spont[1], "label": "Vibration subsystem", "colour": "tab:blue"},
+    ],
+    "Populations",
+    savepath="ExVib",
+)
+
+sim_open_therm.plot(
+    "OQS_Pop_Therm",
+    [
+        {"y_data": expt_open_therm[0], "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": expt_open_therm[1], "label": "Vibration subsystem", "colour": "tab:blue"},
+    ],
+    "Populations",
+    savepath="ExVib",
+)
+
+sim_open_both.plot(
+    "OQS_Pop_Both",
+    [
+        {"y_data": expt_open_both[0], "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": expt_open_both[1], "label": "Vibration subsystem", "colour": "tab:blue"},
+    ],
+    "Populations",
+    savepath="ExVib",
 )

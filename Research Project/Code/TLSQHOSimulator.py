@@ -252,7 +252,7 @@ class TLSQHOSimulator:
         for line in plot_lines:
             y_data = line["y_data"]
             label = line.get("label", None)
-            colour = line.get("colour", "r")
+            colour = line.get("colour", "tab:red")
             line_style = line.get("linestyle", "-")
             plt.plot(
                 self.times, y_data, color=colour, linestyle=line_style, label=label
