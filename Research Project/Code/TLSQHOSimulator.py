@@ -137,17 +137,18 @@ class TLSQHOSimulator:
 
     def negativity(self, results: q.solver.result.Result, subsys: str = "TLS"):
         """
-        Calculates the Negativity for a subsystem of an evolved state. The negativity is the absolute
+        Calculates the Negativity for a system of an evolved state. The negativity is the absolute
         sum of the negative eigenvalues. The partial transpose function takes an argument, mask, is a
         list of bools (0 or 1), where a 1 in the list tells the function to perform the partial
         transpose.
 
         Args:
             results(q.solver.result.Result): Output of evolve() method, which is a solver type for QuTip.
-            subsys(str): Default = TLS, which subsystem to calculate Negativity for. Either "TLS" or "QHO".
+            subsys(str): Default = TLS, which subsystem perform partial transpose for Negativity calculation.
+            Either "TLS" or "QHO".
 
         Returns:
-            neg_vals(list): The negativity of each density matrix in the result.states object.
+            neg_vals(list): The negativity of each density matrix in the result.states list object.
         """
         allowed_subsys_vals = ("TLS", "QHO")
         if subsys not in allowed_subsys_vals:

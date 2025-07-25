@@ -3,8 +3,8 @@ import qutip as q
 import numpy as np
 
 ############################## SETUP ######################################
-
-tlist = np.linspace(0.0, 200.0, 500) # TODO: Correct timecales to ps
+# https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.58.353 for params 
+tlist = np.linspace(0.0, 200.0, 500) 
 
 # constants
 w = 1.0  # natural units, w = 1, hbar =1

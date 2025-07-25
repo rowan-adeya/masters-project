@@ -11,7 +11,7 @@ import math
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 20.0  # ps
+t_max = 100.0  # ps
 tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 200)
 # TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)
 # t in cm conversion, noting original time is in ps
@@ -66,7 +66,7 @@ coh_qho = sim.rel_coherence(results, subsys="QHO")
 ############################### PLOTS #####################################
 
 sim.plot(
-    "CQS_expt",
+    "pops_excited",
     [
         {
             "y_data": results_expt[0],
@@ -80,22 +80,22 @@ sim.plot(
         },
     ],
     y_label="Expectation Values",
-    savepath="ExVib",
+    savepath="/ExVib/Closed",
 )
 
 sim.plot(
-    "CQS_vne",
+    "vne",
     [{"y_data": vne}],
     y_label="Von Neumann Entanglement Entropy",
-    savepath="ExVib",
+    savepath="/ExVib/Closed",
 )
 
 sim.plot(
-    "CQS_coh",
+    "coh",
     [
         {"y_data": coh_tls, "label": "Exciton subsystem", "colour": "tab:blue"},
         {"y_data": coh_qho, "label": "Vibration subsystem", "colour": "tab:red"},
     ],
     y_label="Relative Entropy of Coherence",
-    savepath="ExVib",
+    savepath="/ExVib/Closed",
 )
