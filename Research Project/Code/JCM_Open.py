@@ -10,7 +10,7 @@ tlist = np.linspace(0.0, 200.0, 500)
 w = 1.0  # natural units, w = 1, hbar =1
 g = 0.08  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
-n = 2  # photon number
+n = 0  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
@@ -34,7 +34,7 @@ psi0 = q.tensor(basis_atom_e, basis_qho)
 # Constants
 gamma = 0.09
 gamma_th = 0.09
-kbT = 0.001  # meV
+kbT = 0.001 # meV
 n_omega = 1 / (
     np.exp(w / kbT) - 1
 )  # low temp regime so n_omega -> 0, optical/IR regime

@@ -14,7 +14,7 @@ tlist = np.linspace(0.0, 200.0, 200)
 w = 1.0  # natural units, w = 1, hbar =1, kb = 1, GHz freq
 g = 0.1
 N = 30  # num Fock states
-n = 2  # photon number
+n = 0  # photon number
 # Bases
 basis_atom_e = q.basis(2, 0)
 basis_atom_g = q.basis(2, 1)
