@@ -23,13 +23,11 @@ V = 92
 g = w * math.sqrt(0.0578)
 # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 10  # num Fock states
-n = 0  # photon number
-
 
 # Bases
 basis_atom_e = q.basis(2, 0)
 basis_atom_g = q.basis(2, 1)
-basis_qho = q.basis(N, n)
+basis_qho = q.basis(N, 0)
 
 
 # Operators
@@ -50,7 +48,8 @@ H = H_ex + H_vib + H_int
 psi0 = q.tensor(basis_atom_e, basis_qho)
 
 ############################ SIMULATION ###################################
-e_ops = [adag * a, s_raise * s_lower]
+n0_pop = q.tensor(q.qeye(2), basis_qho * basis_qho.dag())  # QHO pop |n=0>
+e_ops = [s_lower * s_raise, n0_pop]
 
 sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
 results = sim.evolve()
@@ -70,7 +69,7 @@ sim.plot(
     [
         {
             "y_data": results_expt[0],
-            "label": "Exciton excited populations",
+            "label": "Exciton ground state",
             "colour": "tab:blue",
         },
         {

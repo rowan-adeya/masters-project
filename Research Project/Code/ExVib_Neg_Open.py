@@ -57,8 +57,8 @@ initial_states = {
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.1
-gamma_th = 0.1
+gamma = 1.0
+gamma_th = 1.0
 T = 300
 kbT = 0.695 * T
 n_omega = 1 / (np.exp(w / kbT) - 1)
