@@ -263,7 +263,7 @@ class TLSQHOSimulator:
             plt.legend()
 
         if x_label is None:
-            plt.xlabel("Time")
+            plt.xlabel("Time (ps)")
         else:
             plt.xlabel(x_label)
 

@@ -14,12 +14,12 @@ tlist = np.linspace(0.0, 200.0, 200)
 w = 1.0  # natural units, w = 1, hbar =1, kb = 1, GHz freq
 g = 0.1
 N = 30  # num Fock states
-n = 0  # photon number
+
 # Bases
 basis_atom_e = q.basis(2, 0)
 basis_atom_g = q.basis(2, 1)
-basis_qho = q.basis(N, n)
-
+basis_qho_0 = q.basis(N, 0)
+basis_qho_1 = q.basis(N, 1)
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
@@ -29,14 +29,15 @@ s_lower = q.tensor(q.sigmam(), q.qeye(N))
 s_raise = s_lower.dag()
 
 
-psi0 = q.tensor(basis_atom_e + basis_atom_g, basis_qho) / math.sqrt(2)
+psi0 = q.tensor(basis_atom_e + basis_atom_g, basis_qho_0) / math.sqrt(2)
 
 # Jaynes-Cummings Hamiltonian
 H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
 
 ############################ SIMULATION ###################################
-e_ops = [adag * a, s_raise * s_lower]
+n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=0>
+e_ops = [s_raise * s_lower, n0_pop]
 
 sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
 results = sim.evolve()
@@ -53,16 +54,16 @@ sim.plot(
     [
         {
             "y_data": results_expt[0],
-            "label": "Atom excited populations",
+            "label": "Excited atomic state",
             "colour": "tab:blue",
         },
         {
             "y_data": results_expt[1],
-            "label": "Cavity photon number",
+            "label": "Cavity photon number, n = 0",
             "colour": "tab:red",
         },
     ],
-    y_label="Expectation Values",
+    y_label="Populations",
     savepath="JCM",
 )
 

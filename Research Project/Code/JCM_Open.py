@@ -10,11 +10,11 @@ tlist = np.linspace(0.0, 200.0, 500)
 w = 1.0  # natural units, w = 1, hbar =1
 g = 0.08  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
 N = 30  # num Fock states
-n = 0  # photon number
 
 # Bases
 basis_atom_e = q.basis(2, 0)
-basis_qho = q.basis(N, n)
+basis_qho_0 = q.basis(N, 0)
+basis_qho_1 = q.basis(N, 1)
 
 # Operators
 a = q.tensor(q.qeye(2), q.destroy(N))
@@ -27,7 +27,7 @@ s_raise = s_lower.dag()
 H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
 # Init cond
-psi0 = q.tensor(basis_atom_e, basis_qho)
+psi0 = q.tensor(basis_atom_e, basis_qho_0)
 
 ########################## OPEN SIM SETUP #################################
 
@@ -40,7 +40,8 @@ n_omega = 1 / (
 )  # low temp regime so n_omega -> 0, optical/IR regime
 
 # Operators
-e_ops = [adag * a, s_raise * s_lower]
+n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=0>
+e_ops = [s_raise * s_lower, n0_pop]
 
 
 L_spont = [np.sqrt(gamma) * s_lower]
@@ -57,8 +58,7 @@ results_open_spont = sim_open_spont.evolve()
 
 expt_open_spont = sim_open_spont.expect(results_open_spont)
 
-neg_tls_spont = sim_open_spont.negativity(results_open_spont, subsys="TLS")
-neg_qho_spont = sim_open_spont.negativity(results_open_spont, subsys="QHO")
+neg_spont = sim_open_spont.negativity(results_open_spont, subsys="TLS")
 
 coh_tls_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="TLS")
 coh_qho_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="QHO")
@@ -69,8 +69,7 @@ results_open_therm = sim_open_therm.evolve()
 
 expt_open_therm = sim_open_therm.expect(results_open_therm)
 
-neg_tls_therm = sim_open_therm.negativity(results_open_therm, subsys="TLS")
-neg_qho_therm = sim_open_therm.negativity(results_open_therm, subsys="QHO")
+neg_therm = sim_open_therm.negativity(results_open_therm, subsys="TLS")
 
 coh_tls_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="TLS")
 coh_qho_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="QHO")
@@ -82,8 +81,7 @@ results_open_both = sim_open_both.evolve()
 
 expt_open_both = sim_open_both.expect(results_open_both)
 
-neg_tls_both = sim_open_both.negativity(results_open_both, subsys="TLS")
-neg_qho_both = sim_open_both.negativity(results_open_both, subsys="QHO")
+neg_both = sim_open_both.negativity(results_open_both, subsys="TLS")
 
 coh_tls_both = sim_open_both.rel_coherence(results_open_both, subsys="TLS")
 coh_qho_both = sim_open_both.rel_coherence(results_open_both, subsys="QHO")
@@ -96,16 +94,8 @@ sim_open_spont.plot(
     "OQS_Neg_Spont",
     [
         {
-            "y_data": neg_tls_spont,
-            "label": "Atomic subsystem",
+            "y_data": neg_spont,
             "colour": "tab:red",
-            "linestyle": "--",
-        },
-        {
-            "y_data": neg_qho_spont,
-            "label": "Cavity subsystem",
-            "colour": "tab:blue",
-            "linestyle": ":",
         },
     ],
     "Negativity",
@@ -116,16 +106,8 @@ sim_open_therm.plot(
     "OQS_Neg_Therm",
     [
         {
-            "y_data": neg_tls_therm,
-            "label": "Atomic subsystem",
+            "y_data": neg_therm,
             "colour": "tab:red",
-            "linestyle": "--",
-        },
-        {
-            "y_data": neg_qho_therm,
-            "label": "Cavity subsystem",
-            "colour": "tab:blue",
-            "linestyle": ":",
         },
     ],
     "Negativity",
@@ -136,16 +118,8 @@ sim_open_both.plot(
     "OQS_Neg_Both",
     [
         {
-            "y_data": neg_tls_both,
-            "label": "Atomic subsystem",
+            "y_data": neg_both,
             "colour": "tab:red",
-            "linestyle": "--",
-        },
-        {
-            "y_data": neg_qho_both,
-            "label": "Cavity subsystem",
-            "colour": "tab:blue",
-            "linestyle": ":",
         },
     ],
     "Negativity",
@@ -214,7 +188,7 @@ sim_open_spont.plot(
     "OQS_Pop_Spont",
     [
         {"y_data": expt_open_spont[0], "label": "Atomic subsystem", "colour": "tab:red"},
-        {"y_data": expt_open_spont[1], "label": "Cavity subsystem", "colour": "tab:blue"},
+        {"y_data": expt_open_spont[1], "label": "Cavity photon number, n = 0", "colour": "tab:blue"},
     ],
     "Populations",
     savepath="JCM",
@@ -224,7 +198,7 @@ sim_open_therm.plot(
     "OQS_Pop_Therm",
     [
         {"y_data": expt_open_therm[0], "label": "Exciton subsystem", "colour": "tab:red"},
-        {"y_data": expt_open_therm[1], "label": "Cavity subsystem", "colour": "tab:blue"},
+        {"y_data": expt_open_therm[1], "label": "Cavity photon number, n = 0", "colour": "tab:blue"},
     ],
     "Populations",
     savepath="JCM",
@@ -234,7 +208,7 @@ sim_open_both.plot(
     "OQS_Pop_Both",
     [
         {"y_data": expt_open_both[0], "label": "Exciton subsystem", "colour": "tab:red"},
-        {"y_data": expt_open_both[1], "label": "Cavity subsystem", "colour": "tab:blue"},
+        {"y_data": expt_open_both[1], "label": "Cavity photon number, n = 0", "colour": "tab:blue"},
     ],
     "Populations",
     savepath="JCM",
