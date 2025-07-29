@@ -57,14 +57,16 @@ initial_states = {
 }
 ########################## OPEN SIM SETUP #################################
 # Constants
-gamma = 0.1
-gamma_th = 0.1
+gamma = 1.0
+gamma_th = 1.0
 T = 300
 kbT = 0.695 * T
 n_omega = 1 / (np.exp(w / kbT) - 1)
 
 # Operators
-e_ops = [adag * a, s_raise * s_lower, s_lower * s_raise]
+n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=0>
+n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
+e_ops = [n0_pop, n1_pop, s_raise * s_lower, s_lower * s_raise]
 
 L_spont = [np.sqrt(gamma) * s_lower]
 L_therm = [
@@ -86,18 +88,29 @@ for decay_label, lindblad_ops in decay_ops.items():
         results = sim.evolve()
         expt = sim.expect(results)
 
-        vibration = expt[0]
-        excited = expt[1]
-        ground = expt[2]
+        vib0 = expt[0]
+        vib1 = expt[1]
+        excited = expt[2]
+        ground = expt[3]
 
         sim.plot(
-            f"pops_{decay_label}_{psi_label}",
+            f"pops_ex_{decay_label}_{psi_label}",
             [
                 {"y_data": excited, "label": "Exciton subsystem (excited)", "colour": "tab:red"},
                 {"y_data": ground, "label": "Exciton subsystem (ground)", "colour": "tab:green"},
-                {"y_data": vibration, "label": "Vibration subsystem", "colour": "tab:blue"},
             ],
             "Populations",
             savepath="ExVib/Open/Population",
         )
+
+        sim.plot(
+            f"pops_vib_{decay_label}_{psi_label}",
+            [
+                {"y_data": vib0, "label": "Vibration photon number, n = 0", "colour": "tab:red"},
+                {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:green"},
+            ],
+            "Populations",
+            savepath="ExVib/Open/Population",
+        )
+
 
