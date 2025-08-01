@@ -11,8 +11,8 @@ import math
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 100.0  # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 200)
+t_max = 45.0  # ps
+tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 100)
 # TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)
 # t in cm conversion, noting original time is in ps
 

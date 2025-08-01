@@ -271,7 +271,6 @@ class TLSQHOSimulator:
             plt.title(title)
 
         plt.tight_layout()
-        plt.grid(True)
         plt.savefig(savepath)
         plt.close()
         print(f"Plot successfully saved to {savepath}")
