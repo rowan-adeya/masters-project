@@ -1,0 +1,292 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin = 2.4cm]{geometry}
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[numbers,link]{natbib}
+\usepackage[toc,page]{appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\textbf{Investigation of Quantum Resources in Two-Level Systems Coupled to Quantum Harmonic Oscillators}}
+\author{Rowan Adeya}
+\date{}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\vspace{\fill}
+\begin{abstract}
+    Abstract Here.
+\end{abstract}
+\vspace{\fill}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Entanglement and Coherence are fundamental Quantum Resources which define the behaviour of composite quantum systems. Entanglement is a basis-independent measure of the quantum correlation between subsystems of a
+composite system, indicating how much the system’s state deviates from a separable (product) state. It is a uniquely quantum mechanical feature which enables us to utilise non-local correlations, and has had a significant role in advancements of quantum information theory and quantum computation and communication. In contrast, coherence is a basis-dependent measure that describes the ability of a system to remain in a quantum superposition state. It enables us to distinguish between quantum and classical regime, and is often considered as one of the most important features of modern quantum mechanics. However, coherence is fragile and maintaining coherent systems is one of the key challenges in quantum computation [\textbf{Quote x 3}]. \\
+\\
+One of the simplest composite systems which we may investigate these quantum resources is a Two-Level system (TLS) coupled to a Quantum Harmonic Oscillator (QHO). TLSs naturally manifest in quantum computation as qubits, making qubit–qubit interactions a natural environment for the study of quantum resources. On the other hand, in natural physical systems, we often find TLSs (such as two-level atomic states) coupled to other systems, and more often than not, this is in the form of a QHO. Thus, for these physical systems, it is important to introduce models which convey the type of interactions between the TLS and QHO. 
+
+A canonical and fundamental model is the Jaynes-Cummings Model (JCM). It models a TLS coupled to a single quantised mode of a QHO, representing excitation via photon absorption and de-excitation via emission. The JCM is often used in the context of circuit QED, cavity QED and other systems such as NV centres [\textbf{Quote}]. The simplicity of the JCM allows for analytical solutions and insights into the dynamics of TLS-QHO systems, but is limited in its ability to capture the richer behaviour found in more complex systems. The Exciton–Vibration model (EVM) is one such extension. It can, for example, describe a dimer (two coupled TLSs) each interacting with its own vibrational mode, modelled as a QHO.\\
+\\
+Together, these models illustrate the ways in which TLS–QHO interactions arise across a multitude of physical systems, motivating the central question of this work: How do Entanglement and Coherence manifest in such joint TLS-QHO systems? Understanding this question would deepen our knowledge of quantum resources, and how they can be exploited further in quantum information science and quantum computation. \\
+\\
+This paper is organised as follows: we begin by discussing the Jaynes-Cummings and Exciton-Vibration models' theoretical framework in Section 2. Section 3 explores various measures and monotones of Entanglement and Coherence in Section 3. Then, we analyse the dynamics of these models, presenting both analytic and numerical results in Section 4. Finally, Section 5 presents concluding remarks and possible directions for future research.
+%Our main Question
+
+%This paper is organised as follows...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TLS-QHO SYS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{TLS-QHO Systems}
+\subsection{Jaynes-Cummings Model}
+\subsection{Exciton-Vibrational Model}
+\subsection{Open Quantum Dynamics}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Q RESOURCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quantum Resources}
+\subsubsection{Von Neumann Entropy}
+\subsubsection{Negativity}
+\subsubsection{Other Entanglement Measures}
+\subsection{Coherence}
+\subsubsection{Relative Entropy of Coherence}
+\subsubsection{Coherence Norm}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\subsection{QuTip and Code}
+\subsection{Population, Entanglement and Coherence of the Jaynes-Cummings Model}
+\subsubsection{Closed Evolution}
+\subsubsection{Open Evolution}
+\subsection{Population, Entanglement and Coherence of the Exciton-Vibration Model}
+\subsubsection{Closed Evolution}
+\subsubsection{Open Evolution}
+\subsection{Discussion}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion and Outlook}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
+    \section{Code Stuff}
+\end{appendices}
+\newpage
+
+\bibliographystyle{unsrt} 
+\bibliography{References/references.bib} 
+
+\end{document}
