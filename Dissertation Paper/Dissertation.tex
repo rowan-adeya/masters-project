@@ -1,13 +1,17 @@
 \documentclass[12pt]{article}
-\usepackage[a4paper, margin = 2.4cm]{geometry}
+\usepackage[a4paper]{geometry}
 \usepackage{blindtext}
 \usepackage{titlesec}
+\usepackage{amsmath,amssymb}
 \usepackage{xcolor}
 \usepackage[numbers,link]{natbib}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=red,urlcolor=red]{hyperref}
 \usepackage[toc,page]{appendix}
+\pagenumbering{gobble}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{\textbf{Investigation of Quantum Resources in Two-Level Systems Coupled to Quantum Harmonic Oscillators}}
+\title{\textbf{Investigation of Quantum Resources in Two--Level Systems Coupled to Quantum Harmonic Oscillators}}
 \author{Rowan Adeya}
 \date{}
 \begin{document}
@@ -23,26 +27,23 @@
 \vspace{\fill}
 
 \newpage
-
+\pagenumbering{arabic}
 \tableofcontents
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Entanglement and Coherence are fundamental Quantum Resources which define the behaviour of composite quantum systems. Entanglement is a basis-independent measure of the quantum correlation between subsystems of a
-composite system, indicating how much the system’s state deviates from a separable (product) state. It is a uniquely quantum mechanical feature which enables us to utilise non-local correlations, and has had a significant role in advancements of quantum information theory and quantum computation and communication. In contrast, coherence is a basis-dependent measure that describes the ability of a system to remain in a quantum superposition state. It enables us to distinguish between quantum and classical regime, and is often considered as one of the most important features of modern quantum mechanics. However, coherence is fragile and maintaining coherent systems is one of the key challenges in quantum computation [\textbf{Quote x 3}]. \\
+Entanglement and coherence are fundamental Quantum Resources which define the behaviour of composite quantum systems. Entanglement is a basis--independent measure of the quantum correlation between subsystems of a
+composite system, indicating how much the system’s state deviates from a separable (product) state. It is a uniquely quantum mechanical feature which enables us to utilise non--local correlations, and has had a significant role in advancements of quantum information theory and quantum computation and communication. In contrast, coherence is a basis--dependent measure that describes the ability of a system to remain in a quantum superposition state. We may use coherence to distinguish between quantum and classical regimes, and is often considered as one of the most important features of modern quantum mechanics. However, coherence is fragile and maintaining coherent systems is one of the key challenges in quantum computation [\textbf{Quote x 3}]. \\
 \\
-One of the simplest composite systems which we may investigate these quantum resources is a Two-Level system (TLS) coupled to a Quantum Harmonic Oscillator (QHO). TLSs naturally manifest in quantum computation as qubits, making qubit–qubit interactions a natural environment for the study of quantum resources. On the other hand, in natural physical systems, we often find TLSs (such as two-level atomic states) coupled to other systems, and more often than not, this is in the form of a QHO. Thus, for these physical systems, it is important to introduce models which convey the type of interactions between the TLS and QHO. 
+One of the simplest composite systems which we may investigate these quantum resources is a Two--Level system (TLS) coupled to a Quantum Harmonic Oscillator (QHO). TLSs naturally manifest in quantum computation as qubits, making qubit–qubit interactions a natural environment for the study of quantum resources. On the other hand, in natural physical systems, we often find TLSs (such as two--level atomic states) coupled to other systems, and more often than not, this is in the form of a QHO. Thus, for these physical systems, it is important to introduce models which convey the type of interactions between the TLS and QHO. 
 
-A canonical and fundamental model is the Jaynes-Cummings Model (JCM). It models a TLS coupled to a single quantised mode of a QHO, representing excitation via photon absorption and de-excitation via emission. The JCM is often used in the context of circuit QED, cavity QED and other systems such as NV centres [\textbf{Quote}]. The simplicity of the JCM allows for analytical solutions and insights into the dynamics of TLS-QHO systems, but is limited in its ability to capture the richer behaviour found in more complex systems. The Exciton–Vibration model (EVM) is one such extension. It can, for example, describe a dimer (two coupled TLSs) each interacting with its own vibrational mode, modelled as a QHO.\\
+A canonical and fundamental model is the Jaynes--Cummings Model (JCM). It models a TLS coupled to a single quantised mode of a QHO, representing TLS excitation when a photon is destroyed, and de--excitation when a photon is created. The JCM is often used in the context of circuit QED, cavity QED and other systems such as NV centres [\textbf{Quote}]. The simplicity of the JCM allows for analytical solutions and insights into the dynamics of TLS--QHO systems, but is limited in its ability to capture the richer behaviour found in more complex systems. The Exciton–Vibration model (EVM) is one such extension. It can, for example, describe a dimer (two coupled TLSs) each interacting with its own vibrational mode, modelled as a QHO.\\
 \\
-Together, these models illustrate the ways in which TLS–QHO interactions arise across a multitude of physical systems, motivating the central question of this work: How do Entanglement and Coherence manifest in such joint TLS-QHO systems? Understanding this question would deepen our knowledge of quantum resources, and how they can be exploited further in quantum information science and quantum computation. \\
+Together, these models illustrate the ways in which TLS–QHO interactions arise across a multitude of physical systems, motivating the central question of this work: How do entanglement and coherence manifest in such joint TLS--QHO systems? Understanding this question would deepen our knowledge of quantum resources, and how they can be exploited further in quantum information science and quantum computation. \\
 \\
-This paper is organised as follows: we begin by discussing the Jaynes-Cummings and Exciton-Vibration models' theoretical framework in Section 2. Section 3 explores various measures and monotones of Entanglement and Coherence in Section 3. Then, we analyse the dynamics of these models, presenting both analytic and numerical results in Section 4. Finally, Section 5 presents concluding remarks and possible directions for future research.
-%Our main Question
-
-%This paper is organised as follows...
+This paper is organised as follows: we begin by discussing the theoretical framework of the Jaynes--Cummings Model, Exciton--Vibration Model and Open Quantum Systems in Section 2. Section 3 explores various measures of entanglement and coherence. Then, we analyse both subsystem populations and the quantum resources in these models via analytical and numerical results in Section 4. Finally, Section 5 presents concluding remarks and possible directions for future research.
 
 
 
@@ -72,11 +73,130 @@ This paper is organised as follows: we begin by discussing the Jaynes-Cummings a
 
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TLS-QHO SYS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{TLS-QHO Systems}
-\subsection{Jaynes-Cummings Model}
-\subsection{Exciton-Vibrational Model}
-\subsection{Open Quantum Dynamics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TLS--QHO SYS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Two--Level Systems Coupled to Quantum Harmonic Oscillators}
+
+In order to understand how entanglement and coherence manifest in both our models, we must first understand each individual system: the Two--Level System (TLS) and the Quantum Harmonic Oscillator (QHO). Then, we may examine their interactions as a composite quantum system.\\
+\\
+A TLS is a simple yet fundamental quantum mechanical system which can occupy only two distinct energy states. A state vector describing a TLS may be written as:
+
+\begin{equation}
+    |\psi_{\scriptscriptstyle \text{TLS}}\rangle = \alpha|0\rangle + \beta|1\rangle,
+\end{equation}
+
+where $|0\rangle$ and $|1\rangle$ are the basis vectors describing the lower and higher energy states respectively, spanning a 2--dimensional Hilbert Space, $\mathcal{H}_{\scriptscriptstyle \text{TLS}}$ , and $\alpha$ and $\beta$ are the complex amplitudes associated with each basis vector. A TLS may be represented by many quantum systems. Most notably, its simplest form is a qubit, which is often used in quantum computation. However, it may also be represented by an atom, with $|0\rangle \rightarrow |g\rangle$ representing the ground (lowest energy) state of an atom, and $|1\rangle \rightarrow |e\rangle$ representing the excited (highest energy) state. Quantum systems may also reduce to an effective TLS if we decide to truncate a system to only two possible energy states. \\
+\\
+A QHO is another fundamental quantum mechanical model which describes a system with evenly spaced energy levels, and a quantised energy spectrum. A general state vector describing a QHO may be written as:
+
+\begin{equation}
+|\psi_{\scriptscriptstyle \text{QHO}}\rangle = \sum_{n=0}^\infty c_n |n\rangle,
+\end{equation}
+
+where $|n\rangle$ is the n$^{th}$ Fock state (a state with exactly n quanta of excitation), spanning an infinite--dimensional Hilbert Space $\mathcal{H}_{\scriptscriptstyle \text{QHO}}$, and and $c_n$ are the complex amplitudes associated with each Fock state. A QHO may represent a field confined in a cavity, or a molecular vibration (as we shall see in Sections \ref{JCM_Theory}, \ref{EVM_Theory}).\\
+\\
+The TLS--QHO composite quantum system is the tensor product of both systems:
+
+\begin{equation}
+    |\Psi\rangle = |\psi_{\scriptscriptstyle \text{TLS}}\rangle \otimes |\psi_{\scriptscriptstyle \text{QHO}}\rangle,
+\end{equation}
+
+where $|\Psi\rangle$ now resides in the $\mathcal{H}_{\scriptscriptstyle \text{TLS}} \otimes\mathcal{H}_{\scriptscriptstyle \text{QHO}}$ Hilbert space. The Hamiltonian of such a system may be separated into three parts, one for each subsystem (the free Hamiltonians) and one for the interaction of the two systems:
+
+\begin{equation}
+    \hat{H} = \hat{H}_{\scriptscriptstyle \text{TLS}} + \hat{H}_{\scriptscriptstyle \text{QHO}} + H_{\scriptscriptstyle \text{I}}.
+\end{equation}
+
+Now that we have introduced the TLS–QHO composite system and its Hamiltonian structure, we turn our attention to specific models of interaction: the Jaynes–Cummings Model and the Exciton–Vibration Model. We then examine Open Quantum Dynamics, before analysing the effects of entanglement and coherence on quantum systems.
+
+\subsection{Jaynes--Cummings Model} \label{JCM_Theory}
+
+The Jaynes--Cummings Model (JCM) is a fundamental and canonical model of a TLS--QHO system. It was originally formulated in the context of Quantum Optics in 1963 by Edwin Thompson Jaynes and Fred Cummings \cite{Context1963-JC_Original} and verified experimentally in the context of cavity QED by Herbert Walther in 1985 \cite{Context1993-JC_Verification}. The model itself describes a system where a single TLS is coupled to a single quantised mode of the QHO. The Hamiltonian describing the JCM may be written as:
+
+\begin{equation} \label{JC_H}
+    \hat{H_{\scriptscriptstyle \text{JC}}} = \frac{\hbar\omega_a}{2}\hat{\sigma}_z + \hbar\omega_c\hat{a}^\dagger \hat{a} + g(\hat{a}\hat{\sigma}_{+} + \hat{a}^\dagger\hat{\sigma}_{-}), 
+\end{equation} 
+with 
+\begin{align*}
+    \begin{aligned}
+        \hat{H}_{\scriptscriptstyle \text{TLS}} &\equiv \frac{\hbar\omega_a}{2}\hat{\sigma}_z \\
+        \hat{H}_{\scriptscriptstyle \text{QHO}} &\equiv \hbar\omega_c\hat{a}^\dagger \hat{a} \\
+        \hat{H}_{\scriptscriptstyle \text{I}} &\equiv \hbar g(\hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger).
+    \end{aligned}
+\end{align*}
+
+In Equation \eqref{JC_H}, $\omega_a$ is the excitation frequency of the TLS, $\omega_c$ is excitation frequency of the QHO, and $g$ is the coupling strength constant. $\hat{\sigma}_z, \hat{\sigma}_+, \text{and } \hat{\sigma}_-$ are Pauli spin operators of the form $\hat{\sigma}_z = |1\rangle\langle1| - |0\rangle\langle0|, \hat{\sigma}_+ = |1\rangle\langle0|, \text{and } \hat{\sigma}_- = |0\rangle\langle1|$ which act upon the TLS. The operators $\hat{a}, \hat{a}^\dagger$ act solely on the QHO, such that $\hat{a}|n\rangle = \sqrt{n}|n-1\rangle$ acts to lower the state of the QHO, and $\hat{a}^{\dagger}|n\rangle = \sqrt{n+1}|n+1\rangle$ acts to raise the state of the QHO.\\
+\\
+One of the greatest strengths of the JCM is its simplicity, which enables the model to be exactly solvable. This simplicity, however, is the result of multiple approximations which, in turn, restricts the applicability of the JCM to certain physical systems within certain energy regimes \cite{General2024-JC_overview}. 
+
+The first approximation is the dipole approximation. Here, we consider the QHO to be uniform, such that the interaction Hamiltonian of the JCM can be modelled by a dipole (with energy $\boldsymbol{\hat{d}}$) in a uniform electric field $\boldsymbol{\hat{E}}$, such that:
+
+\begin{equation*}
+    \hat{H}_{\scriptscriptstyle \text{I}} \propto \boldsymbol{\hat{d}} \cdot \boldsymbol{\hat{E}}.
+\end{equation*}
+
+This is known to be a safe approximation especially for cavity QED, but less so for molecules or quantum dots \cite{General2024-JCM_relevance}. 
+
+The second approximation is the single mode approximation. Here, we take the infinite set of quantised modes of the field and discard all except the the mode whose frequency is closest to the transition frequency of the TLS (the resonant mode where $\omega_a = \omega_c$). Thus, the dynamics may be described as a QHO \cite{General2024-JCM_relevance}. In the dipole approximation, the electric field becomes
+
+\begin{equation*}
+    \boldsymbol{\hat{E}}  \propto \hat{a} + \hat{a}^\dagger.
+\end{equation*}
+
+
+The third approximation is the TLS approximation. In many quantum systems, such as atoms, there are many discrete energy levels. The JCM, however, only considers the two lowest energy levels of the system, $|0\rangle$ and $|1\rangle$, and all higher energy levels are neglected. The approximation is only valid, however, when the system is weakly driven, such that the higher energy levels are negligible and the system may be described as a TLS. In the dipole approximation, the dipole energy becomes
+
+\begin{equation*}
+    \boldsymbol{\hat{d}}  \propto \hat{\sigma}_{-} + \hat{\sigma}_{+}.
+\end{equation*}
+
+The last approximation is the Rotating Wave Approximation (RWA). In the full interaction Hamiltonian, the product of the electric field and dipole operator under the RWA becomes
+
+\begin{equation}
+    \boldsymbol{\hat{d}} \cdot \boldsymbol{\hat{E}} \propto (\hat{\sigma}_{-} + \hat{\sigma}_{+})(\hat{a} + \hat{a}^\dagger) \approx \hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger. 
+\end{equation}
+
+The RWA neglects the terms $\hat{\sigma}_{-}\hat{a}, \hat{\sigma}_{+}\hat{a}^\dagger$ of the quadratic expansion, which oscillate rapidly. This approximation, however, is only valid when the coupling strength of the interaction $g$ is much less than the characteristic frequencies, $\omega_a$ and $\omega_c$. \\
+\\
+These approximations lead to certain characteristic features which are key to understanding light--matter interactions that the JCM describes. 
+
+One key characteristic of the JCM is Rabi oscillations, which are the coherent, periodic exchanges of excitation between the TLS and QHO. The interaction Hamiltonian in Equation \eqref{JC_H} creates a flip--flop effect, where an excitation in the TLS causes a photon to be destroyed in the QHO, and de--excitation causes a photon to be created. The interaction Hamiltonian clearly shows this periodic exchange of energy via the coupling of the annihilation operator $\hat{a}$ with the atomic excitation operator $\hat{\sigma}_+$, and $\hat{a}^\dagger$ with $\hat{\sigma}_-$.
+
+This operator coupling further leads to the conservation of the excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$. The excitation number operator commutes with the Hamiltonian ($[\hat{N}, \hat{H}_{\scriptscriptstyle \text{JC}}] = 0$) and so $\hat{N}$ is conserved. As a consequence, the JCM only allows transitions between states with the same excitation number, such as $|g, n+1\rangle$ and $|e,n\rangle$. For example, states such as
+
+\begin{equation}
+    |\psi\rangle = \alpha|g,n+1\rangle + \beta|e,n\rangle
+\end{equation}
+
+are allowed, and in fact such states will be explored in section \ref{res_JCM}.\\
+\\
+It is clear that the JCM's simplicity, arising from the aforementioned approximations, allows it to capture interesting phenomena such as Rabi oscillations. 
+
+\begin{itemize}
+    \item Need to mention energy regimes. Use those two values in JCM relevance paper.
+    \item What do these energy regimes mean? why there?
+    \item Include a diagram of energy regimes.
+    \item Write a small para transitioning into Ex-Vib bit
+\end{itemize}
+
+# FINISH LATER THURSDAY
+
+
+\subsection{Exciton--Vibration Model}  \label{EVM_Theory}
+\subsection{Open Quantum Dynamics} \label{OQS_Theory}
+\begin{itemize}
+    \item Talk about what open quantum systems are. 
+    \item Mention markovian vs non-markovian approach. 
+    \item Go through the Lindblad equation.
+    \begin{itemize}
+        \item Derivation (brief)
+        \item Approximation
+    \end{itemize}
+    \item Talk about some of the key properties of the time-derivative of density matrix. 
+    \item Compare limits - tends to Von Neumann Equation. 
+    \item Talk about vectorisation. 
+    \item Mention how this is useful for numerical methods - point to appendix. 
+    \item Decoherence!!!!!!
+\end{itemize}
 
 
 
@@ -121,14 +241,115 @@ This paper is organised as follows: we begin by discussing the Jaynes-Cummings a
 
 
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Q RESOURCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Quantum Resources}
+
+Quantum resources are fundamental properties of quantum systems which enable us to perform computations and improve a system's efficiency, and are are essential for leveraging the unique advantages of quantum mechanics over classical physics. Two of the most essential resources which we study are entanglement and coherence. In order to inspect how these resources manifest in TLS--QHO systems, we need to be able to understand and quantify them. This section thus focusses on the explanation and quantification of entanglement and coherence, and how they might be used to learn more about our system in question. 
+
+\subsection{Entanglement}
+
+One of the most celebrated quantum resources is entanglement, a unique quantum phenomenon that describes non--classical correlations between subsystems of a composite quantum system. A total state $|\Psi\rangle$ is said to be entangled if it cannot be written as a product state, that is:
+
+\begin{equation}
+    |\Psi\rangle \neq |\psi_A\rangle \otimes |\psi_B\rangle,
+\end{equation}
+
+where $|\psi_A\rangle, |\psi_B\rangle$ are the pure states of subsystems A and B respectively, and $|\Psi\rangle$ is entangled. If a state \textit{can} be written as a product state, it is considered separable and exhibits only classical correlations. Entangled states, however, exhibit non--local correlations that can violate Bell Inequalities, something which can be demonstrated using, for example, the GHZ game. Entanglement is central to many quantum protocols, such as teleportation, superdense coding and key distribution. 
+
+In physical systems such as the TLS--QHO, entanglement naturally arises as the two systems interact, thus serving as an indicator of of entanglement the correlations between the subsystems. We shall now explore several ways of quantifying entanglment by studying various measures. 
+
 \subsubsection{Von Neumann Entropy}
+
+For a pure state density matrix $\rho_{\scriptscriptstyle \text{AB}}$ \cite{Entanglement1999-Overview_&REE}, the subsystem of A is  found by taking the partial trace over subsystem B, and vice versa, such that $\rho_{\scriptscriptstyle \text{A}} = tr_{\scriptscriptstyle \text{B}}(\rho_{\scriptscriptstyle \text{AB}})$ and $\rho_{\scriptscriptstyle \text{B}} = tr_{\scriptscriptstyle \text{A}}(\rho_{\scriptscriptstyle \text{AB}})$. The von Neumann entropy of the reduced density operators is then given by:
+
+\begin{equation} \label{VNE_original}
+    S(\rho_{\scriptscriptstyle \text{AB}}) = -\text{tr}(\rho_{\scriptscriptstyle \text{A}}\ln\rho_{\scriptscriptstyle \text{A}}) = -\text{tr}(\rho_{\scriptscriptstyle \text{B}}\ln\rho_{\scriptscriptstyle \text{B}}).
+\end{equation}
+
+We may simplify this further by considering the subsystem density matrices' eigenvalues. If, for example, we are looking at the von Neumann entropy of subsystem A, we first write the subsystem's density matrix as a spectral decomposition:
+
+\begin{equation} \label{VNE_spectral_decomp}
+    \rho_{\scriptscriptstyle \text{A}} = \sum_i \lambda_i|\psi_i\rangle\langle\psi_i|, 
+\end{equation}
+
+where $\lambda_i$ and $|\psi_i\rangle$ are the eigenvalues and eigenstates of the subsystem density matrix. Since $\rho_{\scriptscriptstyle \text{A}}$ in \eqref{VNE_spectral_decomp} is diagonal,
+
+\begin{equation} \label{VNE_eigenvals}
+\text{tr}(\ln\rho_{\scriptscriptstyle \text{A}}) = \sum_i \ln\lambda_i,\text{ and } \text{tr}(\rho_{\scriptscriptstyle \text{A}}) = \sum_i \lambda_i.
+\end{equation}
+
+Inserting equations \eqref{VNE_spectral_decomp}, \eqref{VNE_eigenvals} into \eqref{VNE_original} yields a more manageable formulation of the von Neumann entropy:
+
+\begin{equation}
+    \text{tr}(\rho_{\scriptscriptstyle \text{A}}) = \sum_i \lambda_i\ln\lambda_i.
+\end{equation}
+
+The von Neumann entropy is a strong and popular candidate when working with pure density matrices. However, the measure fails to distinguish between classical and quantum correlations for mixed states. As we shall see in section \ref{results}, we use the von Neumann entropy for closed system evolution since we always start in pure states. For open quantum systems, however, since pure states become mixed states during evolution, the von Neumann entropy is no longer appropriate. For mixed states, then, we may use Negativity, which applies to both pure and mixed states. 
+
 \subsubsection{Negativity}
+
+Negativity, a simple measure of entanglement, is defined as
+
+\begin{equation}
+    \mathcal{N} = \sum_i |\lambda_i|,
+\end{equation}
+
+where $\lambda_i$ are the negative eigenvalues of the partial transpose of the full system density matrix $\rho_{\scriptscriptstyle \text{AB}}$. The partial transpose of a density matrix is computed by transposing one subsystem of the full density matrix, and is written as $\rho_{\scriptscriptstyle \text{AB}}^{T_A}$ or $\rho_{\scriptscriptstyle \text{AB}}^{T_B}$. 
+
+Negativity is a valid measure for both pure and mixed states, making it a powerful tool for quantifying the entanglement of systems undergoing open quantum evolution. Furthermore, it is said to be a LOCC (Local Operations and Classical Communications) montone \cite{Entanglement2009-Definition}, meaning negativity does not increase under LOCC. Due to these two properties, we shall use negativity to analyse the entanglement of our models under open quantum evolution in section \ref{results}. 
 \subsubsection{Other Entanglement Measures}
+\begin{itemize}
+    \item Should I include this section? I would be putting in concurrence and renyi entropy, but since they dont apply to TLS-QHO systems, is it worth it to include?
+\end{itemize}
 \subsection{Coherence}
+
+Whilst entanglement captures non--classical correlations between subsystems, coherence reflects the superposition properties within individual subsystems, and is another essential quantum resource we must examine to fully understand the dynamics of TLS--QHO systems.
+
+A quantum state $\rho$ is said to be coherent if it has off--diagonal elements in its matrix form. That is,
+
+\begin{equation}
+    \rho = \sum_{i,j}\rho|i\rangle\langle j|,
+\end{equation}
+
+where $\rho_{ij} \neq 0$ for $i\neq j$ elements. These off--diagonals are coherences, and in particular they make coherence a basis--dependent quantum resource. For example, let us look at the state $|\psi_{\scriptscriptstyle \text{A}}\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$. As a density matrix, this takes the form:
+
+\begin{equation*}
+    \rho_{\scriptscriptstyle \text{A}} = \frac{1}{2}(|0\rangle + |1\rangle)(\langle0| +\langle1|) \rightarrow \frac{1}{2}
+    \begin{pmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{pmatrix}.
+\end{equation*}
+
+This density matrix is indeed coherent, as seen by the presence of these off--diagonals. If, however, the state were $|\psi_{\scriptscriptstyle \text{B}}\rangle = |0\rangle$, we would have
+
+\begin{equation*}
+    \rho_{\scriptscriptstyle \text{B}} = |0\rangle\langle0| \rightarrow 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & 0
+    \end{pmatrix},
+\end{equation*}
+
+which has no off--diagonals and is thus incoherent. As we can see, the presence of off--diagonals in $|\rho_{\scriptscriptstyle \text{A}} \rangle$ is a measure of the superposition of the state, a property which is uniquely quantum. The lack of these off--diagonals therefore implies that, in this measurement basis, the state behaves classically. Coherence thus helps us to identify the 'quantumness' of a state in a given basis by looking at the amount of superposition present. As we saw in section \ref{OQS_Theory}, for open quantum systems, the decay of coherence (decoherence) in the system is incredibly important to monitor and minimise,  since it determines the rate at which the system loses its superposition features and begins to behave classically. We shall now explore several ways of quantifying coherence, so that we may use them for studying the manifestation of quantum resources in our TLS--QHO models. 
+
 \subsubsection{Relative Entropy of Coherence}
+
+A general distance-based coherence measure is defined as:
+
+\begin{equation}
+    C_{\scriptscriptstyle\text{D}}(\rho) = \inf_{\sigma \in I} D(\rho,\sigma)
+\end{equation}
+
+where D is a distance and we take the infimum over the set of incoherent states, and $\sigma$ is a reference state \cite{Coherence2017-Colloquium}. If, similarly to entanglement, we take the distance measure to be the quantum relative entropy, we obtain the relative entropy of coherence, $C_r$. Moreover, it is equal to the distillable coherence. Thus, we obtain:
+
+\begin{equation}
+C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho)
+\end{equation}
+
+where $S$ is the Von Neumann entropy, and $\rho_{diag}$ is the state obtained by removing all off-diagonal elements.
 \subsubsection{Coherence Norm}
 
 
@@ -189,12 +410,64 @@ This paper is organised as follows: we begin by discussing the Jaynes-Cummings a
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
-\subsection{QuTip and Code}
-\subsection{Population, Entanglement and Coherence of the Jaynes-Cummings Model}
+\newpage
+\section{Results} \label{results}
+\begin{itemize}
+    \item Talk about numerical vs analytical results.
+    \item Talk about your use of code for the numerical section - python's QuTip. 
+    \item Mention custom functions for negativity, rel. ent. coherence (point to appendix).
+    \item Talk about structure of this section. 
+\end{itemize}
+
+\subsection{Population, Entanglement and Coherence of the Jaynes--Cummings Model} \label{res_JCM}
+
+As mentioned in section \ref{JCM_Theory}, the Jaynes--Cummings Model (JCM) is a simple yet effective 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsubsection{Closed Evolution}
+\begin{itemize}
+    \item Mention that the JCM closed is very well documented. 
+    \item Mention that you've done it analytically, and numerically to verify your results.
+    \item Go through the analytical parts in high detail - ALL THE RESEARCH YOUVE DONE 
+    \item For each analytical final result:
+    \begin{itemize}
+        \item Go through the theory completely. 
+        \item Explain your expectations.
+        \item Go through the code numerically and show some graphs where necessary. 
+        \item Explain your results numerical and whether they match expectations. 
+    \end{itemize}
+\end{itemize}
 \subsubsection{Open Evolution}
-\subsection{Population, Entanglement and Coherence of the Exciton-Vibration Model}
+\begin{itemize}
+    \item Mention that you've done only one part analytically, and numerically to verify your results.
+    \item For each analytical final result:
+    \begin{itemize}
+        \item Go through the theory completely. 
+        \item Explain your expectations.
+        \item Go through the code numerically and show graphs. 
+        \item Explain your results numerical and whether they match expectations. 
+    \end{itemize}
+\end{itemize}
+\subsection{Population, Entanglement and Coherence of the Exciton--Vibration Model}
 \subsubsection{Closed Evolution}
 \subsubsection{Open Evolution}
 \subsection{Discussion}
@@ -233,9 +506,9 @@ This paper is organised as follows: we begin by discussing the Jaynes-Cummings a
 
 
 
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Conclusion and Outlook}
 
 
