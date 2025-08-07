@@ -7,13 +7,13 @@ import math
 # https://ar5iv.labs.arxiv.org/html/2112.08917v1
 # links for weak/strong regimes
 ############################## SETUP ######################################
-
-tlist = np.linspace(0.0, 200.0, 200)
+t_max = 200.0  # time in natural units
+tlist = np.linspace(0.0, t_max * 0.658, 200)  # time in ps conversion done here
 
 # constants
-w = 1.0  # natural units, w = 1, hbar =1, kb = 1, GHz freq
-g = 0.1
-N = 30  # num Fock states
+w = 1.0  # natural units, w = 1, hbar =1, kb = 1, meV
+g = 0.05  # strong coupling regime, C = 4g^2/ gamma*gamma_th >> 1, AND g << w AND Z = 4g^2/w_aw_c < 0.04
+N = 2  # num Fock states
 
 # Bases
 basis_atom_e = q.basis(2, 0)
@@ -36,8 +36,8 @@ H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
 
 ############################ SIMULATION ###################################
-n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=0>
-e_ops = [s_raise * s_lower, n0_pop]
+n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
+e_ops = [s_raise * s_lower, n1_pop]
 
 sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
 results = sim.evolve()
@@ -59,7 +59,7 @@ sim.plot(
         },
         {
             "y_data": results_expt[1],
-            "label": "Cavity photon number, n = 0",
+            "label": "Cavity photon number, n = 1",
             "colour": "tab:red",
         },
     ],

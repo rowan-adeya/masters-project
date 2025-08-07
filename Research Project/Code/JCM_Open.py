@@ -3,13 +3,15 @@ import qutip as q
 import numpy as np
 
 ############################## SETUP ######################################
-# https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.58.353 for params 
-tlist = np.linspace(0.0, 200.0, 500) 
+# https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.58.353 for params
+
+t_max = 1500.0  # time in natural units
+tlist = np.linspace(0.0, t_max * 0.658, 1000)  # time in ps conversion done here
 
 # constants
-w = 1.0  # natural units, w = 1, hbar =1
-g = 0.08  # weak regime, g < gamma, gamma_th AND g << w (zeta = 0.01, C = 1)
-N = 30  # num Fock states
+w = 1.0  # natural units, w = 1, hbar =1, meV
+g = 0.05  # strong coupling regime, C = 4g^2/ gamma*gamma_th >> 1, AND g << w AND Z = 4g^2/w_aw_c < 0.04
+N = 2  # num Fock states
 
 # Bases
 basis_atom_e = q.basis(2, 0)
@@ -32,16 +34,16 @@ psi0 = q.tensor(basis_atom_e, basis_qho_0)
 ########################## OPEN SIM SETUP #################################
 
 # Constants
-gamma = 0.09
-gamma_th = 0.09
-kbT = 0.001 # meV
+gamma = 0.01
+gamma_th = 0.01
+kbT = 0.001  # meV
 n_omega = 1 / (
     np.exp(w / kbT) - 1
 )  # low temp regime so n_omega -> 0, optical/IR regime
 
 # Operators
-n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=0>
-e_ops = [s_raise * s_lower, n0_pop]
+n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
+e_ops = [s_raise * s_lower, n1_pop]
 
 
 L_spont = [np.sqrt(gamma) * s_lower]
@@ -187,8 +189,16 @@ sim_open_both.plot(
 sim_open_spont.plot(
     "OQS_Pop_Spont",
     [
-        {"y_data": expt_open_spont[0], "label": "Atomic subsystem", "colour": "tab:red"},
-        {"y_data": expt_open_spont[1], "label": "Cavity photon number, n = 0", "colour": "tab:blue"},
+        {
+            "y_data": expt_open_spont[0],
+            "label": "Excited Atomic State",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": expt_open_spont[1],
+            "label": "Cavity photon number, n = 1",
+            "colour": "tab:blue",
+        },
     ],
     "Populations",
     savepath="JCM",
@@ -197,8 +207,16 @@ sim_open_spont.plot(
 sim_open_therm.plot(
     "OQS_Pop_Therm",
     [
-        {"y_data": expt_open_therm[0], "label": "Exciton subsystem", "colour": "tab:red"},
-        {"y_data": expt_open_therm[1], "label": "Cavity photon number, n = 0", "colour": "tab:blue"},
+        {
+            "y_data": expt_open_therm[0],
+            "label": "Excited Atomic State",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": expt_open_therm[1],
+            "label": "Cavity photon number, n = 1",
+            "colour": "tab:blue",
+        },
     ],
     "Populations",
     savepath="JCM",
@@ -207,8 +225,16 @@ sim_open_therm.plot(
 sim_open_both.plot(
     "OQS_Pop_Both",
     [
-        {"y_data": expt_open_both[0], "label": "Exciton subsystem", "colour": "tab:red"},
-        {"y_data": expt_open_both[1], "label": "Cavity photon number, n = 0", "colour": "tab:blue"},
+        {
+            "y_data": expt_open_both[0],
+            "label": "Excited Atomic State",
+            "colour": "tab:red",
+        },
+        {
+            "y_data": expt_open_both[1],
+            "label": "Cavity photon number, n = 1",
+            "colour": "tab:blue",
+        },
     ],
     "Populations",
     savepath="JCM",
