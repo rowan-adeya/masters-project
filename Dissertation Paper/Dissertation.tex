@@ -113,13 +113,13 @@ Now that we have introduced the TLS–QHO composite system and its Hamiltonian s
 The Jaynes--Cummings Model (JCM) is a fundamental and canonical model of a TLS--QHO system. It was originally formulated in the context of Quantum Optics in 1963 by Edwin Thompson Jaynes and Fred Cummings \cite{Context1963-JC_Original} and verified experimentally in the context of cavity QED by Herbert Walther in 1985 \cite{Context1993-JC_Verification}. The model itself describes a system where a single TLS is coupled to a single quantised mode of the QHO. The Hamiltonian describing the JCM may be written as:
 
 \begin{equation} \label{JC_H}
-    \hat{H_{\scriptscriptstyle \text{JC}}} = \frac{\hbar\omega_a}{2}\hat{\sigma}_z + \hbar\omega_c\hat{a}^\dagger \hat{a} + g(\hat{a}\hat{\sigma}_{+} + \hat{a}^\dagger\hat{\sigma}_{-}), 
+    \hat{H_{\scriptscriptstyle \text{JC}}} = \frac{\hbar\omega_a}{2}\hat{\sigma}_z + \hbar\omega_c\left(\hat{a}^\dagger \hat{a} + \frac{1}{2} \right) + g(\hat{a}\hat{\sigma}_{+} + \hat{a}^\dagger\hat{\sigma}_{-}), 
 \end{equation} 
 with 
 \begin{align*}
     \begin{aligned}
         \hat{H}_{\scriptscriptstyle \text{TLS}} &\equiv \frac{\hbar\omega_a}{2}\hat{\sigma}_z \\
-        \hat{H}_{\scriptscriptstyle \text{QHO}} &\equiv \hbar\omega_c\hat{a}^\dagger \hat{a} \\
+        \hat{H}_{\scriptscriptstyle \text{QHO}} &\equiv \hbar\omega_c\left(\hat{a}^\dagger \hat{a} + \frac{1}{2} \right) \\
         \hat{H}_{\scriptscriptstyle \text{I}} &\equiv \hbar g(\hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger).
     \end{aligned}
 \end{align*}
@@ -133,8 +133,6 @@ The first approximation is the dipole approximation. Here, we consider the QHO t
 \begin{equation*}
     \hat{H}_{\scriptscriptstyle \text{I}} \propto \boldsymbol{\hat{d}} \cdot \boldsymbol{\hat{E}}.
 \end{equation*}
-
-This is known to be a safe approximation especially for cavity QED, but less so for molecules or quantum dots \cite{General2024-JCM_relevance}. 
 
 The second approximation is the single mode approximation. Here, we take the infinite set of quantised modes of the field and discard all except the the mode whose frequency is closest to the transition frequency of the TLS (the resonant mode where $\omega_a = \omega_c$). Thus, the dynamics may be described as a QHO \cite{General2024-JCM_relevance}. In the dipole approximation, the electric field becomes
 
@@ -157,23 +155,57 @@ The last approximation is the Rotating Wave Approximation (RWA). In the full int
 
 The RWA neglects the terms $\hat{\sigma}_{-}\hat{a}, \hat{\sigma}_{+}\hat{a}^\dagger$ of the quadratic expansion, which oscillate rapidly. This approximation, however, is only valid when the coupling strength of the interaction $g$ is much less than the characteristic frequencies, $\omega_a$ and $\omega_c$. \\
 \\
-These approximations lead to certain characteristic features which are key to understanding light--matter interactions that the JCM describes. 
+These approximations, especially the RWA, restrict the JCM to certain physical regimes. Indeed, the JCM primarily concerns itself with systems in the strong--coupling regime \cite{General2024-JCM_relevance}. We now introduce three key conditions for which to uphold this physical regime:
+\begin{equation} \label{JCM_condition_g<omega}
+    g \ll \omega_a, \omega_c 
+\end{equation} 
+
+must be held so that the RWA remains valid. Furthermore, we introduce the cooperativity parameter,
+
+\begin{equation} \label{JCM_condition_cooperativity}
+    C = \frac{4g^2}{\gamma\cdot\gamma_{\scriptscriptstyle th}} > 1
+\end{equation}
+
+where $\gamma, \gamma_{\scriptscriptstyle th}$ are the decay rates due to spontaneous atomic emission and thermal decay respectively. Finally, we introduce the normalised coupling parameter, 
+
+\begin{equation} \label{JCM_condition_norm_coupling}
+    \zeta = C = \frac{4g^2}{\omega_a\cdot\omega_c} < 0.04
+\end{equation}, 
+
+with $\zeta \approx \mathcal{O}(1)$ indicating the ultrastrong--coupling regime in which the condition in equation \eqref{JCM_condition_g<omega} is no longer held, and the discarded terms under the RWA approximation are no longer negligible.\\
+\\
+If we thus remain in valid coupling regimes, the JCM is a fertile model for studying quantum resources in TLS--QHO systems. In fact, there are certain characteristic features captured by the JCM are key to understanding the nature of light--matter interactions it describes. 
 
 One key characteristic of the JCM is Rabi oscillations, which are the coherent, periodic exchanges of excitation between the TLS and QHO. The interaction Hamiltonian in Equation \eqref{JC_H} creates a flip--flop effect, where an excitation in the TLS causes a photon to be destroyed in the QHO, and de--excitation causes a photon to be created. The interaction Hamiltonian clearly shows this periodic exchange of energy via the coupling of the annihilation operator $\hat{a}$ with the atomic excitation operator $\hat{\sigma}_+$, and $\hat{a}^\dagger$ with $\hat{\sigma}_-$.
 
 This operator coupling further leads to the conservation of the excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$. The excitation number operator commutes with the Hamiltonian ($[\hat{N}, \hat{H}_{\scriptscriptstyle \text{JC}}] = 0$) and so $\hat{N}$ is conserved. As a consequence, the JCM only allows transitions between states with the same excitation number, such as $|g, n+1\rangle$ and $|e,n\rangle$. For example, states such as
 
-\begin{equation}
+\begin{equation} \label{JCM_general_state}
     |\psi\rangle = \alpha|g,n+1\rangle + \beta|e,n\rangle
-\end{equation}
+\end{equation} 
 
-are allowed, and in fact such states will be explored in section \ref{res_JCM}.\\
+are allowed, and such states will be explored in section \ref{res_JCM}.\\
 \\
-It is clear that the JCM's simplicity, arising from the aforementioned approximations, allows it to capture interesting phenomena such as Rabi oscillations. 
+It is clear that the JCM's simplicity, arising from the aforementioned approximations, allows it to capture interesting phenomena such as Rabi oscillations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{itemize}
-    \item Need to mention energy regimes. Use those two values in JCM relevance paper.
-    \item What do these energy regimes mean? why there?
     \item Include a diagram of energy regimes.
     \item Write a small para transitioning into Ex-Vib bit
 \end{itemize}
@@ -345,110 +377,183 @@ A general distance-based coherence measure is defined as:
 
 where D is a distance and we take the infimum over the set of incoherent states, and $\sigma$ is a reference state \cite{Coherence2017-Colloquium}. If, similarly to entanglement, we take the distance measure to be the quantum relative entropy, we obtain the relative entropy of coherence, $C_r$. Moreover, it is equal to the distillable coherence. Thus, we obtain:
 
-\begin{equation}
+\begin{equation} \label{rel_ent_coh}
 C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho)
 \end{equation}
 
-where $S$ is the Von Neumann entropy, and $\rho_{diag}$ is the state obtained by removing all off-diagonal elements.
-\subsubsection{Coherence Norm}
+where $S$ is the Von Neumann entropy, and $\rho_{diag}$ is the state obtained by removing all off-diagonal elements. In our simulations, we exclusively use the relative entropy of coherence. This choice is motivated by its widespread adoption and its ease of implementation, whilst still faithfully quantifying coherence via the off--diagonals of the state.
 
+\subsubsection{$l_p$ Norm of Coherence}
 
+The $l_p$ norm of coherence is defined as:
 
+\begin{equation}
+    C_l(\rho) = \sum_{i\neq j} |\rho_{i,j}|, 
+\end{equation}
 
+This measure is particularly intuitive, as it directly reflects the departure of a quantum state from classicality through the off--diagonal elements of a state. In fact, according to \cite{Coherence2014-seed}, the $l_p$ norm satisfies coherence monotonicity criteria which makes it a valid coherence monotone. Alongside the relative entropy of coherence, it constitutes one of the most general and widely accepted coherence measures. By contrast, coherence measures based on other $l_p$ norms, such as the squared Hilbert–Schmidt norm ($l_2$), while similarly based on off--diagonal elements, may fail to satisfy the full set of monotonicity conditions, and hence do not generally define proper coherence monotones.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+We shall not, however, be using this measure because it offers no significant advantage over the relative entropy of coherence in our context. Moreover, since the relative entropy already captures the essential coherence behaviour we aim to quantify, introducing additional measures would add redundancy without providing further insight.\\
+\\
+We have now established the theoretical foundations necessary to study the manifestation of quantum resources in TLS--QHO systems, including two key models, open quantum evolution, and quantifers for both entanglement and coherence. The following section presents our analytical and computational results, highlighting the characteristic features and regimes of both the Jaynes--Cummings and Exciton--Vibration models. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Results} \label{results}
-\begin{itemize}
-    \item Talk about numerical vs analytical results.
-    \item Talk about your use of code for the numerical section - python's QuTip. 
-    \item Mention custom functions for negativity, rel. ent. coherence (point to appendix).
-    \item Talk about structure of this section. 
-\end{itemize}
+
+In this section, we present both analytical and numerical results that illustrate how entanglement and coherence emerge and evolve in TLS--QHO systems under both closed and open evolution dynamics.\\
+\\
+We begin by examining the closed, unitary dynamics of the JCM, combining both analytical and computational methods. This is followed by a numerical simulation of the Jaynes--Cummings model (JCM) under open system dynamics. We then turn to the Exciton--Vibration model (EVM), analysing its behaviour under closed and open evolution computationally. Lastly, we provide comparative analysis of the two models, highlighting the similarities and differences in their population, coherence and entanglement dynamics. \\
+\\
+Throughout the computational elements of this paper, we use the QuTip library of the Python coding language. QuTip is a highly developed library with extensive functionality that enables the user to model almost any quantum system. It provides nearly all the required functionality for our simulations, and is well suited for models considered in this work. The only functions define manually are those for computing the relative entropy of coherence and negativity functions, which are included in appendix \ref{appendix_code}. All code required to set up the simulations has been structured into a modular Python class, and is available at {should I include a GitHub link here?}.
 
 \subsection{Population, Entanglement and Coherence of the Jaynes--Cummings Model} \label{res_JCM}
 
-As mentioned in section \ref{JCM_Theory}, the Jaynes--Cummings Model (JCM) is a simple yet effective 
+The JCM is a simple yet powerful framework for describing TLS--QHO systems. As mentioned in section \ref{JCM_Theory}, its exact solvability stems from its key approximations, making the JCM an ideal starting point for exploring and understanding the dynamics of TLS--QHO systems, and how quantum resources may manifest.\\
+\\
+We consider both closed and open evolution of the system using the Jaynes--Cummings Hamiltonian in equation \eqref{JC_H}. The closed dynamics allow for both analytical and computational solutions, whilst open dynamics require numerical treatment.\\
+\\
+For all computational simulations of the JCM, we restrict the model to the strong coupling regime. We consider the characteristic frequencies of our system ($\omega_a, \omega_c$) to be in resonance with one another, i.e. $\omega_a = \omega_c = \omega$. This is a common method to simplify the JCM, and is also employed during our analytical work in the closed evolution study. We set $\omega = 1.0$ and $\hbar = 1$, such that the system is in natural units, and energy in this system is in units of $\omega$. 
 
+To connect our model to experimentally relevant systems, we interpret $\omega$ as being on the scale of meV, which corresponds to THz frequencies, a regime commonly encountered in cavity QED and quantum dot experiments \cite{General2024-JCM_relevance}. As such, the timescales of the system are in the picosecond (ps) range, ensuring that our simulations represent realistic physical regimes.
 
+We choose the coupling strength $g = 0.05$, and our decay rates for spontaneous emission ($\gamma$) and thermal decay ($\gamma_{\scriptscriptstyle th}$) to be $\gamma = \gamma_{\scriptscriptstyle th} = 0.01$, all in units of $\omega$. These values correspond to a cooperativity parameter of $C = 100 > 1$ and a coupling ratio $g = 0.05 \ll \omega$, satisfying the strong coupling condition given in equation \eqref{JCM_condition_cooperativity} and validating the rotating wave approximation (RWA) via equation \eqref{JCM_condition_g<omega}. Moreover, the normalised coupling parameter in equation \eqref{JCM_condition_norm_coupling} is $\zeta = 0.01 < 0.04$, confirming that the system remains outside of the ultrastrong coupling regime.\\
+\\
+In order to explore how quantum systems evolve, we must define our initial state. For our closed evolution analytical solutions of the JCM, we consider:
 
+\begin{equation} \label{init_JCM_e0}
+    |\psi (\text{t}=0)\rangle = |e, 0\rangle,
+\end{equation}
 
+where we have relabelled the TLS subsystem so that $|0\rangle \rightarrow|g\rangle$ represents the ground state, and $|1\rangle \rightarrow |e\rangle$ represents the excited state. This initial state appears in several theoretical treatments of the JCM (e.g., \cite{Entanglement2009-REE_VNapplied}), as it isolates a single excitation in the system and allows for analytical solutions due to photon number conservation.
 
+For \textit{all} computational simulations of the JCM, we consider both \eqref{init_JCM_e0} and:
 
+\begin{equation}
+    |\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle).
+\end{equation}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+This system is particularly well-suited for exploring coherence dynamics, as the superposition introduces off-diagonal elements in the TLS subsystem of the initial state.\\
+\\
+Now that we have set up the relevant parameters and initial states, we begin by examining the closed evolution of the system.
 
 \subsubsection{Closed Evolution}
+
+Our analytical goal for the closed evolution of the JCM is to see whether we can compute both the von Neumann entropy and relative entropy of coherence by solving the Jaynes--Cummings Hamiltonian. We begin by diagonalising the Hamiltonian, so that we can evolve the initial state $|\psi (\text{t}=0)\rangle = |e, 0\rangle$ using the time evolution operator $\hat{U}(t) = e^{-i\hat{H}t/\hbar}$. We then express the time evolved state as a density matrix, and from there we can use equation \eqref{VNE_spectral_decomp} to find the von Neumann entropy, and equation \eqref{rel_ent_coh} to find the relative entropy of coherence.\\
+\\
+Recall from equation \eqref{JC_H} that the Jaynes--Cummings Hamiltonian is written as follows:
+\begin{equation*}
+        \hat{H}_{\scriptscriptstyle \text{JC}} = \frac{\hbar\omega_a}{2}\hat{\sigma}_z + \hbar\omega_c\left(\hat{a}^\dagger \hat{a} + \frac{1}{2} \right) + g(\hat{a}\hat{\sigma}_{+} + \hat{a}^\dagger\hat{\sigma}_{-}).
+\end{equation*}
+
+A general state of the JCM, due  to the conservation of the excitation number, is written in equation \eqref{JCM_general_state} as
+
+\begin{equation*}
+    |\psi\rangle = \alpha|g,n+1\rangle + \beta|e,n\rangle.
+\end{equation*}
+\\
+We now restrict the system to the $n=0$ excitation subspace, which corresponds to the computational basis \small{\{$|g,1\rangle,|e,0\rangle$\}}. This choice is consistent with our initial condition $|e,0\rangle$. The diagonalisation is simplified by working in the matrix form of $\hat{H}_{\scriptscriptstyle \text{JC}}$.\\
+\\
+\begin{equation*}
+    \hat{H}_{\scriptscriptstyle \text{JC}} = 
+    \begin{bmatrix}
+        \langle g,1|\hat{H}|g,1\rangle & \langle g,1|\hat{H}|e,0\rangle\\
+        \langle e,0|\hat{H}|g,1\rangle & \langle e,0|\hat{H}|e,0\rangle
+    \end{bmatrix}
+\end{equation*}
+\\
+\begin{equation*}
+=
+    \begin{bmatrix}
+        \frac{3\hbar\omega_c - \hbar\omega_a}{2} & \small{\hbar g} \\
+        \small{\hbar g} & \frac{\hbar\omega_c + \hbar\omega_a}{2}
+    \end{bmatrix}
+\end{equation*}
+\\
+After solving this matrix for the eigenvalues and eigenstates, we retrieve the diagonalised Hamiltonian written in its eigenbasis:
+
+\begin{equation*}
+    \hat{H}_{\scriptscriptstyle \text{diag}} = 
+    \begin{bmatrix}
+        \hbar\omega_c + k & 0 \\
+        0 & \hbar\omega_c - k
+    \end{bmatrix},
+\end{equation*}
+
+where $k = \hbar\sqrt{\frac{\omega_a^2 + \omega_c^2}{4} - \frac{\omega_a\omega_c}{2} + g^2}$. The eigenstates of $\hat{H}_{\scriptscriptstyle \text{diag}}$ are labelled as \{$|\psi_\pm\rangle$\}, and can be expressed as a superposition of our computational basis as follows:
+
+\begin{equation*}
+    |\psi_\pm\rangle = \left(1 + \left(\frac{a\pm k}{\hbar g}\right)^2\right)^{-\frac{1}{2}} \cdot\left(|g,1\rangle + \frac{a\pm k}{\hbar g}|e,0\rangle\right),
+\end{equation*}
+
+where $a = \hbar\left(\frac{\omega_a - \omega_c}{2}\right)$. Now that we have our diagonalised Hamiltonian, we write it as the unitary evolution operator:
+
+\begin{equation*}
+    \hat{U}(t) = e^{-i\hat{H}t/\hbar}
+\end{equation*}
+\\ 
+\begin{equation*}
+    = 
+    \begin{bmatrix}
+        e^{-i(\omega_c + k)t} & 0 \\
+        0 & e^{-i(\omega_c - k)t}
+    \end{bmatrix}.
+\end{equation*}
+
+We may retrieve the time--evolved state using the relation:
+\begin{equation} \label{unitary_evo_eqn}
+    |\psi(t)\rangle = \hat{U}(t)|\psi(\text{t}=0)\rangle.
+\end{equation}
+\\
+However, $\hat{U}(t)$ is in the eigenbasis, a different basis to our initial condition. We must therefore perform a basis transformation on our initial condition, such that $P^\dagger|\psi(\text{t} = 0)\rangle = |\psi'(\text{t} = 0)\rangle$, where $P$ is our transformation matrix whose columns are formed of the eigenstates, and $|\psi'(\text{t} = 0)\rangle$ is our initial condition in the eigenbasis. Performing this operation, we get:
+
+\begin{equation*}
+    |\psi'(\text{t} = 0)\rangle = 
+    \begin{bmatrix}
+        \left(1 + \left(\frac{a + k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a + k}{\hbar g}\right) \\
+        \left(1 + \left(\frac{a - k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a - k}{\hbar g}\right)
+    \end{bmatrix}.
+\end{equation*}
+
+Using equation \eqref{unitary_evo_eqn}, we may then write our final time--evolved state as:
+
+\begin{equation*}
+    |\psi'(\text{t} = 0)\rangle = 
+    \begin{bmatrix}
+        e^{-i(\omega_c + k)t}\cdot\left(1 + \left(\frac{a + k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a + k}{\hbar g}\right) \\
+        e^{-i(\omega_c + k)t}\cdot\left(1 + \left(\frac{a - k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a - k}{\hbar g}\right)
+    \end{bmatrix}.
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \begin{itemize}
-    \item Mention that the JCM closed is very well documented. 
-    \item Mention that you've done it analytically, and numerically to verify your results.
-    \item Go through the analytical parts in high detail - ALL THE RESEARCH YOUVE DONE 
-    \item For each analytical final result:
+    
     \begin{itemize}
         \item Go through the theory completely. 
         \item Explain your expectations.
@@ -555,7 +660,7 @@ As mentioned in section \ref{JCM_Theory}, the Jaynes--Cummings Model (JCM) is a 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{appendices}
-    \section{Code Stuff}
+    \section{Code Stuff} \label{appendix_code}
 \end{appendices}
 \newpage
 
