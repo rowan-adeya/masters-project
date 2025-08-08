@@ -205,6 +205,7 @@ class TLSQHOSimulator:
 
             elif subsys == "QHO":
                 dm = dm.ptrace(1)
+
             diag_elements = dm.diag()
             dm_diag = q.Qobj(np.diag(diag_elements), dims=dm.dims)
 

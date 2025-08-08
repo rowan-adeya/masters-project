@@ -64,7 +64,7 @@ neg_spont = sim_open_spont.negativity(results_open_spont, subsys="TLS")
 
 coh_tls_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="TLS")
 coh_qho_spont = sim_open_spont.rel_coherence(results_open_spont, subsys="QHO")
-
+coh_tot_spont = sim_open_spont.rel_coherence(results_open_spont)
 # Thermal Dissipation
 sim_open_therm = TLSQHOSimulator(H, psi0, L_therm, e_ops, times=tlist)
 results_open_therm = sim_open_therm.evolve()
@@ -75,6 +75,7 @@ neg_therm = sim_open_therm.negativity(results_open_therm, subsys="TLS")
 
 coh_tls_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="TLS")
 coh_qho_therm = sim_open_therm.rel_coherence(results_open_therm, subsys="QHO")
+coh_tot_therm = sim_open_therm.rel_coherence(results_open_therm)
 
 # Spontaneous Emission + Thermal Dissipation
 L_both = L_spont + L_therm
@@ -87,7 +88,7 @@ neg_both = sim_open_both.negativity(results_open_both, subsys="TLS")
 
 coh_tls_both = sim_open_both.rel_coherence(results_open_both, subsys="TLS")
 coh_qho_both = sim_open_both.rel_coherence(results_open_both, subsys="QHO")
-
+coh_tot_both = sim_open_both.rel_coherence(results_open_both)
 
 ############################### PLOTS #####################################
 # Negativity
@@ -137,11 +138,17 @@ sim_open_spont.plot(
             "y_data": coh_tls_spont,
             "label": "Atomic subsystem",
             "colour": "tab:red",
+            "linestyle": "--",
         },
         {
             "y_data": coh_qho_spont,
             "label": "Cavity subsystem",
             "colour": "tab:blue",
+        },
+        {
+            "y_data": coh_tot_spont,
+            "label": "Total system",
+            "colour": "tab:green",
         },
     ],
     "Coherence",
@@ -155,11 +162,17 @@ sim_open_therm.plot(
             "y_data": coh_tls_therm,
             "label": "Atomic subsystem",
             "colour": "tab:red",
+            "linestyle": "--",
         },
         {
             "y_data": coh_qho_therm,
             "label": "Cavity subsystem",
             "colour": "tab:blue",
+        },
+        {
+            "y_data": coh_tot_therm,
+            "label": "Total system",
+            "colour": "tab:green",
         },
     ],
     "Coherence",
@@ -173,11 +186,17 @@ sim_open_both.plot(
             "y_data": coh_tls_both,
             "label": "Atomic subsystem",
             "colour": "tab:red",
+            "linestyle": "--",
         },
         {
             "y_data": coh_qho_both,
             "label": "Cavity subsystem",
             "colour": "tab:blue",
+        },
+        {
+            "y_data": coh_tot_both,
+            "label": "Total system",
+            "colour": "tab:green",
         },
     ],
     "Coherence",
