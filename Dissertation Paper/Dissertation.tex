@@ -4,7 +4,7 @@
 \usepackage{titlesec}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\usepackage[font=footnotesize]{caption}
+\usepackage[font=scriptsize]{caption}
 \usepackage{subcaption}
 \usepackage{dsfont}
 \usepackage{xcolor}
@@ -346,10 +346,10 @@ Whilst entanglement captures non--classical correlations between subsystems, coh
 A quantum state $\rho$ is said to be coherent if it has off--diagonal elements in its matrix form. That is,
 
 \begin{equation}
-    \rho = \sum_{i,j}\rho|i\rangle\langle j|,
+    \rho = \sum_{i\neq j}\rho|i\rangle\langle j|,
 \end{equation}
 
-where $\rho_{ij} \neq 0$ for $i\neq j$ elements. These off--diagonals are coherences, and in particular they make coherence a basis--dependent quantum resource. For example, let us look at the state $|\psi_{\scriptscriptstyle \text{A}}\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$. As a density matrix, this takes the form:
+These off--diagonals are coherences, and in particular they make coherence a basis--dependent quantum resource. For example, let us look at the state $|\psi_{\scriptscriptstyle \text{A}}\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$. As a density matrix, this takes the form:
 
 \begin{equation*}
     \rho_{\scriptscriptstyle \text{A}} = \frac{1}{2}(|0\rangle + |1\rangle)(\langle0| +\langle1|) \rightarrow \frac{1}{2}
@@ -433,7 +433,7 @@ where we have relabelled the TLS subsystem so that $|0\rangle \rightarrow|g\rang
 
 For \textit{all} computational simulations of the JCM, we consider both \eqref{init_JCM_e0} and:
 
-\begin{equation}
+\begin{equation} \label{init_JCM_e0g0}
     |\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle).
 \end{equation}
 
@@ -544,9 +544,9 @@ where $|\psi(\text{t})\rangle$ is now in the computational basis. Of course, we 
 
 We know that our time--evolved state will be in some superposition $|\psi(\text{t})\rangle = \alpha(t)|g,1\rangle + \beta(t)|e,0\rangle$, where $\alpha(t),\beta(t)$ are complex coefficients which are found by performing the basis transformation. Our corresponding time--evolved density operator is:
 
-\begin{equation*}
+\begin{equation} \label{eqn:JCM_dm(t)_closed}
     \rho(t) = |\alpha(t)|^2|g,1\rangle\langle g,1| + |\beta(t)|^2 |e,0\rangle\langle e,0| + \alpha(t)\beta^*(t)|g,1\rangle\langle e,0| + \alpha^*(t)\beta(t)|e,0\rangle\langle g,1|,
-\end{equation*}
+\end{equation}
 
 which is a pure density operator. We are now equipped to calculate both the von Neumann entropy and relative entropy of coherence. We start with the von Neumann entropy, a measure of entanglement, which we recall from equation \eqref{vne_eqn} is written as 
 
@@ -562,9 +562,9 @@ where $\lambda_i$ are the eigenvalues of the density matrix $\rho_{\scriptscript
 
 and
 
-\begin{equation*}
+\begin{equation} \label{eqn:subsys_JCM_closed}
         \rho_{\scriptscriptstyle \text{QHO}}(t) = |\alpha(t)|^2|1\rangle\langle 1| + |\beta(t)|^2 |0\rangle\langle 0|.
-\end{equation*}
+\end{equation}
 \\
 We can already clearly see that both subsystems are diagonal, and both subsystems have the same eigenvalues of $|\alpha(t)|^2,|\beta(t)|^2$, and so the von Neumann entropy of either subsystem will indeed be the same. To simplify our analytical calculations, we apply the resonance condition, $\omega_a = \omega_c = \omega$, a condition used throughout both closed and open computational evolutions of the JCM. This results in the following simplifications of our parameters: $k = \hbar g$ and $a = 0$. Under resonance, the coefficients reduce to:
 
@@ -573,9 +573,9 @@ We can already clearly see that both subsystems are diagonal, and both subsystem
 \end{equation*}
 
 and 
-\begin{equation*}
-    |\alpha(t)|^2 = \frac{1}{2} + \frac{1}{2}\cos gt.
-\end{equation*}
+\begin{equation} \label{eqn:JCM_complex_coeffs}
+    |\beta(t)|^2 = \frac{1}{2} + \frac{1}{2}\cos gt.
+\end{equation}
 \\
 Let us choose the TLS subsystem, $\rho_{\scriptscriptstyle \text{TLS}}(t)$. Since the coefficients are a function of $\cos(gt)$, we can consider what happens at three points during the curve: $\cos(gt) = 0,1, \text{and} -1$.\\
 \\
@@ -590,66 +590,117 @@ At $\cos(gt) = 1, |\alpha(t)|^2 = \frac{1}{2} \text{ and } |\beta(t)|^2 = \frac{
     = \ln2.
 \end{equation*}
 \\
-For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)\rangle = |e,0\rangle$, we find that the entanglement $\mathcal{E}(t)$ oscillates at a rate $g$, with values ranging between $0 \text{ and } \ln2 \approx 0.7$. We verify this in our simulation of the JCM:
-%\caption{\normal{von Neumann entropy of the JCM under closed unitary evolution, %starting with an initial condition of $|\psi(\text{t} = 0)\rangle = |e,0\rangle$.}}
+For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)\rangle = |e,0\rangle$, we find that the entanglement $\mathcal{E}(t)$ oscillates at a rate $g$, with values ranging between $0 \text{ and } \ln2 \approx 0.7$. We verify this in our simulation of the JCM:\\
+
 \begin{figure}[h]
     \centering
-    % First row
     \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_vne.png}
+        \caption{}
         \label{fig:JCM_cqs_vne_e0}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_expt.png}
-        \label{JCM_cqs_xpt_e0}
+        \caption{}
+        \label{fig:JCM_cqs_xpt_e0}
     \end{subfigure}
-\end{figure}
-In figure \eqref{JCM_CQS_e0_VNE}, we can clearly see the oscillatory pattern of entanglement that we find from our analytical calculations. These oscillations are one of the key features of the JCM: Rabi oscillations. As mentioned in section \ref{JCM_Theory}, the oscillations come from the interaction part of the Hamiltonian:
+    \caption{(a) Von Neumann entropy of the JCM under closed unitary evolution, starting with an initial condition of $|\psi(\text{t} = 0)\rangle = |e,0\rangle$. (b) Plot of the populations of the excited atomic state $|e\rangle$, and the cavity photon number, $|n=1\rangle$ using the same initial condition. A a population of 0 for the excited atomic state corresponds to the atom being in the ground state $|g\rangle$. Similarly, a population of 0 for the cavity corresponds to the cavity having 0 photons $|n=0\rangle$.}
+\end{figure}\\
+\\
+In figure \ref{fig:JCM_cqs_vne_e0}, we can clearly see the oscillatory pattern of entanglement that we find from our analytical calculations. These oscillations are one of the key features of the JCM: Rabi oscillations. As mentioned in section \ref{JCM_Theory}, the oscillations come from the interaction part of the Hamiltonian:
 
 \begin{equation*}
      \hat{H}_{\scriptscriptstyle \text{I}} = \hbar g(\hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger),
 \end{equation*}
 
-which drives coherent exchange of excitations between the atom and field. The term $\hat{\sigma}_{+}\hat{a}$ describes photon absorption resulting in atomic excitation, whilst $\hat{\sigma}_{-}\hat{a}^\dagger$ corresponds to photon emission with atomic de-excitation. Since $\hat{H}_{\scriptscriptstyle\text{I}}$ commutes with the total excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$, evolution is confined to subspaces of fixed $\hat{N}$. So, for the initial state $|e,0\rangle$ where $\hat{N} = 1$, the dynamics occur entirely within the space \small{\{$|g,1\rangle,|e,0\rangle$\}}, producing Rabi oscillations at frequency g. This periodic transfer causes modulation in the entanglement, between  0 (pure states) and $\ln2$ (maximal entanglement for a TLS), as seen in figure~\ref{JCM_CQS_e0_VNE}.\\
+which drives coherent exchange of excitations between the atom and field. The term $\hat{\sigma}_{+}\hat{a}$ describes photon absorption resulting in atomic excitation, whilst $\hat{\sigma}_{-}\hat{a}^\dagger$ corresponds to photon emission with atomic de-excitation. Since $\hat{H}_{\scriptscriptstyle\text{I}}$ commutes with the total excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$, evolution is confined to subspaces of fixed $\hat{N}$. So, for the initial state $|e,0\rangle$ where $\hat{N} = 1$, the dynamics occur entirely within the space \small{\{$|g,1\rangle,|e,0\rangle$\}}, producing Rabi oscillations at frequency g. This periodic transfer causes modulation in the entanglement, between  0 (pure states) and $\ln2$ (maximal entanglement for a TLS).\\
 \\
-We 
+We can directly see these Rabi oscillations in figure \ref{fig:JCM_cqs_xpt_e0}. At time $t = 0$, the populations of the excited state of the atom $|e\rangle$ and the cavity at  $|n=1\rangle$ start off in our initial state as expected. From there, since the dynamics are restricted to \small{{$|g,1\rangle,|e,0\rangle$}}, the system exhibits periodic transfer of excitation between the atom and the field and completely transfers the population at each half-period at the Rabi frequency $g$.\\
+\\
+Now that we have explored the von Neumann entropy analytically, we complete our analytical goals by exploring the relative entropy of coherence. This measure of coherence, which we recall from equation \eqref{rel_ent_coh} is written as:
 
 
+\begin{equation*}
+C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho),
+\end{equation*}
 
+where $\rho_{diag}$ is obtained by removing all non-diagonal entries of the matrix $\rho$. We firstly look at $C_r(\rho_{\scriptscriptstyle \text{TLS}}(t)) \text{ and }  C_r(\rho_{\scriptscriptstyle \text{QHO}}(t))$, the relative entropy of coherence for both subsystems. By inspection of the density matrices in equation \eqref{eqn:subsys_JCM_closed}, we see that both subsystem matrices are diagonal. Thus, $S(\rho_{diag}) = S(\rho)$, and so their coherences are $0$. For the total system, however, the result is non-trivial. We start by calculating the second term, $S(\rho(t))$, by diagonalising our density matrix in \eqref{eqn:JCM_dm(t)_closed}.
+\begin{equation*}
+    \det(\rho(t) - \lambda I) = 0,
+\end{equation*}
+and so 
+\begin{equation*}
+    \left(|\alpha(t)|^2\ - \lambda\right) \left(|\beta(t)|^2\ - \lambda \right) - |\alpha(t)|^2|\beta(t)|^2 =0
+\end{equation*}
 
+Solving for the eigenvalues $\lambda$, we get $\lambda_1 = 0$ and $\lambda_2 = |\alpha(t)|^2 + |\beta(t)|^2$. We know that, for a valid pure density matrix, $\text{Tr}(\rho(t)) = 1$, so $\lambda_2 = 1$. Using equation \eqref{vne_eqn},
 
+\begin{equation*}
+    S(\rho(t)) = - 0 \ln0 - 1\ln1 = 0, 
+\end{equation*}
 
+and therefore $C_r(\rho(t)) = S(\rho_{diag}(t))$. Removing the off--diagonals from $\rho(t)$ gives
+
+\begin{equation*}
+    \rho_{diag}(t) = |\alpha(t)|^2|g,1\rangle\langle g,1| + |\beta(t)|^2|e,0\rangle\langle e,0|,
+\end{equation*}
+
+so that
+
+\begin{equation*}
+    S(\rho_{diag}(t)) = - |\alpha(t)|^2\ln(|\alpha(t)|^2) - |\beta(t)|^2\ln(|\beta(t)|^2) = C_r(\rho(t)).
+\end{equation*}
+\\
+Both $|\alpha(t)|^2$ and $|\beta(t)|^2$ are the same as equation \eqref{eqn:JCM_complex_coeffs}, and so we find that for the total system, $C_r(\rho(t))$
+oscillates between $0$ and $\ln2$. We again verify these coherence results in the closed evolution simulations of the JCM.
+
+\newpage
+\\
 \begin{figure}[h]
     \centering
-    % First row
+    \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/CQS_coh.png}
+    \caption{Relative entropy of coherence of the JCM under closed unitary evolution for the atomic subsystem, cavity subsystem and the total system.}
+    \label{fig:JCM_cqs_coh_e0}
+\end{figure}\\
+\\
+\\
+The system starts off in a pure state in figure \ref{fig:JCM_cqs_coh_e0}, and there are initially no off-diagonal elements and coherence is thus 0 for the total system. However, as the population begins to transfer between the states $|e,0\rangle,|g,1\rangle$, superpositions of these basis states develop. This produces non-zero off-diagonal terms in the computational basis, corresponding to coherence. The coherence reaches its maximum value of $\ln2$ when the system is in an equal superposition of the basis states, consistent with our theoretical analysis. \\
+\\
+We have thus completed our theoretical analysis of the JCM under closed evolution, successfully finding and verifying results for the von Neumann entropy and relative entropy of coherence, as well as plotting the populations for comparison. We now carry out the computational analysis of the second initial state from equation \eqref{init_JCM_e0g0}, which reads:
+
+\begin{equation*}
+    |\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle).
+\end{equation*}
+
+
+\begin{figure}[h!]
+    \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{image1.png}
-        \caption{First image}
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_vne_eg.png}
+        \caption{}
         \label{fig:image1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{image2.png}
-        \caption{Second image}
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_expt_eg.png}
+        \caption{}
         \label{fig:image2}
     \end{subfigure}
     
-    \vspace{0.5cm} % Space between rows
+    \vspace{0.5cm}
     
-    % Second row
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{image3.png}
-        \caption{Third image}
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_coh_eg.png}
+        \caption{}
         \label{fig:image3}
     \end{subfigure}
     \hfill
 
-    
     \caption{A $2\times 2$ grid of images.}
     \label{fig:2x2grid}
 \end{figure}
@@ -668,33 +719,8 @@ We
 
 
 
-
-
-
-
-
-
 \newpage
-\begin{itemize}
-    
-    \begin{itemize}
-        \item Go through the theory completely. 
-        \item Explain your expectations.
-        \item Go through the code numerically and show some graphs where necessary. 
-        \item Explain your results numerical and whether they match expectations. 
-    \end{itemize}
-\end{itemize}
 \subsubsection{Open Evolution}
-\begin{itemize}
-    \item Mention that you've done only one part analytically, and numerically to verify your results.
-    \item For each analytical final result:
-    \begin{itemize}
-        \item Go through the theory completely. 
-        \item Explain your expectations.
-        \item Go through the code numerically and show graphs. 
-        \item Explain your results numerical and whether they match expectations. 
-    \end{itemize}
-\end{itemize}
 \subsection{Population, Entanglement and Coherence of the Exciton--Vibration Model}
 \subsubsection{Closed Evolution}
 \subsubsection{Open Evolution}
