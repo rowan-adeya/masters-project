@@ -660,7 +660,7 @@ oscillates between $0$ and $\ln2$. We again verify these coherence results in th
 \\
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/CQS_coh.png}
+    \includegraphics[width=0.6\linewidth]{Research Project/Code/results/JCM/CQS_coh.png}
     \caption{Relative entropy of coherence of the JCM under closed unitary evolution for the atomic subsystem, cavity subsystem and the total system.}
     \label{fig:JCM_cqs_coh_e0}
 \end{figure}\\
@@ -668,12 +668,18 @@ oscillates between $0$ and $\ln2$. We again verify these coherence results in th
 \\
 The system starts off in a pure state in figure \ref{fig:JCM_cqs_coh_e0}, and there are initially no off-diagonal elements and coherence is thus 0 for the total system. However, as the population begins to transfer between the states $|e,0\rangle,|g,1\rangle$, superpositions of these basis states develop. This produces non-zero off-diagonal terms in the computational basis, corresponding to coherence. The coherence reaches its maximum value of $\ln2$ when the system is in an equal superposition of the basis states, consistent with our theoretical analysis. \\
 \\
-We have thus completed our theoretical analysis of the JCM under closed evolution, successfully finding and verifying results for the von Neumann entropy and relative entropy of coherence, as well as plotting the populations for comparison. We now carry out the computational analysis of the second initial state from equation \eqref{init_JCM_e0g0}, which reads:
+We have completed our theoretical analysis of the JCM under closed evolution, successfully finding and verifying results for the von Neumann entropy and relative entropy of coherence, as well as plotting the populations for comparison. We now carry out the computational analysis of the second initial state from equation \eqref{init_JCM_e0g0}, which reads:
 
 \begin{equation*}
     |\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle).
 \end{equation*}
 
+This initial state contains the $|g,0\rangle$ component, which is effectively stationary. In the JCM, the only allowed couplings are betweeen $|e,n\rangle,$ and $|g,n+1\rangle$ due to excitation number conservation. There is no lower photon state for $|g,0\rangle$ couple to,  so it remains unchanged during the evolution. The $|e,0\rangle$ component, however, will evolve in the same manner as the previously considered initial state. 
+
+We expect that both the subsystems and the total system to exhibit coherence, as the initial state is a superposition. Consequently, the subsystems should contain off--diagonal terms. 
+
+We also anticipate entanglement in this system, though it is diluted by the $|g,0\rangle$ component. While he $|e,0\rangle$ component generates entanglement in the familiar oscillatory pattern, the $|g,0\rangle$ component remains stationary, never mixes with the other components, and efectively behaving as an unentangled product state.
+In terms of the von Neumann entropy, this stationary, classically--behaving fraction of the total state limits the entanglement achieved during evolution.
 
 \begin{figure}[h!]
     \centering
@@ -701,8 +707,8 @@ We have thus completed our theoretical analysis of the JCM under closed evolutio
     \end{subfigure}
     \hfill
 
-    \caption{A $2\times 2$ grid of images.}
-    \label{fig:2x2grid}
+    \caption{All figures above are simulations of the JCM under closed unitary evolution, starting in an initial state of $|\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle)$. (a) Von Neumann entropy of the JCM. (b) Plot of the populations of the excited atomic state $|e\rangle$, and the cavity photon number, $|n=1\rangle$. A a population of 0 for the excited atomic state corresponds to the atom being in the ground state $|g\rangle$. Similarly, a population of 0 for the cavity corresponds to the cavity having 0 photons $|n=0\rangle$. (c) Plot of the relative entropy of coherence for the two subsystems and the total system.}
+    \label{fig:JCM_cqs_e0g0}
 \end{figure}
 
 
