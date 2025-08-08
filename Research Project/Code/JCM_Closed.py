@@ -61,7 +61,7 @@ sim.plot(
             "colour": "tab:red",
         },
     ],
-    y_label="Expectation Values",
+    y_label="Populations",
     savepath="JCM",
 )
 
