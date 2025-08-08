@@ -45,6 +45,7 @@ results_expt = sim.expect(results)
 vne = sim.vne(results)
 coh_tls = sim.rel_coherence(results, subsys="TLS")
 coh_qho = sim.rel_coherence(results, subsys="QHO")
+coh_tot = sim.rel_coherence(results)
 
 
 ############################### PLOTS #####################################
@@ -79,6 +80,7 @@ sim.plot(
     [
         {"y_data": coh_tls, "label": "Atomic subsystem", "colour": "tab:blue"},
         {"y_data": coh_qho, "label": "Cavity subsystem", "colour": "tab:red"},
+        {"y_data": coh_tot, "label": "Total system", "colour": "tab:green"},
     ],
     y_label="Relative Entropy of Coherence",
     savepath="JCM",
