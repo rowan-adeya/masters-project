@@ -36,8 +36,8 @@ H = 0.5 * w * s_z + w * (adag * a + 0.5) + g * (adag * s_lower + a * s_raise)
 
 
 ############################ SIMULATION ###################################
-n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
-e_ops = [s_raise * s_lower, n1_pop, s_lower * s_raise]
+n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=1>
+e_ops = [s_raise * s_lower, n0_pop, s_lower * s_raise]
 
 sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
 results = sim.evolve()
@@ -65,7 +65,7 @@ sim.plot(
         },
         {
             "y_data": results_expt[1],
-            "label": "Cavity photon number, n = 1",
+            "label": "Cavity photon number, n = 0",
             "colour": "tab:red",
         },
 
