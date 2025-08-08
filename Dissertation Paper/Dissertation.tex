@@ -3,6 +3,10 @@
 \usepackage{blindtext}
 \usepackage{titlesec}
 \usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}
+\usepackage{dsfont}
 \usepackage{xcolor}
 \usepackage[numbers,link]{natbib}
 \usepackage[colorlinks=true,linkcolor=black,citecolor=red,urlcolor=red]{hyperref}
@@ -315,16 +319,16 @@ where $\lambda_i$ and $|\psi_i\rangle$ are the eigenvalues and eigenstates of th
 Inserting equations \eqref{VNE_spectral_decomp}, \eqref{VNE_eigenvals} into \eqref{VNE_original} yields a more manageable formulation of the von Neumann entropy:
 
 \begin{equation}
-    \text{tr}(\rho_{\scriptscriptstyle \text{A}}) = \sum_i \lambda_i\ln\lambda_i.
+    \mathcal{E} = S(\rho_{\scriptscriptstyle \text{A}}) = S(\rho_{\scriptscriptstyle \text{B}}) = \sum_i \lambda_i\ln\lambda_i,
 \end{equation}
 
-The von Neumann entropy is a strong and popular candidate when working with pure density matrices. However, the measure fails to distinguish between classical and quantum correlations for mixed states. As we shall see in section \ref{results}, we use the von Neumann entropy for closed system evolution since we always start in pure states. For open quantum systems, however, since pure states become mixed states during evolution, the von Neumann entropy is no longer appropriate. For mixed states, then, we may use Negativity, which applies to both pure and mixed states. 
+where $\mathcal{E}$ is the entanglement of the total system. The von Neumann entropy is a strong and popular candidate when working with pure density matrices. However, the measure fails to distinguish between classical and quantum correlations for mixed states. As we shall see in section \ref{results}, we use the von Neumann entropy for closed system evolution since we always start in pure states. For open quantum systems, however, since pure states become mixed states during evolution, the von Neumann entropy is no longer appropriate. For mixed states, then, we may use Negativity, which applies to both pure and mixed states. 
 
 \subsubsection{Negativity}
 
 Negativity, a simple measure of entanglement, is defined as
 
-\begin{equation}
+\begin{equation} \label{vne_eqn}
     \mathcal{N} = \sum_i |\lambda_i|,
 \end{equation}
 
@@ -335,7 +339,7 @@ Negativity is a valid measure for both pure and mixed states, making it a powerf
 \begin{itemize}
     \item Should I include this section? I would be putting in concurrence and renyi entropy, but since they dont apply to TLS-QHO systems, is it worth it to include?
 \end{itemize}
-\subsection{Coherence}
+\subsection{Coherence} \label{coh_theory}
 
 Whilst entanglement captures non--classical correlations between subsystems, coherence reflects the superposition properties within individual subsystems, and is another essential quantum resource we must examine to fully understand the dynamics of TLS--QHO systems.
 
@@ -465,8 +469,8 @@ We now restrict the system to the $n=0$ excitation subspace, which corresponds t
 \begin{equation*}
 =
     \begin{bmatrix}
-        \frac{3\hbar\omega_c - \hbar\omega_a}{2} & \small{\hbar g} \\
-        \small{\hbar g} & \frac{\hbar\omega_c + \hbar\omega_a}{2}
+        \large{\frac{3\hbar\omega_c - \hbar\omega_a}{2}} & \small{\hbar g} \\
+        \small{\hbar g} & \large{\frac{\hbar\omega_c + \hbar\omega_a}{2}}
     \end{bmatrix}
 \end{equation*}
 \\
@@ -495,8 +499,8 @@ where $a = \hbar\left(\frac{\omega_a - \omega_c}{2}\right)$. Now that we have ou
 \begin{equation*}
     = 
     \begin{bmatrix}
-        e^{-i(\omega_c + k)t} & 0 \\
-        0 & e^{-i(\omega_c - k)t}
+        e^{-i(\omega_c + k/\hbar)t} & 0 \\
+        0 & e^{-i(\omega_c - k/\hbar)t}
     \end{bmatrix}.
 \end{equation*}
 
@@ -514,22 +518,141 @@ However, $\hat{U}(t)$ is in the eigenbasis, a different basis to our initial con
         \left(1 + \left(\frac{a - k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a - k}{\hbar g}\right)
     \end{bmatrix}.
 \end{equation*}
-
-Using equation \eqref{unitary_evo_eqn}, we may then write our final time--evolved state as:
+\\
+Using equation \eqref{unitary_evo_eqn}, we may then write our final time--evolved state in the eigenbasis as:
 
 \begin{equation*}
-    |\psi'(\text{t} = 0)\rangle = 
+    |\psi'(\text{t})\rangle = 
     \begin{bmatrix}
-        e^{-i(\omega_c + k)t}\cdot\left(1 + \left(\frac{a + k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a + k}{\hbar g}\right) \\
-        e^{-i(\omega_c + k)t}\cdot\left(1 + \left(\frac{a - k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a - k}{\hbar g}\right)
+        e^{-i(\omega_c + k/\hbar)t}\cdot\left(1 + \left(\frac{a + k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a + k}{\hbar g}\right) \\
+        e^{-i(\omega_c - k/\hbar)t}\cdot\left(1 + \left(\frac{a - k}{\hbar g}\right)^2\right)^{-\frac{1}{2}}\cdot\left(\frac{a - k}{\hbar g}\right)
     \end{bmatrix}.
+\end{equation*}
+\\
+As mentioned in section \ref{coh_theory}, coherence is a basis-dependent measure. We are currently in the eigenbasis of the Jaynes--Cummings Hamiltonian; however, we are interested in measuring the coherence in the computational basis, since it corresponds to the physical states of the atom and field and thus reflects an observable superposition between the atom and cavity states. We perform this transformation this time by using the closure relation, such that:
+
+\begin{equation*}
+    \mathds{1} = \sum_i|\phi_i\rangle\langle\phi_i| = |g,1\rangle\langle g,1| + |e,0\rangle\langle e,0|
+\end{equation*}
+
+\begin{equation*}
+    \rightarrow \text{  } \mathds{1}|\psi'(\text{t})\rangle = |\psi(\text{t})\rangle,
 \end{equation*}
 
 
+where $|\psi(\text{t})\rangle$ is now in the computational basis. Of course, we could have chosen to use the basis transformation matrix method again (as we did with our initial state). We decided upon using the identity method instead to develop and strengthen our understanding of the formal methods of quantum theory. 
+
+We know that our time--evolved state will be in some superposition $|\psi(\text{t})\rangle = \alpha(t)|g,1\rangle + \beta(t)|e,0\rangle$, where $\alpha(t),\beta(t)$ are complex coefficients which are found by performing the basis transformation. Our corresponding time--evolved density operator is:
+
+\begin{equation*}
+    \rho(t) = |\alpha(t)|^2|g,1\rangle\langle g,1| + |\beta(t)|^2 |e,0\rangle\langle e,0| + \alpha(t)\beta^*(t)|g,1\rangle\langle e,0| + \alpha^*(t)\beta(t)|e,0\rangle\langle g,1|,
+\end{equation*}
+
+which is a pure density operator. We are now equipped to calculate both the von Neumann entropy and relative entropy of coherence. We start with the von Neumann entropy, a measure of entanglement, which we recall from equation \eqref{vne_eqn} is written as 
+
+\begin{equation*}
+   \mathcal{E} = S(\rho_{\scriptscriptstyle \text{A}}) = \sum_i \lambda_i\ln\lambda_i,
+\end{equation*}
+
+where $\lambda_i$ are the eigenvalues of the density matrix $\rho_{\scriptscriptstyle \text{A}}$. Given a pure density matrix, the von Neumann entropy of either of the subsystems yields the entanglement, $\mathcal{E}$ of the total system. In order to find one subsystem of the density matrix, we trace out the other subsystem using the partial trace. This yields:
+
+\begin{equation*}
+        \rho_{\scriptscriptstyle \text{TLS}}(t) = |\alpha(t)|^2|g\rangle\langle g| + |\beta(t)|^2 |e\rangle\langle e|,
+\end{equation*}
+
+and
+
+\begin{equation*}
+        \rho_{\scriptscriptstyle \text{QHO}}(t) = |\alpha(t)|^2|1\rangle\langle 1| + |\beta(t)|^2 |0\rangle\langle 0|.
+\end{equation*}
+\\
+We can already clearly see that both subsystems are diagonal, and both subsystems have the same eigenvalues of $|\alpha(t)|^2,|\beta(t)|^2$, and so the von Neumann entropy of either subsystem will indeed be the same. To simplify our analytical calculations, we apply the resonance condition, $\omega_a = \omega_c = \omega$, a condition used throughout both closed and open computational evolutions of the JCM. This results in the following simplifications of our parameters: $k = \hbar g$ and $a = 0$. Under resonance, the coefficients reduce to:
+
+\begin{equation*}
+    |\alpha(t)|^2 = \frac{1}{2} - \frac{1}{2}\cos gt,
+\end{equation*}
+
+and 
+\begin{equation*}
+    |\alpha(t)|^2 = \frac{1}{2} + \frac{1}{2}\cos gt.
+\end{equation*}
+\\
+Let us choose the TLS subsystem, $\rho_{\scriptscriptstyle \text{TLS}}(t)$. Since the coefficients are a function of $\cos(gt)$, we can consider what happens at three points during the curve: $\cos(gt) = 0,1, \text{and} -1$.\\
+\\
+At $\cos(gt) = 1, |\alpha(t)|^2 =0 \text{ and } |\beta(t)|^2 = 1$. The von Neumann entropy of this subsystem is thus $0$, and so the entanglement $\mathcal{E}=0$.
+
+At $\cos(gt) = -1, |\alpha(t)|^2 = 1 \text{ and } |\beta(t)|^2 = 0$. The von Neumann entropy of this subsystem is thus $0$, and so the entanglement $\mathcal{E}=0$.
+
+At $\cos(gt) = 1, |\alpha(t)|^2 = \frac{1}{2} \text{ and } |\beta(t)|^2 = \frac{1}{2}$. The von Neumann entropy of this subsystem is thus:
+
+\begin{equation*}
+    S(\rho_{\scriptscriptstyle \text{TLS}}(t)) = - \frac{1}{2}\ln\frac{1}{2} - \frac{1}{2}\ln\frac{1}{2}
+    = \ln2.
+\end{equation*}
+\\
+For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)\rangle = |e,0\rangle$, we find that the entanglement $\mathcal{E}(t)$ oscillates at a rate $g$, with values ranging between $0 \text{ and } \ln2 \approx 0.7$. We verify this in our simulation of the JCM:
+%\caption{\normal{von Neumann entropy of the JCM under closed unitary evolution, %starting with an initial condition of $|\psi(\text{t} = 0)\rangle = |e,0\rangle$.}}
+\begin{figure}[h]
+    \centering
+    % First row
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_vne.png}
+        \label{fig:JCM_cqs_vne_e0}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_expt.png}
+        \label{JCM_cqs_xpt_e0}
+    \end{subfigure}
+\end{figure}
+In figure \eqref{JCM_CQS_e0_VNE}, we can clearly see the oscillatory pattern of entanglement that we find from our analytical calculations. These oscillations are one of the key features of the JCM: Rabi oscillations. As mentioned in section \ref{JCM_Theory}, the oscillations come from the interaction part of the Hamiltonian:
+
+\begin{equation*}
+     \hat{H}_{\scriptscriptstyle \text{I}} = \hbar g(\hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger),
+\end{equation*}
+
+which drives coherent exchange of excitations between the atom and field. The term $\hat{\sigma}_{+}\hat{a}$ describes photon absorption resulting in atomic excitation, whilst $\hat{\sigma}_{-}\hat{a}^\dagger$ corresponds to photon emission with atomic de-excitation. Since $\hat{H}_{\scriptscriptstyle\text{I}}$ commutes with the total excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$, evolution is confined to subspaces of fixed $\hat{N}$. So, for the initial state $|e,0\rangle$ where $\hat{N} = 1$, the dynamics occur entirely within the space \small{\{$|g,1\rangle,|e,0\rangle$\}}, producing Rabi oscillations at frequency g. This periodic transfer causes modulation in the entanglement, between  0 (pure states) and $\ln2$ (maximal entanglement for a TLS), as seen in figure~\ref{JCM_CQS_e0_VNE}.\\
+\\
+We 
 
 
 
 
+
+
+\begin{figure}[h]
+    \centering
+    % First row
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{image1.png}
+        \caption{First image}
+        \label{fig:image1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{image2.png}
+        \caption{Second image}
+        \label{fig:image2}
+    \end{subfigure}
+    
+    \vspace{0.5cm} % Space between rows
+    
+    % Second row
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{image3.png}
+        \caption{Third image}
+        \label{fig:image3}
+    \end{subfigure}
+    \hfill
+
+    
+    \caption{A $2\times 2$ grid of images.}
+    \label{fig:2x2grid}
+\end{figure}
 
 
 
