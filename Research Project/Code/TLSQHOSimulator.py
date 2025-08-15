@@ -259,7 +259,7 @@ class TLSQHOSimulator:
             )
 
         if any(line.get("label") for line in plot_lines):
-            plt.legend()
+            plt.legend(loc="upper right", fontsize=10)
 
         if x_label is None:
             plt.xlabel("Time (ps)")
@@ -272,6 +272,6 @@ class TLSQHOSimulator:
             plt.title(title)
 
         plt.tight_layout()
-        plt.savefig(savepath)
+        plt.savefig(savepath, dpi=600, bbox_inches="tight")
         plt.close()
         print(f"Plot successfully saved to {savepath}")
