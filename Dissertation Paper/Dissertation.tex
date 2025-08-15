@@ -606,7 +606,7 @@ For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)
         \caption{}
         \label{fig:JCM_cqs_xpt_e0}
     \end{subfigure}
-    \caption{(a) Von Neumann entropy of the JCM under closed unitary evolution, starting with an initial condition of $|\psi(\text{t} = 0)\rangle = |e,0\rangle$. (b) Plot of the populations of the excited atomic state $|e\rangle$, and the cavity photon number, $|n=1\rangle$ using the same initial condition. A a population of 0 for the excited atomic state corresponds to the atom being in the ground state $|g\rangle$. Similarly, a population of 0 for the cavity corresponds to the cavity having 0 photons $|n=0\rangle$.}
+    \caption{All figures above are simulations of the JCM under closed unitary evolution, starting in an initial state of $|\psi (\text{t=0})\rangle = |e, 0\rangle$.(a) Von Neumann entropy of the JCM. (b) Plot of the populations of the excited atomic state $|e\rangle$, and the cavity state, $|n=1\rangle$. A a population of 0 for the excited atomic state corresponds to the atom being in the ground state $|g\rangle$. Similarly, a population of 0 for the cavity corresponds to the cavity having 0 photons $|n=0\rangle$.}
 \end{figure}\\
 \\
 In figure \ref{fig:JCM_cqs_vne_e0}, we can clearly see the oscillatory pattern of entanglement that we find from our analytical calculations. These oscillations are one of the key features of the JCM: Rabi oscillations. As mentioned in section \ref{JCM_Theory}, the oscillations come from the interaction part of the Hamiltonian:
@@ -661,7 +661,7 @@ oscillates between $0$ and $\ln2$. We again verify these coherence results in th
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\linewidth]{Research Project/Code/results/JCM/CQS_coh.png}
-    \caption{Relative entropy of coherence of the JCM under closed unitary evolution for the atomic subsystem, cavity subsystem and the total system.}
+    \caption{Relative entropy of coherence of the JCM under closed unitary evolution for the atomic subsystem, cavity subsystem and the total system. The initial state is $|\psi (\text{t=0})\rangle = |e, 0\rangle$.}
     \label{fig:JCM_cqs_coh_e0}
 \end{figure}\\
 \\
@@ -681,20 +681,20 @@ We expect that both the subsystems and the total system to exhibit coherence, as
 We also anticipate entanglement in this system, though it is diluted by the $|g,0\rangle$ component. While he $|e,0\rangle$ component generates entanglement in the familiar oscillatory pattern, the $|g,0\rangle$ component remains stationary, never mixes with the other components, and efectively behaving as an unentangled product state.
 In terms of the von Neumann entropy, this stationary, classically--behaving fraction of the total state limits the entanglement achieved during evolution.
 
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_vne_eg.png}
-        \caption{}
-        \label{fig:image1}
-    \end{subfigure}
-    \hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_expt_eg.png}
         \caption{}
-        \label{fig:image2}
+        \label{fig:jcm_cqs_expt_eg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_vne_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_vne_eg}
     \end{subfigure}
     
     \vspace{0.5cm}
@@ -703,14 +703,15 @@ In terms of the von Neumann entropy, this stationary, classically--behaving frac
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/CQS_coh_eg.png}
         \caption{}
-        \label{fig:image3}
+        \label{fig:jcm_cqs_coh_eg}
     \end{subfigure}
     \hfill
 
-    \caption{All figures above are simulations of the JCM under closed unitary evolution, starting in an initial state of $|\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle)$. (a) Von Neumann entropy of the JCM. (b) Plot of the populations of the excited atomic state $|e\rangle$, and the cavity photon number, $|n=1\rangle$. A a population of 0 for the excited atomic state corresponds to the atom being in the ground state $|g\rangle$. Similarly, a population of 0 for the cavity corresponds to the cavity having 0 photons $|n=0\rangle$. (c) Plot of the relative entropy of coherence for the two subsystems and the total system.}
+    \caption{All figures above are simulations of the JCM under closed unitary evolution, starting in an initial state of $|\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle)$. (a) Plot of the populations of the excited atomic state $|e\rangle$, the ground atomic state $|g\rangle$ and the cavity state, $|n=1\rangle$. (b) Von Neumann entropy of the JCM. (c) Plot of the relative entropy of coherence for the two subsystems and the total system.}
     \label{fig:JCM_cqs_e0g0}
 \end{figure}
 
+We start by analysing figure \ref{fig:jcm_cqs_expt_eg}, which shows the populations of the ground and excited state of the atom, and the cavity state population of the $|n=1\rangle$ fock state. As expected, the $|g,0\rangle$ component of the initial state is stationary, and so the 
 
 
 
@@ -727,6 +728,8 @@ In terms of the von Neumann entropy, this stationary, classically--behaving frac
 
 \newpage
 \subsubsection{Open Evolution}
+
+\
 \subsection{Population, Entanglement and Coherence of the Exciton--Vibration Model}
 \subsubsection{Closed Evolution}
 \subsubsection{Open Evolution}
