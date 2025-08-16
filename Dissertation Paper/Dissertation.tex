@@ -10,6 +10,7 @@
 \usepackage{subcaption}
 \usepackage{dsfont}
 \usepackage{xcolor}
+\usepackage{float}
 \usepackage[numbers,sort&compress, link]{natbib}
 \usepackage[colorlinks=true,linkcolor=black,citecolor=red,urlcolor=red]{hyperref}
 \usepackage[toc,page]{appendix}
@@ -795,7 +796,7 @@ For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)
     \hfill
     \caption{All figures above are simulations of the JCM under closed unitary evolution, starting in an initial state of $|\psi (\text{t=0})\rangle = |e, 0\rangle$. (a) Von Neumann entropy of the JCM. (b) Plot of the populations of the excited atomic state $|e\rangle$, and the cavity state, $|n=1\rangle$. (c) Relative entropy of coherence of the JCM.}
 \end{figure}
-\\
+
 In figure \ref{fig:JCM_cqs_vne_e0}, we can clearly see the oscillatory pattern of entanglement that we find from our analytical calculations. These oscillations are one of the key features of the JCM: Rabi oscillations. As mentioned in section \ref{sec:theory_subsub_JCM}, the oscillations come from the interaction part of the Hamiltonian:
 
 \begin{equation*}
@@ -924,20 +925,116 @@ which is a diagonal matrix and thus has no coherence at t=0. The coherence value
 \newpage
 \subsubsection{Open Evolution}
 
-We start with our first initial state in equation \eqref{init_JCM_e0}.
+We start with our first initial state in equation \eqref{init_JCM_e0}. Let us start by analysing the populations of the subsystems. 
 
-\begin{figure}[h]
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Spont.png}
+        \caption{}
+        \label{fig:JCM_OQS_Pop_Spont}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Therm.png}
+        \caption{}
+         \label{fig:JCM_OQS_Pop_Therm}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth} 
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Both.png}
+        \caption{}
+         \label{fig:JCM_OQS_Pop_Both}
+    \end{subfigure}
+    \hfill
+    \caption{}
+    \label{fig:JCM_OQS_Pop}
+\end{figure}
+
+Under all types of decays (see section \ref{sec:method_sub_JCM}), we observe Rabi oscillations as expected. However, the populations of both subsystems decay, due to loss to the environment. This decay is to be expected, and is a hallmark of open quantum evolution. Interestingly, the Rabi oscillations' period remains constant over all time, which is a consequence of the Rabi frequency $g$ not being a function of time. However, figures \ref{fig:JCM_OQS_Pop_Spont}, \ref{fig:JCM_OQS_Pop_Therm} show that the decays of both subsystems under either spontaneous atomic emission and thermal dissipation are almost identical. We can attribute this similarity to the low temperature regime, such that thermal dissipation is only associated with photon loss (see equation \eqref{eqn:L_therm}). This means that the decay operator for the dissipator is effectively only photon loss. Since, as mentioned in section \ref{sec:method_sub_JCM}, we have set the decay rates of the thermal and spontaneous emission to be equal ($\gamma = \gamma_{\scriptscriptstyle \text{th}} =0.01$, the two decay types are effectively equal (just acting on different subsystems). Moreover, the Rabi oscillations lead to decay in the other subsystems due to excitation transfer, a key characteristic in the JCM. Finally, we note that the two decays individually both lead to the populations being 0 around $t = 1000 ps$, for both decays acting simultaneously, we have the populations being 0 around $t = 600 ps$ in figure \ref{fig:JCM_OQS_Pop_Both}. As the Lindblad operators remove excitations, they suppress both diagonal and off--diagonal elements of the density matrix on comparable timescales. In this basis, coherence cannot outlive population, and so both decay together. We further not
+
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Spont.png}
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Spont.png}
+        \caption{}
+        \label{fig:JCM_OQS_Coh_Spont}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Therm.png}
+        \caption{}
+        \label{fig:JCM_OQS_Coh_Therm}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Both.png}
+        \caption{}
+        \label{fig:JCM_OQS_Coh_Both}
+    \end{subfigure}
+    \hfill
+    \caption{}
+    \label{fig:JCM_OQS_Coh}
+\end{figure}
+
+When talking about open quantum systems, a feature of such evolution that is key is decoherence, which, as mentioned in section \ref{sec:theory_sub_OQS}, is the decay of the off--diagonals of a system, leading to a loss of 'quantumness'. We can observe this directly by looking at the decay of coherence. For the total system, in the computational basis $\{|e,0\rangle, |g,1\rangle\}$, there is coherence in the closed system evolution, so we expect coherence as well for the open system evolution. We indeed observe this. For all types of decay, the total system's coherence decays on the same timescales as the populations, around $t \approx 1000ps$ for spontaneous emission and thermal dissipation (figures \ref{fig:JCM_OQS_Coh_Spont}, \ref{fig:JCM_OQS_Coh_Therm}), and $ t \approx 600ps$ for both decay channels open simultaneously (figure \ref{fig:JCM_OQS_Coh_Both}). As the Lindblad operators act to decay excitations, they suppress both diagonal and off–diagonal elements of the density matrix on comparable timescales. In this basis, coherence cannot outlive population, and so both decay together.\\
+\\
+\begin{figure}[H] 
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Spont.png}
+        \caption{}
+        \label{fig:JCM_OQS_Neg_Spont}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Therm.png}
+        \caption{}
+        \label{fig:JCM_OQS_Neg_Therm}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Both.png}
+        \caption{}
+        \label{fig:JCM_OQS_Neg_Both}
+    \end{subfigure}
+    \hfill
+    \caption{}
+    \label{fig:JCM_OQS_Neg}
+\end{figure}
+
+To conclude our simulations of the JCM, we look at the Negativity of the system. Figure \ref{fig:JCM_OQS_Neg} shows that negativity decays on a timescale approximately twice as fast as the population for all types of decay. This can be understood by noting that entanglement requires simultaneous occupation of both states $|e,0\rangle$ and $|g,1\rangle$. We may understand this by looking at one decay channel; let us look at the spontaneous emission. For entanglement to persist, both states must be populated at the same time. However, spontaneous emission acts directly on the excited atomic state, $|e,0\rangle$  and due to Rabi oscillations exchanging excitations, the $|g,1\rangle$ state is also gradually suppressed. Thus, the superposition of both is effectively decaying twice as fast and so we see a doubled decay rate for entanglement. The same process occurs with the thermal dissipation decay channel, except that now, the single photon state $|g,1\rangle$ is directly damped by photon loss, and through Rabi oscillations the $|e,0\rangle$ component is also gradually depleted. Finally, due to both decay channels being open for figure \ref{fig:JCM_OQS_Neg_Both}, we observe a decay time of half of that for either of the subsystems being open. \\
+\\
+As with the closed simulation, we also consider the second initial state in equation \eqref{init_JCM_e0g0}.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Spont_eg.png}
         \caption{}
         \label{fig:jcm_cqs_expt_eg}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Therm.png}
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Therm_eg.png}
         \caption{}
         \label{fig:jcm_cqs_vne_eg}
     \end{subfigure}
@@ -946,15 +1043,73 @@ We start with our first initial state in equation \eqref{init_JCM_e0}.
     
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Both.png}
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Both_eg.png}
         \caption{}
         \label{fig:jcm_cqs_coh_eg}
     \end{subfigure}
     \hfill
 
-    \caption{All figures above are simulations of the JCM under closed unitary evolution, starting in an initial state of $|\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|e, 0\rangle + |g,0\rangle)$. (a) Plot of the populations of the excited atomic state $|e\rangle$, the ground atomic state $|g\rangle$ and the cavity state, $|n=0\rangle$. (b) Von Neumann entropy of the JCM. (c) Plot of the relative entropy of coherence for the two subsystems and the total system.}
-    \label{fig:JCM_cqs_e0g0}
+    \caption{}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Spont_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_expt_eg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Therm_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_vne_eg}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Both_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_coh_eg}
+    \end{subfigure}
+    \hfill
+
+    \caption{}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Spont_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_expt_eg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Therm_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_vne_eg}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Both_eg.png}
+        \caption{}
+        \label{fig:jcm_cqs_coh_eg}
+    \end{subfigure}
+    \hfill
+
+    \caption{}
+\end{figure}
+
 
 \subsection{Population, Entanglement and Coherence of the Exciton--Vibration Model}
 \subsubsection{Closed Evolution}
