@@ -57,18 +57,15 @@ e_ops = [s_lower * s_raise, n1_pop]
 
 sim_e0_env = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env)
 sim_eg_env = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env)
-sim_e0_env_long = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env_long)
-sim_eg_env_long = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env_long)
 results_e0_env = sim_e0_env.evolve()
 results_eg_env = sim_eg_env.evolve()
-results_e0_env_long = sim_e0_env_long.evolve()
-results_eg_env_long = sim_eg_env_long.evolve()
+
 
 results_expt_e0_env = sim_e0_env.expect(results_e0_env)
 results_expt_eg_env = sim_eg_env.expect(results_eg_env)
 
-vne_e0_env = sim_e0_env_long.vne(results_e0_env_long)
-vne_eg_env = sim_eg_env_long.vne(results_eg_env_long)
+vne_e0_env = sim_e0_env.vne(results_e0_env)
+vne_eg_env = sim_eg_env.vne(results_eg_env)
 
 coh_tls_e0_env = sim_e0_env.rel_coherence(results_e0_env, subsys="TLS")
 coh_qho_e0_env = sim_e0_env.rel_coherence(results_e0_env, subsys="QHO")
@@ -110,12 +107,12 @@ sim_e0_env.plot(
         {
             "y_data": results_expt_e0_env[0],
             "label": "Exciton ground state",
-            "colour": "tab:blue",
+            "colour": "tab:red",
         },
         {
             "y_data": results_expt_e0_env[1],
             "label": "Vibration photon number, n = 1",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
     ],
     y_label="Expectation Values",
@@ -125,7 +122,7 @@ sim_e0_env.plot(
 
 sim_e0_env.plot(
     "vne",
-    [{"y_data": vne_e0_env}],
+    [{"y_data": vne_e0_env, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="/ExVib/Closed/Envelope",
     smooth=150
@@ -134,8 +131,8 @@ sim_e0_env.plot(
 sim_e0_env.plot(
     "coh",
     [
-        {"y_data": coh_tls_e0_env, "label": "Exciton subsystem", "colour": "tab:blue"},
-        {"y_data": coh_qho_e0_env, "label": "Vibration subsystem", "colour": "tab:red"},
+        {"y_data": coh_tls_e0_env, "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": coh_qho_e0_env, "label": "Vibration subsystem", "colour": "tab:blue"},
         {"y_data": coh_tot_e0_env, "label": "Total system", "colour": "tab:green"},
     ],
     y_label="Relative Entropy of Coherence",
@@ -150,12 +147,12 @@ sim_eg_env.plot(
         {
             "y_data": results_expt_eg_env[0],
             "label": "Exciton ground state",
-            "colour": "tab:blue",
+            "colour": "tab:red",
         },
         {
             "y_data": results_expt_eg_env[1],
             "label": "Vibration photon number, n = 1",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
     ],
     y_label="Expectation Values",
@@ -165,7 +162,7 @@ sim_eg_env.plot(
 
 sim_eg_env.plot(
     "vne_eg",
-    [{"y_data": vne_eg_env}],
+    [{"y_data": vne_eg_env, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="/ExVib/Closed/Envelope",
     smooth=150
@@ -174,8 +171,8 @@ sim_eg_env.plot(
 sim_eg_env.plot(
     "coh_eg",
     [
-        {"y_data": coh_tls_eg_env, "label": "Exciton subsystem", "colour": "tab:blue"},
-        {"y_data": coh_qho_eg_env, "label": "Vibration subsystem", "colour": "tab:red"},
+        {"y_data": coh_tls_eg_env, "label": "Exciton subsystem", "colour": "tab:red"},
+        {"y_data": coh_qho_eg_env, "label": "Vibration subsystem", "colour": "tab:blue"},
         {"y_data": coh_tot_eg_env, "label": "Total system", "colour": "tab:green"},
     ],
     y_label="Relative Entropy of Coherence",
@@ -192,12 +189,12 @@ sim_e0_fast.plot(
         {
             "y_data": results_expt_e0_fast[0],
             "label": "Exciton ground state",
-            "colour": "tab:blue",
+            "colour": "tab:red",
         },
         {
             "y_data": results_expt_e0_fast[1],
             "label": "Vibration photon number, n = 1",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
     ],
     y_label="Expectation Values",
@@ -206,7 +203,7 @@ sim_e0_fast.plot(
 
 sim_e0_fast.plot(
     "vne",
-    [{"y_data": vne_e0_fast}],
+    [{"y_data": vne_e0_fast, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="/ExVib/Closed/Fast",
 )
@@ -214,11 +211,11 @@ sim_e0_fast.plot(
 sim_e0_fast.plot(
     "coh",
     [
-        {"y_data": coh_tls_e0_fast, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {"y_data": coh_tls_e0_fast, "label": "Exciton subsystem", "colour": "tab:red"},
         {
             "y_data": coh_qho_e0_fast,
             "label": "Vibration subsystem",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
         {"y_data": coh_tot_e0_fast, "label": "Total system", "colour": "tab:green"},
     ],
@@ -233,12 +230,12 @@ sim_eg_fast.plot(
         {
             "y_data": results_expt_eg_fast[0],
             "label": "Exciton ground state",
-            "colour": "tab:blue",
+            "colour": "tab:red",
         },
         {
             "y_data": results_expt_eg_fast[1],
             "label": "Vibration photon number, n = 1",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
     ],
     y_label="Expectation Values",
@@ -247,7 +244,7 @@ sim_eg_fast.plot(
 
 sim_eg_fast.plot(
     "vne_eg",
-    [{"y_data": vne_eg_fast}],
+    [{"y_data": vne_eg_fast, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="/ExVib/Closed/Fast",
 )
@@ -255,11 +252,11 @@ sim_eg_fast.plot(
 sim_eg_fast.plot(
     "coh_eg",
     [
-        {"y_data": coh_tls_eg_fast, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {"y_data": coh_tls_eg_fast, "label": "Exciton subsystem", "colour": "tab:red"},
         {
             "y_data": coh_qho_eg_fast,
             "label": "Vibration subsystem",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
         {"y_data": coh_tot_eg_fast, "label": "Total system", "colour": "tab:green"},
     ],

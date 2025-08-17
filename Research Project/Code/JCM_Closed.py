@@ -53,12 +53,12 @@ sim.plot(
         {
             "y_data": results_expt[0],
             "label": "Excited Atomic State",
-            "colour": "tab:blue",
+            "colour": "tab:red",
         },
         {
             "y_data": results_expt[1],
             "label": "Cavity photon number, n = 1",
-            "colour": "tab:red",
+            "colour": "tab:blue",
         },
     ],
     y_label="Populations",
@@ -67,7 +67,7 @@ sim.plot(
 
 sim.plot(
     "CQS_vne",
-    [{"y_data": vne}],
+    [{"y_data": vne, "colour" : "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="JCM",
 )
@@ -76,11 +76,11 @@ sim.plot(
 sim.plot(
     "CQS_coh",
     [
-        {"y_data": coh_tls, "label": "Atomic subsystem", "colour": "tab:blue"},
+        {"y_data": coh_tls, "label": "Atomic subsystem", "colour": "tab:red"},
         {
             "y_data": coh_qho,
             "label": "Cavity subsystem",
-            "colour": "tab:red",
+            "colour": "tab:blue",
             "linestyle": "--",
         },
         {"y_data": coh_total, "label": "Total system", "colour": "tab:green"},

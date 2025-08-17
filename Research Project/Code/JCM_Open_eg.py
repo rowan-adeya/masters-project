@@ -99,7 +99,7 @@ sim_open_spont.plot(
     [
         {
             "y_data": neg_spont,
-            "colour": "tab:red",
+            "colour": "tab:purple",
         },
     ],
     "Negativity",
@@ -111,7 +111,7 @@ sim_open_therm.plot(
     [
         {
             "y_data": neg_therm,
-            "colour": "tab:red",
+            "colour": "tab:purple",
         },
     ],
     "Negativity",
@@ -123,7 +123,7 @@ sim_open_both.plot(
     [
         {
             "y_data": neg_both,
-            "colour": "tab:red",
+            "colour": "tab:purple",
         },
     ],
     "Negativity",

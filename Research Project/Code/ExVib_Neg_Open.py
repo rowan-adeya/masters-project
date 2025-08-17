@@ -87,7 +87,7 @@ for decay_label, lindblad_ops in decay_ops.items():
         # one plot per initial state (always red)
         sim.plot(
             f"neg_{decay_label}_{psi_label}",
-            [{"y_data": neg, "colour": "tab:red"}],
+            [{"y_data": neg, "colour": "tab:purple"}],
             y_label="Negativity",
             savepath="ExVib/Open/Negativity",
             smooth=13

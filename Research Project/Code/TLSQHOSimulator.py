@@ -225,6 +225,7 @@ class TLSQHOSimulator:
         title: str = None,
         savepath: str = None,
         smooth: int = None,
+        linewidth: float = None,
     ):
         """
         Plots data and saves to specific location in repository.
@@ -238,6 +239,7 @@ class TLSQHOSimulator:
             title(str) : Optional, name of graph.
             savepath(str) : Optional, path from "results" directory which the user wants to save their plots to.
             smooth(int) : Optional, plots a smoothed version of graph, using a moving average.
+            linewidth(float) : Optional, adjusts linedwidth of plots.
 
         Example:
             sim.plot(
@@ -257,20 +259,27 @@ class TLSQHOSimulator:
             label = line.get("label", None)
             colour = line.get("colour", "tab:red")
             linestyle = line.get("linestyle", "-")
+            linewidth = line.get("linewidth", 1.5)  # matplotlib linewidth default = 1.5
 
             if smooth is not None:
                 plt.plot(self.times, y_data, color=colour, alpha=0.3, linestyle="--")
-                y_data_smooth = uniform_filter1d(y_data, size=smooth) 
+                y_data_smooth = uniform_filter1d(y_data, size=smooth)
                 plt.plot(
                     self.times,
                     y_data_smooth,
                     color=colour,
                     label=label,
                     linestyle=linestyle,
+                    linewidth=linewidth,
                 )
             else:
                 plt.plot(
-                    self.times, y_data, color=colour, label=label, linestyle=linestyle
+                    self.times,
+                    y_data,
+                    color=colour,
+                    label=label,
+                    linestyle=linestyle,
+                    linewidth=linewidth,
                 )
 
         if any(line.get("label") for line in plot_lines):
