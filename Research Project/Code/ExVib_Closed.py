@@ -53,7 +53,7 @@ psi0_e0 = q.tensor(basis_atom_e, basis_qho_0)
 psi0_eg = q.tensor(basis_atom_e + basis_atom_g, basis_qho_0) / math.sqrt(2)
 ############################ SIMULATION ENV ###################################
 n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
-e_ops = [s_lower * s_raise, n1_pop]
+e_ops = [s_raise * s_lower, n1_pop]
 
 sim_e0_env = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env)
 sim_eg_env = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env)
@@ -102,11 +102,11 @@ coh_tot_eg_fast = sim_eg_fast.rel_coherence(results_eg_fast)
 ############################### PLOTS ENV #####################################
 
 sim_e0_env.plot(
-    "pops_ground",
+    "pops_excited",
     [
         {
             "y_data": results_expt_e0_env[0],
-            "label": "Exciton ground state",
+            "label": "Exciton excited state",
             "colour": "tab:red",
         },
         {
@@ -142,11 +142,11 @@ sim_e0_env.plot(
 
 
 sim_eg_env.plot(
-    "pops_ground_eg",
+    "pops_excited_eg",
     [
         {
             "y_data": results_expt_eg_env[0],
-            "label": "Exciton ground state",
+            "label": "Exciton excited state",
             "colour": "tab:red",
         },
         {
@@ -184,11 +184,11 @@ sim_eg_env.plot(
 ############################### PLOTS ENV #####################################
 
 sim_e0_fast.plot(
-    "pops_ground",
+    "pops_excited",
     [
         {
             "y_data": results_expt_e0_fast[0],
-            "label": "Exciton ground state",
+            "label": "Exciton excited state",
             "colour": "tab:red",
         },
         {
@@ -228,11 +228,11 @@ sim_e0_fast.plot(
 
 
 sim_eg_fast.plot(
-    "pops_ground_eg",
+    "pops_excited_eg",
     [
         {
             "y_data": results_expt_eg_fast[0],
-            "label": "Exciton ground state",
+            "label": "Exciton excited state",
             "colour": "tab:red",
         },
         {

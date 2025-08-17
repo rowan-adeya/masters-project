@@ -68,7 +68,6 @@ sim.plot(
             "label": "Cavity photon number, n = 0",
             "colour": "tab:blue",
         },
-
     ],
     y_label="Populations",
     savepath="JCM",
@@ -76,7 +75,7 @@ sim.plot(
 
 sim.plot(
     "CQS_vne_eg",
-    [{"y_data": vne, "colour" : "tab:purple"}],
+    [{"y_data": vne, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="JCM",
 )
@@ -84,8 +83,20 @@ sim.plot(
 sim.plot(
     "CQS_coh_eg",
     [
-        {"y_data": coh_tls, "label": "Atomic subsystem", "colour": "tab:red"},
-        {"y_data": coh_qho, "label": "Cavity subsystem", "colour": "tab:blue"},
+        {
+            "y_data": coh_tls,
+            "label": "Atomic subsystem",
+            "colour": "tab:red",
+            "linestyle": "--",
+            "linewidth": 0.7,
+        },
+        {
+            "y_data": coh_qho,
+            "label": "Cavity subsystem",
+            "colour": "tab:blue",
+            "linestyle": "--",
+            "linewidth": 0.7,
+        },
         {"y_data": coh_tot, "label": "Total system", "colour": "tab:green"},
     ],
     y_label="Relative Entropy of Coherence",

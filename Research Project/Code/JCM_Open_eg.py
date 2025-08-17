@@ -140,12 +140,14 @@ sim_open_spont.plot(
             "label": "Atomic subsystem",
             "colour": "tab:red",
             "linestyle": "--",
+            "linewidth": 0.7,
         },
         {
             "y_data": coh_qho_spont,
             "label": "Cavity subsystem",
             "colour": "tab:blue",
             "linestyle": "--",
+            "linewidth": 0.7,
         },
         {
             "y_data": coh_tot_spont,
@@ -165,12 +167,14 @@ sim_open_therm.plot(
             "label": "Atomic subsystem",
             "colour": "tab:red",
             "linestyle": "--",
+            "linewidth": 0.7,
         },
         {
             "y_data": coh_qho_therm,
             "label": "Cavity subsystem",
             "colour": "tab:blue",
             "linestyle": "--",
+            "linewidth": 0.7,
         },
         {
             "y_data": coh_tot_therm,
@@ -190,12 +194,14 @@ sim_open_both.plot(
             "label": "Atomic subsystem",
             "colour": "tab:red",
             "linestyle": "--",
+            "linewidth": 0.7,
         },
         {
             "y_data": coh_qho_both,
             "label": "Cavity subsystem",
             "colour": "tab:blue",
             "linestyle": "--",
+            "linewidth": 0.7,
         },
         {
             "y_data": coh_tot_both,

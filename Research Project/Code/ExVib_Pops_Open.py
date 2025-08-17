@@ -4,8 +4,8 @@ import numpy as np
 import math
 
 """
-This simulation looks at the Exciton Vibration system and plots the populations of the Vibration, and both the 
-ground and excited states of the Exciton. This is done for 3 Lindblad Decay Operators: Spontaneous Atomic 
+This simulation looks at the Exciton Vibration system and plots the populations of the Vibration and 
+excited states of the Exciton. This is done for 3 Lindblad Decay Operators: Spontaneous Atomic 
 Emission, Thermal Dissipation, and both combined.
 
 """
@@ -94,7 +94,7 @@ for decay_label, lindblad_ops in decay_ops.items():
         sim.plot(
             f"pops_ex_{decay_label}_{psi_label}",
             [
-                {"y_data": ground, "label": "Exciton subsystem (ground)", "colour": "tab:red"},
+                {"y_data": excited, "label": "Exciton subsystem (excited)", "colour": "tab:red"},
                 {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:blue"},
             ],
             "Populations",
