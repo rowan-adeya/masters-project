@@ -260,7 +260,7 @@ class TLSQHOSimulator:
 
             if smooth is not None:
                 plt.plot(self.times, y_data, color=colour, alpha=0.3, linestyle="--")
-                y_data_smooth = uniform_filter1d(y_data, size=smooth) # smooth data
+                y_data_smooth = uniform_filter1d(y_data, size=smooth) 
                 plt.plot(
                     self.times,
                     y_data_smooth,

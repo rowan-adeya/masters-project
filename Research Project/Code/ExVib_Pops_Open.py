@@ -15,7 +15,7 @@ Emission, Thermal Dissipation, and both combined.
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 100.0  # ps
+t_max = 70.0  # ps
 tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 300)
 
 # t in cm conversion, noting original time is in ps
@@ -51,9 +51,7 @@ H = H_ex + H_vib + H_int
 ######################## INITIAL CONDITIONS ###############################
 initial_states = {
     "e0": q.tensor(basis_atom_e, basis_qho_0),
-    "e1": q.tensor(basis_atom_e, basis_qho_1),
-    "g0": q.tensor(basis_atom_g, basis_qho_0),
-    "g1": q.tensor(basis_atom_g, basis_qho_1),
+    "eg": q.tensor(basis_atom_e + basis_atom_g, basis_qho_0) / math.sqrt(2)
 }
 ########################## OPEN SIM SETUP #################################
 # Constants
@@ -96,21 +94,11 @@ for decay_label, lindblad_ops in decay_ops.items():
         sim.plot(
             f"pops_ex_{decay_label}_{psi_label}",
             [
-                {"y_data": excited, "label": "Exciton subsystem (excited)", "colour": "tab:red"},
-                {"y_data": ground, "label": "Exciton subsystem (ground)", "colour": "tab:green"},
+                {"y_data": ground, "label": "Exciton subsystem (ground)", "colour": "tab:red"},
+                {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:blue"},
             ],
             "Populations",
             savepath="ExVib/Open/Population",
+            smooth=13
         )
-
-        sim.plot(
-            f"pops_vib_{decay_label}_{psi_label}",
-            [
-                {"y_data": vib0, "label": "Vibration photon number, n = 0", "colour": "tab:red"},
-                {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:green"},
-            ],
-            "Populations",
-            savepath="ExVib/Open/Population",
-        )
-
 

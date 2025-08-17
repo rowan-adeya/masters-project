@@ -14,8 +14,8 @@ for 3 Lindblad Decay Operators: Spontaneous Atomic Emission, Thermal Dissipation
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 100.0  # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 300)
+t_max = 70.0  # ps
+tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 500)
 
 # t in cm conversion, noting original time is in ps
 
@@ -50,9 +50,7 @@ H = H_ex + H_vib + H_int
 ######################## INITIAL CONDITIONS ###############################
 initial_states = {
     "e0": q.tensor(basis_atom_e, basis_qho_0),
-    "e1": q.tensor(basis_atom_e, basis_qho_1),
-    "g0": q.tensor(basis_atom_g, basis_qho_0),
-    "g1": q.tensor(basis_atom_g, basis_qho_1),
+    "eg": q.tensor(basis_atom_e + basis_atom_g, basis_qho_0) / math.sqrt(2),
 }
 ########################## OPEN SIM SETUP #################################
 
@@ -81,24 +79,16 @@ decay_ops = {
 ############################ SIMULATION ###################################
 
 for decay_label, lindblad_ops in decay_ops.items():
-    neg_data = []
     for psi_label, psi in initial_states.items():
         sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist)
         results = sim.evolve()
         neg = sim.negativity(results)
-        neg_data.append({
-            "y_data": neg,
-            "label": f"|{psi_label[0]},{psi_label[1]}>",
-            "colour": {
-                "e0": "tab:red",
-                "e1": "tab:blue",
-                "g0": "tab:green",
-                "g1": "tab:orange",
-            }[psi_label],
-        })
-    sim.plot(
-        f"neg_{decay_label}",
-        neg_data,
-        "Negativity",
-        savepath="ExVib/Open/Negativity",
-    )
+
+        # one plot per initial state (always red)
+        sim.plot(
+            f"neg_{decay_label}_{psi_label}",
+            [{"y_data": neg, "colour": "tab:red"}],
+            y_label="Negativity",
+            savepath="ExVib/Open/Negativity",
+            smooth=13
+        )

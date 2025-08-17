@@ -10,9 +10,11 @@ import math
 # d_epsilon = 1042, V = 92, d_E = 1058, w = 1111 all in cm^-1.
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
-t_max_env = 4.5
-tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 2500)  # N=2500 for 1ps
-t_max_fast = 0.9  # 1ps
+t_max_env = 5
+tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 2500)
+t_max_env_long = 17
+tlist_env_long = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env_long, 2500)   
+t_max_fast = 0.9  
 tlist_fast = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_fast, 2500)
 
 # t in cm conversion, noting original time is in ps
@@ -55,15 +57,18 @@ e_ops = [s_lower * s_raise, n1_pop]
 
 sim_e0_env = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env)
 sim_eg_env = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env)
+sim_e0_env_long = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env_long)
+sim_eg_env_long = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env_long)
 results_e0_env = sim_e0_env.evolve()
 results_eg_env = sim_eg_env.evolve()
+results_e0_env_long = sim_e0_env_long.evolve()
+results_eg_env_long = sim_eg_env_long.evolve()
 
 results_expt_e0_env = sim_e0_env.expect(results_e0_env)
 results_expt_eg_env = sim_eg_env.expect(results_eg_env)
 
-vne_e0_env = sim_e0_env.vne(results_e0_env)
-
-vne_eg_env = sim_eg_env.vne(results_eg_env)
+vne_e0_env = sim_e0_env_long.vne(results_e0_env_long)
+vne_eg_env = sim_eg_env_long.vne(results_eg_env_long)
 
 coh_tls_e0_env = sim_e0_env.rel_coherence(results_e0_env, subsys="TLS")
 coh_qho_e0_env = sim_e0_env.rel_coherence(results_e0_env, subsys="QHO")
