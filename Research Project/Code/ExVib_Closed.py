@@ -199,6 +199,7 @@ sim_e0_fast.plot(
     ],
     y_label="Expectation Values",
     savepath="/ExVib/Closed/Fast",
+    smooth=150
 )
 
 sim_e0_fast.plot(
@@ -206,6 +207,7 @@ sim_e0_fast.plot(
     [{"y_data": vne_e0_fast, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="/ExVib/Closed/Fast",
+    smooth=150
 )
 
 sim_e0_fast.plot(
@@ -221,6 +223,7 @@ sim_e0_fast.plot(
     ],
     y_label="Relative Entropy of Coherence",
     savepath="/ExVib/Closed/Fast",
+    smooth=150
 )
 
 
@@ -240,6 +243,7 @@ sim_eg_fast.plot(
     ],
     y_label="Expectation Values",
     savepath="/ExVib/Closed/Fast",
+    smooth=150
 )
 
 sim_eg_fast.plot(
@@ -247,6 +251,7 @@ sim_eg_fast.plot(
     [{"y_data": vne_eg_fast, "colour": "tab:purple"}],
     y_label="Von Neumann Entanglement Entropy",
     savepath="/ExVib/Closed/Fast",
+    smooth=150
 )
 
 sim_eg_fast.plot(
@@ -262,4 +267,5 @@ sim_eg_fast.plot(
     ],
     y_label="Relative Entropy of Coherence",
     savepath="/ExVib/Closed/Fast",
+    smooth=150
 )
