@@ -14,8 +14,8 @@ for 3 Lindblad Decay Operators: Spontaneous Atomic Emission, Thermal Dissipation
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 70 # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 300)
+t_max = 120 # ps
+tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 500)
 
 # t in cm conversion, noting original time is in ps
 
