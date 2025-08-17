@@ -1,6 +1,7 @@
 import qutip as q
 import numpy as np
 from matplotlib import pyplot as plt
+from scipy.ndimage import uniform_filter1d
 
 
 class TLSQHOSimulator:
@@ -223,6 +224,7 @@ class TLSQHOSimulator:
         x_label: str = None,
         title: str = None,
         savepath: str = None,
+        smooth: int = None,
     ):
         """
         Plots data and saves to specific location in repository.
@@ -235,6 +237,7 @@ class TLSQHOSimulator:
             x_label(str) : Optional, X-axis label.
             title(str) : Optional, name of graph.
             savepath(str) : Optional, path from "results" directory which the user wants to save their plots to.
+            smooth(int) : Optional, plots a smoothed version of graph, using a moving average.
 
         Example:
             sim.plot(
@@ -253,10 +256,22 @@ class TLSQHOSimulator:
             y_data = line["y_data"]
             label = line.get("label", None)
             colour = line.get("colour", "tab:red")
-            line_style = line.get("linestyle", "-")
-            plt.plot(
-                self.times, y_data, color=colour, linestyle=line_style, label=label
-            )
+            linestyle = line.get("linestyle", "-")
+
+            if smooth is not None:
+                plt.plot(self.times, y_data, color=colour, alpha=0.3, linestyle="--")
+                y_data_smooth = uniform_filter1d(y_data, size=smooth) # smooth data
+                plt.plot(
+                    self.times,
+                    y_data_smooth,
+                    color=colour,
+                    label=label,
+                    linestyle=linestyle,
+                )
+            else:
+                plt.plot(
+                    self.times, y_data, color=colour, label=label, linestyle=linestyle
+                )
 
         if any(line.get("label") for line in plot_lines):
             plt.legend(loc="upper right", fontsize=10)

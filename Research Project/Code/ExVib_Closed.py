@@ -10,10 +10,11 @@ import math
 # d_epsilon = 1042, V = 92, d_E = 1058, w = 1111 all in cm^-1.
 # g = (0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
+t_max_env = 4.5
+tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 2500)  # N=2500 for 1ps
+t_max_fast = 0.9  # 1ps
+tlist_fast = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_fast, 2500)
 
-t_max = 45.0  # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 100)
-# TODO : conversion within class tlist_cm = tlist * 2 *np.pi * 3**(-2)
 # t in cm conversion, noting original time is in ps
 
 # params, cm^-1
@@ -27,7 +28,8 @@ N = 10  # num Fock states
 # Bases
 basis_atom_e = q.basis(2, 0)
 basis_atom_g = q.basis(2, 1)
-basis_qho = q.basis(N, 0)
+basis_qho_0 = q.basis(N, 0)
+basis_qho_1 = q.basis(N, 1)
 
 
 # Operators
@@ -45,56 +47,217 @@ H_int = -(g / math.sqrt(2)) * q.tensor(q.sigmaz(), q.destroy(N).dag() + q.destro
 H = H_ex + H_vib + H_int
 
 # Initial Condition
-psi0 = q.tensor(basis_atom_e, basis_qho)
+psi0_e0 = q.tensor(basis_atom_e, basis_qho_0)
+psi0_eg = q.tensor(basis_atom_e + basis_atom_g, basis_qho_0) / math.sqrt(2)
+############################ SIMULATION ENV ###################################
+n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
+e_ops = [s_lower * s_raise, n1_pop]
 
-############################ SIMULATION ###################################
-n0_pop = q.tensor(q.qeye(2), basis_qho * basis_qho.dag())  # QHO pop |n=0>
-e_ops = [s_lower * s_raise, n0_pop]
+sim_e0_env = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env)
+sim_eg_env = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env)
+results_e0_env = sim_e0_env.evolve()
+results_eg_env = sim_eg_env.evolve()
 
-sim = TLSQHOSimulator(H, psi0, e_ops=e_ops, times=tlist)
-results = sim.evolve()
+results_expt_e0_env = sim_e0_env.expect(results_e0_env)
+results_expt_eg_env = sim_eg_env.expect(results_eg_env)
 
-results_expt = sim.expect(results)
+vne_e0_env = sim_e0_env.vne(results_e0_env)
 
-vne = sim.vne(results)
+vne_eg_env = sim_eg_env.vne(results_eg_env)
 
-coh_tls = sim.rel_coherence(results, subsys="TLS")
-coh_qho = sim.rel_coherence(results, subsys="QHO")
+coh_tls_e0_env = sim_e0_env.rel_coherence(results_e0_env, subsys="TLS")
+coh_qho_e0_env = sim_e0_env.rel_coherence(results_e0_env, subsys="QHO")
+coh_tot_e0_env = sim_e0_env.rel_coherence(results_e0_env)
+
+coh_tls_eg_env = sim_eg_env.rel_coherence(results_eg_env, subsys="TLS")
+coh_qho_eg_env = sim_eg_env.rel_coherence(results_eg_env, subsys="QHO")
+coh_tot_eg_env = sim_eg_env.rel_coherence(results_eg_env)
 
 
-############################### PLOTS #####################################
+############################ SIMULATION FAST ###################################
 
-sim.plot(
-    "pops_excited",
+
+sim_e0_fast = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_fast)
+sim_eg_fast = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_fast)
+results_e0_fast = sim_e0_fast.evolve()
+results_eg_fast = sim_eg_fast.evolve()
+
+results_expt_e0_fast = sim_e0_fast.expect(results_e0_fast)
+results_expt_eg_fast = sim_eg_fast.expect(results_eg_fast)
+
+vne_e0_fast = sim_e0_fast.vne(results_e0_fast)
+
+vne_eg_fast = sim_eg_fast.vne(results_eg_fast)
+
+coh_tls_e0_fast = sim_e0_fast.rel_coherence(results_e0_fast, subsys="TLS")
+coh_qho_e0_fast = sim_e0_fast.rel_coherence(results_e0_fast, subsys="QHO")
+coh_tot_e0_fast = sim_e0_fast.rel_coherence(results_e0_fast)
+
+coh_tls_eg_fast = sim_eg_fast.rel_coherence(results_eg_fast, subsys="TLS")
+coh_qho_eg_fast = sim_eg_fast.rel_coherence(results_eg_fast, subsys="QHO")
+coh_tot_eg_fast = sim_eg_fast.rel_coherence(results_eg_fast)
+
+############################### PLOTS ENV #####################################
+
+sim_e0_env.plot(
+    "pops_ground",
     [
         {
-            "y_data": results_expt[0],
+            "y_data": results_expt_e0_env[0],
             "label": "Exciton ground state",
             "colour": "tab:blue",
         },
         {
-            "y_data": results_expt[1],
-            "label": "Vibration photon number",
+            "y_data": results_expt_e0_env[1],
+            "label": "Vibration photon number, n = 1",
             "colour": "tab:red",
         },
     ],
     y_label="Expectation Values",
-    savepath="/ExVib/Closed",
+    savepath="/ExVib/Closed/Envelope",
+    smooth=150,
 )
 
-sim.plot(
+sim_e0_env.plot(
     "vne",
-    [{"y_data": vne}],
+    [{"y_data": vne_e0_env}],
     y_label="Von Neumann Entanglement Entropy",
-    savepath="/ExVib/Closed",
+    savepath="/ExVib/Closed/Envelope",
+    smooth=150
 )
 
-sim.plot(
+sim_e0_env.plot(
     "coh",
     [
-        {"y_data": coh_tls, "label": "Exciton subsystem", "colour": "tab:blue"},
-        {"y_data": coh_qho, "label": "Vibration subsystem", "colour": "tab:red"},
+        {"y_data": coh_tls_e0_env, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {"y_data": coh_qho_e0_env, "label": "Vibration subsystem", "colour": "tab:red"},
+        {"y_data": coh_tot_e0_env, "label": "Total system", "colour": "tab:green"},
     ],
     y_label="Relative Entropy of Coherence",
-    savepath="/ExVib/Closed",
+    savepath="/ExVib/Closed/Envelope",
+    smooth=150
+)
+
+
+sim_eg_env.plot(
+    "pops_ground_eg",
+    [
+        {
+            "y_data": results_expt_eg_env[0],
+            "label": "Exciton ground state",
+            "colour": "tab:blue",
+        },
+        {
+            "y_data": results_expt_eg_env[1],
+            "label": "Vibration photon number, n = 1",
+            "colour": "tab:red",
+        },
+    ],
+    y_label="Expectation Values",
+    savepath="/ExVib/Closed/Envelope",
+    smooth=150
+)
+
+sim_eg_env.plot(
+    "vne_eg",
+    [{"y_data": vne_eg_env}],
+    y_label="Von Neumann Entanglement Entropy",
+    savepath="/ExVib/Closed/Envelope",
+    smooth=150
+)
+
+sim_eg_env.plot(
+    "coh_eg",
+    [
+        {"y_data": coh_tls_eg_env, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {"y_data": coh_qho_eg_env, "label": "Vibration subsystem", "colour": "tab:red"},
+        {"y_data": coh_tot_eg_env, "label": "Total system", "colour": "tab:green"},
+    ],
+    y_label="Relative Entropy of Coherence",
+    savepath="/ExVib/Closed/Envelope",
+    smooth=150
+)
+
+
+############################### PLOTS ENV #####################################
+
+sim_e0_fast.plot(
+    "pops_ground",
+    [
+        {
+            "y_data": results_expt_e0_fast[0],
+            "label": "Exciton ground state",
+            "colour": "tab:blue",
+        },
+        {
+            "y_data": results_expt_e0_fast[1],
+            "label": "Vibration photon number, n = 1",
+            "colour": "tab:red",
+        },
+    ],
+    y_label="Expectation Values",
+    savepath="/ExVib/Closed/Fast",
+)
+
+sim_e0_fast.plot(
+    "vne",
+    [{"y_data": vne_e0_fast}],
+    y_label="Von Neumann Entanglement Entropy",
+    savepath="/ExVib/Closed/Fast",
+)
+
+sim_e0_fast.plot(
+    "coh",
+    [
+        {"y_data": coh_tls_e0_fast, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {
+            "y_data": coh_qho_e0_fast,
+            "label": "Vibration subsystem",
+            "colour": "tab:red",
+        },
+        {"y_data": coh_tot_e0_fast, "label": "Total system", "colour": "tab:green"},
+    ],
+    y_label="Relative Entropy of Coherence",
+    savepath="/ExVib/Closed/Fast",
+)
+
+
+sim_eg_fast.plot(
+    "pops_ground_eg",
+    [
+        {
+            "y_data": results_expt_eg_fast[0],
+            "label": "Exciton ground state",
+            "colour": "tab:blue",
+        },
+        {
+            "y_data": results_expt_eg_fast[1],
+            "label": "Vibration photon number, n = 1",
+            "colour": "tab:red",
+        },
+    ],
+    y_label="Expectation Values",
+    savepath="/ExVib/Closed/Fast",
+)
+
+sim_eg_fast.plot(
+    "vne_eg",
+    [{"y_data": vne_eg_fast}],
+    y_label="Von Neumann Entanglement Entropy",
+    savepath="/ExVib/Closed/Fast",
+)
+
+sim_eg_fast.plot(
+    "coh_eg",
+    [
+        {"y_data": coh_tls_eg_fast, "label": "Exciton subsystem", "colour": "tab:blue"},
+        {
+            "y_data": coh_qho_eg_fast,
+            "label": "Vibration subsystem",
+            "colour": "tab:red",
+        },
+        {"y_data": coh_tot_eg_fast, "label": "Total system", "colour": "tab:green"},
+    ],
+    y_label="Relative Entropy of Coherence",
+    savepath="/ExVib/Closed/Fast",
 )
