@@ -987,7 +987,7 @@ Under all types of decays (see section \ref{sec:method_sub_JCM}), we observe Rab
     \label{fig:JCM_OQS_Coh}
 \end{figure}
 
-When talking about open quantum systems, a feature of such evolution that is key is decoherence, which, as mentioned in section \ref{sec:theory_sub_OQS}, is the decay of the off--diagonals of a system, leading to a loss of 'quantumness'. We can observe this directly by looking at the decay of coherence. For the total system, in the computational basis $\{|e,0\rangle, |g,1\rangle\}$, there is coherence in the closed system evolution, so we expect coherence as well for the open system evolution. We indeed observe this. For all types of decay, the total system's coherence decays on the same timescales as the populations, around $t \approx 1000ps$ for spontaneous emission and thermal dissipation (figures \ref{fig:JCM_OQS_Coh_Spont}, \ref{fig:JCM_OQS_Coh_Therm}), and $ t \approx 600ps$ for both decay channels open simultaneously (figure \ref{fig:JCM_OQS_Coh_Both}). As the Lindblad operators act to decay excitations, they suppress both diagonal and off–diagonal elements of the density matrix on comparable timescales. In this basis, coherence cannot outlive population, and so both decay together.\\
+When talking about open quantum systems, a feature of such evolution that is key is decoherence, which, as mentioned in section \ref{sec:theory_sub_OQS}, is the decay of the off--diagonals of a system, leading to a loss of 'quantumness'. We can observe this directly by looking at the decay of coherence. For the total system, in the computational basis $\{|e,0\rangle, |g,1\rangle\}$, there is coherence in the closed system evolution, so we expect coherence as well for the open system evolution. We indeed observe this. For all types of decay, the total system's coherence decays on the same timescales as the populations, around $t \approx 1000ps$ for spontaneous emission and thermal dissipation (figures \ref{fig:JCM_OQS_Coh_Spont}, \ref{fig:JCM_OQS_Coh_Therm}), and $ t \approx 600ps$ for both decay channels open simultaneously (figure \ref{fig:JCM_OQS_Coh_Both}). As the Lindblad operators act to decay excitations, they suppress both diagonal and off–diagonal elements of the density matrix on comparable timescales. In this basis, coherence cannot outlive population, and so the system decoheres.\\
 \\
 \begin{figure}[H] 
     \centering
@@ -1029,14 +1029,14 @@ As with the closed simulation, we also consider the second initial state in equa
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Spont_eg.png}
         \caption{}
-        \label{fig:jcm_cqs_expt_eg}
+        \label{fig:JCM_OQS_Pop_Spont_eg}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Therm_eg.png}
         \caption{}
-        \label{fig:jcm_cqs_vne_eg}
+        \label{fig:JCM_OQS_Pop_Therm_eg}
     \end{subfigure}
     
     \vspace{0.5cm}
@@ -1045,25 +1045,61 @@ As with the closed simulation, we also consider the second initial state in equa
         \centering
         \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Pop_Both_eg.png}
         \caption{}
-        \label{fig:jcm_cqs_coh_eg}
+        \label{fig:JCM_OQS_Pop_Both_eg}
     \end{subfigure}
     \hfill
 
     \caption{}
+    \label{fig:JCM_OQS_Pop_eg}
 \end{figure}
+
+Figure \ref{fig:JCM_OQS_Pop_eg} shows that the populations decay at the same rate as with the previous initial condition in figure \ref{fig:JCM_OQS_Pop} for all decay channel types. This is expected, as we use the same decay parameters ($\gamma= \gamma_{\scriptscriptstyle \text{th}} = 0.01$) as with the previous initial condition. The only difference is that the population probability for the excited atomic state is 0.5 initially, which is in line with our initial state being an equal superposition of the $|e\rangle$ and $|g\rangle$ atomic states coupled to the $|n=0\rangle$ fock state of the cavity. \\
+\\
+For coherence, we observe the same features in figure \ref{fig:JCM_OQS_Coh_eg} as we saw with the closed evolution coherence  -- the $|g,0\rangle$ contribution adds an off--diagonal term to our full system, thus creating a baseline level of coherence throughout the evolution, as can be seen by the total system's coherence being greater than 0. Other than this, the decoherence of our system behaves as expected, with the decay timescales matching the population decay timescales (which we also observed in our first initial state), and the coherences being present (and thus decaying) in our subsystems. 
+
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Spont_eg.png}
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Spont_eg.png}
+        \caption{}
+        \label{fig:JCM_OQS_Coh_Spont_eg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Therm_eg.png}
+        \caption{}
+        \label{fig:JCM_OQS_Coh_Therm_eg}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Both_eg.png}
+        \caption{}
+        \label{fig:JCM_OQS_Coh_Both_eg}
+    \end{subfigure}
+    \hfill
+    \caption{}
+    \label{fig:JCM_OQS_Coh_eg}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Spont_eg.png}
         \caption{}
         \label{fig:jcm_cqs_expt_eg}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Therm_eg.png}
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Therm_eg.png}
         \caption{}
         \label{fig:jcm_cqs_vne_eg}
     \end{subfigure}
@@ -1072,46 +1108,46 @@ As with the closed simulation, we also consider the second initial state in equa
     
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Both_eg.png}
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/JCM/OQS_Neg_Both_eg.png}
         \caption{}
         \label{fig:jcm_cqs_coh_eg}
     \end{subfigure}
     \hfill
-
-    \caption{}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Spont_eg.png}
-        \caption{}
-        \label{fig:jcm_cqs_expt_eg}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Therm_eg.png}
-        \caption{}
-        \label{fig:jcm_cqs_vne_eg}
-    \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/JCM/OQS_Coh_Both_eg.png}
-        \caption{}
-        \label{fig:jcm_cqs_coh_eg}
-    \end{subfigure}
-    \hfill
-
     \caption{}
 \end{figure}
 
 
 \subsection{Population, Entanglement and Coherence of the Exciton--Vibration Model}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/ExVib/Closed/pops_excited.png}
+        \caption{}
+        \label{fig:EVM_CQS_Pop}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/ExVib/Closed/coh.png}
+        \caption{}
+        \label{fig:EVM_CQS_Coh}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{Research Project/Code/results/ExVib/Closed/vne.png}
+        \caption{}
+        \label{fig:EVM_CQS_Ent}
+    \end{subfigure}
+    \hfill
+    \caption{}
+    \label{fig:EVM_CQS}
+\end{figure}
+
 \subsubsection{Closed Evolution}
 \subsubsection{Open Evolution}
 \subsection{Discussion}
