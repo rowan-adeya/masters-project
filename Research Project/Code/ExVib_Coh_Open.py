@@ -114,7 +114,7 @@ for decay_label, state in coherence_results.items():
                 {"y_data": qho_coh, "label": "Vibration subsystem", "colour": "tab:blue"},
                 {"y_data": tot_coh, "label": "Total system", "colour": "tab:green"}
             ],
-            "Coherence",
+            "Relative Entropy of Coherence",
             savepath="ExVib/Open/Coherence",
             smooth=13
         )

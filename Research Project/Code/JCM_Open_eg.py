@@ -155,7 +155,7 @@ sim_open_spont.plot(
             "colour": "tab:green",
         },
     ],
-    "Coherence",
+    "Relative Entropy of Coherence",
     savepath="JCM",
 )
 
@@ -182,7 +182,7 @@ sim_open_therm.plot(
             "colour": "tab:green",
         },
     ],
-    "Coherence",
+    "Relative Entropy of Coherence",
     savepath="JCM",
 )
 
@@ -209,7 +209,7 @@ sim_open_both.plot(
             "colour": "tab:green",
         },
     ],
-    "Coherence",
+    "Relative Entropy of Coherence",
     savepath="JCM",
 )
 
