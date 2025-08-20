@@ -1358,7 +1358,7 @@ For entanglement, we observe the fast, medium and envelope oscillations in Figur
 \\
 We observe non--zero coherences in both the subsystems and the total system. This is particularly interesting, because, in contrast to the JCM, there is coherence present in the subsystems. 
 
-The exciton subsystem's coherence retains the rapid oscillations associated with its bare frequency. Coherence arises here due to the $\sigma_x$ Hamiltonian term transferring populations, whilst $\sigma_z$ preserves them, resulting in  superpositions. Coherence, however, remains small throughout the evolution, never exceeding values of around 0.1. This feature can be understood from the fact that the exciton is a TLS, which may can only support off--diagonal terms of the form $|e\rangle\langle g|$ or $|g\rangle\langle e|$.
+The exciton subsystem's coherence retains the rapid oscillations associated with its bare frequency. Coherence arises here due to the $\sigma_x$ Hamiltonian term transferring populations, whilst $\sigma_z$ preserves them, resulting in  superpositions. Coherence, however, remains small throughout the evolution, never exceeding values of around 0.1. This feature can be understood from the fact that the exciton is a TLS, which may can only support off--diagonal terms of the form $|1\rangle\langle 0|$ or $|0\rangle\langle 1|$.
 
 The vibration subsystem, which also demonstrates the fast oscillation pattern we've observed throughout all simulations, has a larger coherence, reaching values roughly double that of the exciton subsystem. The vibrational modes' free Hamiltonian retains the input state, whilst the interaction term induces population transfer, thereby introducing superpositions. Unlike the exciton, however, vibrational modes may access any Fock state through the interaction Hamiltonian, and thus the presence of off--diagonals are far stronger. In principle, its coherence could be unbounded, but entanglement with the exciton constrains its value.
 
@@ -1419,67 +1419,96 @@ The populations in Figure \ref{fig:EVM_CQS_Pop_eg} exhibit the same three--tier 
 \\
 When looking at entanglement, however, we notice a significant divergence from our previous case. Figure \ref{fig:EVM_CQS_ent_eg} shows the medium oscillations losing their regular sinusoidal form. This occurs because the initial superposition of exciton states enables both to interact with the vibrational modes from the start. Since the coupling acts with opposite signs on the two exciton states $|1\rangle$ and $|0\rangle$, two entangling processes act simultaneously, giving rise to an irregular oscillatory structure. Moreover, we notice a reduction in the maximum value of entanglement by around 0.1. This can be attributed to the $|0,0\rangle$ state being stationary throughout the evolution, as observed with the JCM. Its presence effectively dilutes the entanglement, and it behaves as an unentangled product state. \\
 \\
-We further observe the effects of this stationary state in the coherence of both the subsystems and the total system. Figure \ref{fig:EVM_CQS_coh_eg} shows that coherence for all systems are boosted. Whilst the total coherence reaches a maximum increase around 1.3, both the exciton and vibrational subsystems are doubled at certain points in the evolution. The stationary state adds a constant off--diagonal term to the total system, thus generating a baseline coherence. Furthermore, the exciton subsystem now carries more coherence than the vibrational modes, in contrast to our previous case. The initial state is in a superposition of the two exciton basis states, so the exciton starts with strong off--diagonal terms that remain throughout most of the evolution. The local and global minima of the exciton subsystem coherences are directly associated with the complete transfer of populations to the lower exciton state, and are the only points throughout the evolution where exciton coherence is 0. The vibrational mode, by contrast, must generate coherence through exciton--vibration coupling. Thus, if we start our system in an excitonic superposition, the TLS retains more local coherence than the vibrational mode. On the other hand, if we start in an excitonic eigenstate, the vibrational mode is a better subsystem for carrying coherence. 
+We further observe the effects of this stationary state in the coherence of both the subsystems and the total system. Figure \ref{fig:EVM_CQS_coh_eg} shows that coherence for all systems are boosted. Whilst the total coherence reaches a maximum increase around 1.3, both the exciton and vibrational subsystems are doubled at certain points in the evolution. The stationary state adds a constant off--diagonal term to the total system, thus generating a baseline coherence. Furthermore, the exciton subsystem now carries more coherence than the vibrational modes, in contrast to our previous case. The initial state is in a superposition of the two exciton basis states, so the exciton starts with strong off--diagonal terms that remain throughout most of the evolution. The local and global minima of the exciton subsystem coherences are directly associated with the complete transfer of populations to the lower exciton state, and are the only points throughout the evolution where exciton coherence is 0. The vibrational mode, by contrast, must generate coherence through exciton--vibration coupling. Thus, if we start our system in an excitonic superposition, the TLS retains more local coherence than the vibrational mode. On the other hand, if we start in an excitonic eigenstate, the vibrational mode is a better subsystem for carrying coherence. \\
+\\
+We have completed our analysis of population, entanglement and coherence dynamics under closed evolution, and have observed some key features of the EVM: its three--tier population oscillations, its ability to generate subsystem coherence from classically--behaving initial states such as $|1,0\rangle$, and its potential to boost the exciton subsystem's maximal coherence if we start in an excitonic superposition. We now turn to open system dynamics, where we observe these dynamics again under the effects of decoherence and dissipation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%% OQS EVM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Open Evolution}
 \subsubsubsection{Case I: Excited State Initial Condition}
+
+We begin with analysis of the population, entanglement and coherence dynamics for the first initial condition in equation \ref{eqn:init_EVM_e0}.\\
+\\
+The 
 \newpage
+
+%%%%%%%%%%%% POPS %%%%%%%%%%%
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Population/pops_ex_spont_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Pop_spont}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Population/pops_ex_therm_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Pop_therm}
-    \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Population/pops_ex_both_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Pop_both}
-    \end{subfigure}
-    \hfill
 
+    % -------- Row (a): Spontaneous emission --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Envelope/pops_ex_spont_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Fast/pops_ex_spont_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Pop_spont_e0}
+    \end{subfigure}
+
+    \vspace{0.8em}
+
+    % -------- Row (b): Thermal dissipation --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Envelope/pops_ex_therm_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Fast/pops_ex_therm_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Pop_therm_e0}
+    \end{subfigure}
+
+    \vspace{0.8em}
+
+    % -------- Row (c): Both channels --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Envelope/pops_ex_both_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Fast/pops_ex_both_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Pop_both_e0}
+    \end{subfigure}
     \caption{Plots of the EVM subsystem populations under open system evolution, with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. (a) Evolution under spontaneous atomic emission. (b) Evolution under thermal dissipation. (c) Evolution under both spontaneous atomic emission and thermal dissipation.}
     \label{fig:EVM_OQS_Pop}
 \end{figure}
 
+
+%%%%%%%%%%%%%
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
+    % -------- Row (a): Spontaneous emission --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Negativity/neg_spont_e0.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Envelope/neg_spont_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Fast/neg_spont_e0.png}
         \caption{}
-        \label{fig:EVM_OQS_Neg_spont}
+        \label{fig:EVM_OQS_Neg_spont_e0}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Negativity/neg_therm_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Neg_therm}
-    \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Negativity/neg_both_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Neg_both}
-    \end{subfigure}
-    \hfill
 
+    \vspace{0.8em}
+
+    % -------- Row (b): Thermal dissipation --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Envelope/neg_therm_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Fast/neg_therm_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Neg_therm_e0}
+    \end{subfigure}
+
+    \vspace{0.8em}
+
+    % -------- Row (c): Both channels --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Envelope/neg_both_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Fast/neg_both_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Neg_both_e0}
+    \end{subfigure}
     \caption{Plots of the decay of entanglement of the EVM under open system evolution using the negativity measure, with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. (a) Entanglement decay under spontaneous atomic emission. (b) Entanglement decay under thermal dissipation. (c) Entanglement decay under both spontaneous atomic emission and thermal dissipation.}
     \label{fig:EVM_OQS_Neg}
 \end{figure}
