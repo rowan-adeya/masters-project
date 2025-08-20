@@ -12,8 +12,6 @@ import math
 # Moreover, T ~ 300K room temp expt.
 t_max_env = 5
 tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 2500)
-t_max_env_long = 17
-tlist_env_long = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env_long, 2500)   
 t_max_fast = 0.9  
 tlist_fast = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_fast, 2500)
 
@@ -52,8 +50,8 @@ H = H_ex + H_vib + H_int
 psi0_e0 = q.tensor(basis_atom_e, basis_qho_0)
 psi0_eg = q.tensor(basis_atom_e + basis_atom_g, basis_qho_0) / math.sqrt(2)
 ############################ SIMULATION ENV ###################################
-n1_pop = q.tensor(q.qeye(2), basis_qho_1 * basis_qho_1.dag())  # QHO pop |n=1>
-e_ops = [s_raise * s_lower, n1_pop]
+n0_pop = q.tensor(q.qeye(2), basis_qho_0 * basis_qho_0.dag())  # QHO pop |n=0>
+e_ops = [s_raise * s_lower, n0_pop]
 
 sim_e0_env = TLSQHOSimulator(H, psi0_e0, e_ops=e_ops, times=tlist_env)
 sim_eg_env = TLSQHOSimulator(H, psi0_eg, e_ops=e_ops, times=tlist_env)
@@ -111,7 +109,7 @@ sim_e0_env.plot(
         },
         {
             "y_data": results_expt_e0_env[1],
-            "label": "Vibration photon number, n = 1",
+            "label": "Vibration photon number, n = 0",
             "colour": "tab:blue",
         },
     ],
@@ -151,7 +149,7 @@ sim_eg_env.plot(
         },
         {
             "y_data": results_expt_eg_env[1],
-            "label": "Vibration photon number, n = 1",
+            "label": "Vibration photon number, n = 0",
             "colour": "tab:blue",
         },
     ],
@@ -193,7 +191,7 @@ sim_e0_fast.plot(
         },
         {
             "y_data": results_expt_e0_fast[1],
-            "label": "Vibration photon number, n = 1",
+            "label": "Vibration photon number, n = 0",
             "colour": "tab:blue",
         },
     ],
@@ -237,7 +235,7 @@ sim_eg_fast.plot(
         },
         {
             "y_data": results_expt_eg_fast[1],
-            "label": "Vibration photon number, n = 1",
+            "label": "Vibration photon number, n = 0",
             "colour": "tab:blue",
         },
     ],
