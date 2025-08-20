@@ -14,8 +14,11 @@ for 3 Lindblad Decay Operators: Spontaneous Atomic Emission, Thermal Dissipation
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 120 # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 500)
+t_max_fast = 1.0  # ps
+tlist_fast = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_fast, 500)
+
+t_max_env = 120.0  # ps
+tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 500)
 
 # t in cm conversion, noting original time is in ps
 
@@ -78,20 +81,20 @@ decay_ops = {
 }
 ############################ SIMULATION ###################################
 
-coherence_results = {}
+coherence_results_env = {}
 
 for decay_label, lindblad_ops in decay_ops.items():
-    coherence_results[decay_label] = {}
+    coherence_results_env[decay_label] = {}
 
     for state_label, psi in initial_states.items():
-        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist)
+        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist_env)
         results = sim.evolve()
 
         tls_coh = sim.rel_coherence(results, "TLS")
         qho_coh = sim.rel_coherence(results, "QHO")
         tot_coh = sim.rel_coherence(results)
 
-        coherence_results[decay_label][state_label] = {
+        coherence_results_env[decay_label][state_label] = {
             "TLS": tls_coh,
             "QHO": qho_coh,
             "Tot": tot_coh,
@@ -100,7 +103,7 @@ for decay_label, lindblad_ops in decay_ops.items():
 
 ################################ PLOTS ###################################
 
-for decay_label, state in coherence_results.items():
+for decay_label, state in coherence_results_env.items():
     for state_label, data in state.items():
         sim = data["sim"]
         tls_coh = data["TLS"]
@@ -115,6 +118,47 @@ for decay_label, state in coherence_results.items():
                 {"y_data": tot_coh, "label": "Total system", "colour": "tab:green"}
             ],
             "Relative Entropy of Coherence",
-            savepath="ExVib/Open/Coherence",
+            savepath="ExVib/Open/Coherence/Envelope",
+            smooth=13
+        )
+
+coherence_results_fast = {}
+
+for decay_label, lindblad_ops in decay_ops.items():
+    coherence_results_fast[decay_label] = {}
+
+    for state_label, psi in initial_states.items():
+        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist_fast)
+        results = sim.evolve()
+
+        tls_coh = sim.rel_coherence(results, "TLS")
+        qho_coh = sim.rel_coherence(results, "QHO")
+        tot_coh = sim.rel_coherence(results)
+
+        coherence_results_fast[decay_label][state_label] = {
+            "TLS": tls_coh,
+            "QHO": qho_coh,
+            "Tot": tot_coh,
+            "sim": sim,
+        }
+
+################################ PLOTS ###################################
+
+for decay_label, state in coherence_results_fast.items():
+    for state_label, data in state.items():
+        sim = data["sim"]
+        tls_coh = data["TLS"]
+        qho_coh = data["QHO"]
+        tot_coh = data["Tot"]
+
+        sim.plot(
+            f"coh_{decay_label}_{state_label}",
+            [
+                {"y_data": tls_coh, "label": "Exciton subsystem", "colour": "tab:red"},
+                {"y_data": qho_coh, "label": "Vibration subsystem", "colour": "tab:blue"},
+                {"y_data": tot_coh, "label": "Total system", "colour": "tab:green"}
+            ],
+            "Relative Entropy of Coherence",
+            savepath="ExVib/Open/Coherence/Fast",
             smooth=13
         )

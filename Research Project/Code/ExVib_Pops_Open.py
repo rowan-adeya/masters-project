@@ -14,9 +14,11 @@ Emission, Thermal Dissipation, and both combined.
 # d_epsilon = 1042, V = 92, d_E = 1058, w = 1111 all in cm^-1.
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
+t_max_fast = 1.0  # ps
+tlist_fast = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_fast, 500)
 
-t_max = 120.0  # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 500)
+t_max_env = 120.0  # ps
+tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 500)
 
 # t in cm conversion, noting original time is in ps
 
@@ -82,7 +84,7 @@ decay_ops = {
 
 for decay_label, lindblad_ops in decay_ops.items():
     for psi_label, psi in initial_states.items():
-        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist)
+        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist_fast)
         results = sim.evolve()
         expt = sim.expect(results)
 
@@ -98,7 +100,29 @@ for decay_label, lindblad_ops in decay_ops.items():
                 {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:blue"},
             ],
             "Populations",
-            savepath="ExVib/Open/Population",
+            savepath="ExVib/Open/Population/Fast",
+            smooth=13
+        )
+
+for decay_label, lindblad_ops in decay_ops.items():
+    for psi_label, psi in initial_states.items():
+        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist_env)
+        results = sim.evolve()
+        expt = sim.expect(results)
+
+        vib0 = expt[0]
+        vib1 = expt[1]
+        excited = expt[2]
+        ground = expt[3]
+
+        sim.plot(
+            f"pops_ex_{decay_label}_{psi_label}",
+            [
+                {"y_data": excited, "label": "Exciton subsystem (excited)", "colour": "tab:red"},
+                {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:blue"},
+            ],
+            "Populations",
+            savepath="ExVib/Open/Population/Envelope",
             smooth=13
         )
 

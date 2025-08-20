@@ -14,8 +14,11 @@ for 3 Lindblad Decay Operators: Spontaneous Atomic Emission, Thermal Dissipation
 # g = w*(0.0578)^0.5 = 267 cm^-1
 # Moreover, T ~ 300K room temp expt.
 
-t_max = 120.0  # ps
-tlist = np.linspace(0.0, 2 * np.pi * 0.03 * t_max, 500)
+t_max_fast = 1.0  # ps
+tlist_fast = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_fast, 500)
+
+t_max_env = 120.0  # ps
+tlist_env = np.linspace(0.0, 2 * np.pi * 0.03 * t_max_env, 500)
 
 # t in cm conversion, noting original time is in ps
 
@@ -80,7 +83,7 @@ decay_ops = {
 
 for decay_label, lindblad_ops in decay_ops.items():
     for psi_label, psi in initial_states.items():
-        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist)
+        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist_fast)
         results = sim.evolve()
         neg = sim.negativity(results)
 
@@ -89,6 +92,21 @@ for decay_label, lindblad_ops in decay_ops.items():
             f"neg_{decay_label}_{psi_label}",
             [{"y_data": neg, "colour": "tab:purple"}],
             y_label="Negativity",
-            savepath="ExVib/Open/Negativity",
+            savepath="ExVib/Open/Negativity/Fast",
+            smooth=13
+        )
+
+for decay_label, lindblad_ops in decay_ops.items():
+    for psi_label, psi in initial_states.items():
+        sim = TLSQHOSimulator(H, psi, lindblad_ops, e_ops, times=tlist_env)
+        results = sim.evolve()
+        neg = sim.negativity(results)
+
+        # one plot per initial state (always red)
+        sim.plot(
+            f"neg_{decay_label}_{psi_label}",
+            [{"y_data": neg, "colour": "tab:purple"}],
+            y_label="Negativity",
+            savepath="ExVib/Open/Negativity/Envelope",
             smooth=13
         )
