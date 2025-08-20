@@ -1058,7 +1058,7 @@ We now carry out our computational analysis of the second initial state from equ
     \label{fig:JCM_cqs_e0g0}
 \end{figure}
 
-\noindent We start by analysing Figure \ref{fig:jcm_cqs_expt_eg}, which shows the populations of the ground and excited state of the atom, and the cavity state population of the $|n=0\rangle$ fock state. As expected, the $|g,0\rangle$ component of the initial state is stationary, and so there will always be a non-zero contribution to the populations of $|g\rangle$ and $|n=0\rangle$. At $t\approx 30\text{ps}$, we see that half the population of the cavity is transferred to $|n=1\rangle$, and for the atom, to $|g\rangle$. This illustrates the expected Rabi oscillation dynamics, where the excitation initially in the $|e,0\rangle$ state is transferred coherently to the $|g,1\rangle$ state. \\
+\noindent We start by analysing Figure \ref{fig:jcm_cqs_expt_eg}, which shows the populations of the ground and excited state of the atom, and the cavity state population of the $|n=0\rangle$ Fock state. As expected, the $|g,0\rangle$ component of the initial state is stationary, and so there will always be a non-zero contribution to the populations of $|g\rangle$ and $|n=0\rangle$. At $t\approx 30\text{ps}$, we see that half the population of the cavity is transferred to $|n=1\rangle$, and for the atom, to $|g\rangle$. This illustrates the expected Rabi oscillation dynamics, where the excitation initially in the $|e,0\rangle$ state is transferred coherently to the $|g,1\rangle$ state. \\
 \\
 As expected, there is entanglement in the system, characterised by the von Neumann entropy (Figure \ref{fig:jcm_cqs_vne_eg}). It exhibits the same oscillations as the previous initial state's entanglement characteristics due to the Rabi oscillations in the populations. Furthermore, entanglement is maximal during the transition of the $|e,0\rangle$ component to $|g,1\rangle$ which matches our predictions. However, the range of entanglement is much lower (between 0 and 0.25 as compared to 0 and 0.7 in Figure \ref{fig:JCM_cqs_vne_e0}. This could be attributed to entanglement being diluted by the $|g,0\rangle$ component. The $|g,0\rangle$ component remains stationary, never mixes with the other components, and effectively behaves as an unentangled product state.
 In terms of the von Neumann entropy, this stationary, classically--behaving fraction of the total state limits the entanglement achieved during evolution.\\
@@ -1225,7 +1225,7 @@ As with the closed simulation, we also consider the second initial state in equa
     \label{fig:JCM_OQS_Pop_eg}
 \end{figure}
 
-\noindent Figure \ref{fig:JCM_OQS_Pop_eg} shows that the populations decay at the same rate as with the previous initial condition in Figure \ref{fig:JCM_OQS_Pop} for all decay channel types. This is expected, as we use the same decay parameters ($\gamma= \gamma_{\scriptscriptstyle \text{th}} = 0.01$) as with the previous initial condition. The only difference is that the population probability for the excited atomic state is 0.5 initially, which is in line with our initial state being an equal superposition of the $|e\rangle$ and $|g\rangle$ atomic states coupled to the $|n=0\rangle$ fock state of the cavity. \\
+\noindent Figure \ref{fig:JCM_OQS_Pop_eg} shows that the populations decay at the same rate as with the previous initial condition in Figure \ref{fig:JCM_OQS_Pop} for all decay channel types. This is expected, as we use the same decay parameters ($\gamma= \gamma_{\scriptscriptstyle \text{th}} = 0.01$) as with the previous initial condition. The only difference is that the population probability for the excited atomic state is 0.5 initially, which is in line with our initial state being an equal superposition of the $|e\rangle$ and $|g\rangle$ atomic states coupled to the $|n=0\rangle$ Fock state of the cavity. \\
 \\
 For coherence, we observe the same features in Figure \ref{fig:JCM_OQS_Coh_eg} as we saw with the closed evolution coherence  -- the $|g,0\rangle$ contribution adds an off--diagonal term to our full system, thus creating a baseline level of coherence throughout the evolution, as can be seen by the total system's coherence being greater than 0. Other than this, the decoherence of our system behaves as expected, with the decay timescales matching the population decay timescales (which we also observed in our first initial state), and the coherences being present (and thus decaying) in our subsystems. We can see that, by starting in a superposition state (that is unentangled), we generate more coherence in the computational basis
 
@@ -1303,11 +1303,10 @@ We begin our closed analysis of the EVM by considering the first initial state i
     |\psi (\text{t=0})\rangle = |1, 0\rangle.
 \end{equation*}
 
-\noindent Figure \ref{fig:EVM_CQS_Pop_e0} illustrates the populations of the effective exciton's excited state and the vibrational mode $|n=0\rangle$. One of the clearest features in the populations is the presence of a hierarchy of oscillations: the fast oscillations with a period of around $0.01$ picoseconds (ps), visible on the right--hand figure as the raw data (faint dashed lines); medium oscillations with a period of $0.075$ ps, visible on both plots; envelope oscillations with a period of $\approx 0.8$ ps, visible by observing the changing height of the peaks of the medium oscillation in the right--hand plot of the figure. 
-Explain
-We also observe that there is never a complete 
 
-\newpage
+\noindent Figure \ref{fig:EVM_CQS_Pop_e0} illustrates the populations of the effective exciton's excited state and the vibrational mode $|n=0\rangle$. One of the clearest features in the populations is the presence of a hierarchy of oscillations, each traceable to specific energy scales in the Hamiltonian. \\
+\\
+For the exciton subsystem, the fastest oscillations (visible as the faint dashed lines on the right--hand side of the figure) have a period of $\approx0.008$ ps. The Hamiltonian term $\tfrac{\Delta\epsilon}{2}\hat{\sigma}_z$ generates phase evolution; however, in the presence of the exciton--exciton coupling term $V\hat{\sigma}_x$, population transfer is present. Since $\Delta\epsilon \gg V$, the exciton fast oscillations are dominated by $\Delta\epsilon = 1042,\text{cm}^{-1}$. On a slower timescale of $\approx0.1$ ps, we observe medium oscillations that arise from the exciton--vibration coupling $-\tfrac{g}{\sqrt{2}}\hat{\sigma}z(\hat{b}^\dagger+\hat{b})$, which generates coherent exchange between $|1,0\rangle$ and displaced
 \begin{figure}[H]
     \centering
 
@@ -1349,9 +1348,32 @@ We also observe that there is never a complete
     \label{fig:EVM_CQS_e0}
 \end{figure}
 
+\noindent vibrational states. Finally, the exciton population displays a slow envelope with a period of $\approx0.7$–$0.8$ ps, produced by the small detuning $|\Delta\epsilon - \omega{\scriptscriptstyle \text{vib}}| = 53,\text{cm}^{-1}$, which gives rise to an overall beating modulation.
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+For the vibrational subsystem, the fastest oscillations have a period of $\approx0.006$ ps. These reflect the bare vibrational frequency $\omega_{\scriptscriptstyle \text{vib}} = 1111,\text{cm}^{-1}$. Unlike the exciton subsystem, population transfer here is generated by the exciton--vibration interaction $\omega_{\scriptscriptstyle \text{vib}} \hat{b}_{\scriptscriptstyle \text{rd}}^\dagger \hat{b}_{\scriptscriptstyle \text{rd}}$ with $\omega_{\scriptscriptstyle \text{vib}}$ being dominant due to $\omega_{\scriptscriptstyle \text{vib}}\gg g$. The same medium oscillations of $\approx0.1$ ps are also present, again set by the coupling $g = 267.1,\text{cm}^{-1}$, and matching those of the exciton subsystem. Finally, the vibrational ground–state population exhibits the same slow envelope with of $\approx0.7$–$0.8$ ps, consistent with the beat frequency generated by the near--resonance between the exciton splitting and the vibrational mode.
+
+Another interesting feature of this model is that the initial condition never vanishes (at no points are the populations 0 for either subystem in Figure \ref{fig:EVM_CQS_Pop_e0}). The terms $\frac{\Delta\epsilon}{2}\sigma_z\text{ and } \omega_{\scriptscriptstyle \text{vib}}\hat{b}_{\scriptscriptstyle \text{rd}}^\dagger\hat{b}_{\scriptscriptstyle \text{rd}}$ are diagonal in their own bases, and therefore always maintain a non--zero contribution from the original exciton and vibrational states.\\
+\\
+For entanglement, we observe the fast, medium and envelope oscillations in Figure \ref{fig:EVM_CQS_Ent_e0}. It follows the same medium oscillation and envelope frequency beating as with the populations. The fast oscillations, however, correspond to both bare frequencies $\Delta\epsilon$ and $\omega_{\scriptscriptstyle \text{vib}}$, since entanglement reflects the dynamics of the total system. At time $t = 0$, no entanglement is present because the initial state is a product state. Entanglement first reaches its maximum at $t \approx 0.05$ ps with a value of $\ln 2$. This is expected, since for pure states such as our initial state, the von Neumann entropy of either subsystem is equal; the exciton is modelled as an effective TLS, whose maximum entropy is $\ln 2$, so entanglement cannot exceed this value.\\
+\\
+We observe non--zero coherences in both the subsystems and the total system. This is particularly interesting, because, in contrast to the JCM, there is coherence present in the subsystems. 
+
+The exciton subsystem's coherence retains the rapid oscillations associated with its bare frequency. Coherence arises here due to the $\sigma_x$ Hamiltonian term transferring populations, whilst $\sigma_z$ preserves them, resulting in  superpositions. Coherence, however, remains small throughout the evolution, never exceeding values of around 0.1. This feature can be understood from the fact that the exciton is a TLS, which may can only support off--diagonal terms of the form $|e\rangle\langle g|$ or $|g\rangle\langle e|$.
+
+The vibration subsystem, which also demonstrates the fast oscillation pattern we've observed throughout all simulations, has a larger coherence, reaching values roughly double that of the exciton subsystem. The vibrational modes' free Hamiltonian retains the input state, whilst the interaction term induces population transfer, thereby introducing superpositions. Unlike the exciton, however, vibrational modes may access any Fock state through the interaction Hamiltonian, and thus the presence of off--diagonals are far stronger. In principle, its coherence could be unbounded, but entanglement with the exciton constrains its value.
+
+For the total system, we note the presence of fast, medium and envelope oscillations. The fast oscillations contain contributions from both $\Delta\epsilon$ and $\omega_{\scriptscriptstyle \text{vib}}$, in the subsystems they arise from the corresponding bare frequencies alone. The total system incorporates off--diagonal terms across the joint basis, all of which contribute to coherence, resulting in a stronger overall presence of off--diagonals compared to the subsystems.
+
 \subsubsubsection{Case II: Superposition Initial Condition}
+
+We now carry out our computational analysis of the second initial state from equation \ref{eqn:init_EVM_e0g0}, which reads:
+
+\begin{equation*}
+    |\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|1\rangle + |0\rangle)\otimes|n=0\rangle.
+\end{equation*}
+
+The populations in Figure \ref{fig:EVM_CQS_Pop_eg} exhibit the same three--tier oscillatory behaviour and periodicity as with the previous initial condition. The key difference between the previous case is that the initial state is no longer a stationary element of the total state; the exciton now periodically transfers its populations completely into its ground state. The vibrational mode, however, 
+\newpage
 \begin{figure}[H]
     \centering
 
@@ -1361,7 +1383,7 @@ We also observe that there is never a complete
         \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Closed/Envelope/pops_excited_eg.png}
         \hfill
         \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Closed/Fast/pops_excited_eg.png}
-        \caption{(a)}
+        \caption{}
         \label{fig:EVM_CQS_Pop_eg}
     \end{subfigure}
 
@@ -1373,8 +1395,8 @@ We also observe that there is never a complete
         \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Closed/Envelope/vne_eg.png}
         \hfill
         \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Closed/Fast/vne_eg.png}
-        \caption{(b)}
-        \label{fig:EVM_CQS_ent_e0}
+        \caption{}
+        \label{fig:EVM_CQS_ent_eg}
     \end{subfigure}
 
     \vspace{0.8em}
@@ -1385,19 +1407,23 @@ We also observe that there is never a complete
         \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Closed/Envelope/coh_eg.png}
         \hfill
         \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Closed/Fast/coh_eg.png}
-        \caption{(c)}
-        \label{fig:EVM_CQS_coh_e0}
+        \caption{}
+        \label{fig:EVM_CQS_coh_eg}
     \end{subfigure}
 
     \caption{Plots of the EVM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. The left--hand column of sub--figures is plotted over $\approx$ 1 picosecond to demonstrate envelope oscillations. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate medium and high frequency oscillations. (a) Populations of the excited exciton state $|1\rangle$ and the vibrational mode, $|n=0\rangle$. (b) Entanglement of the total system, quantified by the von Neumann entropy. (c) Coherence of the two subsystems and total system, quantified by the relative entropy of coherence.} 
     \label{fig:EVM_CQS_eg}
 \end{figure}
 
+\noindent retains its initial $|0\rangle$ subsystem state throughout the evolution, albeit oscillating between superpositions itself and other Fock states. \\
+\\
+When looking at entanglement, however, we notice a significant divergence from our previous case. Figure \ref{fig:EVM_CQS_ent_eg} shows the medium oscillations losing their regular sinusoidal form. This occurs because the initial superposition of exciton states enables both to interact with the vibrational modes from the start. Since the coupling acts with opposite signs on the two exciton states $|1\rangle$ and $|0\rangle$, two entangling processes act simultaneously, giving rise to an irregular oscillatory structure. Moreover, we notice a reduction in the maximum value of entanglement by around 0.1. This can be attributed to the $|0,0\rangle$ state being stationary throughout the evolution, as observed with the JCM. Its presence effectively dilutes the entanglement, and it behaves as an unentangled product state. \\
+\\
+We further observe the effects of this stationary state in the coherence of both the subsystems and the total system. Figure \ref{fig:EVM_CQS_coh_eg} shows that coherence for all systems are boosted. Whilst the total coherence reaches a maximum increase around 1.3, both the exciton and vibrational subsystems are doubled at certain points in the evolution. The stationary state adds a constant off--diagonal term to the total system, thus generating a baseline coherence. Furthermore, the exciton subsystem now carries more coherence than the vibrational modes, in contrast to our previous case. The initial state is in a superposition of the two exciton basis states, so the exciton starts with strong off--diagonal terms that remain throughout most of the evolution. The local and global minima of the exciton subsystem coherences are directly associated with the complete transfer of populations to the lower exciton state, and are the only points throughout the evolution where exciton coherence is 0. The vibrational mode, by contrast, must generate coherence through exciton--vibration coupling. Thus, if we start our system in an excitonic superposition, the TLS retains more local coherence than the vibrational mode. On the other hand, if we start in an excitonic eigenstate, the vibrational mode is a better subsystem for carrying coherence. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% OQS EVM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \subsubsection{Open Evolution}
-
 \subsubsubsection{Case I: Excited State Initial Condition}
+\newpage
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.45\textwidth}
