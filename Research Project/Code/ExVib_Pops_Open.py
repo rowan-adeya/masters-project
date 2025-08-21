@@ -97,7 +97,7 @@ for decay_label, lindblad_ops in decay_ops.items():
             f"pops_ex_{decay_label}_{psi_label}",
             [
                 {"y_data": excited, "label": "Exciton subsystem (excited)", "colour": "tab:red"},
-                {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:blue"},
+                {"y_data": vib1, "label": "Vibration subsystem, n = 1", "colour": "tab:blue"},
             ],
             "Populations",
             savepath="ExVib/Open/Population/Fast",
@@ -119,7 +119,7 @@ for decay_label, lindblad_ops in decay_ops.items():
             f"pops_ex_{decay_label}_{psi_label}",
             [
                 {"y_data": excited, "label": "Exciton subsystem (excited)", "colour": "tab:red"},
-                {"y_data": vib1, "label": "Vibration photon number, n = 1", "colour": "tab:blue"},
+                {"y_data": vib1, "label": "Vibration subsystem, n = 1", "colour": "tab:blue"},
             ],
             "Populations",
             savepath="ExVib/Open/Population/Envelope",

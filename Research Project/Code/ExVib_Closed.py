@@ -109,7 +109,7 @@ sim_e0_env.plot(
         },
         {
             "y_data": results_expt_e0_env[1],
-            "label": "Vibration photon number, n = 0",
+            "label": "Vibration subsystem, n = 0",
             "colour": "tab:blue",
         },
     ],
@@ -149,7 +149,7 @@ sim_eg_env.plot(
         },
         {
             "y_data": results_expt_eg_env[1],
-            "label": "Vibration photon number, n = 0",
+            "label": "Vibration subsystem, n = 0",
             "colour": "tab:blue",
         },
     ],
@@ -191,7 +191,7 @@ sim_e0_fast.plot(
         },
         {
             "y_data": results_expt_e0_fast[1],
-            "label": "Vibration photon number, n = 0",
+            "label": "Vibration subsystem, n = 0",
             "colour": "tab:blue",
         },
     ],
@@ -235,7 +235,7 @@ sim_eg_fast.plot(
         },
         {
             "y_data": results_expt_eg_fast[1],
-            "label": "Vibration photon number, n = 0",
+            "label": "Vibration subsystem, n = 0",
             "colour": "tab:blue",
         },
     ],
