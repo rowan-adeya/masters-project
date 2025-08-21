@@ -13,7 +13,7 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage[numbers,sort&compress, link]{natbib}
-\usepackage[colorlinks=true,linkcolor=black,citecolor=red,urlcolor=red]{hyperref}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=red,urlcolor=blue]{hyperref}
 \usepackage[toc,page]{appendix}
 \pagenumbering{gobble}
 
@@ -88,25 +88,24 @@
 
 \newpage
 \section*{Acknowledgments}
-I would like to express my deepest gratitude to Atmaram, Sunita and Shane Adeya for their unwavering emotional and economic support throughout my Master's studies. This Research Essay would not have been possible without the invaluable guidance of Prof. Alexandra Olaya--Castro, who's expertise in quantum physics and mentorship has helped me to become a better physicist. I am also sincerely grateful to Chawntell Kulkarni for her continuos support with both the computational and technical aspects of this research project.  
+I would like to express my deepest gratitude to Atmaram, Sunita and Shane Adeya for their unwavering emotional and economic support during my masters studies. This Research Essay would not have been possible without the invaluable guidance of Prof. Alexandra Olaya--Castro, who's expertise in quantum physics and mentorship has helped me to become a better physicist. I am also sincerely grateful to Chawntell Kulkarni for her continuos support with both the computational and technical aspects of this research project.  
+\newpage
+\tableofcontents
 \newpage
 \pagenumbering{arabic}
-\tableofcontents
-
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Entanglement and coherence are fundamental quantum resources which define the behaviour of composite quantum systems. Entanglement is a basis--independent measure of the quantum correlation between subsystems of a
-composite system, indicating how much the system’s state deviates from a separable (product) state \cite{Entanglement2009-Definition}. It is a uniquely quantum mechanical feature which enables us to utilise non--local correlations, and has had a significant role in advancements of quantum information theory and quantum computation and communication. In contrast, coherence is a basis--dependent measure that describes the ability of a system to remain in a quantum superposition state \cite{Coherence2017-Colloquium}. We may use coherence to distinguish between quantum and classical regimes, and it is often considered as one of the most important features of modern quantum mechanics. However, coherence is fragile and maintaining coherent systems in is one of the key challenges in quantum computation \cite{OQS2019_decoherence}. \\
+Entanglement and coherence are fundamental quantum resources that define the behaviour of composite quantum systems. Entanglement is a basis--independent measure of the quantum correlation between subsystems of a
+composite system, indicating the deviation of the system’s state from a separable (product) state \cite{Entanglement2009-Definition}. It is a unique quantum mechanical feature that enables us to utilise non--local correlations, and has played a significant role in advancements of quantum information theory and quantum computation. In contrast, coherence is a basis--dependent measure that describes the ability of a system to remain in a quantum superposition state \cite{Coherence2017-Colloquium}. We may use coherence to distinguish between quantum and classical regimes, and it is often considered one of the most important features of modern quantum mechanics. However, coherence is fragile and maintaining coherent systems is a key challenge in quantum computation \cite{OQS2019_decoherence}. \\
 \\
-One of the simplest composite systems which we may investigate these quantum resources is a two--level system (TLS) coupled to a quantum harmonic oscillator (QHO). TLSs naturally manifest in quantum computation as qubits, making qubit–qubit interactions a natural environment for the study of quantum resources. On the other hand, in natural physical systems, we often find TLSs (such as two--level atomic states) coupled to other systems, and more often than not, this is in the form of a QHO. Thus, for these physical systems, it is important to introduce models which convey the type of interactions between the TLS and QHO.\\
+One of the simplest composite systems which we may investigate these quantum resources is a two--level system (TLS) coupled to a quantum harmonic oscillator (QHO). TLSs naturally manifest in quantum computation as qubits, making qubit–qubit interactions a natural environment for the study of quantum resources. However, in natural physical systems, we often find TLSs (such as two--level atomic states) coupled to other systems, and more often than not, this is in the form of a QHO. Thus, for these physical systems, it is important to introduce models that convey the types of interactions between the TLS and QHO.\\
 \\
-A canonical model is the Jaynes--Cummings model. It models a TLS coupled to a single quantised mode of a QHO, representing TLS excitation when a photon is destroyed, and de--excitation when a photon is created. The simplicity of of this model allows for analytical solutions and insights into the dynamics of TLS--QHO systems, but is limited in its ability to capture the richer behaviour found in more complex systems. The Exciton–Vibration model is one such extension. It can, for example, describe a dimer (two coupled TLSs) each interacting with its own vibrational mode, modelled as a QHO \cite{ExVib2014-Alexandra}.\\
+A canonical model is the Jaynes--Cummings model. It models a TLS coupled to a single quantised mode of a QHO, representing TLS excitation when a photon is destroyed, and de--excitation when a photon is created. The simplicity of of this model allows for analytical solutions and insights into the dynamics of TLS--QHO systems, but is limited in its ability to capture the richer behaviour found in more complex systems. The exciton–vibration model is one such extension. For example, it can describe a dimer (two coupled TLSs) interacting with its own vibrational mode, modelled as a QHO \cite{ExVib2014-Alexandra}.\\
 \\
 Together, these models illustrate the ways in which TLS–QHO interactions arise across many physical systems, motivating the central question of this work: How do entanglement and coherence manifest in such joint TLS--QHO systems? Understanding this question in the context of the Jaynes--Cummings and Exciton--Vibration models would deepen our knowledge of quantum resources and reveal how they may be harnessed in quantum information science and quantum computation. \\
 \\
-This paper is organised as follows: Section \ref{sec:theory} includes the theoretical framework of TLS--QHO models, the dynamics of open quantum systems, and the concepts of entanglement and coherence. Section \ref{sec:method} outlines the methodology, including both analytical and numerical approaches. Then, we analyse populations and quantum resources for TLS--QHO models in Section \ref{sec:results}. Finally, Section  \ref{sec:conc} presents concluding remarks and possible directions for future research.
+The remainder of this paper is organised as follows: Section \ref{sec:theory} includes the theoretical framework of TLS--QHO models, the dynamics of open quantum systems, and the concepts of entanglement and coherence. Section \ref{sec:method} outlines the methodology, including both analytical and numerical approaches. Then, we analyse populations and quantum resources of the TLS--QHO models in Section \ref{sec:results}. Finally, Section  \ref{sec:conc} presents concluding remarks and possible directions for future research.
 
 
 \newpage
@@ -119,7 +118,7 @@ This paper is organised as follows: Section \ref{sec:theory} includes the theore
 
 \subsection{Two--Level Systems Coupled to Quantum Harmonic Oscillators} \label{sec:theory_sub_TLSQHO}
 
-A two-level system (TLS) coupled to a quantum harmonic oscillator (QHO) is a pervasive model in quantum physics, as illustrated in Figure \ref{img:TLSQHO}. It describes a wide range of platforms, including a superconducting qubit coupled to a microwave resonator in circuit QED \cite{Context2024-CircuitQED}, a trapped ion interacting with its quantised vibrations; mode \cite{Context1992-Trapped_ions}, an atomic transition coupled to an optical cavity field in cavity QED \cite{Context2024-CQED_JCM}, or a dimer interacting with molecular vibrations \cite{ExVib2014-Alexandra}. This variety makes TLS–QHO systems an important and ideal framework for exploring quantum resources under both closed and open system dynamics.\\
+A two-level system (TLS) coupled to a quantum harmonic oscillator (QHO) is a pervasive model in quantum physics, as illustrated in Figure \ref{img:TLSQHO}. It describes a wide range of platforms, including a superconducting qubit coupled to a microwave resonator in circuit QED \cite{Context2024-CircuitQED}, a trapped ion interacting with its quantised vibration mode \cite{Context1992-Trapped_ions}, an atomic transition coupled to an optical cavity field in cavity QED \cite{Context2024-CQED_JCM}, and a dimer interacting with molecular vibrations \cite{ExVib2014-Alexandra}. This variety makes TLS–QHO systems an important and ideal framework for exploring quantum resources under both closed and open system dynamics.\\
 
 \begin{figure}[h]
     \centering
@@ -128,25 +127,25 @@ A two-level system (TLS) coupled to a quantum harmonic oscillator (QHO) is a per
     \label{img:TLSQHO}
 \end{figure}
 
-\noindent In this section, we set out the theoretical framework for TLS--QHO systems. This formalism is the basis for a variety of models, including the Jaynes--Cummings and Exciton--Vibration models \cite{Hamiltonian2012-JC_Friction, ExVib2015-ChemPhysBorn}, both of which will be central to our later analysis. Developing a clear understanding of how TLS--QHO systems work is essential for exploring how quantum resources manifest in such systems. \\
+\noindent In this section, we present the theoretical framework for TLS--QHO systems. This formalism is the basis for a variety of models, including the Jaynes--Cummings and Exciton--Vibration models \cite{Hamiltonian2012-JC_Friction, ExVib2015-ChemPhysBorn}, both of which are central to our later analysis. Developing a clear understanding of how TLS--QHO systems function is essential for exploring how quantum resources manifest in such systems. \\
 \\
-To understand the system as a whole, we must first understand each subsystem. Then, we may examine their interactions as a composite quantum system.
+To understand the entire system, we must first understand each subsystem. We can then examine their interactions as a composite quantum system.
 
-A TLS is a simple yet fundamental quantum mechanical system which can occupy only two distinct energy states. A state vector describing a TLS may be written as:
+A TLS is a simple yet fundamental quantum mechanical system that can occupy only two distinct energy states. A state vector describing a TLS is written as:
 
 \begin{equation}
     |\psi_{\scriptscriptstyle \text{TLS}}\rangle = \alpha|0\rangle + \beta|1\rangle,
 \end{equation}
 
-where $|0\rangle$ and $|1\rangle$ are the basis vectors describing the lower and higher energy states respectively, spanning a 2--dimensional Hilbert Space, $\mathcal{H}_{\scriptscriptstyle \text{TLS}}$ , and $\alpha$ and $\beta$ are the complex amplitudes associated with each basis vector. A TLS may be represented by many quantum systems. Most notably, its simplest form is a qubit, which is often used in quantum computation \cite{TLS2024-qubits}. However, it may also be represented by an atom, with $|0\rangle \rightarrow |g\rangle$ representing the ground (lowest energy) state of an atom, and $|1\rangle \rightarrow |e\rangle$ representing the excited (highest energy) state. Quantum systems may also reduce to an effective TLS if we decide to truncate a system to only two possible energy states. \\
+where $|0\rangle$ and $|1\rangle$ are the basis vectors describing the lower and higher energy states respectively, spanning a 2--dimensional Hilbert Space, $\mathcal{H}_{\scriptscriptstyle \text{TLS}}$ , and $\alpha$ and $\beta$ are the complex amplitudes associated with each basis vector. A TLS can be represented by many quantum systems. Most notably, the simplest form is a qubit, which is often used in quantum computations \cite{TLS2024-qubits}. However, it may also be represented by an atom, with $|0\rangle \rightarrow |g\rangle$ representing the ground (lowest energy) state of an atom, and $|1\rangle \rightarrow |e\rangle$ representing the excited (highest energy) state. Quantum systems may also be reducde to an effective TLS if the system is truncated to only two possible energy states. \\
 \\
-A QHO is another fundamental quantum mechanical model which describes a system with evenly spaced energy levels, and a quantised energy spectrum. A general state vector describing a QHO may be written as:
+A QHO is another fundamental quantum mechanical model that describes a system with evenly spaced energy levels, and a quantised energy spectrum. A general state vector describing a QHO is written as:
 
 \begin{equation}
 |\psi_{\scriptscriptstyle \text{QHO}}\rangle = \sum_{n=0}^\infty c_n |n\rangle,
 \end{equation}
 
-where $|n\rangle$ is the n$^{th}$ Fock state (a state with exactly n quanta of excitation), spanning an infinite--dimensional Hilbert Space $\mathcal{H}_{\scriptscriptstyle \text{QHO}}$, and and $c_n$ are the complex amplitudes associated with each Fock state. A QHO may represent a field confined in a cavity, or a molecular vibration \cite{Context2004-CQED_JCM}.\\
+where $|n\rangle$ is the n$^{th}$ Fock state (a state with exactly n quanta of excitation), spanning an infinite--dimensional Hilbert Space $\mathcal{H}_{\scriptscriptstyle \text{QHO}}$, and and $c_n$ are the complex amplitudes associated with each Fock state. A QHO may represent a field confined to a cavity, or molecular vibrations \cite{Context2004-CQED_JCM}.\\
 \\
 The TLS--QHO composite quantum system is the tensor product of both systems:
 
@@ -160,15 +159,15 @@ where $|\Psi\rangle$ now resides in the $\mathcal{H}_{\scriptscriptstyle \text{T
     \hat{H} = \hat{H}_{\scriptscriptstyle \text{TLS}} + \hat{H}_{\scriptscriptstyle \text{QHO}} + \hat{H_{\scriptscriptstyle \text{I}}}.
 \end{equation}
 \\
-Such composite systems arise in a wide range of physical contexts, and are described by several well-known models. One of these is the quantum Rabi model introduced in 1936 to model light--matter interaction \cite{Context1936-Rabi}. Furthermore, in 1953, the Dicke model was formulated to describe a large ensemble of atoms (many TLSs) coupled to a single cavity mode \cite{Context1954-Dicke}. These models, however, are not analytically solvable due to the complex interaction Hamiltonians that they introduce. Moreover, they are overly detailed in describing the the weak and strong coupling regimes, and are more tailored to the ultrastrong regime and beyond. The Jaynes--Cummings model was originally developed in 1963 to clarify the relationship between quantum radiation and semi--classical theory in the context of cavity QED \cite{Context1963-JC_Original}. In doing so, it also resolved both the suitability and solvability of the Rabi and Dicke models in the weak and strong coupling regimes. We shall therefore use the Jaynes--Cummings model to explore quantum resource manifestation in TLS--QHO systems.\\
-Whilst it remains a valuable model for study, the Jaynes--Cummings model has been extensively explored, and offers limited new insights at this level. Thus, to explore richer dynamics, we need to examine more complex models. The Exciton--Vibration model characterises the interaction between multiple electronic excitations (excitons) and their coupling to quantised vibrational modes. If we consider a dimer containing two excitons and restrict the system to a single excitation, we arrive at a system wherein a single exciton (TLS) is coupled to one vibration (QHO). The model then becomes similar to the Jaynes--Cummings model, albeit with a more complex TLS and interaction description. Thus, this model offers novel dynamics within which we may explore more interesting quantum resource characteristics. \\
+Such composite systems arise in a wide range of physical contexts and are described by several well-known models. One of these is the quantum Rabi model, introduced in 1936 to model light--matter interactions \cite{Context1936-Rabi}. Furthermore, in 1953, the Dicke model was formulated to describe a large ensemble of atoms (many TLSs) coupled to a single cavity mode \cite{Context1954-Dicke}. However, these models are not analytically solvable because of their complex interaction Hamiltonians. Moreover, they are overly detailed in describing the weak and strong coupling regimes, and are more tailored to the ultrastrong regime and beyond. The Jaynes--Cummings model was originally developed in 1963 to clarify the relationship between quantum radiation and semi--classical theory in the context of cavity QED \cite{Context1963-JC_Original}. In doing so, it also resolved both the suitability and solvability of the Rabi and Dicke models in the weak and strong coupling regimes. Therefore, we shall use the Jaynes--Cummings model to explore quantum resource manifestation in TLS--QHO systems.\\
+While it remains a valuable model for study, the Jaynes--Cummings model has been extensively explored and offers limited new insights at this level. Thus, to explore richer dynamics, we must examine more complex models. The exciton--vibration model characterises the interaction between multiple electronic excitations (excitons) and their coupling to quantised vibrational modes. If we consider a dimer containing two excitons and restrict the system to a single excitation, we arrive at a system wherein a single exciton (TLS) is coupled to one vibration (QHO). The model then becomes similar to the Jaynes--Cummings model, albeit with a more complex TLS and interaction description. Thus, this model offers novel dynamics within which we may explore more interesting quantum resource characteristics. \\
 \\
-Now that we have introduced the TLS–QHO composite system and its Hamiltonian structure, we turn our attention to the theoretical background of our chosen models: the Jaynes–Cummings and the Exciton–Vibration models. We then examine open quantum dynamics, before analysing the effects of entanglement and coherence on quantum systems.
+Now that we have introduced the TLS–QHO composite system and its Hamiltonian structure, we turn our attention to the theoretical background of our chosen models: the Jaynes–Cummings and the exciton–vibration models. We then examine open quantum dynamics before analysing the effects of entanglement and coherence on quantum systems.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% JCM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Jaynes--Cummings Model} \label{sec:theory_subsub_JCM}
 
-The Jaynes--Cummings Model (JCM) describes a system where a single TLS is coupled to a single quantised mode of the QHO. The model has found wide application, as outlined in our literature review. One prominent realisation is cavity QED, shown in Figure \ref{fig:img_JCM}, where an atom interacts with a quantised cavity field. In this setting, a 2024 study presented a method for achieving the deep-strong coupling regime for a JCM system by modulating the transition frequency of a TLS \cite{Context2024-CQED_JCM}. In the same year, the non-linear JCM, an extension of the JCM, was employed to investigate at the effects of non-linearity in superconducting quantum circuits \cite{Context2024-CircuitQED}. The JCM has also been applied in the study of nitrogen-vacancy centres, where interference phenomena in diamond nanocrystals was explored \cite{Context2009-Alt_NVcentres}. 
+The Jaynes--Cummings model (JCM) describes a system in which a single TLS is coupled to a single quantised mode of the QHO. The model has found wide application, as outlined in our literature review. One prominent realisation is cavity QED, as shown in Figure \ref{fig:img_JCM}, where an atom interacts with a quantised cavity field. In this setting, a 2024 study presented a method for achieving a deep-strong coupling regime for a JCM system by modulating the transition frequency of the TLS \cite{Context2024-CQED_JCM}. In the same year, the non-linear JCM, an extension of the JCM, was employed to investigate the effects of non--linearity in superconducting quantum circuits \cite{Context2024-CircuitQED}. The JCM has also been applied in the study of nitrogen-vacancy centres, where interference phenomena in diamond nanocrystals have been explored \cite{Context2009-Alt_NVcentres}. 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{Images/Jaynes-Cummings_model.png}
@@ -192,7 +191,7 @@ with
 
 In Equation \eqref{JC_H}, $\omega_a$ is the excitation frequency of the TLS, $\omega_c$ is excitation frequency of the QHO, and $g$ is the coupling strength constant. $\hat{\sigma}_z, \hat{\sigma}_+, \text{and } \hat{\sigma}_-$ are Pauli spin operators of the form $\hat{\sigma}_z = |1\rangle\langle1| - |0\rangle\langle0|, \hat{\sigma}_+ = |1\rangle\langle0|, \text{and } \hat{\sigma}_- = |0\rangle\langle1|$ which act upon the TLS. The operators $\hat{a}, \hat{a}^\dagger$ act solely on the QHO, such that $\hat{a}|n\rangle = \sqrt{n}|n-1\rangle$ acts to lower the state of the QHO, and $\hat{a}^{\dagger}|n\rangle = \sqrt{n+1}|n+1\rangle$ acts to raise the state of the QHO.\\
 \\
-The JCM is a simple model that is exactly solvable. Its simplicity arises from a set of four key approximations which constrain the model’s applicability to specific systems and coupling regimes \cite{General2024-JC_overview}. 
+The JCM is a simple model that is exactly solvable. Its simplicity arises from a set of four key approximations that constrain the model’s applicability to specific systems and coupling regimes \cite{General2024-JC_overview}. 
 
 The first approximation is the dipole approximation. Here, we consider the QHO to be uniform, such that the interaction Hamiltonian of the JCM can be modelled by a dipole (with energy $\boldsymbol{\hat{d}}$) in a uniform electric field $\boldsymbol{\hat{E}}$, such that:
 
@@ -200,14 +199,14 @@ The first approximation is the dipole approximation. Here, we consider the QHO t
     \hat{H}_{\scriptscriptstyle \text{I}} \propto \boldsymbol{\hat{d}} \cdot \boldsymbol{\hat{E}}.
 \end{equation*}
 
-The second approximation is the single mode approximation. Here, we take the infinite set of quantised modes of the field and discard all except the the mode whose frequency is closest to the transition frequency of the TLS (the resonant mode where $\omega_a = \omega_c$). Thus, the dynamics may be described as a QHO \cite{General2024-JCM_relevance}. In the dipole approximation, the electric field becomes
+The second approximation is the single mode approximation. Here, we take the infinite set of quantised modes of the field and discard all except the mode whose frequency is closest to the transition frequency of the TLS (the resonant mode where $\omega_a = \omega_c$). Thus, the dynamics can be described as a QHO \cite{General2024-JCM_relevance}. In the dipole approximation, the electric field becomes
 
 \begin{equation*}
     \boldsymbol{\hat{E}}  \propto \hat{a} + \hat{a}^\dagger.
 \end{equation*}
 
 
-The third approximation is the TLS approximation. In many quantum systems, such as atoms, there are many discrete energy levels. The JCM, however, only considers the two lowest energy levels of the system, $|0\rangle$ and $|1\rangle$, and all higher energy levels are neglected. The approximation is only valid, however, when the system is weakly driven, such that the higher energy levels are negligible and the system may be described as a TLS. In the dipole approximation, the dipole energy becomes
+The third approximation is the TLS approximation. Many quantum systems, such as atoms have numerous discrete energy levels. The JCM, however, only considers the two lowest energy levels of the system, $|0\rangle$ and $|1\rangle$, and all higher energy levels are neglected. The approximation is only valid when the system is weakly driven, such that the higher energy levels are negligible, and the system may be described as a TLS. In the dipole approximation, the dipole energy becomes:
 
 \begin{equation*}
     \boldsymbol{\hat{d}}  \propto \hat{\sigma}_{-} + \hat{\sigma}_{+}.
@@ -219,32 +218,32 @@ The last approximation is the Rotating Wave Approximation (RWA). In the full int
     \boldsymbol{\hat{d}} \cdot \boldsymbol{\hat{E}} \propto (\hat{\sigma}_{-} + \hat{\sigma}_{+})(\hat{a} + \hat{a}^\dagger) \approx \hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger. 
 \end{equation}
 
-The RWA neglects the terms $\hat{\sigma}_{-}\hat{a}, \hat{\sigma}_{+}\hat{a}^\dagger$ of the quadratic expansion, which oscillate rapidly. This approximation, however, is only valid when the coupling strength of the interaction $g$ is much less than the characteristic frequencies, $\omega_a$ and $\omega_c$. \\
+The RWA neglects the terms $\hat{\sigma}_{-}\hat{a}, \hat{\sigma}_{+}\hat{a}^\dagger$ of the quadratic expansion, which oscillate rapidly. However, this approximation is only valid when the coupling strength of the interaction $g$ is much less than the characteristic frequencies $\omega_a$ and $\omega_c$. \\
 \\
-These approximations, especially the RWA, restrict the JCM to certain physical regimes. Indeed, the JCM primarily concerns itself with systems in the strong--coupling regime \cite{General2024-JCM_relevance}. We now introduce three key conditions for which to uphold this physical regime:
+These approximations, particularly the RWA, restrict the JCM to certain physical regimes. Indeed, the JCM primarily concerns itself with systems in the strong--coupling regime \cite{General2024-JCM_relevance}. We now introduce three key conditions for upholding this physical regime.
 \begin{equation} \label{JCM_condition_g<omega}
     g \ll \omega_a, \omega_c 
 \end{equation} 
 
-must be held so that the RWA remains valid. Furthermore, we introduce the cooperativity parameter,
+must be held to ensure that the RWA remains valid. Furthermore, we introduce the cooperativity parameter:
 
 \begin{equation} \label{JCM_condition_cooperativity}
     C = \frac{4g^2}{\gamma\cdot\gamma_{\scriptscriptstyle th}} > 1
 \end{equation}
 
-where $\gamma, \gamma_{\scriptscriptstyle th}$ are the decay rates due to spontaneous atomic emission and thermal decay respectively. Finally, we introduce the normalised coupling parameter, 
+where $\gamma, \gamma_{\scriptscriptstyle th}$ are the decay rates owing to spontaneous atomic emission and thermal decay respectively. Finally, we introduce the normalised coupling parameter, 
 
 \begin{equation} \label{JCM_condition_norm_coupling}
     \zeta = \frac{4g^2}{\omega_a\cdot\omega_c} < 0.04
 \end{equation}, 
 
-with $\zeta \approx \mathcal{O}(1)$ indicating the ultrastrong--coupling regime in which the condition in equation \eqref{JCM_condition_g<omega} is no longer held, and the discarded terms under the RWA approximation are no longer negligible.\\
+with $\zeta \approx \mathcal{O}(1)$ indicating an ultrastrong--coupling regime in which the condition in equation \eqref{JCM_condition_g<omega} is no longer held, and the discarded terms under the RWA approximation are no longer negligible.\\
 \\
-If we remain in valid coupling regimes, the JCM is a strong model for studying quantum resources in TLS--QHO systems. In fact, there are certain characteristic features captured by the JCM that are key to understanding the nature of light--matter interactions it describes. 
+If we remain in valid coupling regimes, the JCM is a strong model for studying quantum resources in TLS--QHO systems. In fact, certain characteristic features are captured by the JCM which are key to understanding the nature of the light--matter interactions it describes. 
 
-One key characteristic of the JCM is Rabi oscillations, which are the coherent, periodic exchanges of excitation between the TLS and QHO. The interaction Hamiltonian in Equation \eqref{JC_H} creates a flip--flop effect, where an excitation in the TLS causes a photon to be destroyed in the QHO, and de--excitation causes a photon to be created. The interaction Hamiltonian clearly shows this periodic exchange of energy via the coupling of the annihilation operator $\hat{a}$ with the atomic excitation operator $\hat{\sigma}_+$, and $\hat{a}^\dagger$ with $\hat{\sigma}_-$.
+One key characteristic of the JCM is Rabi oscillations, which are coherent, periodic exchanges of excitation between the TLS and QHO. The interaction Hamiltonian in Equation \eqref{JC_H} creates a flip--flop effect, where an excitation in the TLS causes a photon to be destroyed in the QHO and de--excitation causes a photon to be created. The interaction Hamiltonian clearly shows this periodic exchange of energy via the coupling of the annihilation operator $\hat{a}$ with the atomic excitation operator $\hat{\sigma}_+$, and $\hat{a}^\dagger$ with $\hat{\sigma}_-$.
 
-This operator coupling further leads to the conservation of the excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$. The excitation number operator commutes with the Hamiltonian ($[\hat{N}, \hat{H}_{\scriptscriptstyle \text{JC}}] = 0$) and so $\hat{N}$ is conserved. As a consequence, the JCM only allows transitions between states with the same excitation number, such as $|g, n+1\rangle$ and $|e,n\rangle$. For example, states such as
+This operator coupling further leads to the conservation of the excitation number operator $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$. The excitation number operator commutes with the Hamiltonian ($[\hat{N}, \hat{H}_{\scriptscriptstyle \text{JC}}] = 0$); therefore $\hat{N}$ is conserved. As a consequence, the JCM only allows transitions between states with the same excitation number, such as $|g, n+1\rangle$ and $|e,n\rangle$. For example, states such as
 
 \begin{equation} \label{JCM_general_state}
     |\psi\rangle = \alpha|g,n+1\rangle + \beta|e,n\rangle
@@ -252,11 +251,11 @@ This operator coupling further leads to the conservation of the excitation numbe
 
 are allowed, and such states will be explored in Section \ref{sec:results_JCM}.\\
 \\
-It is clear that the JCM's simplicity, arising from the aforementioned approximations, allows it to capture interesting phenomena such as Rabi oscillations. However, due to its popularity and age, quantum resources in the JCM have been studied extensively, and are well documented. In order to explore more novel manifestations of these quantum resources, we turn to the Exciton--Vibration model. 
+It is clear that the JCM's simplicity, arising from the aforementioned approximations, allows it to capture interesting phenomena such as Rabi oscillations. However, owing to its popularity and age, quantum resources in the JCM have been studied extensively, and are well documented. To explore more novel manifestations of these quantum resources, we turn to the exciton--vibration model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exciton--Vibration Model}  \label{sec:theory_subsub_EVM}
-The Exciton--Vibration model (EVM) describes the interaction between multiple electronic excitations (excitons), and quantised vibrational modes. For a general EVM, the excitons are modelled by TLSs, and the QHO is modelled by the quantised vibrational modes which are local to each site. One of the first explicit formulations of the EVM can be found in 1996 paper by Schanz et al., in which two excitons are modelled by a dimer, which are in turn coupled to local vibrational modes \cite{ExVib1997-First}. The EVM has since been deployed in the field of chemical physics to study entanglement and the breakdown of of the Born--Oppenheimer approximation, which treats nuclear and electronic dynamics separately \cite{ExVib2015-ChemPhysBorn}. Moreover, in quantum biology, the exciton is modelled by a dimer to investigate enhanced exciton--vibration energy exchange in light harvesting complexes at room temperature \cite{ExVib2014-Alexandra}.\\
+The exciton--vibration model (EVM) describes the interaction between multiple electronic excitations (excitons) and quantised vibrational modes. For a general EVM, the excitons are modelled by TLSs, and the QHO is modelled by the quantised vibrational modes that are local to each site. One of the first explicit formulations of the EVM can be found in the 1996 paper by Schanz et al., in which two excitons are modelled by a dimer, which are in turn coupled to local vibrational modes \cite{ExVib1997-First}. The EVM has since been deployed in the field of chemical physics to study entanglement and the breakdown of the Born--Oppenheimer approximation, which treats nuclear and electronic dynamics separately \cite{ExVib2015-ChemPhysBorn}. Moreover, in quantum biology, the exciton is modelled by a dimer to investigate enhanced exciton--vibration energy exchange in light harvesting complexes at room temperature \cite{ExVib2014-Alexandra}.\\
 
 \begin{figure}[H]
     \centering
@@ -265,7 +264,7 @@ The Exciton--Vibration model (EVM) describes the interaction between multiple el
     \label{fig:dimer}
 \end{figure}
 
-\noindent We consider a special case of the EVM, consistent with ref. \cite{ExVib2014-Alexandra}, in which a dimer is coupled to local vibrational modes. A dimer contains two chromophores (sites), each of which contain an exciton, as illustrated in Figure \ref{fig:dimer}. Consequently, each exciton is coupled to a local vibrational mode called a phonon. The Hamiltonian of this model is expressed as:
+\noindent We consider a special case of the EVM which is consistent with reference \cite{ExVib2014-Alexandra} in which a dimer is coupled to local vibrational modes. A dimer contains two chromophores (sites), each of which contains an exciton, as illustrated in Figure \ref{fig:dimer}. Consequently, each exciton is coupled to a local vibrational mode called a phonon. The Hamiltonian of this model is expressed as
 
 \begin{equation} \label{eqn:H_EV_general}
     \hat{H}_{\scriptscriptstyle \text{EV}} = \sum_{i=1,2}\epsilon_i\hat{\sigma}_{+,i}\hat{\sigma}_{-,i} + V\left(\hat{\sigma}_{+,1}\hat{\sigma}_{-,2}+\hat{\sigma}_{+,2}\hat{\sigma}_{-,1}\right)
@@ -283,15 +282,15 @@ with
     \end{aligned}
 \end{align*}
 
-In equation \eqref{eqn:H_EV_general}, $\epsilon_i$ is site $i$'s excited state energy, $V$ is the coupling strength between the two sites, $\omega_{\scriptscriptstyle \text{vib}}$ is the frequency of the vibrational mode, and $g$ is the coupling strength of the excitons and vibrational modes. The Pauli operators $\hat{\sigma}_{\pm,i}$ act to raise/lower the excitation of a site $i$, while the operators $\hat{b}_i, \hat{b}_i^\dagger$ annihilate/create a phonon of the vibrational mode of site $i$.\\
+In equation \eqref{eqn:H_EV_general}, $\epsilon_i$ is site $i$'s excited state energy, $V$ is the coupling strength between the two sites, $\omega_{\scriptscriptstyle \text{vib}}$ is the frequency of the vibrational mode, and $g$ is the coupling strength of the excitons and vibrational modes. The Pauli operators $\hat{\sigma}_{\pm,i}$ act to raise/lower the excitation of a site $i$, whereas the operators $\hat{b}_i, \hat{b}_i^\dagger$ annihilate/create a phonon of the vibrational mode of a site $i$.\\
 \\
-\noindent To introduce the simplified Hamiltonian that will be the focus of our study, we first outline two key procedures.\\
+\noindent To introduce the simplified Hamiltonian which will be the focus of our study, we first outline two key procedures.\\
 \\
-We firstly restrict the dimer to a single excitation, leaving only states with an excitation localised on one site, allowing us to model the dimer (and thus its two chromophores) as a single effective TLS.
+We first restrict the dimer to a single excitation, leaving only states with an excitation localised on one site, allowing us to model the dimer (and thus its two chromophores) as a single effective TLS.
 
-Secondly, we transform the two local vibrational modes into collective coordinates. We observe that the centre of mass mode $\hat{b}_{\scriptscriptstyle \text{cm}}$ decouples from the exciton dynamics, and so only the relative displacement mode $\hat{b}_{\scriptscriptstyle \text{rd}}$ couples to the exciton. Thus, we reduce the two QHOs to just one.
+Second, we transform the two local vibrational modes into collective coordinates. We observe that the centre of mass mode $\hat{b}_{\scriptscriptstyle \text{cm}}$ decouples from the exciton dynamics; therefore, only the relative displacement mode $\hat{b}_{\scriptscriptstyle \text{rd}}$ couples to the exciton. Thus, we reduce the two QHOs to one.
 
-These two procedures are illustrated schematically in Figure \ref{fig:img_EVM}, which shows how the general dimer model with two local vibrational modes reduces to an effective single TLS coupled to a single collective vibrational mode.\\
+These two procedures are schematically illustrated in Figure \ref{fig:img_EVM}, which shows how the general dimer model with two local vibrational modes reduces to an effective single TLS coupled to a single collective vibrational mode.\\
 \\
 Our Hamiltonian in equation \eqref{eqn:H_EV_general} then reduces to the following:
 
@@ -317,16 +316,16 @@ where $\Delta\epsilon = \epsilon_1 - \epsilon_2$ is the site energy difference b
     \label{fig:img_EVM}
 \end{figure}
 
-\noindent This Hamiltonian is similar to the Jaynes–-Cummings Hamiltonian in equation \eqref{JC_H}, but differs by including an additional TLS and interaction term, making the EVM a slightly more complex variant that enables the study of richer dynamics. Furthermore, whilst this model shares some characteristics with the JCM, it differs in other, more interesting ways. \\
+\noindent This Hamiltonian is similar to the Jaynes–-Cummings Hamiltonian in equation \eqref{JC_H}, but differs by including an additional TLS and interaction term, making the EVM a slightly more complex variant that enables the study of richer dynamics. Furthermore, although this model shares some characteristics with the JCM, it differs in other, more interesting ways. \\
 \\
-The EVM exhibits coherent energy exchange when the excitonic energy--splitting is on resonance with the vibrational mode frequency. This resonant coupling sustains oscillations akin to the JCM's Rabi oscillations between the two subsystems, even under incoherent excitation. Moreover, the additional TLS term $V\hat{\sigma}_x$ introduces a direct coupling between the two excitonic states, providing an extra channel for the generation of non--classical correlations such as entanglement and coherence. Population transfer between the sites can therefore occur either via by vibration--assisted coupling (i.e. via $\hat{H}_I$), or through direct excitonic coupling.\\
+The EVM exhibits coherent energy exchange when the excitonic energy--splitting resonates with the vibrational mode frequency. This resonant coupling sustains oscillations akin to the JCM's Rabi oscillations between the two subsystems, even under incoherent excitation. Moreover, the additional TLS term $V\hat{\sigma}_x$ introduces a direct coupling between the two excitonic states, providing an extra channel for the generation of non--classical correlations such as entanglement and coherence. Thus, while population transfer for the exciton only occurs through the $V\hat{\sigma}_x$, the vibration subsystem transfers its populations through the interaction Hamiltonian.\\
 \\
-Now that we have a more complete understanding of the JCM and EVM, we need to explore how these models evolve. In order to do so, we must examine both the idealised closed evolution, and the more physically relevant open evolution of the system. We therefore turn to the general framework of open quantum systems, which will form the basis for analysing the time evolution of both models.
+Now that we have a more complete understanding of the JCM and EVM, we need to explore how these models evolve. To do so, we must examine both the idealised closed evolution, and the more physically relevant open evolution of the system. Therefore, we turn to the general framework of open quantum systems, which forms the basis for analysing the time evolution of both models.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OQS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Open Quantum Systems} \label{sec:theory_sub_OQS}
 
-In quantum theory, the evolution of a system can be treated in two distinct ways: a closed system approach, where the system is isolated from its environment, and an open system approach, where an external environment directly influences the dynamics. Whilst closed system evolution is sufficient for examining a snapshot of the behaviour of a model, it is the open evolution that ultimately determines how the system behaves in physical settings. We now proceed to define the theoretical mechanisms of closed systems evolution, before doing the same for open system evolution.\\
+In quantum theory, the evolution of a system can be treated in two distinct ways: a closed system approach, where the system is isolated from its environment, and an open system approach, where the external environment directly influences the dynamics. While closed system evolution is sufficient for examining a snapshot of the behaviour of a model, the open evolution ultimately determines how the system behaves in physical settings. We now proceed to define the theoretical mechanisms of closed system evolution before doing the same for open system evolution.\\
 \\
 For an initial state $|\psi (t=0)\rangle$, its closed evolution is governed by
 
@@ -334,7 +333,7 @@ For an initial state $|\psi (t=0)\rangle$, its closed evolution is governed by
     |\psi(t)\rangle = \hat{U}(t)|\psi(t=0)\rangle,
 \end{equation}
 
-where the unitary evolution operator $\hat{U}(t) = e^{i\hat{H}t/\hbar}$ is defined for a time-independent Hamiltonian $\hat{H}$. The exponentiation of the Hamiltonian operator is simplified greatly if the Hamiltonian is diagonal. For example, consider the diagonal Hamiltonian $\hat{H}$:
+where the unitary evolution operator $\hat{U}(t) = e^{i\hat{H}t/\hbar}$ is defined for a time-independent Hamiltonian $\hat{H}$. The exponentiation of the Hamiltonian operator is significantly simplified if the Hamiltonian is diagonal. For example, consider the diagonal Hamiltonian $\hat{H}$:
 
 \begin{equation*}
     \hat{H} = 
@@ -358,7 +357,7 @@ which is exponentiated as
     \end{bmatrix}.
 \end{equation*}
 
-\noindent Understanding how a closed system evolves gives us insight into the key characteristics of a system. Closed evolution may, for example, illuminate population and coherence oscillations of Exciton--Vibration systems such as dimers in light--harvesting biological complexes \cite{ExVib2014-Alexandra}. We may also observe how Rabi oscillations of the JCM lead to oscillations in entanglement and coherence \cite{Entanglement2009-REE_VNapplied}. However, to capture the complete physics of TLS--QHO systems, we must look at their evolution under open quantum dynamics. In fact, many studies, including the aforementioned ones, take the approach to begin by looking at closed system evolution, and then proceeding to look at open system evolution when the core dynamics of the system are understood.\\
+\noindent Understanding how a closed system evolves provides insights into the key characteristics of a system. For example, closed evolution may illuminate population and coherence oscillations of exciton--vibration systems such as dimers in light--harvesting biological complexes \cite{ExVib2014-Alexandra}. We can also observe how Rabi oscillations of the JCM lead to oscillations in entanglement and coherence \cite{Entanglement2009-REE_VNapplied}. However, to capture the complete physics of TLS--QHO systems, their evolution must be examined under open quantum dynamics. In fact, many studies, including the aforementioned ones, take the approach to begin by looking at closed system evolution, and then proceed to look at open system evolution when the core dynamics of the system are understood.\\
 
 \begin{figure}[h]
     \centering
@@ -368,27 +367,27 @@ which is exponentiated as
     \label{fig:img_OQS}
 \end{figure}\\
 
-\noindent An open quantum system is any system which takes into account its environment, such that there is at minimum transfer of information between the environment and the system. This is illustrated schematically in Figure \ref{fig:img_OQS}, where the system interacts with its surrounding environment to form a total composite system. There are two types of open system evolution: Markovian and non-Markovian.
+\noindent An open quantum system is any system that takes into account its environment, such that there is a minimum transfer of information between the environment and the system. This is schematically illustrated in Figure \ref{fig:img_OQS}, where the system interacts with its surrounding environment to form a composite system. There are two types of open system evolution: Markovian and non-Markovian.
 
-Markovian evolution describes dynamics in which the system's future evolution depends only on its current state and not on its history, and as such the environment has no memory. 
+Markovian evolution describes dynamics in which the system's future evolution depends only on its current state and not on its history; as such, the environment has no memory. 
 
-In contrast, non-Markovian evolution occurs when the environment retains memory of its interaction with the system, allowing information to flow back into the system. Future states are dependent on both the system's current state and its history. 
+In contrast, non-Markovian evolution occurs when the environment retains memory of its interaction with the system, allowing information to flow back into the system. Future states depend on both the current state of the system and its history. 
 
-In this work, we adopt the Markovian approach to open-system evolution for its relative simplicity, as our primary goal is to illustrate how entanglement and coherence evolve. To evolve our state in this manner, we need to define a master equation, which tells us how the state of a system changes over time when using a density matrix as a state descriptor. The Lindblad equation is a general form of a Markovian master equation, and is written as 
+In this work, we adopt the Markovian approach to open-system evolution for its relative simplicity, as our primary goal is to illustrate how entanglement and coherence evolve. To evolve our state in this manner, we need to define a master equation, that tells us how the state of a system changes over time when using a density matrix as a state descriptor. The Lindblad equation is a general form of a Markovian master equation, and is written as 
 
 \begin{equation} \label{eqn:lindblad}
     \dot \rho(t) = - i[\hat{H}, \rho(t)] + \sum_i\left(L_i\rho(t)L_i^\dagger - \frac{1}{2}\{L_i^\dagger L_i,\rho(t)\} \right) \equiv \mathcal{L}\rho(t).
 \end{equation} 
 
-In equation \ref{eqn:lindblad}, $[L_i^\dagger L_i, \rho (t)] = L_i^\dagger L_i\rho(t) + \rho(t)L_i^\dagger L_i$ is an anti--commutator. $L$ are the Lindblad operators, which define how the environments couple to the system and hence how the system decays; they correspond to different types of decay channels. $\mathcal{L}$ is the Liouvillian superoperator (a mathematical object which act on operators). Solving the Lindblad equation requires handling a set of first--order differential equations, which yield the full time evolution of the system. \\
+In equation \ref{eqn:lindblad}, $[L_i^\dagger L_i, \rho (t)] = L_i^\dagger L_i\rho(t) + \rho(t)L_i^\dagger L_i$ is an anti--commutator. $L$ are the Lindblad operators, that define how the environments couple to the system and hence how the system decays; they correspond to different types of decay channels. $\mathcal{L}$ is the Liouvillian superoperator (a mathematical object which acts on operators). Solving the Lindblad equation requires handling a set of first--order differential equations, which yields the full time evolution of the system. \\
 \\
-This particular form of the Lindblad equation is particularly notable, as it separates the unitary, closed evolution part of the system from the open, decay elements. If, for instance, we set all the Lindblad decay operators to 0, we are left with:
+This particular form of the Lindblad equation is particularly notable, because it separates the unitary, closed evolution part of the system from the open, decay elements. If, for instance, we set all the Lindblad decay operators to 0, we are left with:
 
 \begin{equation}
     \dot \rho(t) = - i[\hat{H}, \rho(t)],
 \end{equation}
 
-which is the von Neumann equation. In this formulation, the environment is completely ignored, and our system evolves under closed dynamics. As mentioned, the decay operators $L$ represent the different types of channels through which the system decays. There are many decay operators which we may use for TLS--QHO systems. We choose two specific decay channels for our analysis: spontaneous atomic emission and thermal dissipation. 
+which is the von Neumann equation. In this formulation, the environment is completely ignored and our system evolves under closed dynamics. As mentioned, the decay operators $L$ represent the different types of channels through which the system decays. Many decay operators can be used in TLS--QHO systems. We selected two specific decay channels for our analysis: spontaneous atomic emission and thermal dissipation. 
 
 Spontaneous atomic emission models the excitation decay in the TLS, representing one of the most fundamental and unavoidable losses in TLS--QHO systems. In terms of the decay operator, spontaneous atomic emission is modelled as
 
@@ -396,9 +395,9 @@ Spontaneous atomic emission models the excitation decay in the TLS, representing
     L = \gamma|0\rangle\langle1|,
 \end{equation}
 
-where $\gamma$ is the rate of decay, and $|0\rangle,|1\rangle$ represent the ground and excited states respectively. The strength of this decay model is also its simplicity, as it captures the essential physics of excitation loss with a single parameter while remaining straightforward to implement in the Lindblad formalism.
+where $\gamma$ is the rate of decay, and $|0\rangle,|1\rangle$ represent the ground and excited states respectively. The strength of this decay model is its simplicity, as it captures the essential physics of excitation loss with a single parameter while remaining straightforward to implement in the Lindblad formalism.
 
-Another decay channel we consider is thermal dissipation. This decay models energy loss of of the QHO to a finite--temperature environment, thus capturing the effect of thermal photons/phonons that drive the oscillator towards equilibrium with its surroundings. The thermal dissipation decay operators are written as 
+Another decay channel that we consider is thermal dissipation. This decay models the energy loss of the QHO to a finite--temperature environment, thus capturing the effect of thermal photons/phonons that drive the oscillator towards equilibrium with its surroundings. The thermal dissipation decay operators are written as follows:
 
 \begin{equation}\label{eqn:L_therm}
     L_1 = \gamma_{\scriptscriptstyle \text{th}}(N+1)\hat{a} 
@@ -410,11 +409,16 @@ and
     L_2 = \gamma_{\scriptscriptstyle \text{th}}N\hat{a}^\dagger ,
 \end{equation*}
 
-where $\gamma_{\scriptscriptstyle \text{th}}$ is the thermal rate of decay, and $\hat{a},\hat{a}^\dagger$ act to annihilate/create a photon (phonon) in the QHO. The mean thermal occupation number is defined as $N = [\text{exp}(\omega/k_bT) -1]^{-1},$ where $T$ is the temperature of the bath that the system is coupled to, $\omega$ is the frequency of the QHO, and $k_b$ is the Boltzmann constant. These decay operators not only govern energy loss in the TLS and QHO, but also play a central role in driving decoherence.\\
+where $\gamma_{\scriptscriptstyle \text{th}}$ is the thermal rate of decay, and $\hat{a},\hat{a}^\dagger$ act to annihilate/create a photon (phonon) in the QHO. 
+The mean thermal occupation number is defined as 
+\begin{equation} \label{therm_occ_num}
+    N = [\text{exp}(\omega/k_bT) -1]^{-1},
+\end{equation}
+where $T$ is the temperature of the bath to which system is coupled, $\omega$ is the frequency of the QHO, and $k_b$ is the Boltzmann constant. These decay operators not only govern energy loss in the TLS and QHO, but also play a central role in driving decoherence.\\
 \\
-Decoherence refers to the decay of off--diagonal elements of a density matrix in a given basis, indicating a loss of quantum superposition. Decoherence is induced by environmental interactions which are in turn captured by the decay operators $L$. Since the magnitude of these off–diagonal elements directly quantifies coherence, decoherence corresponds to the gradual reduction of this quantum resource, ultimately driving the system towards classical behaviour. In the next section, we explicitly define and inspect coherence and its quantifiers. \\
+Decoherence refers to the decay of off--diagonal elements of a density matrix in a given basis, indicating a loss of quantum superposition. Decoherence is induced by environmental interactions which are captured by the decay operators $L$. Since the magnitude of these off–diagonal elements directly quantifies coherence, decoherence corresponds to the gradual reduction of this quantum resource, ultimately driving the system towards classical behaviour. In the next section, we explicitly define coherence and its quantifiers. \\
 \\
-Whilst decoherence describes how quantum resources diminish over time, simulating such processes efficiently requires a suitable mathematical framework. One powerful approach is vectorisation, a method used to transform operators to vectors and superoperators to operators. Noting that matrices form a vector space, we define a Hilbert space of matrices, called the Fock--Liouville Space (FLS). In this space, an operator such as $|i\rangle\langle j| \rightarrow |j\rangle \otimes |i\rangle$. For a density matrix, $\rho$, 
+While decoherence describes how quantum resources diminish over time, efficiently simulating such processes requires a suitable mathematical framework. One powerful approach is vectorisation, which is a method used to transform operators into vectors and superoperators into operators. Noting that matrices form a vector space, we define a Hilbert space of matrices, called the Fock--Liouville space (FLS). In this space, an operator such as $|i\rangle\langle j| \rightarrow |j\rangle \otimes |i\rangle$. For a density matrix, $\rho$, 
 
 \begin{equation*}
     \rho = \sum_{i,j}\rho_{i,j}|i\rangle\langle j| \rightarrow \sum_{i,j}\rho_{i,j}|i\rangle\otimes |j\rangle
@@ -435,7 +439,7 @@ In matrix--vector column notation, this translates to
     \end{bmatrix}.
 \end{equation*}
 
-In terms of bra--ket notation, $\text{vec}(\rho) = |\rho \rangle\rangle.$ Thus, we see that the rank of an operator is reduced by 1, and so any vectorised operator behaves as a vector in the FLS. Moreover, we observe that for superoperators, their rank also reduces by 1 and so they behave like operators instead. A key property of the FLS is:
+In terms of bra--ket notation, $\text{vec}(\rho) = |\rho \rangle\rangle.$ Thus, we see that the rank of an operator is reduced by 1, and thus any vectorised operator behaves as a vector in the FLS. Moreover, we observe that for superoperators, their rank also reduces by 1 and thus they behave like operators instead. A key property of the FLS is
 
 \begin{equation*}
     \text{vec}(ABC) = (C^T \otimes A)\text{vec}(B),
@@ -455,33 +459,33 @@ where the Liouvillian matrix $\hat{\mathcal{L}}$ is written as:
 
 where $\gamma_k$ is the decay rate associated with the $k^{th}$ decay operator $L_k$.This form of the Lindblad equation makes it especially useful for computational methods, as it transforms the set of linear differential equations into a matrix--vector problem. In libraries such as Python's QuTip, master equation solvers use this method to evolve input states \cite{Comp2012-Qutip}.\\
 \\
-Having established the framework for modelling TLS--QHO systems under both closed and open evolution, and the role of environmental interactions through the Lindblad formalism, we now turn to the specific quantum resources of interest in this work. In particular, we focus on entanglement and coherence, as these capture the essential non-classical features whose dynamics we aim to investigate.
+Having established the framework for modelling TLS--QHO systems under both closed and open evolution, and the role of environmental interactions through the Lindblad formalism, we now turn to the specific quantum resources of interest in this work. In particular, we focus on entanglement and coherence, as they capture the essential non-classical features whose dynamics we aim to investigate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Q RESOURCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Quantum Resources} \label{sec:theory_sub_ent}
 
-Quantum resources are fundamental properties of quantum systems which enable us to perform computations and improve a system's efficiency, and are are essential for leveraging the unique advantages of quantum mechanics over classical physics. Two of the most essential resources which we study are entanglement and coherence. In order to inspect how these resources manifest in TLS--QHO systems, we need to be able to understand and quantify them. This Section thus focuses on the explanation and quantification of entanglement and coherence, and how they might be used to learn more about our system in question. 
+Quantum resources are fundamental properties of quantum systems that enable us to perform computations and improve a system's efficiency and are essential for leveraging the unique advantages of quantum mechanics over classical physics. Two of the most essential resources we study are entanglement and coherence. To inspect how these resources manifest in TLS--QHO systems, we must understand and quantify them. This section focuses on the explanation and quantification of entanglement and coherence and how they might be used to learn more about our system in question. 
 
 \subsubsection{Entanglement}
 
-One of the most celebrated quantum resources is entanglement, a unique quantum phenomenon that describes non--classical correlations between subsystems of a composite quantum system. A total state $|\Psi\rangle$ is said to be entangled if it cannot be written as a product state, that is:
+One of the most celebrated quantum resources is entanglement, a unique quantum phenomenon that describes non--classical correlations between subsystems of a composite quantum system. A total state $|\Psi\rangle$ is said to be entangled if it cannot be written as a product state; that is
 
 \begin{equation}
     |\Psi\rangle \neq |\psi_A\rangle \otimes |\psi_B\rangle,
 \end{equation}
 
-where $|\psi_A\rangle, |\psi_B\rangle$ are the pure states of subsystems A and B respectively, and $|\Psi\rangle$ is entangled \cite{Entanglement1999-Overview_&REE}. If a state \textit{can} be written as a product state, it is considered separable and exhibits only classical correlations. Entangled states, however, exhibit non--local correlations that can violate Bell Inequalities, something which can be demonstrated using, for example, the GHZ game. 
+where $|\psi_A\rangle, |\psi_B\rangle$ are the pure states of subsystems A and B, respectively, and $|\Psi\rangle$ is entangled \cite{Entanglement1999-Overview_&REE}. If a state \textit{can} be written as a product state, it is considered separable and exhibits only classical correlations. However, entangled states exhibit non--local correlations that can violate Bell Inequalities, which can be demonstrated using, for example, the GHZ game. 
 
-In physical systems such as the TLS--QHO, entanglement may  naturally be present. A 2024 book on the JCM states that entanglement is a key quantum resource that emerges within the model, since the JCM preserves the total excitation number \cite{General2024-JC_overview}. Moreover, a 2025 study deploys an Exciton--Vibration--type system in the context of optomechanics to generate room-temperature entanglement \cite{Entanglement2025-ExVib_roomtemp}. We shall now explore several ways of quantifying entanglement by studying various measures.
+In physical systems such as the TLS--QHO, entanglement may  naturally occur. A 2024 book on the JCM states that entanglement is a key quantum resource that emerges within the model because the JCM preserves the total excitation number \cite{General2024-JC_overview}. Moreover, a 2025 study deployed an exciton--vibration--type system in the context of optomechanics to generate room-temperature entanglement \cite{Entanglement2025-ExVib_roomtemp}. We now explore several ways of quantifying entanglement by studying various measures.
 
 \subsubsubsection{von Neumann Entropy}
 
-For a pure state density matrix $\rho_{\scriptscriptstyle \text{AB}}$ \cite{Entanglement1999-Overview_&REE}, the subsystem of A is  found by taking the partial trace over subsystem B, and vice versa, such that $\rho_{\scriptscriptstyle \text{A}} = tr_{\scriptscriptstyle \text{B}}(\rho_{\scriptscriptstyle \text{AB}})$ and $\rho_{\scriptscriptstyle \text{B}} = tr_{\scriptscriptstyle \text{A}}(\rho_{\scriptscriptstyle \text{AB}})$. The von Neumann entropy of the reduced density operators is then given by:
+For a pure state density matrix $\rho_{\scriptscriptstyle \text{AB}}$ \cite{Entanglement1999-Overview_&REE}, subsystem A is  found by taking the partial trace over subsystem B, and vice versa, such that $\rho_{\scriptscriptstyle \text{A}} = tr_{\scriptscriptstyle \text{B}}(\rho_{\scriptscriptstyle \text{AB}})$ and $\rho_{\scriptscriptstyle \text{B}} = tr_{\scriptscriptstyle \text{A}}(\rho_{\scriptscriptstyle \text{AB}})$. The von Neumann entropy of the reduced density operators is then given by:
 
 \begin{equation} \label{VNE_original}
     S(\rho_{\scriptscriptstyle \text{AB}}) = -\text{tr}(\rho_{\scriptscriptstyle \text{A}}\ln\rho_{\scriptscriptstyle \text{A}}) = -\text{tr}(\rho_{\scriptscriptstyle \text{B}}\ln\rho_{\scriptscriptstyle \text{B}}).
 \end{equation}
 
-We may simplify this further by considering the subsystem density matrices' eigenvalues. If, for example, we are looking at the von Neumann entropy of subsystem A, we first write the subsystem's density matrix as a spectral decomposition:
+This can be simplified further by considering the eigenvalues of the subsystem density matrices. For example, if we are looking at the von Neumann entropy of subsystem A, we first write the subsystem's density matrix as a spectral decomposition:
 
 \begin{equation} \label{VNE_spectral_decomp}
     \rho_{\scriptscriptstyle \text{A}} = \sum_i \lambda_i|\psi_i\rangle\langle\psi_i|, 
@@ -499,7 +503,7 @@ Inserting equations \eqref{VNE_spectral_decomp}, \eqref{VNE_eigenvals} into \eqr
     \mathcal{E} = S(\rho_{\scriptscriptstyle \text{A}}) = S(\rho_{\scriptscriptstyle \text{B}}) = \sum_i \lambda_i\ln\lambda_i,
 \end{equation}
 
-where $\mathcal{E}$ is the entanglement of the total system. The von Neumann entropy is a strong and popular candidate when working with pure density matrices, and has been used in the JCM to track entanglement oscillations under closed evolution \cite{Entanglement2009-REE_VNapplied}. However, the measure fails to distinguish between classical and quantum correlations for mixed states. As we shall see in Section \ref{sec:results}, we use the von Neumann entropy for closed system evolution since we always start in pure states. For open quantum systems, however, since pure states become mixed states during evolution, the von Neumann entropy is no longer appropriate. For mixed states, then, we may use Negativity, which applies to both pure and mixed states.
+where $\mathcal{E}$ denotes the entanglement of the total system. The von Neumann entropy is a strong and popular candidate when working with pure density matrices, and has been used in the JCM to track entanglement oscillations under closed evolution \cite{Entanglement2009-REE_VNapplied}. However, the measure fails to distinguish between classical and quantum correlations for mixed states. As we shall see in Section \ref{sec:results}, we use the von Neumann entropy for closed system evolution since we always start in pure states. For open quantum systems, however, since pure states become mixed states during evolution, the von Neumann entropy is no longer appropriate. For mixed states, then, we may use negativity, which applies to both pure and mixed states.
 
 \subsubsubsection{Negativity}
 
@@ -509,7 +513,7 @@ Negativity is defined as
     \mathcal{N} = \sum_i |\lambda_i|,
 \end{equation}
 
-where $\lambda_i$ are the negative eigenvalues of the partial transpose of the full system density matrix $\rho_{\scriptscriptstyle \text{AB}}$. The partial transpose of a density matrix is computed by transposing one subsystem of the full density matrix, and is written as $\rho_{\scriptscriptstyle \text{AB}}^{T_A}$ or $\rho_{\scriptscriptstyle \text{AB}}^{T_B}$. A 2025 study uses negativity to quantify entanglement in the JCM, and examine how noise and various interactions influence its dynamics \cite{Entanglement2025-Negativity}. Negativity is a valid measure for both pure and mixed states, making it a powerful tool for quantifying the entanglement of systems undergoing open quantum evolution. Furthermore, it is said to be a LOCC (Local Operations and Classical Communications) montone \cite{Entanglement2009-Definition}. Thus, we shall use negativity to analyse the entanglement of our models under open quantum evolution in Section \ref{sec:results}. 
+where $\lambda_i$ is the $i^{th}$ negative eigenvalue of the partial transpose of the full system density matrix $\rho_{\scriptscriptstyle \text{AB}}$. The partial transpose of a density matrix is computed by transposing one subsystem of the full density matrix, and is written as $\rho_{\scriptscriptstyle \text{AB}}^{T_A}$ or $\rho_{\scriptscriptstyle \text{AB}}^{T_B}$. A 2025 study used negativity to quantify entanglement in the JCM, and examined how noise and various interactions influence its dynamics \cite{Entanglement2025-Negativity}. Negativity is a valid measure for both pure and mixed states, making it a powerful tool for quantifying the entanglement of systems undergoing open quantum evolution. Furthermore, it is said to be exhibit local operations and classical communications (LOCC) monotone \cite{Entanglement2009-Definition}. Thus, we use negativity to analyse the entanglement of our models under open quantum evolution in Section \ref{sec:results}. 
 
 \subsubsubsection{Wooters' Concurrence}
 
@@ -519,13 +523,13 @@ Wooters' concurrence is a measure of entanglement for a pair of TLSs, and provid
     \mathcal{E}(\rho) = h\left(\frac{1+\sqrt{1-C^2}}{2}\right),
 \end{equation} 
 
-where $h(x) = - x\log_2x - (1 - x)\log_2(1 -x)$ is a binary entropy function. In the same 2025 study that examines JCM entanglement dynamics via negativity, concurrence is also used to track entanglement \cite{Entanglement2025-Negativity}. Whilst this works for the JCM (since the QHO may be treated as an effective TLS), it is unsuitable for the EVM, where the QHO is no longer restricted to two levels. Thus, we shall not use concurrence in our work.\\
+where $h(x) = - x\log_2x - (1 - x)\log_2(1 -x)$ is a binary entropy function. In the same 2025 study that examined JCM entanglement dynamics via negativity, concurrence was also used to track entanglement \cite{Entanglement2025-Negativity}. While this works for the JCM (because the QHO may be treated as an effective TLS), it is unsuitable for the EVM, where the QHO is no longer restricted to two levels. Thus, we do not use concurrence in our work.\\
 \\
-In summary, entanglement is a strong indicator of non--classical correlations in TLS--QHO systems. In this work, we will primarily use the von Neumann entropy for closed--system dynamics, where the initial states are pure, and negativity for open--system dynamics, where mixed states are present. These choices reflect the strengths of each measure, as discussed above, and together they provide a comprehensive view of entanglement. However, entanglement alone does not capture all the quantum features of our models. To gain a more complete picture of the quantum resources at play, we now turn to coherence, which complements entanglement in describing the behaviour of TLS--QHO systems.
+In summary, entanglement is a strong indicator of non--classical correlations in TLS--QHO systems. In this work, we primarily use the von Neumann entropy for closed--system dynamics, where the initial states are pure, and negativity for open--system dynamics, where mixed states are present. These choices reflect the strengths of each measure, as discussed above, and together they provide a comprehensive view of entanglement. However, entanglement alone does not capture all quantum features of our models. To gain a more complete picture of the quantum resources at play, we now turn to coherence, which complements entanglement in describing the behaviour of TLS--QHO systems.
 
 \subsubsection{Coherence} \label{sec:theory_sub_coh}
 
-Whilst entanglement captures non--classical correlations between subsystems, coherence reflects the superposition properties within individual subsystems, and is another essential quantum resource we must examine to fully understand the dynamics of TLS--QHO systems.\\
+While entanglement captures non--classical correlations between subsystems, coherence reflects the superposition properties within individual subsystems and is another essential quantum resource that must be examined to fully understand the dynamics of TLS--QHO systems.\\
 \\
 A quantum state $\rho$ is said to be coherent if it has off--diagonal elements in its matrix form \cite{Coherence2017-Colloquium}. That is,
 
@@ -533,7 +537,7 @@ A quantum state $\rho$ is said to be coherent if it has off--diagonal elements i
     \rho = \sum_{i\neq j}\rho|i\rangle\langle j|,
 \end{equation}
 
-These off--diagonals are coherences, and in particular they make coherence a basis--dependent quantum resource. For example, let us look at the state $|\psi_{\scriptscriptstyle \text{A}}\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$. As a density matrix, this takes the form:
+These off--diagonals are coherences; in particular, they make coherence a basis--dependent quantum resource. For example, let us look at the state $|\psi_{\scriptscriptstyle \text{A}}\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$. As a density matrix, this takes the form:
 
 \begin{equation*}
     \rho_{\scriptscriptstyle \text{A}} = \frac{1}{2}(|0\rangle + |1\rangle)(\langle0| +\langle1|) \rightarrow \frac{1}{2}
@@ -543,7 +547,7 @@ These off--diagonals are coherences, and in particular they make coherence a bas
     \end{pmatrix}.
 \end{equation*}
 
-This density matrix is indeed coherent, as seen by the presence of these off--diagonals. If, however, the state were $|\psi_{\scriptscriptstyle \text{B}}\rangle = |0\rangle$, we would have
+This density matrix is indeed coherent, as indicated by the presence of these off--diagonals. However, if the state is $|\psi_{\scriptscriptstyle \text{B}}\rangle = |0\rangle$, we would have
 
 \begin{equation*}
     \rho_{\scriptscriptstyle \text{B}} = |0\rangle\langle0| \rightarrow 
@@ -553,7 +557,7 @@ This density matrix is indeed coherent, as seen by the presence of these off--di
     \end{pmatrix},
 \end{equation*}
 
-which has no off--diagonals and is thus incoherent. As we can see, the presence of off--diagonals in $|\rho_{\scriptscriptstyle \text{A}} \rangle$ is a measure of the superposition of the state, a property which is uniquely quantum. The lack of these off--diagonals therefore implies that, in this measurement basis, the state behaves classically. Coherence thus helps us to identify the 'quantumness' of a state in a given basis by looking at the amount of superposition present. In cavity QED, coherence has been used to examine the decay of cavities in open evolutions \cite{QResJCm2004-cQED_coherence}, with later work finding that the degradation is negligible up to an optimal number of TLS--QHO interactions \cite{CohEnt2020-Cavity_controlled_coherence}. Moreover, a recent study found that coherence in the JCM can be used to generate entangled states of a cavity by performing measurements after the interaction of the atom with the cavity, highlighting the intimate connection between coherence and entanglement \cite{CohEnt2024-2_JCM_coherence}. In the EVM, coherence can  sustain molecular vibrations that assist exciton energy transfer in representative biological systems such as dimers of light--harvesting complexes \cite{ExVib2014-Alexandra}. As we saw in Section \ref{sec:theory_sub_OQS}, for open quantum systems, the decay of coherence (decoherence) in the system is incredibly important to monitor and minimise,  since it determines the rate at which the system loses its superposition features and begins to behave classically. We shall now explore several ways of quantifying coherence to study its presence in our TLS--QHO models. 
+which has no off--diagonals and is thus incoherent. As can be seen, the presence of off--diagonals in $|\rho_{\scriptscriptstyle \text{A}} \rangle$ is a measure of the superposition of the state, a property which is uniquely quantum. Therefore, the lack of these off--diagonals therefore implies that, in this measurement basis, the state behaves classically. Thus, coherence helps us to identify the 'quantumness' of a state in a given basis by looking at the amount of superposition present. In cavity QED, coherence has been used to examine the decay of cavities in open evolutions \cite{QResJCm2004-cQED_coherence}, with subsequent work finding that the degradation is negligible up to an optimal number of TLS--QHO interactions \cite{CohEnt2020-Cavity_controlled_coherence}. Moreover, a recent study found that coherence in the JCM can be used to generate entangled states of a cavity by performing measurements after the interaction of the atom with the cavity, highlighting the intimate connection between coherence and entanglement \cite{CohEnt2024-2_JCM_coherence}. In the EVM, coherence can  sustain molecular vibrations that assist exciton energy transfer in representative biological systems such as dimers of light--harvesting complexes \cite{ExVib2014-Alexandra}. As we saw in Section \ref{sec:theory_sub_OQS}, for open quantum systems, the decay of coherence (decoherence) in the system is incredibly important to monitor and minimise,  since it determines the rate at which the system loses its superposition features and begins to behave classically. We now explore several ways of quantifying coherence to study its presence in our TLS--QHO models. 
 
 \subsubsubsection{$l_p$ Norm of Coherence}
 
@@ -563,7 +567,7 @@ The $l_p$ norm of coherence is defined as:
     C_l(\rho) = \sum_{i\neq j} |\rho_{i,j}|, 
 \end{equation}
 
-This measure is particularly intuitive, as it directly reflects the departure of a quantum state from classicality through the off--diagonal elements of a state. In fact, according to \cite{Coherence2014-seed}, the $l_p$ norm satisfies coherence monotonicity criteria which makes it a valid coherence monotone. Alongside the relative entropy of coherence, it constitutes one of the most general and widely accepted coherence measures. By contrast, coherence measures based on other $l_p$ norms, such as the squared Hilbert–Schmidt norm ($l_2$), while similarly based on off--diagonal elements, may fail to satisfy the full set of monotonicity conditions, and hence do not generally define proper coherence monotones.
+This measure is particularly intuitive, as it directly reflects the departure of a quantum state from classicality through the off--diagonal elements of a state. According to \cite{Coherence2014-seed}, the $l_p$ norm satisfies the coherence monotonicity criteria which makes it a valid coherence monotone. In addition to the relative entropy of coherence, it constitutes one of the most general and widely accepted coherence measures. In contrast, coherence measures based on other $l_p$ norms, such as the squared Hilbert–Schmidt norm ($l_2$), while similarly based on off--diagonal elements, may fail to satisfy the full set of monotonicity conditions, and hence do not generally define proper coherence monotones.
 
 \subsubsubsection{Relative Entropy of Coherence} 
 
@@ -573,7 +577,7 @@ A general distance-based coherence measure is defined as:
     C_{\scriptscriptstyle\text{D}}(\rho) = \inf_{\sigma \in I} D(\rho,\sigma)
 \end{equation}
 
-where D is a distance and we take the infimum over the set of incoherent states, and $\sigma$ is a reference state \cite{Coherence2017-Colloquium}. If, similarly to entanglement, we take the distance measure to be the quantum relative entropy, we obtain the relative entropy of coherence, $C_r$:
+where D is the distance; we take the infimum over the set of incoherent states, and $\sigma$ is the reference state \cite{Coherence2017-Colloquium}. If, similarly to entanglement, we take the distance measure to be the quantum relative entropy, we obtain the relative entropy of coherence, $C_r$:
 
 \begin{equation} \label{rel_ent_coh}
 C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho)
@@ -581,13 +585,13 @@ C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho)
 
 where $S$ is the Von Neumann entropy, and $\rho_{diag}$ is the state obtained by removing all off-diagonal elements. \\
 \\
-In our simulations, we exclusively use the relative entropy of coherence. This choice is motivated by its widespread adoption and its ease of implementation, whilst still faithfully quantifying coherence via the off--diagonals of the state. By contrast, we shall not be using the $l_p$ norm of coherence, as it offers no significant advantage in our context. Moreover, since the relative entropy already captures the essential coherence behaviour we aim to quantify, introducing additional measures would add redundancy without providing further insight.\\
+In our simulations, we exclusively use the relative entropy of coherence. This choice is motivated by its widespread adoption and ease of implementation, while still faithfully quantifying coherence via the off--diagonals of the state. In contrast, we do not be use the $l_p$ norm of coherence, as it offers no significant advantage in our context. Moreover, since the relative entropy already captures the essential coherence behaviour we aim to quantify, introducing additional measures would add redundancy without providing further insight.\\
 \\
-We have now established the theoretical foundations necessary to study the manifestation of quantum resources in TLS--QHO systems, including two key models, open quantum evolution, and quantifers for both entanglement and coherence. We now proceed to summarise our theoretical background, before defining our methodology in Section \ref{sec:method}.
+We have now established the theoretical foundations necessary to study the manifestation of quantum resources in TLS--QHO systems, including two key models, open quantum evolution, and quantifiers for both entanglement and coherence. In Section \ref{sec:method}, we proceed to summarise our theoretical background before defining our methodology.
 
 \subsection{Concluding Remarks on Theory Framework}
 
-This work investigates how entanglement and coherence manifest in TLS--QHO systems, which are pervasive across many physical contexts. Whilst numerous TLS--QHO models exist, we focus on two specific cases. The JCM is a time--proven, exactly solvable model that exhibits well-known dynamics such as Rabi oscillations. The EVM, in the context of dimers as excitons, is a more complex system with richer dynamics, yet retains familiar traits of the JCM.
+This work investigates how entanglement and coherence manifest in TLS--QHO systems, which are pervasive across many physical contexts. While numerous TLS--QHO models exist, we focus on two specific cases. The JCM is a time--proven, exactly solvable model that exhibits well-known dynamics such as Rabi oscillations. The EVM, in the context of dimers as excitons, is a more complex system with richer dynamics, yet retains familiar traits of the JCM.
 
 We examine both models under unitary evolution, to study their coherence, entanglement, and populations, and under Markovian open--system evolution, to observe decoherence, population decay, and the behaviour of these quantum resources in open dynamics. For entanglement quantification, we use the von Neumann entropy and negativity: the former is straightforward to compute but restricted to pure density matrices, so it is applied to closed-system evolutions; the latter is valid for mixed states and is used in open-system evolution. For coherence quantification, we use the relative entropy of coherence, a simple measure that is applicable to both pure and mixed states.\\
 \\
@@ -596,12 +600,12 @@ With the theoretical framework and chosen quantifiers in place, we proceed to im
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METHODS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology} \label{sec:method}
 
-In this section, we describe our methodology for investigating entanglement and coherence in TLS--QHO systems. We choose two models, the Jaynes--Cummings (JCM) and Exciton--Vibration models (EVM). The JCM is chosen because of its pervasiveness in quantum physics. As mentioned in Section \ref{sec:theory_subsub_JCM}, it describes a range of physical systems and is valid for coupling strengths up to and including the strong coupling regime. Furthermore, it is exactly solvable, which enables use to analytically show certain entanglement and coherence dynamics. 
-The EVM is chosen because it is similar to the JCM. It adds complexity to our investigation by adding a different interaction Hamiltonian, and an extra term in the TLS  free Hamiltonian. This allows us to transition our analysis from the JCM to the EVM without losing too much familiarity, whilst also adding a richer feature set for us to explore. We further choose a particular EVM model, where a dimer is coupled to local vibrational modes. As explained in Section \ref{sec:theory_subsub_EVM}, we follow ref. \cite{ExVib2014-Alexandra} closely for comparison of our findings. \\
+In this section, we describe our methodology for investigating entanglement and coherence in TLS--QHO systems. We choose two models, the Jaynes--Cummings (JCM) and exciton--vibration models (EVM). The JCM is chosen because of its pervasiveness in quantum physics. As mentioned in Section \ref{sec:theory_subsub_JCM}, it describes a range of physical systems and is valid for coupling strengths up to and including the strong coupling regime. Furthermore, it is exactly solvable, which enables us to analytically demonstrate certain entanglement and coherence dynamics. 
+The EVM is chosen because it is similar to the JCM. It adds complexity to our investigation by adding a different interaction Hamiltonian, and an extra term in the TLS  free Hamiltonian. This allows us to transition our analysis from the JCM to the EVM without losing too much familiarity, while also adding a richer feature set for us to explore. We further choose a particular EVM model, where a dimer is coupled to local vibrational modes. As explained in Section \ref{sec:theory_subsub_EVM}, we follow ref. \cite{ExVib2014-Alexandra} closely for comparison of our findings. \\
 \\
-Throughout the computational elements of this paper, we use the QuTip library of the Python coding language. QuTip is a highly developed library with extensive functionality that enables the user to model almost any quantum system. It provides nearly all the required functionality for our simulations, and is well suited for models considered in this work. The only functions define manually are those for computing the relative entropy of coherence and negativity functions, which are included in Appendix \ref{appendix_code}.\\
+We used the QuTip library of the Python coding language throughout the computational elements of this study. QuTip is a highly developed library with extensive functionality that enables users to model almost any quantum system. It provides nearly all of the required functionality for our simulations and is well suited for the models considered in this work. The only functions define manually are those for computing the relative entropy of coherence and negativity functions. All code used in this project is available at \href{https://github.com/rowan-adeya/masters-project.git}{https://github.com/rowan-adeya/masters-project.git}.\\
 \\
-We examine both models under closed and open quantum evolution. We start with the JCM, and then move on to the EVM.
+We examine both models under closed and open quantum evolution. We start with the JCM, and then proceed to the EVM.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% JCM METHODS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Jaynes--Cummings Model Implementation} \label{sec:method_sub_JCM}
@@ -612,13 +616,13 @@ We recall from equation \eqref{JC_H}, that the Jaynes--Cummings Hamiltonian is w
     \hat{H}_{\scriptscriptstyle \text{JC}} = \frac{\hbar\omega_a}{2}\hat{\sigma}_z + \hbar\omega_c\left(\hat{a}^\dagger \hat{a} + \frac{1}{2} \right) + g(\hat{a}\hat{\sigma}_{+} + \hat{a}^\dagger\hat{\sigma}_{-}). 
 \end{equation*} 
 
-In order to explore how the JCM evolves under closed and open dynamics, we must define our initial state. We consider:
+To explore how the JCM evolves under closed and open dynamics, we must define our initial state. We consider:
 
 \begin{equation} \label{init_JCM_e0}
     |\psi (\text{t}=0)\rangle = |e, 0\rangle,
 \end{equation}
 
-where we have relabelled the TLS subsystem so that $|0\rangle \rightarrow|g\rangle$ represents the ground state, and $|1\rangle \rightarrow |e\rangle$ represents the excited state. This initial state appears in several theoretical treatments of the JCM (e.g., ref. \cite{Entanglement2009-REE_VNapplied}), as it isolates a single excitation in the system and allows for analytical solutions due to photon number conservation.
+where we have relabelled the TLS subsystem so that $|0\rangle \rightarrow|g\rangle$ represents the ground state, and $|1\rangle \rightarrow |e\rangle$ represents the excited state. This initial state appears in several theoretical treatments of the JCM (for example, reference \cite{Entanglement2009-REE_VNapplied}), as it isolates a single excitation in the system and allows for analytical solutions due to photon number conservation.
 
 We also consider:
 
@@ -628,9 +632,9 @@ We also consider:
 
 This system is particularly well-suited for exploring coherence dynamics, as the superposition introduces off-diagonal elements in the TLS subsystem of the initial state.\\
 \\
-We begin our analysis of the JCM by exploring its closed evolution. We start by analytically solving the JCM to demonstrate that the model is exactly solvable. Moreover, we also demonstrate that we may obtain simple coherence and entanglement results from theoretical analysis alone. 
+We begin our analysis of the JCM by exploring its closed evolution. We start by analytically solving the JCM to demonstrate that the model is exactly solvable. Moreover, we also demonstrate that we can obtain simple coherence and entanglement results from theoretical analysis alone. 
 
-We firstly diagonalise the Hamiltonian. We then transform the initial condition \eqref{init_JCM_e0} into the eigenbasis, so it is consistent with the basis of the diagonalised Hamiltonian. Using equation \eqref{eqn:closed_evo},
+First, we diagonalise the Hamiltonian. We then transform the initial condition \eqref{init_JCM_e0} into the eigenbasis, so that it is consistent with the basis of the diagonalised Hamiltonian. Using equation \eqref{eqn:closed_evo},
 
 \begin{equation*} 
     |\psi(t)\rangle = \hat{U}(t)|\psi(t=0)\rangle
@@ -642,21 +646,21 @@ where
     \hat{U}(t) = e^{i\hat{H}t/\hbar},
 \end{equation*}
 
-we evolve the initial state. We write the evolved state $|\psi(t)\rangle$ as a pure density matrix, and transform the state back into the $|e, n\rangle, |g,n+1\rangle$ computational basis so we may examine dynamics in the natural bases of the TLS and QHO. To quantify entanglement for this system, we find the von Neumann entropy, using
+we evolve the initial state. We write the evolved state $|\psi(t)\rangle$ as a pure density matrix, and transform the state back into the $|e, n\rangle, |g,n+1\rangle$ computational basis so we may examine dynamics in the natural bases of the TLS and QHO. To quantify entanglement for this system, we determine the von Neumann entropy using
 
 \begin{equation*}
     \mathcal{E} = S(\rho_{\scriptscriptstyle \text{A}}) = S(\rho_{\scriptscriptstyle \text{B}}) = \sum_i \lambda_i\ln\lambda_i,
 \end{equation*}
 
-from equation \eqref{eqn:vne}. We also find the coherence of both subsystems and the total systems using equation \eqref{rel_ent_coh}:
+from equation \eqref{eqn:vne}. We also determine the coherence of both subsystems and the total systems using equation \eqref{rel_ent_coh}:
 
 \begin{equation*} 
 C_r(\rho) = C_d(\rho) = S(\rho_{diag}) - S(\rho)
 \end{equation*}
 
-We verify our findings computationally by looking at the populations, von Neumann entropy, and relative entropy of coherence of the JCM with the initial condition in equation \eqref{init_JCM_e0}. We then perform the same computational simulation again, instead using the second initial condition in equation \eqref{init_JCM_e0g0}. \\
+We verify our findings computationally by examining the populations, von Neumann entropy, and relative entropy of coherence of the JCM with the initial condition in equation \eqref{init_JCM_e0}. We then perform the same computational simulation again, instead using the second initial condition in equation \eqref{init_JCM_e0g0}. \\
 \\
-Once we have explored the closed dynamics of the JCM, we turn to explore its open quantum evolution computationally. For each initial condition (equations \eqref{init_JCM_e0} and \eqref{init_JCM_e0g0}), we look at three types of decay:
+Once we have explored the closed dynamics of the JCM, we turn to explore its open quantum evolution computationally. For each initial condition (equations \eqref{init_JCM_e0} and \eqref{init_JCM_e0g0}), we consider three types of decay:
 
 \begin{enumerate}
     \item Spontaneous atomic emission, 
@@ -668,7 +672,7 @@ For each decay process, the corresponding Lindblad operators take the forms summ
 
 \begin{table}[H]
     \centering
-    \caption{Decay operators used in the open system descriptions of the TLS--QHO model.}
+    \caption{Decay operators used in the open system descriptions of the TLS--QHO model. For the thermal dissipation channel, N is the mean thermal occupation number, and is dependent on the temperature of the bath, $T$ (see equation \ref{therm_occ_num}), as mentioned in Section \ref{sec:theory_sub_OQS}.}
     \begin{tabular}{l|l}
         \toprule
         \textbf{Decay Type} & \textbf{Operator(s)} \\
@@ -681,12 +685,12 @@ For each decay process, the corresponding Lindblad operators take the forms summ
     \label{tab:decay_ops}
 \end{table}
 
-\noindent Finally, for each decay model, we shall observe entanglement using the negativity measure, which is written as:
+\noindent Finally, for each decay model, we observe entanglement using the negativity measure, which is written as:
 \begin{equation*} 
     \mathcal{N} = \sum_i |\lambda_i|.
 \end{equation*}
 
-We shall also observe coherence using the relative entropy of coherence measure, and the subsystem populations, for each decay model.\\
+We also observe coherence using the relative entropy of coherence measure, and the subsystem populations, for each decay model.\\
 
 \begin{table}[h]
     \centering
@@ -707,7 +711,7 @@ We shall also observe coherence using the relative entropy of coherence measure,
     \label{tab:JCM_parameters}
 \end{table}
 
-\noindent For all computational simulations of the JCM, we restrict the model to the strong coupling regime and choose parameters as listed in Table\ref{tab:JCM_parameters}. We consider the characteristic frequencies of our system ($\omega_a, \omega_c$) to be on resonance with one another, i.e. $\omega_a = \omega_c = \omega$. This is a common method to simplify the JCM, and is also employed during our analytical work in the closed evolution study. We set $\omega = 1.0$ and $\hbar = 1$, such that the system is in natural units, and energy in this system is in units of $\omega$. 
+\noindent For all computational simulations of the JCM, we restrict the model to the strong coupling regime and choose parameters as listed in Table\ref{tab:JCM_parameters}. We consider the characteristic frequencies of our system ($\omega_a, \omega_c$) to be on resonance with one another, that is, $\omega_a = \omega_c = \omega$. This is a common method to simplify the JCM, and is also employed during our analytical work in the closed evolution study. We set $\omega = 1.0$ and $\hbar = 1$, such that the system is in natural units, and energy in this system is in units of $\omega$. 
 
 \noindent To connect our model to experimentally relevant systems, we interpret $\omega$ as being on the scale of meV, which corresponds to THz frequencies, a regime commonly encountered in cavity QED and quantum dot experiments \cite{General2024-JCM_relevance}. As such, the timescales of the system are in the picosecond (ps) range, ensuring that our simulations represent realistic physical regimes.
 
@@ -716,7 +720,7 @@ We choose the coupling strength $g = 0.05$, and our decay rates for spontaneous 
 Once the JCM has been explored under these conditions, we apply a similar methodology to the EVM to examine how its additional terms and interaction structure influence the coherence, entanglement, and population dynamics of the TLS--QHO system. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVM METHODS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Exciton--Vibration Model Implementation} \label{sec:method_sub_EVM}
-We analyse the EVM purely computationally, because, as mentioned in Section \ref{sec:theory_subsub_EVM}, it is not exactly solvable. For all plots, we implement a smoothed version of each dataset to make trends more apparent. Smoothing is carried out using a uniform moving average filter, which can introduce minor boundary artefacts that appear as small end--point flicks (see Appendix \ref{appendix_code} for implementation detail). These flicks are numerical artefacts of the filter and have no physical meaning. We choose to work in the computational basis so that results can be directly compared with those of the JCM, ensuring consistency in the interpretation of coherence, entanglement, and population dynamics. We recall from equation \eqref{eqn:H_EV}, that the Excition--Vibration Hamiltonian (representing a dimer coupled to molecular vibrations) is written as:
+We analyse the EVM purely computationally, because, as mentioned in Section \ref{sec:theory_subsub_EVM}, it is not exactly solvable. For all plots, we implement a smoothed version of each dataset to make trends more apparent. Smoothing is carried out using a uniform moving average filter, which can introduce minor boundary artefacts that appear as small end--point flicks. These flicks are numerical artefacts of the filter and have no physical meaning. We choose to work in the computational basis so that results can be directly compared with those of the JCM, ensuring consistency in the interpretation of coherence, entanglement, and population dynamics. We recall from equation \eqref{eqn:H_EV}, that the Excition--Vibration Hamiltonian (representing a dimer coupled to molecular vibrations) is written as:
 
 \begin{equation*}
     \hat{H}_{\scriptscriptstyle \text{EV}} = \frac{\Delta\epsilon}{2}\hat{\sigma}_z + V\hat{\sigma}_x + \omega_{\scriptscriptstyle \text{vib}} \hat{b}_{\scriptscriptstyle \text{rd}}^\dagger \hat{b}_{\scriptscriptstyle \text{rd}} -\frac{g}{\sqrt{2}}\hat{\sigma}_z\left(\hat{b}_{\scriptscriptstyle \text{rd}}^\dagger + \hat{b}_{\scriptscriptstyle \text{rd}}\right),
@@ -744,7 +748,7 @@ Once we have explored the closed dynamics of the EVM, we turn to explore its ope
     \item both decay channels acting simultaneously.
 \end{enumerate}
 
-The Lindblad operators corresponding to these decay channels are summarised in Table\ref{tab:decay_ops}. Finally, for each decay model, we explore the negativity, relative entropy of coherence, and the subsystem populations.
+The Lindblad operators corresponding to these decay channels are summarised in Table \ref{tab:decay_ops}. Finally, for each decay model, we explore the negativity, relative entropy of coherence, and the subsystem populations.
 
 \begin{table}[h]
     \centering
@@ -939,7 +943,7 @@ Let us choose the TLS subsystem, $\rho_{\scriptscriptstyle \text{TLS}}(t)$. Sinc
     \label{tab:vne_JCM_closed}
 \end{table}
 
-For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)\rangle = |e,0\rangle$, we find that the entanglement $\mathcal{E}(t)$ oscillates at a rate $g$, with values ranging between $0 \text{ and } \ln2 \approx 0.7$. We verify this finding later in our closed evolution simulation of the JCM.\\
+For closed evolution of the JCM under the initial condition $|\psi(\text{t} = 0)\rangle = |e,0\rangle$, we find that the entanglement $\mathcal{E}(t)$ oscillates at a rate $g$, with values ranging between $0 \text{ and } \ln2 \approx 0.7$.\\
 \\
 We complete our analytical goals by exploring the relative entropy of coherence. This measure of coherence, which we recall from equation \eqref{rel_ent_coh} is written as:
 
@@ -975,11 +979,9 @@ so that
 \end{equation*}
 \\
 Both $|\alpha(t)|^2$ and $|\beta(t)|^2$ are the same as equation \eqref{eqn:JCM_complex_coeffs}, and so we find that for the total system, $C_r(\rho(t))$
-oscillates between $0$ and $\ln2$. We again verify these coherence results in the closed evolution simulations of the JCM.\\
+oscillates between $0$ and $\ln2$.\\
 \\
-We have completed our theoretical analysis of the JCM under closed evolution, successfully finding results for the von Neumann entropy and relative entropy of coherence, as well as plotting the populations for comparison. We now move on to computationally simulate the JCM under closed evolution dynamics. 
-
-We begin our computational simulations by considering the initial state in equation \ref{init_JCM_e0}.\\
+We have completed our theoretical analysis of the JCM under closed evolution, successfully finding results for the von Neumann entropy and relative entropy of coherence, as well as plotting the populations for comparison. We now move on to computationally simulate the JCM under closed evolution dynamics for the initial state in equation \ref{init_JCM_e0}.\\
 \\
 In Figure \ref{fig:JCM_cqs_xpt_e0}, we observe oscillations in the subsystem populations. These oscillations are one of the key features of the JCM: Rabi oscillations. As mentioned in Section \ref{sec:theory_subsub_JCM}, the oscillations come from the interaction part of the Hamiltonian:
 
@@ -987,7 +989,7 @@ In Figure \ref{fig:JCM_cqs_xpt_e0}, we observe oscillations in the subsystem pop
      \hat{H}_{\scriptscriptstyle \text{I}} = \hbar g(\hat{\sigma}_{+}\hat{a} +\hat{\sigma}_{-}\hat{a}^\dagger),
 \end{equation*}
 
-which drives coherent exchange of excitations between the atom and field. The term $\hat{\sigma}_{+}\hat{a}$ describes photon absorption resulting in atomic excitation, whilst $\hat{\sigma}_{-}\hat{a}^\dagger$ corresponds to photon emission with atomic de-excitation. Since $\hat{H}_{\scriptscriptstyle\text{I}}$ commutes with the total excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$, evolution is confined to subspaces of fixed $\hat{N}$. So, for the initial state $|e,0\rangle$ where $\hat{N} = 1$, the dynamics occur entirely within the space \{$|g,1\rangle,|e,0\rangle$\}, producing Rabi oscillations at frequency $g$.
+which drives coherent exchange of excitations between the atom and field. The term $\hat{\sigma}_{+}\hat{a}$ describes photon absorption resulting in atomic excitation, while $\hat{\sigma}_{-}\hat{a}^\dagger$ corresponds to photon emission with atomic de-excitation. Since $\hat{H}_{\scriptscriptstyle\text{I}}$ commutes with the total excitation number operator, $\hat{N} = \hat{a}^\dagger \hat{a} + \frac{1}{2}(1 + \hat{\sigma}_z)$, evolution is confined to subspaces of fixed $\hat{N}$. So, for the initial state $|e,0\rangle$ where $\hat{N} = 1$, the dynamics occur entirely within the space \{$|g,1\rangle,|e,0\rangle$\}, producing Rabi oscillations at frequency $g$.
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.45\textwidth}
@@ -1012,7 +1014,7 @@ which drives coherent exchange of excitations between the atom and field. The te
         \label{fig:JCM_cqs_coh_e0}
     \end{subfigure}
     \hfill
-    \caption{Plots of the JCM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = |e, 0\rangle$. (a) Populations of the excited atomic state $|e\rangle$, and the cavity state, $|n=1\rangle$. (b) Von Neumann entropy. (c) Relative entropy of coherence for the two subsystems and the total system.}
+    \caption{Plots of the JCM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = |e, 0\rangle$. (a) Populations of the excited atomic state $|e\rangle$, and the cavity state, $|n=1\rangle$. (b) Von Neumann entropy. (c) Relative entropy of coherence for the two subsystems and the total system. For both subsystems, coherence is 0, as indicated by the blue line along the horizontal axis.}
 \end{figure}
 
 \noindent In Figure \ref{fig:JCM_cqs_vne_e0}, we observe the Rabi oscillations directly translating into oscillations of entanglement. The periodic transfer of excitation between atom and field drives the von Neumann entropy to cycle between 0 (pure states) and $\ln 2$ (maximal entanglement for a TLS), consistent with our analytical results.\\
@@ -1095,7 +1097,7 @@ Having analysed the coherence and population dynamics under closed evolution, we
 
 \subsubsection{Open Evolution}
 \subsubsubsection{Case I: Excited State Initial Condition}
-We start with our first initial state in equation \eqref{init_JCM_e0}. Let us start by analysing the populations of the subsystems. 
+We start our analysis of open quantum evolution by considering our first initial state in equation \eqref{init_JCM_e0}.
 
 \begin{figure}[H]
     \centering
@@ -1126,7 +1128,7 @@ We start with our first initial state in equation \eqref{init_JCM_e0}. Let us st
     \label{fig:JCM_OQS_Pop}
 \end{figure}
 
-\noindent Under all types of decays (see Section \ref{sec:method_sub_JCM}), we observe Rabi oscillations as expected. However, the populations of both subsystems decay, due to loss to the environment. This decay is to be expected, and is a hallmark of open quantum evolution. Interestingly, the Rabi oscillations' period remains constant over all time, which is a consequence of the Rabi frequency $g$ not being a function of time. However, figures \ref{fig:JCM_OQS_Pop_Spont}, \ref{fig:JCM_OQS_Pop_Therm} show that the decays of both subsystems under either spontaneous atomic emission and thermal dissipation are almost identical. We can attribute this similarity to the low temperature regime, such that thermal dissipation is only associated with photon loss (see equation \eqref{eqn:L_therm}). This means that the decay operator for the dissipator is effectively only photon loss. Since, as mentioned in Section \ref{sec:method_sub_JCM}, we have set the decay rates of the thermal and spontaneous emission to be equal ($\gamma = \gamma_{\scriptscriptstyle \text{th}} =0.01$, the two decay types are effectively equal (just acting on different subsystems). Moreover, the Rabi oscillations lead to decay in the other subsystems due to excitation transfer, a key characteristic in the JCM. Finally, we note that the two decays individually both lead to the populations being 0 around $t = 1000 ps$, for both decays acting simultaneously, we have the populations being 0 around $t = 600 ps$ in Figure \ref{fig:JCM_OQS_Pop_Both}. As the Lindblad operators remove excitations, they suppress both diagonal and off--diagonal elements of the density matrix on comparable timescales. In this basis, coherence cannot outlive population, and so both decay together. 
+\noindent Under all types of decay (see Section \ref{sec:method_sub_JCM}), we observe Rabi oscillations as expected. However, the populations of both subsystems dissipate due to losses to the environment, a hallmark of open quantum evolution. Interestingly, the Rabi oscillation period remains constant over all time, since the Rabi frequency $g$ is time--independent. Figures \ref{fig:JCM_OQS_Pop_Spont}, \ref{fig:JCM_OQS_Pop_Therm} further show that the decay of both subsystems under either spontaneous atomic emission and thermal dissipation are almost identical. We can attribute this similarity to the low--temperature regime, where thermal dissipation is effectively reduced to photon loss (see equation \eqref{eqn:L_therm}). Thus, the decay operator for the dissipator is effectively only photon loss. Moreover, since we set the decay rates of the thermal and spontaneous emission to be equal ($\gamma = \gamma_{\scriptscriptstyle \text{th}} =0.01$, the two decay channels act in essentially the same way, just on different subsystems. The Rabi oscillations themselves also mediate decay between subsystems via excitation transfer, a key characteristic of the JCM. Finally, while the isolated decay channels drive the populations to their ground state around $t = 1000 ps$, when both channels are open simultaneously, we observe a decay timescale of about $t = 600 ps$ (Figure \ref{fig:JCM_OQS_Pop_Both}). 
 
 \begin{figure}[H]
     \centering
@@ -1153,12 +1155,13 @@ We start with our first initial state in equation \eqref{init_JCM_e0}. Let us st
         \label{fig:JCM_OQS_Coh_Both}
     \end{subfigure}
     \hfill
-    \caption{Plots of the decay of coherence (decoherence) of the JCM under open system evolution using the relative entropy of coherence measure, with an initial state of $|\psi (\text{t=0})\rangle = |e, 0\rangle$. (a) Decoherence under spontaneous atomic emission. (b) Decoherence under thermal dissipation. (c) Decoherence under both spontaneous atomic emission and thermal dissipation.}
+    \caption{Plots of the decay of coherence (decoherence) of the JCM under open system evolution using the relative entropy of coherence measure, with an initial state of $|\psi (\text{t=0})\rangle = |e, 0\rangle$. Both subsystems have a coherence of 0, indicated by the blue line along the horizontal axis. (a) Decoherence under spontaneous atomic emission. (b) Decoherence under thermal dissipation. (c) Decoherence under both spontaneous atomic emission and thermal dissipation.}
     \label{fig:JCM_OQS_Coh}
 \end{figure}
 
-\noindent When talking about open quantum systems, a feature of such evolution that is key is decoherence, which, as mentioned in Section \ref{sec:theory_sub_OQS}, is the decay of the off--diagonals of a system, leading to a loss of 'quantumness'. We can observe this directly by looking at the decay of coherence. For the total system, in the computational basis $\{|e,0\rangle, |g,1\rangle\}$, there is coherence in the closed system evolution, so we expect coherence as well for the open system evolution. We indeed observe this. For all types of decay, the total system's coherence decays on the same timescales as the populations, around $t \approx 1000ps$ for spontaneous emission and thermal dissipation (figures \ref{fig:JCM_OQS_Coh_Spont}, \ref{fig:JCM_OQS_Coh_Therm}), and $ t \approx 600ps$ for both decay channels open simultaneously (Figure \ref{fig:JCM_OQS_Coh_Both}). As the Lindblad operators act to decay excitations, they suppress both diagonal and off–diagonal elements of the density matrix on comparable timescales. In this basis, coherence cannot outlive population, and so the system decoheres.\\
+\noindent When discussing open quantum systems, a defining feature of such evolution is decoherence, which, as noted in Section \ref{sec:theory_sub_OQS}, corresponds to the decay of off--diagonals elements of the density matrix, leading to a loss of 'quantumness'. We can observe this directly by tracking the decay of coherence. In the computational basis $\{|e,0\rangle, |g,1\rangle\}$, closed evolution exhibits coherence for the total system, so we expect coherence to be present under open system evolution as well. We indeed observe this. For all types of decay, the total system's coherence decays on the same timescales as the populations: around $t \approx 1000ps$ for spontaneous emission and thermal dissipation (Figures \ref{fig:JCM_OQS_Coh_Spont}, \ref{fig:JCM_OQS_Coh_Therm}), and $ t \approx 600ps$ when both decay channels are active simultaneously (Figure \ref{fig:JCM_OQS_Coh_Both}). Since Lindblad operators remove excitations, they suppress both diagonal and off--diagonal elements of the density matrix on comparable timescales. Thus, in this basis, coherence cannot outlive population, so both decay together. \\
 \\
+To conclude our simulations of the JCM, we examine the system's entanglement via the negativity measure. Figure \ref{fig:JCM_OQS_Neg} shows that negativity decays on a timescale roughly twice as fast as the population for all types of decay. This can be understood by noting that entanglement requires simultaneous occupation of both states $|e,0\rangle$ and $|g,1\rangle$. Consider, for instance, the spontaneous emission channel. For entanglement to persist, both states must remain populated. However, spontaneous emission acts directly damps the excited atomic state $|e,0\rangle$.  and through Rabi oscillations, the $|g,1\rangle$ state is also gradually depleted. Thus, the superposition of both states decays twice as fast, resulting in the observed doubling of decay rate for entanglement. A similar process occurs under the thermal dissipation, except that the single photon state $|g,1\rangle$ is directly damped by photon loss, and
 \begin{figure}[H] 
     \centering
     \begin{subfigure}{0.45\textwidth}
@@ -1188,11 +1191,13 @@ We start with our first initial state in equation \eqref{init_JCM_e0}. Let us st
     \label{fig:JCM_OQS_Neg}
 \end{figure}
 
-\noindent To conclude our simulations of the JCM, we look at the Negativity of the system. Figure \ref{fig:JCM_OQS_Neg} shows that negativity decays on a timescale approximately twice as fast as the population for all types of decay. This can be understood by noting that entanglement requires simultaneous occupation of both states $|e,0\rangle$ and $|g,1\rangle$. We may understand this by looking at one decay channel; let us look at the spontaneous emission. For entanglement to persist, both states must be populated at the same time. However, spontaneous emission acts directly on the excited atomic state, $|e,0\rangle$  and due to Rabi oscillations exchanging excitations, the $|g,1\rangle$ state is also gradually suppressed. Thus, the superposition of both is effectively decaying twice as fast and so we see a doubled decay rate for entanglement. The same process occurs with the thermal dissipation decay channel, except that now, the single photon state $|g,1\rangle$ is directly damped by photon loss, and through Rabi oscillations the $|e,0\rangle$ component is also gradually depleted. Finally, due to both decay channels being open for Figure \ref{fig:JCM_OQS_Neg_Both}, we observe a decay time of half of that for either of the subsystems being open. This behaviour highlights a key way in which entanglement manifests in TLS--QHO systems: it is generated by Rabi oscillations, but is particularly fragile to environmental loss, decaying more rapidly than populations themselves. This demonstrates that while coherence and population oscillations can persist on comparable timescales, entanglement is the more vulnerable quantum resource, setting a fundamental limit on how such systems may be exploited for quantum information tasks.
+\noindent through Rabi oscillations the $|e,0\rangle$ component is likewise suppressed. When both decay channels are open (Figure \ref{fig:JCM_OQS_Neg_Both}), we observe a decay time that is approximately halved compared to either channel acting alone. This behaviour highlights a key way in which entanglement manifests in TLS--QHO systems: it is generated by Rabi oscillations, but is particularly fragile to environmental loss, decaying more rapidly than populations themselves. In contrast to coherence and population oscillations, which persist on comparable timescales, entanglement emerges as a more vulnerable quantum resource, setting a fundamental limit on how such systems may be exploited for quantum information tasks.
 
 \subsubsubsection{Case II: Superposition Initial Condition}
 
-As with the closed simulation, we also consider the second initial state in equation \eqref{init_JCM_e0g0}.
+As with the closed simulation, we also consider the second initial state in equation \eqref{init_JCM_e0g0}.\\
+\\
+Figure \ref{fig:JCM_OQS_Pop_eg} shows that the populations decay at the same rate as in the previous initial condition (Figure \ref{fig:JCM_OQS_Pop}) for all decay channel types. This is expected, since we use the same decay parameters ($\gamma= \gamma_{\scriptscriptstyle \text{th}} = 0.01$). The only difference is that the population for the excited atomic state is 0.5, consistent with the initial state being an equal superposition of the $|e\rangle$ and $|g\rangle$ coupled to the $|n=0\rangle$ Fock state of the cavity. \\
 
 
 \begin{figure}[H]
@@ -1225,10 +1230,13 @@ As with the closed simulation, we also consider the second initial state in equa
     \label{fig:JCM_OQS_Pop_eg}
 \end{figure}
 
-\noindent Figure \ref{fig:JCM_OQS_Pop_eg} shows that the populations decay at the same rate as with the previous initial condition in Figure \ref{fig:JCM_OQS_Pop} for all decay channel types. This is expected, as we use the same decay parameters ($\gamma= \gamma_{\scriptscriptstyle \text{th}} = 0.01$) as with the previous initial condition. The only difference is that the population probability for the excited atomic state is 0.5 initially, which is in line with our initial state being an equal superposition of the $|e\rangle$ and $|g\rangle$ atomic states coupled to the $|n=0\rangle$ Fock state of the cavity. \\
+\noindent
 \\
-For coherence, we observe the same features in Figure \ref{fig:JCM_OQS_Coh_eg} as we saw with the closed evolution coherence  -- the $|g,0\rangle$ contribution adds an off--diagonal term to our full system, thus creating a baseline level of coherence throughout the evolution, as can be seen by the total system's coherence being greater than 0. Other than this, the decoherence of our system behaves as expected, with the decay timescales matching the population decay timescales (which we also observed in our first initial state), and the coherences being present (and thus decaying) in our subsystems. We can see that, by starting in a superposition state (that is unentangled), we generate more coherence in the computational basis
-
+For coherence, we observe the same features in Figure \ref{fig:JCM_OQS_Coh_eg} as observed with the closed evolution coherence: the $|g,0\rangle$ contribution introduces an off--diagonal term in the full system, creating a baseline level of coherence throughout the evolution, as reflected by the total system's coherence remaining greater than 0. Beyond this, the system's decoherence behaves as expected, with decay timescales matching those of the populations (as also observed for the first initial state), and coherence being present (and thus decaying) in our subsystems. Notably, by starting in an unentangled superposition state, we generate additional coherence in the computational basis, which then decays on a comparable timescale to the populations.\\
+\\
+Lastly, we observe reduced entanglement in Figure \ref{fig:JCM_OQS_Neg_eg}, arising from the dilution caused by the stationary $|g,0\rangle$ component throughout evolution. Nevertheless, entanglement decays at the same rate as for the previous initial condition, since the initial superposition decays twice as fast, leading to an effectively doubled decay rate for entanglement.\\
+\\
+This concludes our analysis of the JCM under both closed and open evolution, for two distinct initial states. We now turn to the EVM, to explore how this model may provide novel entanglement and coherence dynamics under both closed and open evolution. 
 
 \begin{figure}[H]
     \centering
@@ -1286,26 +1294,27 @@ For coherence, we observe the same features in Figure \ref{fig:JCM_OQS_Coh_eg} a
     \end{subfigure}
     \hfill
     \caption{Plots of the decay of entanglement of the JCM under open system evolution using the negativity measure, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|e\rangle + |g\rangle)\otimes|n=0\rangle$. (a) Entanglement decay under spontaneous atomic emission. (b) Entanglement decay under thermal dissipation. (c) Entanglement decay under both spontaneous atomic emission and thermal dissipation.}
+    \label{fig:JCM_OQS_Neg_eg}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVM RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVM RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Population, Entanglement and Coherence of the Exciton--Vibration Model}
 
-We begin our computational analysis of the EVM by examining subsystem populations, entanglement and coherence under closed (unitary) evolution for two initial conditions. The analysis is then repeated for the same initial conditions within the framework of open quantum dynamics. As outlined in Section \ref{sec:method_sub_EVM}, all plots are smoothed for improved visualisation of trends; this procedure introduces minor boundary artefacts, seen as small end--point flicks, which have no physical meaning. We retain the raw data, depicted by faint dashed lines, in all plots.
+We begin our computational analysis of the EVM by examining subsystem populations, entanglement and coherence under closed (unitary) evolution for two initial conditions. The analysis is then repeated for the same initial conditions within the framework of open quantum dynamics. As outlined in Section \ref{sec:method_sub_EVM}, all plots are smoothed for improved visualisation of trends; this procedure occasionally introduces minor boundary artefacts, seen as small end--point flicks, which have no physical meaning. Furthermore, we present two plots for each result: one showing oscillations on a shorter timescale (left--hand columns), and another on a longer timescale (right--hand columns). Lastly, we retain the raw data, depicted by faint dashed lines, in all plots. 
 
 \subsubsection{Closed Evolution}
 
 \subsubsubsection{Case I: Excited State Initial Condition}
 
-We begin our closed analysis of the EVM by considering the first initial state in equation \eqref{eqn:init_EVM_e0}:
+We begin our closed analysis of the EVM by considering the initial state in equation \eqref{eqn:init_EVM_e0}:
 
 \begin{equation*}
     |\psi (\text{t=0})\rangle = |1, 0\rangle.
 \end{equation*}
 
 
-\noindent Figure \ref{fig:EVM_CQS_Pop_e0} illustrates the populations of the effective exciton's excited state and the vibrational mode $|n=0\rangle$. One of the clearest features in the populations is the presence of a hierarchy of oscillations, each traceable to specific energy scales in the Hamiltonian. \\
-\\
+\noindent Figure \ref{fig:EVM_CQS_Pop_e0} illustrates the populations of the effective exciton's excited state and the vibrational mode $|n=0\rangle$. One of the clearest features in the populations is the presence of a hierarchy of oscillations, each traceable to specific energy scales in the Hamiltonian. 
+
 For the exciton subsystem, the fastest oscillations (visible as the faint dashed lines on the right--hand side of the figure) have a period of $\approx0.008$ ps. The Hamiltonian term $\tfrac{\Delta\epsilon}{2}\hat{\sigma}_z$ generates phase evolution; however, in the presence of the exciton--exciton coupling term $V\hat{\sigma}_x$, population transfer is present. Since $\Delta\epsilon \gg V$, the exciton fast oscillations are dominated by $\Delta\epsilon = 1042,\text{cm}^{-1}$. On a slower timescale of $\approx0.1$ ps, we observe medium oscillations that arise from the exciton--vibration coupling $-\tfrac{g}{\sqrt{2}}\hat{\sigma}z(\hat{b}^\dagger+\hat{b})$, which generates coherent exchange between $|1,0\rangle$ and displaced
 \begin{figure}[H]
     \centering
@@ -1344,7 +1353,7 @@ For the exciton subsystem, the fastest oscillations (visible as the faint dashed
         \label{fig:EVM_CQS_Coh_e0}
     \end{subfigure}
 
-    \caption{Plots of the EVM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. The left--hand column of sub--figures is plotted over $\approx$ 1 picosecond to demonstrate envelope oscillations. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate medium and high frequency oscillations. (a) Populations of the excited exciton state $|1\rangle$ and the vibrational mode, $|n=0\rangle$. (b) Entanglement of the total system, quantified by the von Neumann entropy. (c) Coherence of the two subsystems and total system, quantified by the relative entropy of coherence.} 
+    \caption{Plots of the EVM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. The left--hand column of sub--figures is plotted over $\approx$ 1 picosecond to demonstrate envelope and medium frequency oscillations. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Populations of the excited exciton state $|1\rangle$ and the vibrational mode, $|n=0\rangle$. (b) Entanglement of the total system, quantified by the von Neumann entropy. (c) Coherence of the two subsystems and total system, quantified by the relative entropy of coherence.} 
     \label{fig:EVM_CQS_e0}
 \end{figure}
 
@@ -1352,19 +1361,19 @@ For the exciton subsystem, the fastest oscillations (visible as the faint dashed
 
 For the vibrational subsystem, the fastest oscillations have a period of $\approx0.006$ ps. These reflect the bare vibrational frequency $\omega_{\scriptscriptstyle \text{vib}} = 1111,\text{cm}^{-1}$. Unlike the exciton subsystem, population transfer here is generated by the exciton--vibration interaction $\omega_{\scriptscriptstyle \text{vib}} \hat{b}_{\scriptscriptstyle \text{rd}}^\dagger \hat{b}_{\scriptscriptstyle \text{rd}}$ with $\omega_{\scriptscriptstyle \text{vib}}$ being dominant due to $\omega_{\scriptscriptstyle \text{vib}}\gg g$. The same medium oscillations of $\approx0.1$ ps are also present, again set by the coupling $g = 267.1,\text{cm}^{-1}$, and matching those of the exciton subsystem. Finally, the vibrational ground–state population exhibits the same slow envelope with of $\approx0.7$–$0.8$ ps, consistent with the beat frequency generated by the near--resonance between the exciton splitting and the vibrational mode.
 
-Another interesting feature of this model is that the initial condition never vanishes (at no points are the populations 0 for either subystem in Figure \ref{fig:EVM_CQS_Pop_e0}). The terms $\frac{\Delta\epsilon}{2}\sigma_z\text{ and } \omega_{\scriptscriptstyle \text{vib}}\hat{b}_{\scriptscriptstyle \text{rd}}^\dagger\hat{b}_{\scriptscriptstyle \text{rd}}$ are diagonal in their own bases, and therefore always maintain a non--zero contribution from the original exciton and vibrational states.\\
+Another interesting feature is that the initial condition never vanishes (at no points is the population 0 for either subsystem in Figure \ref{fig:EVM_CQS_Pop_e0}). The terms $\frac{\Delta\epsilon}{2}\sigma_z\text{ and } \omega_{\scriptscriptstyle \text{vib}}\hat{b}_{\scriptscriptstyle \text{rd}}^\dagger\hat{b}_{\scriptscriptstyle \text{rd}}$ are diagonal in their own bases, and therefore always maintain a non--zero contribution from the original exciton and vibrational states.\\
 \\
 For entanglement, we observe the fast, medium and envelope oscillations in Figure \ref{fig:EVM_CQS_Ent_e0}. It follows the same medium oscillation and envelope frequency beating as with the populations. The fast oscillations, however, correspond to both bare frequencies $\Delta\epsilon$ and $\omega_{\scriptscriptstyle \text{vib}}$, since entanglement reflects the dynamics of the total system. At time $t = 0$, no entanglement is present because the initial state is a product state. Entanglement first reaches its maximum at $t \approx 0.05$ ps with a value of $\ln 2$. This is expected, since for pure states such as our initial state, the von Neumann entropy of either subsystem is equal; the exciton is modelled as an effective TLS, whose maximum entropy is $\ln 2$, so entanglement cannot exceed this value.\\
 \\
-We observe non--zero coherences in both the subsystems and the total system. This is particularly interesting, because, in contrast to the JCM, there is coherence present in the subsystems. 
+We observe non--zero coherences in both the subsystems and the total system. This is particularly interesting, because, in contrast to the JCM, there is now coherence present in the subsystems. 
 
-The exciton subsystem's coherence retains the rapid oscillations associated with its bare frequency. Coherence arises here due to the $\sigma_x$ Hamiltonian term transferring populations, whilst $\sigma_z$ preserves them, resulting in  superpositions. Coherence, however, remains small throughout the evolution, never exceeding values of around 0.1. This feature can be understood from the fact that the exciton is a TLS, which may can only support off--diagonal terms of the form $|1\rangle\langle 0|$ or $|0\rangle\langle 1|$.
+The exciton subsystem's coherence retains the rapid oscillations associated with its bare frequency. Here, coherence arises due to the $\sigma_x$ Hamiltonian term, which transfers populations, while $\sigma_z$ preserves them, thereby generating superpositions. Coherence, however, remains small throughout the evolution, never exceeding values of about 0.1. This behaviour reflects the fact that the exciton is an effective TLS, which can only support off--diagonal terms of the form $|1\rangle\langle 0|$ or $|0\rangle\langle 1|$.
 
-The vibration subsystem, which also demonstrates the fast oscillation pattern we've observed throughout all simulations, has a larger coherence, reaching values roughly double that of the exciton subsystem. The vibrational modes' free Hamiltonian retains the input state, whilst the interaction term induces population transfer, thereby introducing superpositions. Unlike the exciton, however, vibrational modes may access any Fock state through the interaction Hamiltonian, and thus the presence of off--diagonals are far stronger. In principle, its coherence could be unbounded, but entanglement with the exciton constrains its value.
+The vibration subsystem, which also exhibits the fast oscillation pattern observed throughout all simulations, displays greater coherence, reaching values roughly twice that of the exciton subsystem. The vibrational mode's free Hamiltonian preserves the input state, while the interaction term induces population transfer, thereby introducing superpositions. Unlike the exciton, however, vibrational modes may access any Fock state through the interaction Hamiltonian, and thus the presence of off--diagonals are far stronger. In principle, its coherence could be unbounded, but entanglement with the exciton constrains its value.
 
-For the total system, we note the presence of fast, medium and envelope oscillations. The fast oscillations contain contributions from both $\Delta\epsilon$ and $\omega_{\scriptscriptstyle \text{vib}}$, in the subsystems they arise from the corresponding bare frequencies alone. The total system incorporates off--diagonal terms across the joint basis, all of which contribute to coherence, resulting in a stronger overall presence of off--diagonals compared to the subsystems.
+For the total system, we note the presence of fast, medium and envelope oscillations. The fast oscillations include contributions from both $\Delta\epsilon$ and $\omega_{\scriptscriptstyle \text{vib}}$, whereas in the subsystems they arise solely from the respective bare frequencies. The total system incorporates off--diagonal terms across the joint basis, all of which contribute to coherence, leading to a stronger overall presence of off--diagonals compared to the subsystems.
 
-\subsubsubsection{Case II: Superposition Initial Condition}
+\subsubsubsection{Case II: Superposition Initial Condition} \label{EVM_CQS_case2}
 
 We now carry out our computational analysis of the second initial state from equation \ref{eqn:init_EVM_e0g0}, which reads:
 
@@ -1372,8 +1381,7 @@ We now carry out our computational analysis of the second initial state from equ
     |\psi (\text{t=0})\rangle = \frac{1}{\sqrt{2}}(|1\rangle + |0\rangle)\otimes|n=0\rangle.
 \end{equation*}
 
-The populations in Figure \ref{fig:EVM_CQS_Pop_eg} exhibit the same three--tier oscillatory behaviour and periodicity as with the previous initial condition. The key difference between the previous case is that the initial state is no longer a stationary element of the total state; the exciton now periodically transfers its populations completely into its ground state. The vibrational mode, however, 
-\newpage
+The populations in Figure \ref{fig:EVM_CQS_Pop_eg} exhibit the same three--tier oscillatory behaviour and periodicity as in the previous initial condition. The key difference is that the initial state is no longer a stationary component of the total state; the exciton now periodically transfers its populations entirely into its ground state. The vibrational mode, however, retains
 \begin{figure}[H]
     \centering
 
@@ -1411,26 +1419,27 @@ The populations in Figure \ref{fig:EVM_CQS_Pop_eg} exhibit the same three--tier 
         \label{fig:EVM_CQS_coh_eg}
     \end{subfigure}
 
-    \caption{Plots of the EVM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. The left--hand column of sub--figures is plotted over $\approx$ 1 picosecond to demonstrate envelope oscillations. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate medium and high frequency oscillations. (a) Populations of the excited exciton state $|1\rangle$ and the vibrational mode, $|n=0\rangle$. (b) Entanglement of the total system, quantified by the von Neumann entropy. (c) Coherence of the two subsystems and total system, quantified by the relative entropy of coherence.} 
+    \caption{Plots of the EVM under closed unitary evolution with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. The left--hand column of sub--figures is plotted over $\approx$ 1 picosecond to demonstrate envelope and medium frequency oscillations. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Populations of the excited exciton state $|1\rangle$ and the vibrational mode, $|n=0\rangle$. (b) Entanglement of the total system, quantified by the von Neumann entropy. (c) Coherence of the two subsystems and total system, quantified by the relative entropy of coherence.} 
     \label{fig:EVM_CQS_eg}
 \end{figure}
 
-\noindent retains its initial $|0\rangle$ subsystem state throughout the evolution, albeit oscillating between superpositions itself and other Fock states. \\
+\noindent its initial $|0\rangle$ subsystem state throughout the evolution, albeit oscillating between superpositions itself and other Fock states. Thus, we note that the joint state $|0,0\rangle$ remains present throughout the entire evolution, analogous to the JCM but arising here for different reasons. \\
 \\
-When looking at entanglement, however, we notice a significant divergence from our previous case. Figure \ref{fig:EVM_CQS_ent_eg} shows the medium oscillations losing their regular sinusoidal form. This occurs because the initial superposition of exciton states enables both to interact with the vibrational modes from the start. Since the coupling acts with opposite signs on the two exciton states $|1\rangle$ and $|0\rangle$, two entangling processes act simultaneously, giving rise to an irregular oscillatory structure. Moreover, we notice a reduction in the maximum value of entanglement by around 0.1. This can be attributed to the $|0,0\rangle$ state being stationary throughout the evolution, as observed with the JCM. Its presence effectively dilutes the entanglement, and it behaves as an unentangled product state. \\
+When looking at entanglement, however, we notice a significant divergence from our previous case. Figure \ref{fig:EVM_CQS_ent_eg} shows the medium oscillations losing their regular sinusoidal form. This occurs because the initial superposition of exciton states enables both to interact with the vibrational modes from the start. Since the coupling acts with opposite signs on the two exciton states $|1\rangle$ and $|0\rangle$, two entangling processes act simultaneously, giving rise to an irregular oscillatory structure. Moreover, we notice a reduction in the maximum value of entanglement by around 0.1. This can be attributed to the $|0,0\rangle$ state being stationary throughout the evolution (and thus behaving like an unentangled product state), effectively diluting entanglement.\\
 \\
-We further observe the effects of this stationary state in the coherence of both the subsystems and the total system. Figure \ref{fig:EVM_CQS_coh_eg} shows that coherence for all systems are boosted. Whilst the total coherence reaches a maximum increase around 1.3, both the exciton and vibrational subsystems are doubled at certain points in the evolution. The stationary state adds a constant off--diagonal term to the total system, thus generating a baseline coherence. Furthermore, the exciton subsystem now carries more coherence than the vibrational modes, in contrast to our previous case. The initial state is in a superposition of the two exciton basis states, so the exciton starts with strong off--diagonal terms that remain throughout most of the evolution. The local and global minima of the exciton subsystem coherences are directly associated with the complete transfer of populations to the lower exciton state, and are the only points throughout the evolution where exciton coherence is 0. The vibrational mode, by contrast, must generate coherence through exciton--vibration coupling. Thus, if we start our system in an excitonic superposition, the TLS retains more local coherence than the vibrational mode. On the other hand, if we start in an excitonic eigenstate, the vibrational mode is a better subsystem for carrying coherence. \\
+We further observe the effects of this stationary state in the coherence of both the subsystems and the total system. Figure \ref{fig:EVM_CQS_coh_eg} shows that coherence for all systems are boosted. While the total coherence reaches a maximum increase around 1.3, both the exciton and vibrational subsystems are doubled at certain points in the evolution. The stationary state adds a constant off--diagonal term to the total system, thus generating a baseline coherence. Furthermore, the exciton subsystem now carries more coherence than the vibrational modes, in contrast to our previous case. The initial state is in a superposition of the two exciton basis states, so the exciton starts with strong off--diagonal terms that remain throughout most of the evolution. The local and global minima of the exciton subsystem coherences are directly associated with the complete transfer of populations to the lower exciton state, and are the only points throughout the evolution where exciton coherence is 0. The vibrational mode, by contrast, must generate coherence through exciton--vibration coupling. Thus, if we start our system in an excitonic superposition, the TLS retains more local coherence than the vibrational mode. On the other hand, if we start in an excitonic eigenstate, the vibrational mode is a better subsystem for carrying coherence. \\
 \\
 We have completed our analysis of population, entanglement and coherence dynamics under closed evolution, and have observed some key features of the EVM: its three--tier population oscillations, its ability to generate subsystem coherence from classically--behaving initial states such as $|1,0\rangle$, and its potential to boost the exciton subsystem's maximal coherence if we start in an excitonic superposition. We now turn to open system dynamics, where we observe these dynamics again under the effects of decoherence and dissipation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%% OQS EVM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Open Evolution}
+
+For all open system evolution simulations, we focus on the vibrational mode $|n=1\rangle$, contrary to our closed evolution simulations, to provide a clearer visualisation of the effects of decoherence and dissipation. As before, all datasets are smoothed to aid visualisation, and each result is presented on both long and short timescales to highlight the fine--grain dynamics of the EVM.
+
 \subsubsubsection{Case I: Excited State Initial Condition}
 
-We begin with analysis of the population, entanglement and coherence dynamics for the first initial condition in equation \ref{eqn:init_EVM_e0}.\\
+We begin with analysis of the population, entanglement and coherence dynamics for the initial condition in equation \ref{eqn:init_EVM_e0}.\\
 \\
-The 
-\newpage
-
+The population dynamics in Figure \ref{fig:EVM_OQS_Pop_e0} exhibit the expected hierarchy of oscillations across all three dissipative processes. When only the spontaneous atomic emission channel is open (Figure \ref{fig:EVM_OQS_Pop_spont_e0}), the exciton subsystem decays from $|1\rangle$ to $|0\rangle$ a faster rate than the vibrational mode $|n=1\rangle$. Conversely, when the thermal dissipation channel is open in isolation (Figure \ref{fig:EVM_OQS_Pop_therm_e0}), the vibration subsystem decays much faster than the exciton excited state. This contrast indicates that the subsystem's interaction is less pronounced than in the JCM, whose subsystems decay at comparable rates. The distinction can be explained by the interaction Hamiltonian of the EVM: $\hat{\sigma}_z$ is coupled to $\hat{b}_{\scriptscriptstyle \text{rd}}^\dagger + \hat{b}_{\scriptscriptstyle \text{rd}}$. The $\hat{\sigma}_z$ term primarily introduces phase shifts to the exciton subsystem, and does not induce population transfer. If the interaction instead involved $\hat{\sigma}_x$, we would observe
 %%%%%%%%%%%% POPS %%%%%%%%%%%
 \begin{figure}[H]
     \centering
@@ -1468,12 +1477,18 @@ The
         \caption{}
         \label{fig:EVM_OQS_Pop_both_e0}
     \end{subfigure}
-    \caption{Plots of the EVM subsystem populations under open system evolution, with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. (a) Evolution under spontaneous atomic emission. (b) Evolution under thermal dissipation. (c) Evolution under both spontaneous atomic emission and thermal dissipation.}
-    \label{fig:EVM_OQS_Pop}
+    \caption{Plots of the EVM subsystem populations under open system evolution, with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. The left--hand column of sub--figures is plotted over a long picosecond timescale to demonstrate envelope and medium frequency oscillations, as well as overall decay. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Evolution under spontaneous atomic emission. (b) Evolution under thermal dissipation. (c) Evolution under both spontaneous atomic emission and thermal dissipation.}
+    \label{fig:EVM_OQS_Pop_e0}
 \end{figure}
+\vspace{-0.1cm}
+\noindent more pronounced population transfer between excitonic states, and so our rates of decay would be nearer in value.
+When both decay channels are open simultaneously (Figure \ref{fig:EVM_OQS_Pop_both_e0}), both subsystems decay much faster than when their corresponding decay operators were acting in isolation. Both the exciton and vibration subsystem decay to a steady state at $\approx 6$ps. While the exciton decays to its ground state, the vibrational mode decays to a steady state that is not its ground state of $|n=0\rangle$. We may attribute this to the thermal dissipation channel having a high enough value of $k_bT = 208.5\text{ cm}^{-1}$ that the mean thermal occupation number N (see equation \eqref{eqn:H_EV}) is non--zero, and thus there is a finite temperature bath. In this scenario, there always remains a small equilibrium population in the vibration, so it never decays fully to its ground state.\\
+\\
+This finite temperature bath regime becomes more apparent when we analyse the entanglement of our system, quantified by negativity measure (Figure \ref{fig:EVM_OQS_Neg_e0}). As expected, the initial entanglement decays rapidly under spontaneous atomic emission (Figure \ref{fig:EVM_OQS_Neg_spont_e0}). In contrast, the thermal dissipation channel takes longer to decay (Figure \ref{fig:EVM_OQS_Neg_therm_e0}). The Lindblad operators cause both collapse and revive populations of the vibration subsystem, such that the oscillator is continually driven from its ground state. The exicton--exciton coupling term does not decay, and so both excited and ground exciton states remain. Both effects in unison cause non--classical correlations between the exciton and vibration, giving rise to small but persistent steady--state entanglement. When both decay channels are active simultaneously, decay is faster overall, but again, the finite--temperature bath gives rise to excitations in the vibration subsystem, and a similar residual entanglement is observed. Surprisingly, under spontaneous atomic emission, where there are no revival mechanisms for either subsystem, entanglement seems to increase, suggesting the presence of a minimum. This could perhaps be explained by numerical instability in our QuTip solver methods.\\
+\\
+A similar picture emerges when analysing coherence, quantified using the relative entropy of coherence (Figure \ref{fig:EVM_OQS_Coh_e0}). For all plots, we observe that the coherence in the subsystems are initially non--zero and gradually decay, consistent with our observations for the closed evolution. Under spontaneous emission (Figure \ref{fig:EVM_OQS_Coh_spont_e0}), the system is expected to relax to the separable ground state with vanishing coherence. However, as with entanglement, our simulations display a residual coherence. The origin of this effect is not entirely clear: it may rise from numerical artefacts, or be linked to the interaction Hamiltonian of the EVM. We are unable to conclusively determine which mechanism is responsible for this effect, and we associate it with a limitation of the simulation. In contrast, the behaviour under thermal dissipation is well understood. The channel sustains a stable level of coherence in the vibration subsystem (around $\approx 0.18$) due to the finite-temperature bath. The coherence of the exciton subsystem under this decay channel is expected to be weak, and we observe this. The interaction Hamiltonian couples these vibrational excitations to the exciton via the displacement term $\sigma_z(b^\dagger+b)$, while the $V\sigma_x$ term ensures that the TLS does not remain strictly diagonal in the $\{{|0\rangle,|1\rangle}\}$ basis. As a result, the joint density matrix retains weak but persistent off--diagonal elements that survive into the steady state. We further observe that when both decay channels are present (Figure \ref{fig:EVM_OQS_Coh_both_e0}), exciton coherence is quickly suppressed by spontaneous emission, but the vibrational subsystem continues to sustain a small degree of coherence due to the thermal bath. This residual vibrational contribution ensures that the total system retains a non–zero baseline of coherence at long times.
 
-
-%%%%%%%%%%%%%
+%%%%%% NEG %%%%%%%%%%%%%%%%%
 \begin{figure}[H]
     \centering
     % -------- Row (a): Spontaneous emission --------
@@ -1509,231 +1524,213 @@ The
         \caption{}
         \label{fig:EVM_OQS_Neg_both_e0}
     \end{subfigure}
-    \caption{Plots of the decay of entanglement of the EVM under open system evolution using the negativity measure, with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. (a) Entanglement decay under spontaneous atomic emission. (b) Entanglement decay under thermal dissipation. (c) Entanglement decay under both spontaneous atomic emission and thermal dissipation.}
-    \label{fig:EVM_OQS_Neg}
+    \caption{Plots of the decay of entanglement of the EVM under open system evolution using the negativity measure, with an initial state of $|\psi (\text{t=0})\rangle = |1, 0\rangle$. The left--hand column of sub--figures is plotted over a long picosecond timescale to demonstrate envelope and medium frequency oscillations, as well as overall decay. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Entanglement decay under spontaneous atomic emission. (b) Entanglement decay under thermal dissipation. (c) Entanglement decay under both spontaneous atomic emission and thermal dissipation.}
+    \label{fig:EVM_OQS_Neg_e0}
 \end{figure}
 
+
+%%%%%%%% COH %%%%%%%%%
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Coherence/coh_spont_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Coh_spont}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Coherence/coh_therm_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Coh_therm}
-    \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Coherence/coh_both_e0.png}
-        \caption{}
-        \label{fig:EVM_OQS_Coh_both}
-    \end{subfigure}
-    \hfill
 
-    \caption{Plots of the decay of coherence (decoherence) of the EVM under open system evolution using the relative entropy of coherence measure, with an initial state of $|\psi (\text{t=0})\rangle =|1, 0\rangle$. (a) Decoherence under spontaneous atomic emission. (b) Decoherence under thermal dissipation. (c) Decoherence under both spontaneous atomic emission and thermal dissipation.}
-    \label{fig:EVM_OQS_Coh}
+    % -------- Row (a): Spontaneous emission --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Envelope/coh_spont_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Fast/coh_spont_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Coh_spont_e0}
+    \end{subfigure}
+
+    \vspace{0.8em}
+
+    % -------- Row (b): Thermal dissipation --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Envelope/coh_therm_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Fast/coh_therm_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Coh_therm_e0}
+    \end{subfigure}
+
+    \vspace{0.8em}
+
+    % -------- Row (c): Both channels --------
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Envelope/coh_both_e0.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Fast/coh_both_e0.png}
+        \caption{}
+        \label{fig:EVM_OQS_Coh_both_e0}
+    \end{subfigure}
+    \caption{Plots of the decay of coherence (decoherence) of the EVM under open system evolution using the relative entropy of coherence measure, with an initial state of $|\psi (\text{t=0})\rangle =|1, 0\rangle$. The left--hand column of sub--figures is plotted over a long picosecond timescale to demonstrate envelope and medium frequency oscillations, as well as overall decay. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Decoherence under spontaneous atomic emission. (b) Decoherence under thermal dissipation. (c) Decoherence under both spontaneous atomic emission and thermal dissipation.}
+    \label{fig:EVM_OQS_Coh_e0}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% EVM OQS II %%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%% POPS %%%%%%%%
 \subsubsubsection{Case II: Superposition Initial Condition}
+
+As with the closed simulation, we also consider the second initial state in equation \eqref{eqn:init_EVM_e0g0}.
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
+
+    % -------- Row (a): Spontaneous emission --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Population/pops_ex_spont_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Envelope/pops_ex_spont_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Fast/pops_ex_spont_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Pop_spont_eg}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
+
+    \vspace{0.8em}
+
+    % -------- Row (b): Thermal dissipation --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Population/pops_ex_therm_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Envelope/pops_ex_therm_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Fast/pops_ex_therm_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Pop_therm_eg}
     \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
+
+    \vspace{0.8em}
+
+    % -------- Row (c): Both channels --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Population/pops_ex_both_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Envelope/pops_ex_both_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Population/Fast/pops_ex_both_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Pop_both_eg}
     \end{subfigure}
-    \hfill
-
-    \caption{Plots of the EVM subsystem populations under open system evolution, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. (a) Evolution under spontaneous atomic emission. (b) Evolution under thermal dissipation. (c) Evolution under both spontaneous atomic emission and thermal dissipation.}
+    \caption{Plots of the EVM subsystem populations under open system evolution, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. The left--hand column of sub--figures is plotted over a long picosecond timescale to demonstrate envelope and medium frequency oscillations, as well as overall decay. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Evolution under spontaneous atomic emission. (b) Evolution under thermal dissipation. (c) Evolution under both spontaneous atomic emission and thermal dissipation.}
     \label{fig:EVM_OQS_Pop_eg}
 \end{figure}
 
+The populations of both subsystems in Figure \ref{fig:EVM_OQS_Pop_eg} exhibit similar patterns to those of the first initial state. When the spontaneous atomic emission channel is open (Figure \ref{fig:EVM_OQS_Pop_spont_eg}), the exciton subsystem decays in roughly $10$ ps, matching our previous case; the same follows for our vibration subsystem. When only the thermal dissipation channel is active (Figure \ref{fig:EVM_OQS_Pop_therm_eg}), we observe similar exciton subsystem decay rates in the populations; the vibration subsystem also decays, but exhibits the steady--state feature observed earlier. With both channels active (Figure \ref{fig:EVM_OQS_Pop_both_eg}), both subsystems decay more rapidly, as expected, due to the finite--temperature bath and interaction coupling between both subsystems. An interesting feature of all three decay models, however, is that the medium oscillations are much stronger. This suggests that the coupling strength between the subsystems, $g$, is preserved for a longer time. We may therefore conclude that starting in an excitonic superposition state makes the exciton--vibration exchange processes more pronounced..\\
+\\
+The entanglement of the total system (Figure \ref{fig:EVM_OQS_Neg_eg}) exhibits similar behaviours to our previous initial condition. Overall entanglement is reduced due to the dilution introduced by stationary states. The decay timescales for all three decay channels remain comparable to those of the previous case. The main distinction is that the medium--frequency oscillations are more pronounced, consistent with the population dynamics. Thus, while the maximum achievable entanglement is reduced, the stronger medium--frequency oscillations remain distinct throughout evolution. \\
+\\
+Lastly, we observe similar decay timescales and steady--state coherence in Figure \ref{fig:EVM_OQS_Coh_eg}, as with the previous initial condition. A characteristic feature of the current initial state, as noted in Section \ref{EVM_CQS_case2}, is that the exciton subsystem becomes a stronger carrier of coherence across all decay types, owing to the  superposition in the initial state. Again, the medium--frequency oscillations are pronounced, but they do not have a particular effect on the decay timescales. We also note that, whereas under closed evolution the coherences of both the subsystems and total systems are stronger, here it seems that decoherence rapidly suppresses them (within less than $1$ ps), diminishing the effectiveness of this initial condition in sustaining stronger coherence, and thus reducing the advantage of this initial state in the generation of coherence.\\
+\\
+This concludes our analysis of the EVM under both closed and open evolution of the system. We now turn to discuss both models, summarising their unique features of entanglement and coherence, and comparing their strengths and weaknesses. 
 
+%%%%%%%% NEG %%%%%%%%%
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
+    % -------- Row (a): Spontaneous emission --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Negativity/neg_spont_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Envelope/neg_spont_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Fast/neg_spont_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Neg_spont_eg}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
+
+    \vspace{0.8em}
+
+    % -------- Row (b): Thermal dissipation --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Negativity/neg_therm_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Envelope/neg_therm_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Fast/neg_therm_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Neg_therm_eg}
     \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
+
+    \vspace{0.8em}
+
+    % -------- Row (c): Both channels --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Negativity/neg_both_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Envelope/neg_both_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Negativity/Fast/neg_both_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Neg_both_eg}
     \end{subfigure}
-    \hfill
-
-    \caption{Plots of the decay of entanglement of the EVM under open system evolution using the negativity measure, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. (a) Entanglement decay under spontaneous atomic emission. (b) Entanglement decay under thermal dissipation. (c) Entanglement decay under both spontaneous atomic emission and thermal dissipation.}
+    \caption{Plots of the decay of entanglement of the EVM under open system evolution using the negativity measure, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. The left--hand column of sub--figures is plotted over a long picosecond timescale to demonstrate envelope and medium frequency oscillations, as well as overall decay. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Entanglement decay under spontaneous atomic emission. (b) Entanglement decay under thermal dissipation. (c) Entanglement decay under both spontaneous atomic emission and thermal dissipation.}
     \label{fig:EVM_OQS_Neg_eg}
 \end{figure}
 
+
+%%%%%%%% COH %%%%%%%%%%%%
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.45\textwidth}
+
+    % -------- Row (a): Spontaneous emission --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Coherence/coh_spont_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Envelope/coh_spont_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Fast/coh_spont_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Coh_spont_eg}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
+
+    \vspace{0.8em}
+
+    % -------- Row (b): Thermal dissipation --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Coherence/coh_therm_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Envelope/coh_therm_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Fast/coh_therm_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Coh_therm_eg}
     \end{subfigure}
-    
-    \vspace{0.5cm}
-    
-    \begin{subfigure}{0.45\textwidth}
+
+    \vspace{0.8em}
+
+    % -------- Row (c): Both channels --------
+    \begin{subfigure}{\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{Research Project/Code/results/ExVib/Open/Coherence/coh_both_eg.png}
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Envelope/coh_both_eg.png}
+        \hfill
+        \includegraphics[width=0.49\textwidth]{Research Project/Code/results/ExVib/Open/Coherence/Fast/coh_both_eg.png}
         \caption{}
         \label{fig:EVM_OQS_Coh_both_eg}
     \end{subfigure}
-    \hfill
-
-    \caption{Plots of the decay of coherence (decoherence) of the EVM under open system evolution using the relative entropy of coherence measure, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. (a) Decoherence under spontaneous atomic emission. (b) Decoherence under thermal dissipation. (c) Decoherence under both spontaneous atomic emission and thermal dissipation.}
+    \caption{Plots of the decay of coherence (decoherence) of the EVM under open system evolution using the relative entropy of coherence measure, with an initial state of $|\psi (\text{t=0})\rangle = 1/\sqrt{2}(|1\rangle + |0\rangle)\otimes|n=0\rangle$. The left--hand column of sub--figures is plotted over a long picosecond timescale to demonstrate envelope and medium frequency oscillations, as well as overall decay. The right--hand column of sub--figures is plotted over a shorter timescale to demonstrate high frequency oscillations. (a) Decoherence under spontaneous atomic emission. (b) Decoherence under thermal dissipation. (c) Decoherence under both spontaneous atomic emission and thermal dissipation.}
     \label{fig:EVM_OQS_Coh_eg}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DISCUSSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discussion}
+The JCM and the EVM represent two distinct yet related frameworks for studying quantum resources in TLS--QHO systems. Taken together, the results from both models provide complementary insights into the generation, evolution, and fragility of entanglement and coherence under closed and open dynamics. In this section, we summarise the main findings for each model before drawing comparisons that highlight their similarities, differences, and broader implications.\\
+\\
+The JCM serves as a benchmark for analysing TLS--QHO dynamics because of its analytical solvability and its clear exhibition of Rabi oscillations. Under closed evolution, the populations of the TLS and cavity exhibit the expected coherent oscillations due to the exchange of excitations, with entanglement and coherence following the same oscillatory pattern. For an initially excited atomic state, the entanglement cycles between zero and its maximal value of $\ln2$, while coherence in the total system grows and decays in period with population transfer. A superposition initial condition introduces a stationary component $|g,0\rangle$, which has two significant effects: it reduces the maximum entanglement achievable due to dilution by a separable fraction of the state, and simultaneously boosts overall coherence by adding a baseline off--diagonal contribution. This illustrates a general trade--off between entanglement and coherence within the JCM framework.
 
+When environmental effects are included through spontaneous emission and thermal dissipation, the dynamics retain Rabi oscillations but with decaying amplitudes. Populations in both subsystems decay on identical timescales under the two decay channels, reflecting the strong coupling of subsystems due to the interaction Hamiltonian. Coherence also decays on the same timescale as the populations, indicating that, in the computational basis, it cannot persist once excitations are lost. Entanglement, however, proves more fragile: negativity decays at roughly twice the rate of populations, since it requires simultaneous population of coupled states. When both decay channels act together, all quantum resources dissipate more rapidly. These results emphasise the inherent vulnerability of entanglement in open JCM dynamics, while coherence shows greater robustness but is affected by dissipation.\\
+\\
+The EVM introduces richer dynamics by incorporating additional interaction terms between excitons and vibrational modes. Unlike the simple Rabi oscillations of the JCM, the EVM produces a hierarchy of oscillations across three timescales: fast oscillations at the bare frequencies of the excitonic splitting and vibrational mode, medium oscillations set by the exciton--vibration coupling strength, and slow envelope modulations due to near--resonance detuning. This three--tier structure is visible in the populations, entanglement, and coherence, indicating a significant departure from the simpler JCM behaviour.
 
+Under closed evolution, the EVM generates entanglement oscillations that reflect the bare frequencies of the system. The maximum entanglement is again limited to $\ln2$, but its time dependence is more complex, especially when the initial state is a superposition of excitonic states. In this case, we observe irregular oscillatory patterns and a reduced maximum entanglement. Coherence dynamics are also richer: both the exciton and vibrational subsystems sustain non--zero coherence, in contrast to the JCM where subsystem coherence is typically absent in unentangled initial states. Moreover, the vibration subsystem frequently carries larger coherence than the exciton, although this balance can be reversed when starting in an excitonic superposition.
 
+When open dynamics are considered, the EVM reveals clear distinctions between decay channels. Spontaneous emission rapidly damps the exciton subsystem, whereas thermal dissipation predominantly damps the vibrational subsystem. Their differing action reflects the interaction Hamiltonian structure, which primarily introduces exciton state phase shifts rather than population transfer, leading to asymmetric decay of subsystems. Importantly, the presence of a finite--temperature bath means that the vibrational mode never fully decays to its ground state, sustaining small steady--state populations, residual coherence, and weak but persistent entanglement. This contrasts with the JCM, where both subsystems decay fully under similar conditions. Starting in an excitonic superposition state amplifies the medium--frequency oscillations of both populations and entanglement, although the overall lifetime of quantum resources is primarily governed by decoherence and dissipative processes.\\
+\\
+The comparative analysis highlights both similarities and differences between the two models. Both models exhibit oscillatory dynamics of populations, coherence, and entanglement under closed evolution, with quantum resources generated by coherent exchanges of excitation. Both also show that entanglement is more fragile than coherence under open dynamics, decaying faster and limiting the timescale over which quantum correlations persist. Moreover, in both systems, superposition initial conditions enhance coherence but suppress maximum entanglement, highlighting the trade--off between these resources.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The differences, however, are significant. The JCM dynamics are dominated by a single oscillatory frequency (the Rabi frequency $g$), leading to simple and predictable cycles of quantum resources. In contrast, the EVM features multi--frequency behaviour, with interference and beating patterns that enrich the time dependence of entanglement and coherence. This makes the EVM a more faithful model for realistic molecular and biological systems, where multiple energy scales exist. Another key difference is that in the JCM, coherence is primarily a property of the total system, while in the EVM it is strongly present in both subsystems, with the vibrational mode often carrying more coherence than the exciton. Finally, while the JCM subsystems decay at comparable rates under open evolution, the EVM exhibits asymmetric decay reflecting its interaction Hamiltonian, and even supports steady--state coherence and entanglement under thermal dissipation due to finite--temperature effects.\\
+\\
+Taken together, these findings suggest that the JCM is an idealised model for understanding fundamental light--matter interactions and the basic generation of quantum resources, whereas the EVM captures richer, more realistic behaviours relevant for complex systems. The persistence of vibrational coherence and residual entanglement in the EVM, even under environmental noise, points towards potential mechanisms by which quantum effects persist in higher--temperature, noisy environments. In contrast, the fragility of entanglement in the JCM reinforces the challenge of protecting non--classical correlations in cavity QED platforms.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Conclusion and Outlook} \label{sec:conc}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{appendices}
-    \section{Code Definitions} \label{appendix_code}
- All code required to set up the simulations has been structured into a modular Python class, and is available at \textbf{GitHub link here}. 
-
- \begin{enumerate}
-     \item Code for Negativity
-     \item Code for Coherence
-     \item Code for averages of EVm plots. 
- \end{enumerate}
-\end{appendices}
 \newpage
-
+\pagenumbering{gobble}
 \bibliographystyle{unsrt} 
 \bibliography{References/references.bib} 
 
