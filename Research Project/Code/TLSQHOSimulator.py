@@ -286,11 +286,11 @@ class TLSQHOSimulator:
             plt.legend(loc="upper right", fontsize=10)
 
         if x_label is None:
-            plt.xlabel("Time (ps)")
+            plt.xlabel("Time (ps)", fontsize=14)
         else:
-            plt.xlabel(x_label)
+            plt.xlabel(x_label, fontsize=14)
 
-        plt.ylabel(y_label)
+        plt.ylabel(y_label, fontsize=14)
 
         if title is not None:
             plt.title(title)
